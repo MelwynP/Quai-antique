@@ -26,9 +26,6 @@ class Hour
     #[ORM\Column]
     private ?bool $is_service_period = null;
 
-    #[ORM\ManyToOne(inversedBy: 'hour')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Restaurant $restaurant = null;
 
     public function getId(): ?int
     {
@@ -79,18 +76,6 @@ class Hour
     public function setIsServicePeriod(bool $is_service_period): self
     {
         $this->is_service_period = $is_service_period;
-
-        return $this;
-    }
-
-    public function getRestaurant(): ?Restaurant
-    {
-        return $this->restaurant;
-    }
-
-    public function setRestaurant(?Restaurant $restaurant): self
-    {
-        $this->restaurant = $restaurant;
 
         return $this;
     }

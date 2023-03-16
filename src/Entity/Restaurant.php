@@ -43,9 +43,6 @@ class Restaurant
     #[ORM\Column]
     private ?int $number_chair = null;
 
-    #[ORM\OneToMany(mappedBy: 'restaurant', targetEntity: Hour::class)]
-    private Collection $hour;
-
     public function __construct()
     {
         $this->hour = new ArrayCollection();
@@ -160,36 +157,6 @@ class Restaurant
     public function setNumberChair(int $number_chair): self
     {
         $this->number_chair = $number_chair;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Hour>
-     */
-    public function getHour(): Collection
-    {
-        return $this->hour;
-    }
-
-    public function addHour(Hour $hour): self
-    {
-        if (!$this->hour->contains($hour)) {
-            $this->hour->add($hour);
-            $hour->setRestaurant($this);
-        }
-
-        return $this;
-    }
-
-    public function removeHour(Hour $hour): self
-    {
-        if ($this->hour->removeElement($hour)) {
-            // set the owning side to null (unless already changed)
-            if ($hour->getRestaurant() === $this) {
-                $hour->setRestaurant(null);
-            }
-        }
 
         return $this;
     }
