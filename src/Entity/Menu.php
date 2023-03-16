@@ -2,13 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\PhotoRepository;
+use App\Repository\MenuRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: PhotoRepository::class)]
-class Photo
+#[ORM\Entity(repositoryClass: MenuRepository::class)]
+class Menu
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -19,9 +20,16 @@ class Photo
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $file = null;
+    private ?string $description = null;
 
-    #[ORM\OneToMany(mappedBy: 'photo', targetEntity: Flat::class, orphanRemoval: true)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 3, scale: 2)]
+    private ?string $price = null;
+
+    #[ORM\ManyToOne(inversedBy: 'menus')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Restaurant $restaurant = null;
+
+    #[ORM\ManyToMany(targetEntity: Flat::class, inversedBy: 'menus')]
     private Collection $flat;
 
     public function __construct()
@@ -46,14 +54,38 @@ class Photo
         return $this;
     }
 
-    public function getFile(): ?string
+    public function getDescription(): ?string
     {
-        return $this->file;
+        return $this->description;
     }
 
-    public function setFile(string $file): self
+    public function setDescription(string $description): self
     {
-        $this->file = $file;
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getPrice(): ?string
+    {
+        return $this->price;
+    }
+
+    public function setPrice(string $price): self
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    public function getRestaurant(): ?Restaurant
+    {
+        return $this->restaurant;
+    }
+
+    public function setRestaurant(?Restaurant $restaurant): self
+    {
+        $this->restaurant = $restaurant;
 
         return $this;
     }
@@ -70,7 +102,6 @@ class Photo
     {
         if (!$this->flat->contains($flat)) {
             $this->flat->add($flat);
-            $flat->setPhoto($this);
         }
 
         return $this;
@@ -78,12 +109,7 @@ class Photo
 
     public function removeFlat(Flat $flat): self
     {
-        if ($this->flat->removeElement($flat)) {
-            // set the owning side to null (unless already changed)
-            if ($flat->getPhoto() === $this) {
-                $flat->setPhoto(null);
-            }
-        }
+        $this->flat->removeElement($flat);
 
         return $this;
     }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\HourRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -15,17 +17,24 @@ class Hour
     private ?int $id = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $day_week = null;
+    private ?\DateTimeInterface $dayWeek = null;
 
     #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $opening_time = null;
+    private ?\DateTimeInterface $openingTime = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $closing_time = null;
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $closingDay = null;
 
     #[ORM\Column]
-    private ?bool $is_service_period = null;
+    private ?bool $servicePeriode = null;
 
+    #[ORM\ManyToMany(targetEntity: Restaurant::class, inversedBy: 'hours')]
+    private Collection $restaurant;
+
+    public function __construct()
+    {
+        $this->restaurant = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -34,48 +43,72 @@ class Hour
 
     public function getDayWeek(): ?\DateTimeInterface
     {
-        return $this->day_week;
+        return $this->dayWeek;
     }
 
-    public function setDayWeek(\DateTimeInterface $day_week): self
+    public function setDayWeek(\DateTimeInterface $dayWeek): self
     {
-        $this->day_week = $day_week;
+        $this->dayWeek = $dayWeek;
 
         return $this;
     }
 
     public function getOpeningTime(): ?\DateTimeInterface
     {
-        return $this->opening_time;
+        return $this->openingTime;
     }
 
-    public function setOpeningTime(\DateTimeInterface $opening_time): self
+    public function setOpeningTime(\DateTimeInterface $openingTime): self
     {
-        $this->opening_time = $opening_time;
+        $this->openingTime = $openingTime;
 
         return $this;
     }
 
-    public function getClosingTime(): ?\DateTimeInterface
+    public function getClosingDay(): ?\DateTimeInterface
     {
-        return $this->closing_time;
+        return $this->closingDay;
     }
 
-    public function setClosingTime(\DateTimeInterface $closing_time): self
+    public function setClosingDay(\DateTimeInterface $closingDay): self
     {
-        $this->closing_time = $closing_time;
+        $this->closingDay = $closingDay;
 
         return $this;
     }
 
-    public function isIsServicePeriod(): ?bool
+    public function isServicePeriode(): ?bool
     {
-        return $this->is_service_period;
+        return $this->servicePeriode;
     }
 
-    public function setIsServicePeriod(bool $is_service_period): self
+    public function setServicePeriode(bool $servicePeriode): self
     {
-        $this->is_service_period = $is_service_period;
+        $this->servicePeriode = $servicePeriode;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Restaurant>
+     */
+    public function getRestaurant(): Collection
+    {
+        return $this->restaurant;
+    }
+
+    public function addRestaurant(Restaurant $restaurant): self
+    {
+        if (!$this->restaurant->contains($restaurant)) {
+            $this->restaurant->add($restaurant);
+        }
+
+        return $this;
+    }
+
+    public function removeRestaurant(Restaurant $restaurant): self
+    {
+        $this->restaurant->removeElement($restaurant);
 
         return $this;
     }

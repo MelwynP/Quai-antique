@@ -5,7 +5,6 @@ namespace App\Entity;
 use App\Repository\RestaurantRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: RestaurantRepository::class)]
@@ -16,36 +15,51 @@ class Restaurant
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 255)]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
     private ?string $address = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 255)]
     private ?string $phone = null;
 
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 3, scale: 2)]
-    private ?string $average_price = null;
+    #[ORM\Column]
+    private ?float $averagePrice = null;
 
     #[ORM\Column]
-    private ?int $maximum_capacity = null;
+    private ?int $maximumCapacity = null;
 
     #[ORM\Column]
-    private ?int $availability_capacity = null;
+    private ?int $availabilityCapacity = null;
 
     #[ORM\Column]
-    private ?int $number_table = null;
+    private ?int $numberTable = null;
 
     #[ORM\Column]
-    private ?int $number_chair = null;
+    private ?int $numberChair = null;
+
+    #[ORM\OneToMany(mappedBy: 'restaurant', targetEntity: Booking::class)]
+    private Collection $bookings;
+
+    #[ORM\ManyToMany(targetEntity: Hour::class, mappedBy: 'restaurant')]
+    private Collection $hours;
+
+    #[ORM\OneToMany(mappedBy: 'restaurant', targetEntity: Menu::class)]
+    private Collection $menus;
+
+    #[ORM\OneToMany(mappedBy: 'restaurant', targetEntity: Flat::class)]
+    private Collection $flats;
 
     public function __construct()
     {
-        $this->hour = new ArrayCollection();
+        $this->bookings = new ArrayCollection();
+        $this->hours = new ArrayCollection();
+        $this->menus = new ArrayCollection();
+        $this->flats = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -101,62 +115,179 @@ class Restaurant
         return $this;
     }
 
-    public function getAveragePrice(): ?string
+    public function getAveragePrice(): ?float
     {
-        return $this->average_price;
+        return $this->averagePrice;
     }
 
-    public function setAveragePrice(string $average_price): self
+    public function setAveragePrice(float $averagePrice): self
     {
-        $this->average_price = $average_price;
+        $this->averagePrice = $averagePrice;
 
         return $this;
     }
 
     public function getMaximumCapacity(): ?int
     {
-        return $this->maximum_capacity;
+        return $this->maximumCapacity;
     }
 
-    public function setMaximumCapacity(int $maximum_capacity): self
+    public function setMaximumCapacity(int $maximumCapacity): self
     {
-        $this->maximum_capacity = $maximum_capacity;
+        $this->maximumCapacity = $maximumCapacity;
 
         return $this;
     }
 
     public function getAvailabilityCapacity(): ?int
     {
-        return $this->availability_capacity;
+        return $this->availabilityCapacity;
     }
 
-    public function setAvailabilityCapacity(int $availability_capacity): self
+    public function setAvailabilityCapacity(int $availabilityCapacity): self
     {
-        $this->availability_capacity = $availability_capacity;
+        $this->availabilityCapacity = $availabilityCapacity;
 
         return $this;
     }
 
     public function getNumberTable(): ?int
     {
-        return $this->number_table;
+        return $this->numberTable;
     }
 
-    public function setNumberTable(int $number_table): self
+    public function setNumberTable(int $numberTable): self
     {
-        $this->number_table = $number_table;
+        $this->numberTable = $numberTable;
 
         return $this;
     }
 
     public function getNumberChair(): ?int
     {
-        return $this->number_chair;
+        return $this->numberChair;
     }
 
-    public function setNumberChair(int $number_chair): self
+    public function setNumberChair(int $numberChair): self
     {
-        $this->number_chair = $number_chair;
+        $this->numberChair = $numberChair;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Booking>
+     */
+    public function getBookings(): Collection
+    {
+        return $this->bookings;
+    }
+
+    public function addBooking(Booking $booking): self
+    {
+        if (!$this->bookings->contains($booking)) {
+            $this->bookings->add($booking);
+            $booking->setRestaurant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBooking(Booking $booking): self
+    {
+        if ($this->bookings->removeElement($booking)) {
+            // set the owning side to null (unless already changed)
+            if ($booking->getRestaurant() === $this) {
+                $booking->setRestaurant(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Hour>
+     */
+    public function getHours(): Collection
+    {
+        return $this->hours;
+    }
+
+    public function addHour(Hour $hour): self
+    {
+        if (!$this->hours->contains($hour)) {
+            $this->hours->add($hour);
+            $hour->addRestaurant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHour(Hour $hour): self
+    {
+        if ($this->hours->removeElement($hour)) {
+            $hour->removeRestaurant($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Menu>
+     */
+    public function getMenus(): Collection
+    {
+        return $this->menus;
+    }
+
+    public function addMenu(Menu $menu): self
+    {
+        if (!$this->menus->contains($menu)) {
+            $this->menus->add($menu);
+            $menu->setRestaurant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMenu(Menu $menu): self
+    {
+        if ($this->menus->removeElement($menu)) {
+            // set the owning side to null (unless already changed)
+            if ($menu->getRestaurant() === $this) {
+                $menu->setRestaurant(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Flat>
+     */
+    public function getFlats(): Collection
+    {
+        return $this->flats;
+    }
+
+    public function addFlat(Flat $flat): self
+    {
+        if (!$this->flats->contains($flat)) {
+            $this->flats->add($flat);
+            $flat->setRestaurant($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFlat(Flat $flat): self
+    {
+        if ($this->flats->removeElement($flat)) {
+            // set the owning side to null (unless already changed)
+            if ($flat->getRestaurant() === $this) {
+                $flat->setRestaurant(null);
+            }
+        }
 
         return $this;
     }
