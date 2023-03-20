@@ -23,12 +23,6 @@ class Booking
     #[ORM\Column]
     private ?int $numberPeople = null;
 
-    #[ORM\Column]
-    private ?bool $statutReservation = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $commentary = null;
-
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $allergy = null;
 
@@ -77,30 +71,6 @@ class Booking
     public function setNumberPeople(int $numberPeople): self
     {
         $this->numberPeople = $numberPeople;
-
-        return $this;
-    }
-
-    public function isStatutReservation(): ?bool
-    {
-        return $this->statutReservation;
-    }
-
-    public function setStatutReservation(bool $statutReservation): self
-    {
-        $this->statutReservation = $statutReservation;
-
-        return $this;
-    }
-
-    public function getCommentary(): ?string
-    {
-        return $this->commentary;
-    }
-
-    public function setCommentary(?string $commentary): self
-    {
-        $this->commentary = $commentary;
 
         return $this;
     }
