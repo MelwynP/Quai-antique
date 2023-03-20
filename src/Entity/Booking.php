@@ -28,10 +28,6 @@ class Booking
 
     #[ORM\ManyToOne(inversedBy: 'bookings')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?User $user = null;
-
-    #[ORM\ManyToOne(inversedBy: 'bookings')]
-    #[ORM\JoinColumn(nullable: false)]
     private ?Restaurant $restaurant = null;
 
     public function getId(): ?int
@@ -83,18 +79,6 @@ class Booking
     public function setAllergy(?string $allergy): self
     {
         $this->allergy = $allergy;
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->user;
-    }
-
-    public function setUser(?User $user): self
-    {
-        $this->user = $user;
 
         return $this;
     }

@@ -40,14 +40,6 @@ class RegistrationFormType extends AbstractType
                 'label' => 'Prénom'
             ])
 
-            ->add('allergy', TextType::class, [
-                'attr' => [
-                    'class' => 'form-control'
-                ],
-                'label' => 'Entrez vos allergies séparées par une virgule',
-                'required' => false
-            ])
-
             ->add('RGPDConsent', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
@@ -61,8 +53,8 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'attr' => [
                     'autocomplete' => 'new-password',
-                    'class' => 'form-control'
-                    ],
+                    'class' => 'form-control',
+                   ],
                     'constraints' => [
                         new NotBlank([
                             'message' => 'mot de pass obligatoire',
@@ -74,6 +66,7 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
+            'label' => 'Mot de passe',
             ])
         ;
     }

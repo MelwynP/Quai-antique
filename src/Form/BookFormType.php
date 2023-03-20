@@ -3,7 +3,11 @@
 namespace App\Form;
 
 use App\Entity\Booking;
+use App\Entity\Restaurant;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -12,12 +16,38 @@ class BookFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('dateReservation')
-            ->add('hourReservation')
-            ->add('numberPeople')
-            ->add('allergy')
-            ->add('user')
-            ->add('restaurant')
+            ->add('dateReservation', DateType::class, [
+                'attr' => [
+                   'class' => 'form-control'
+                ],
+                'label' => 'Date de réservation'
+            ])
+            ->add('hourReservation', TimeType::class, [
+                'attr' => [
+                   'class' => 'form-control'
+                ],
+                'label' => 'Heure de réservation'
+            ])
+            ->add('numberPeople', null, [
+                'attr' => [
+                   'class' => 'form-control'
+                ],
+                'label' => 'Nombre de personnes'
+            ])
+            ->add('allergy', null, [
+                'attr' => [
+                   'class' => 'form-control'
+                ],
+                'label' => 'Allergies'
+            ])
+            ->add('restaurant', EntityType::class, [
+                'class' => Restaurant::class,
+                'choice_label' => 'name',
+                'attr' => [
+                   'class' => 'form-control'
+                ],
+                'label' => 'Sélectionner le Restaurant'
+            ])
         ;
     }
 

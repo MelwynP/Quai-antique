@@ -4,5 +4,20 @@
 {% endblock %}
 
 {% block body %}
-	<h2>Reservation</h2>
+	<section class="container">
+		<div class="row">
+			<div class="col">
+				<h2>Reservation</h2>
+				{{ form_start(bookForm) }}
+				{{ form_row(bookForm.dateReservation) }}
+				{{ form_row(bookForm.hourReservation) }}
+				{{ form_row(bookForm.numberPeople) }}
+				{{ form_row(bookForm.allergy) }}
+				{{ form_row(bookForm.restaurant) }}
+				<button type="submit" class="btn btn-primary">Réserver</button>
+				{{ form_end(bookForm) }}
+			</div>
+		</div>
+	</section>
+
 {% endblock %}

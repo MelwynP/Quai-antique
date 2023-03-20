@@ -39,18 +39,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $firstname = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $allergy = null;
-
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Booking::class)]
-    private Collection $bookings;
-
     public function __construct()
     {
-        $this->bookings = new ArrayCollection();
         $this->createdAt = new \DateTimeImmutable();
     }
 
@@ -148,18 +141,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getAllergy(): ?string
-    {
-        return $this->allergy;
-    }
-
-    public function setAllergy(?string $allergy): self
-    {
-        $this->allergy = $allergy;
-
-        return $this;
-    }
-
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
@@ -172,33 +153,4 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Booking>
-     */
-    public function getBookings(): Collection
-    {
-        return $this->bookings;
-    }
-
-    public function addBooking(Booking $booking): self
-    {
-        if (!$this->bookings->contains($booking)) {
-            $this->bookings->add($booking);
-            $booking->setUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeBooking(Booking $booking): self
-    {
-        if ($this->bookings->removeElement($booking)) {
-            // set the owning side to null (unless already changed)
-            if ($booking->getUser() === $this) {
-                $booking->setUser(null);
-            }
-        }
-
-        return $this;
-    }
 }
