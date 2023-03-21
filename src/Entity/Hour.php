@@ -22,12 +22,6 @@ class Hour
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTimeInterface $openingTime = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $closingDay = null;
-
-    #[ORM\Column]
-    private ?bool $servicePeriode = null;
-
     #[ORM\ManyToMany(targetEntity: Restaurant::class, inversedBy: 'hours')]
     private Collection $restaurant;
 
@@ -61,30 +55,6 @@ class Hour
     public function setOpeningTime(\DateTimeInterface $openingTime): self
     {
         $this->openingTime = $openingTime;
-
-        return $this;
-    }
-
-    public function getClosingDay(): ?\DateTimeInterface
-    {
-        return $this->closingDay;
-    }
-
-    public function setClosingDay(\DateTimeInterface $closingDay): self
-    {
-        $this->closingDay = $closingDay;
-
-        return $this;
-    }
-
-    public function isServicePeriode(): ?bool
-    {
-        return $this->servicePeriode;
-    }
-
-    public function setServicePeriode(bool $servicePeriode): self
-    {
-        $this->servicePeriode = $servicePeriode;
 
         return $this;
     }
