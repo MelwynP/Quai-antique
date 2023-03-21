@@ -1,0 +1,48 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\Melwyn\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js install
+
+PATH: 
+  C:\Program Files\Python310\Scripts\;C:\Program Files\Python310\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\MongoDB\Server\5.0\bin;C:\ProgramData\ComposerSetup\bin;C:\Program Files\nodejs\;C:\Wampserver64\bin\mysql\mysql8.0.27\bin;C:\Wampserver64\bin\php\php8.1.0;C:\Wampserver64\bin\php\php8.0.13;C:\Wampserver64\bin\symfony;C:\Users\Melwyn\scoop\shims;C:\Users\Melwyn\AppData\Local\Microsoft\WindowsApps;C:\Program Files\PostgreSQL\14\bin;C:\Program Files\VS Code;C:\Users\Melwyn\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Melwyn\AppData\Roaming\Composer\vendor\bin;C:\Users\Melwyn;C:\Users\Melwyn\AppData\Roaming\npm;
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  18.12.1
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: connect ETIMEDOUT 2606:4700::6810:1923:443
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1300:16)
+
+npm manifest: 
+  {
+      "devDependencies": {
+          "@babel/core": "^7.17.0",
+          "@babel/preset-env": "^7.16.0",
+          "@hotwired/stimulus": "^3.0.0",
+          "@symfony/stimulus-bridge": "^3.2.0",
+          "@symfony/webpack-encore": "^4.0.0",
+          "core-js": "^3.23.0",
+          "regenerator-runtime": "^0.13.9",
+          "webpack": "^5.74.0",
+          "webpack-cli": "^4.10.0",
+          "webpack-notifier": "^1.15.0"
+      },
+      "license": "UNLICENSED",
+      "private": true,
+      "scripts": {
+          "dev-server": "encore dev-server",
+          "dev": "encore dev",
+          "watch": "encore dev --watch",
+          "build": "encore production --progress"
+      }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
