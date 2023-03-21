@@ -11,8 +11,6 @@ class BookConfirmController extends AbstractController
     #[Route('/confirmation-reservation', name: 'app_book_confirm')]
     public function index(): Response
     {
-        return $this->render('book_confirm/index.html.twig', [
-            'controller_name' => 'BookConfirmController',
-        ]);
+        return $this->render('book_confirm/index.html.twig');
     }
 }

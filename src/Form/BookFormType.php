@@ -3,7 +3,6 @@
 namespace App\Form;
 
 use App\Entity\Booking;
-use App\Entity\Restaurant;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -39,14 +38,6 @@ class BookFormType extends AbstractType
                    'class' => 'form-control'
                 ],
                 'label' => 'Allergie(s)'
-            ])
-            ->add('restaurant', EntityType::class, [
-                'class' => Restaurant::class,
-                'choice_label' => 'name',
-                'attr' => [
-                   'class' => 'form-control'
-                ],
-                'label' => 'Sélectionner le Restaurant'
             ])
         ;
     }
