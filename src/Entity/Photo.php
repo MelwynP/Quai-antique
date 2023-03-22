@@ -24,6 +24,9 @@ class Photo
     #[ORM\OneToMany(mappedBy: 'photo', targetEntity: Flat::class, orphanRemoval: true)]
     private Collection $flat;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $image = null;
+
     public function __construct()
     {
         $this->flat = new ArrayCollection();
@@ -84,6 +87,18 @@ class Photo
                 $flat->setPhoto(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

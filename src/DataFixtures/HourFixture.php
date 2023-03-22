@@ -15,8 +15,8 @@ class HourFixture extends Fixture
 
         for($hr = 1; $hr <= 7; $hr++){
             $hour = new Hour();
-            $hour->setDayWeek($faker->dateTime('between: -1 week, +1 week'));
-            $hour->setOpeningTime($faker->dateTime('between: -1 week, +1 week'));
+            $hour->setDayWeek($faker->dateTimeBetween('-1 week', 'now'));
+            $hour->setOpeningTime($faker->dateTimeBetween('-1 week', 'now'));
 
             $manager->persist($hour);
         }

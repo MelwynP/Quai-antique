@@ -39,6 +39,14 @@ class BookFormType extends AbstractType
                 ],
                 'label' => 'Allergie(s)'
             ])
+            ->add('restaurant', EntityType::class, [
+                'class' => 'App\Entity\Restaurant',
+                'choice_label' => 'name',
+                'attr' => [
+                   'class' => 'form-control'
+                ],
+                'label' => 'Restaurant'
+            ])
         ;
     }
 
