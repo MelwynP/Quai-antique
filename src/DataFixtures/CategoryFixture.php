@@ -2,12 +2,20 @@
 
 namespace App\DataFixtures;
 
+use App\Repository\FlatRepository;
 use App\Entity\Category;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class CategoryFixture extends Fixture
+class CategoryFixture extends Fixture implements DependentFixtureInterface
 {
+
+     public function __construct(
+            private FlatRepository $flatRepository
+        ){}
+
     public function load(ObjectManager $manager): void
     {
         $category = new Category();
@@ -25,6 +33,18 @@ class CategoryFixture extends Fixture
         $category->setDescription('Un plat peut être pris seul ou avec d\'autre categories.');
         $manager->persist($category);
 
+        $flat = $this->flatRepository->findAll();
+            foreach ($flat as $flat) {
+                $category->addFlat($flat);
+            }
+
         $manager->flush();
+
     }
+        public function getDependencies(): array
+        {
+            return [
+                RestaurantFixture::class,
+            ];
+        }
 }

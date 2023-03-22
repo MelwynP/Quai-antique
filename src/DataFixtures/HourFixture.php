@@ -2,13 +2,20 @@
 
 namespace App\DataFixtures;
 
+use App\Repository\RestaurantRepository;
 use App\Entity\Hour;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker;
 
-class HourFixture extends Fixture
+class HourFixture extends Fixture implements DependentFixtureInterface
 {
+
+    public function __construct(
+        private RestaurantRepository $restaurantRepository
+    ){}
+
     public function load(ObjectManager $manager): void
     {
       $faker = Faker\Factory::create('fr_FR');
@@ -21,7 +28,19 @@ class HourFixture extends Fixture
             $manager->persist($hour);
         }
 
+        $restaurant = $this->restaurantRepository->findAll();
+            foreach ($restaurant as $restaurant) {
+                $hour->addRestaurant($restaurant);
+            }
+
         $manager->flush();
+    }
+
+    public function getDependencies(): array
+    {
+        return [
+            RestaurantFixture::class,
+        ];
     }
 }
 

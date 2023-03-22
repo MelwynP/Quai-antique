@@ -2,6 +2,8 @@
 
 namespace App\DataFixtures;
 
+use App\Repository\HourRepository;
+use App\Entity\Hour;
 use App\Entity\Photo;
 use App\Entity\Flat;
 use App\Entity\Menu;
@@ -13,8 +15,13 @@ use Faker;
 
 class RestaurantFixture extends Fixture
 {
+        public function __construct(
+            private HourRepository $hourRepository
+        ){}
+    
         public function load(ObjectManager $manager): void
         {
+
             $restaurant = new Restaurant();
             $restaurant->setName('Quai-Antique');
             $restaurant->setAddress('1 rue du port');
@@ -68,6 +75,10 @@ class RestaurantFixture extends Fixture
             $manager->persist($flat);
             }
 
+            $hours = $this->hourRepository->findAll();
+            foreach ($hours as $hour) {
+                $restaurant->addHour($hour);
+            }
 
             $manager->flush();
         
