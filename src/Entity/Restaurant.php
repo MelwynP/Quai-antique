@@ -51,15 +51,17 @@ class Restaurant
     #[ORM\OneToMany(mappedBy: 'restaurant', targetEntity: Flat::class)]
     private Collection $flats;
 
-    #[ORM\OneToMany(mappedBy: 'restaurant', targetEntity: Booking::class, orphanRemoval: true)]
-    private Collection $bookings;
+    #[ORM\Column(length: 50)]
+    private ?string $city = null;
+
+    #[ORM\Column]
+    private ?int $zipcode = null;
 
     public function __construct()
     {
         $this->hours = new ArrayCollection();
         $this->menus = new ArrayCollection();
         $this->flats = new ArrayCollection();
-        $this->bookings = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -262,32 +264,26 @@ class Restaurant
         return $this;
     }
 
-    /**
-     * @return Collection<int, Booking>
-     */
-    public function getBookings(): Collection
+    public function getCity(): ?string
     {
-        return $this->bookings;
+        return $this->city;
     }
 
-    public function addBooking(Booking $booking): self
+    public function setCity(string $city): self
     {
-        if (!$this->bookings->contains($booking)) {
-            $this->bookings->add($booking);
-            $booking->setRestaurant($this);
-        }
+        $this->city = $city;
 
         return $this;
     }
 
-    public function removeBooking(Booking $booking): self
+    public function getZipcode(): ?int
     {
-        if ($this->bookings->removeElement($booking)) {
-            // set the owning side to null (unless already changed)
-            if ($booking->getRestaurant() === $this) {
-                $booking->setRestaurant(null);
-            }
-        }
+        return $this->zipcode;
+    }
+
+    public function setZipcode(int $zipcode): self
+    {
+        $this->zipcode = $zipcode;
 
         return $this;
     }

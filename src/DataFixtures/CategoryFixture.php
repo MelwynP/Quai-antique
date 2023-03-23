@@ -4,8 +4,8 @@ namespace App\DataFixtures;
 
 use App\Repository\FlatRepository;
 use App\Entity\Category;
+use App\Repository\MenuRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
@@ -13,7 +13,8 @@ class CategoryFixture extends Fixture implements DependentFixtureInterface
 {
 
      public function __construct(
-            private FlatRepository $flatRepository
+            private FlatRepository $flatRepository,
+            private MenuRepository $menuRepository
         ){}
 
     public function load(ObjectManager $manager): void
@@ -34,9 +35,14 @@ class CategoryFixture extends Fixture implements DependentFixtureInterface
         $manager->persist($category);
 
         $flat = $this->flatRepository->findAll();
-            foreach ($flat as $flat) {
-                $category->addFlat($flat);
-            }
+        foreach ($flat as $flat) {
+        $category->addFlat($flat);
+        }
+
+        $menu = $this->menuRepository->findAll();
+        foreach ($menu as $menu) {
+        $flat->addMenu($menu);
+        }
 
         $manager->flush();
 

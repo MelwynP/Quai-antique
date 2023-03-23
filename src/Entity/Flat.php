@@ -25,9 +25,6 @@ class Flat
     #[ORM\Column(type: Types::DECIMAL, precision: 3, scale: 2)]
     private ?string $price = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $ingredient = null;
-
     #[ORM\ManyToOne(inversedBy: 'flat')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Photo $photo = null;
@@ -85,18 +82,6 @@ class Flat
     public function setPrice(string $price): self
     {
         $this->price = $price;
-
-        return $this;
-    }
-
-    public function getIngredient(): ?string
-    {
-        return $this->ingredient;
-    }
-
-    public function setIngredient(?string $ingredient): self
-    {
-        $this->ingredient = $ingredient;
 
         return $this;
     }
