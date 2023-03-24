@@ -22,12 +22,12 @@ class Category
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\ManyToMany(targetEntity: Flat::class, inversedBy: 'categories')]
-    private Collection $flat;
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Flat::class)]
+    private Collection $flats;
 
     public function __construct()
     {
-        $this->flat = new ArrayCollection();
+        $this->flats = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -62,15 +62,16 @@ class Category
     /**
      * @return Collection<int, Flat>
      */
-    public function getFlat(): Collection
+    public function getFlats(): Collection
     {
-        return $this->flat;
+        return $this->flats;
     }
 
     public function addFlat(Flat $flat): self
     {
-        if (!$this->flat->contains($flat)) {
-            $this->flat->add($flat);
+        if (!$this->flats->contains($flat)) {
+            $this->flats->add($flat);
+            $flat->setCategory($this);
         }
 
         return $this;
@@ -78,7 +79,12 @@ class Category
 
     public function removeFlat(Flat $flat): self
     {
-        $this->flat->removeElement($flat);
+        if ($this->flats->removeElement($flat)) {
+            // set the owning side to null (unless already changed)
+            if ($flat->getCategory() === $this) {
+                $flat->setCategory(null);
+            }
+        }
 
         return $this;
     }

@@ -22,13 +22,9 @@ class Hour
     #[ORM\Column(type: Types::TIME_MUTABLE)]
     private ?\DateTimeInterface $openingTime = null;
 
-    #[ORM\ManyToMany(targetEntity: Restaurant::class, inversedBy: 'hours')]
-    private Collection $restaurant;
-
-    public function __construct()
-    {
-        $this->restaurant = new ArrayCollection();
-    }
+    #[ORM\ManyToOne(inversedBy: 'hours')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Restaurant $restaurant = null;
 
     public function getId(): ?int
     {
@@ -59,26 +55,14 @@ class Hour
         return $this;
     }
 
-    /**
-     * @return Collection<int, Restaurant>
-     */
-    public function getRestaurant(): Collection
+    public function getRestaurant(): ?Restaurant
     {
         return $this->restaurant;
     }
 
-    public function addRestaurant(Restaurant $restaurant): self
+    public function setRestaurant(?Restaurant $restaurant): self
     {
-        if (!$this->restaurant->contains($restaurant)) {
-            $this->restaurant->add($restaurant);
-        }
-
-        return $this;
-    }
-
-    public function removeRestaurant(Restaurant $restaurant): self
-    {
-        $this->restaurant->removeElement($restaurant);
+        $this->restaurant = $restaurant;
 
         return $this;
     }

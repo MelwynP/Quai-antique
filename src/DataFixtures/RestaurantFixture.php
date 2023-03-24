@@ -4,18 +4,22 @@ namespace App\DataFixtures;
 
 use App\Entity\Photo;
 use App\Entity\Flat;
-use App\Entity\Menu;
 use App\Entity\Booking;
+use App\Entity\Category;
+use App\Entity\Hour;
 use App\Entity\Restaurant;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\ORM\Query\AST\BetweenExpression;
 use Doctrine\Persistence\ObjectManager;
 use Faker;
 
 class RestaurantFixture extends Fixture 
 {
    
+
     public function load(ObjectManager $manager): void
     {
+
         $restaurant = new Restaurant();
         $restaurant->setName('Quai-Antique');
         $restaurant->setAddress('1 rue du port');
@@ -30,6 +34,19 @@ class RestaurantFixture extends Fixture
         $restaurant->setZipCode('73000');
         $manager->persist($restaurant);
 
+        $category = new Category();
+        $category->setName('Entrée');
+        $category->setDescription('C\'est le premier service dans un repas ');
+        $manager->persist($category);
+        $category = new Category();
+        $category->setName('Burger');
+        $category->setDescription('Un burger est un sandwich composé de deux pains de forme ronde, généralement garnis d\'un steak haché et de crudités ainsi que de sauce.');
+        $manager->persist($category);
+        $category = new Category();
+        $category->setName('Plat');
+        $category->setDescription('Un plat peut être pris seul ou avec d\'autre categories.');
+        $manager->persist($category);
+
         $faker = Faker\Factory::create('fr_FR');
 
         for($bkg = 1; $bkg <= 10; $bkg++){
@@ -40,7 +57,7 @@ class RestaurantFixture extends Fixture
         $booking->setAllergy($faker->text(10));
         $manager->persist($booking);
         }
-        
+
         for($pht=1; $pht <=10 ; $pht++){ 
         $photo = new Photo();
         $photo->setName($faker->text(10));
@@ -48,16 +65,7 @@ class RestaurantFixture extends Fixture
         $photo->setImage($faker->imageUrl(640, 480, 'food', true));
         $manager->persist($photo);
         }
-        
-        for($mnu = 1; $mnu <= 10; $mnu++){            
-        $menu = new Menu();
-        $menu->setName($faker->text(10));
-        $menu->setDescription($faker->text(30));
-        $menu->setPrice($faker->randomNumber(3));
-        $menu->setRestaurant($restaurant);
-        $manager->persist($menu);
-        }
-        
+
         for ($flt=1; $flt <=10 ; $flt++ ) { 
         $flat = new Flat();
         $flat->setName($faker->text(10));
@@ -65,7 +73,16 @@ class RestaurantFixture extends Fixture
         $flat->setPrice($faker->randomFloat(2, 10, 10));
         $flat->setPhoto($photo);
         $flat->setRestaurant($restaurant);
+        $flat->setCategory($category);
         $manager->persist($flat);
+        }
+    
+        for($hr = 1; $hr <= 7; $hr++){
+        $hour = new Hour();
+        $hour->setDayWeek($faker->dateTimeBetween('-1 week', 'now'));
+        $hour->setOpeningTime($faker->dateTimeBetween('-1 week', 'now'));
+        $hour->setRestaurant($restaurant);
+        $manager->persist($hour);
         }
 
         $manager->flush();

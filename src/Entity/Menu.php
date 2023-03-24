@@ -25,11 +25,7 @@ class Menu
     #[ORM\Column(type: Types::DECIMAL, precision: 3, scale: 2)]
     private ?string $price = null;
 
-    #[ORM\ManyToOne(inversedBy: 'menus')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Restaurant $restaurant = null;
-
-    #[ORM\ManyToMany(targetEntity: Flat::class, inversedBy: 'menus')]
+    #[ORM\ManyToMany(targetEntity: Flat::class, inversedBy: 'menu')]
     private Collection $flat;
 
     public function __construct()
@@ -78,17 +74,6 @@ class Menu
         return $this;
     }
 
-    public function getRestaurant(): ?Restaurant
-    {
-        return $this->restaurant;
-    }
-
-    public function setRestaurant(?Restaurant $restaurant): self
-    {
-        $this->restaurant = $restaurant;
-
-        return $this;
-    }
 
     /**
      * @return Collection<int, Flat>

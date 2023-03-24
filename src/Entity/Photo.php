@@ -20,12 +20,12 @@ class Photo
 
     #[ORM\Column(length: 255)]
     private ?string $file = null;
-
-    #[ORM\OneToMany(mappedBy: 'photo', targetEntity: Flat::class, orphanRemoval: true)]
-    private Collection $flat;
-
+    
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
+    
+    #[ORM\OneToMany(mappedBy: 'photo', targetEntity: Flat::class, orphanRemoval: true)]
+    private Collection $flat;
 
     public function __construct()
     {
@@ -53,14 +53,26 @@ class Photo
     {
         return $this->file;
     }
-
+    
     public function setFile(string $file): self
     {
         $this->file = $file;
+        
+        return $this;
+    }
+    
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }
-
+    
     /**
      * @return Collection<int, Flat>
      */
@@ -68,7 +80,7 @@ class Photo
     {
         return $this->flat;
     }
-
+    
     public function addFlat(Flat $flat): self
     {
         if (!$this->flat->contains($flat)) {
@@ -91,15 +103,4 @@ class Photo
         return $this;
     }
 
-    public function getImage(): ?string
-    {
-        return $this->image;
-    }
-
-    public function setImage(?string $image): self
-    {
-        $this->image = $image;
-
-        return $this;
-    }
 }

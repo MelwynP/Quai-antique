@@ -29,20 +29,20 @@ class Flat
     #[ORM\JoinColumn(nullable: false)]
     private ?Photo $photo = null;
 
-    #[ORM\ManyToMany(targetEntity: Category::class, mappedBy: 'flat')]
-    private Collection $categories;
-
     #[ORM\ManyToMany(targetEntity: Menu::class, mappedBy: 'flat')]
-    private Collection $menus;
+    private Collection $menu;
 
     #[ORM\ManyToOne(inversedBy: 'flats')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Restaurant $restaurant = null;
 
+    #[ORM\ManyToOne(inversedBy: 'flats')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Category $category = null;
+
     public function __construct()
     {
-        $this->categories = new ArrayCollection();
-        $this->menus = new ArrayCollection();
+        $this->menu = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -99,44 +99,17 @@ class Flat
     }
 
     /**
-     * @return Collection<int, Category>
-     */
-    public function getCategories(): Collection
-    {
-        return $this->categories;
-    }
-
-    public function addCategory(Category $category): self
-    {
-        if (!$this->categories->contains($category)) {
-            $this->categories->add($category);
-            $category->addFlat($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCategory(Category $category): self
-    {
-        if ($this->categories->removeElement($category)) {
-            $category->removeFlat($this);
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection<int, Menu>
      */
     public function getMenus(): Collection
     {
-        return $this->menus;
+        return $this->menu;
     }
 
     public function addMenu(Menu $menu): self
     {
-        if (!$this->menus->contains($menu)) {
-            $this->menus->add($menu);
+        if (!$this->menu->contains($menu)) {
+            $this->menu->add($menu);
             $menu->addFlat($this);
         }
 
@@ -145,7 +118,7 @@ class Flat
 
     public function removeMenu(Menu $menu): self
     {
-        if ($this->menus->removeElement($menu)) {
+        if ($this->menu->removeElement($menu)) {
             $menu->removeFlat($this);
         }
 
@@ -160,6 +133,18 @@ class Flat
     public function setRestaurant(?Restaurant $restaurant): self
     {
         $this->restaurant = $restaurant;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

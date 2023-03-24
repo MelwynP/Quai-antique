@@ -42,26 +42,23 @@ class Restaurant
     #[ORM\Column]
     private ?int $numberChair = null;
 
-    #[ORM\ManyToMany(targetEntity: Hour::class, mappedBy: 'restaurant')]
-    private Collection $hours;
-
-    #[ORM\OneToMany(mappedBy: 'restaurant', targetEntity: Menu::class)]
-    private Collection $menus;
-
-    #[ORM\OneToMany(mappedBy: 'restaurant', targetEntity: Flat::class)]
-    private Collection $flats;
-
     #[ORM\Column(length: 50)]
     private ?string $city = null;
 
     #[ORM\Column]
     private ?int $zipcode = null;
 
+    #[ORM\OneToMany(mappedBy: 'restaurant', targetEntity: Flat::class)]
+    private Collection $flats;
+
+    #[ORM\OneToMany(mappedBy: 'restaurant', targetEntity: Hour::class)]
+    private Collection $hours;
+
+
     public function __construct()
     {
-        $this->hours = new ArrayCollection();
-        $this->menus = new ArrayCollection();
         $this->flats = new ArrayCollection();
+        $this->hours = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -133,7 +130,7 @@ class Restaurant
     {
         return $this->maximumCapacity;
     }
-
+    
     public function setMaximumCapacity(int $maximumCapacity): self
     {
         $this->maximumCapacity = $maximumCapacity;
@@ -149,7 +146,7 @@ class Restaurant
     public function setAvailabilityCapacity(int $availabilityCapacity): self
     {
         $this->availabilityCapacity = $availabilityCapacity;
-
+        
         return $this;
     }
 
@@ -157,79 +154,46 @@ class Restaurant
     {
         return $this->numberTable;
     }
-
+    
     public function setNumberTable(int $numberTable): self
     {
         $this->numberTable = $numberTable;
-
+        
         return $this;
     }
-
+    
     public function getNumberChair(): ?int
     {
         return $this->numberChair;
     }
-
+    
     public function setNumberChair(int $numberChair): self
     {
         $this->numberChair = $numberChair;
+        
+        return $this;
+    }
+    
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(string $city): self
+    {
+        $this->city = $city;
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, Hour>
-     */
-    public function getHours(): Collection
+    public function getZipcode(): ?int
     {
-        return $this->hours;
+        return $this->zipcode;
     }
 
-    public function addHour(Hour $hour): self
+    public function setZipcode(int $zipcode): self
     {
-        if (!$this->hours->contains($hour)) {
-            $this->hours->add($hour);
-            $hour->addRestaurant($this);
-        }
-
-        return $this;
-    }
-
-    public function removeHour(Hour $hour): self
-    {
-        if ($this->hours->removeElement($hour)) {
-            $hour->removeRestaurant($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Menu>
-     */
-    public function getMenus(): Collection
-    {
-        return $this->menus;
-    }
-
-    public function addMenu(Menu $menu): self
-    {
-        if (!$this->menus->contains($menu)) {
-            $this->menus->add($menu);
-            $menu->setRestaurant($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMenu(Menu $menu): self
-    {
-        if ($this->menus->removeElement($menu)) {
-            // set the owning side to null (unless already changed)
-            if ($menu->getRestaurant() === $this) {
-                $menu->setRestaurant(null);
-            }
-        }
+        $this->zipcode = $zipcode;
 
         return $this;
     }
@@ -264,26 +228,32 @@ class Restaurant
         return $this;
     }
 
-    public function getCity(): ?string
+    /**
+     * @return Collection<int, Hour>
+     */
+    public function getHours(): Collection
     {
-        return $this->city;
+        return $this->hours;
     }
 
-    public function setCity(string $city): self
+    public function addHour(Hour $hour): self
     {
-        $this->city = $city;
+        if (!$this->hours->contains($hour)) {
+            $this->hours->add($hour);
+            $hour->setRestaurant($this);
+        }
 
         return $this;
     }
 
-    public function getZipcode(): ?int
+    public function removeHour(Hour $hour): self
     {
-        return $this->zipcode;
-    }
-
-    public function setZipcode(int $zipcode): self
-    {
-        $this->zipcode = $zipcode;
+        if ($this->hours->removeElement($hour)) {
+            // set the owning side to null (unless already changed)
+            if ($hour->getRestaurant() === $this) {
+                $hour->setRestaurant(null);
+            }
+        }
 
         return $this;
     }
