@@ -4,5 +4,69 @@
 {% endblock %}
 
 {% block body %}
-	<h2>Carte & Menu</h2>
-{% endblock %}
+	<main class="container">
+
+		<main class="col-12">
+			<h2>Carte & Menu</h2>
+			<section class="row">
+				<h3>Notre carte</h3>
+				{% for category in categories %}
+					<div class="col-4">
+						<div class="card" style="width: 18rem;">
+							<div class="card-body">
+								<h5 class="card-title">Nom de la catégorie :
+									{{category.name}}</h5>
+								<p class="card-text">Descirption de la catégorie :
+									{{category.description}}</p>
+								{% for flat in flats %}
+									<p>Nom du plat :
+										{{flat.name}}
+										<br>
+										Description du plat :
+										{{flat.description}}</p>
+									<br><br>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+				<h3>Nos menus</h3>
+				<div>
+					{% for menu in menus %}
+						<h4>Voici nos differents menu :
+							{{menu.name}}
+							<br>
+							Description :
+							{{menu.description}}</h4>
+						{% for category in categories %}
+							<p>Nom de la catégorie :
+								{{category.name}}</p>
+							{% for flat in flats %}
+								<p>Nom du plat :
+									{{flat.name}}</p>
+							{% endfor %}
+						{% endfor %}
+					{% endfor %}
+				</div>
+
+
+				<button class="btn btn-lg btn-primary mt-3" type="submit">
+					Reserver une table
+				</button>
+				<div class="col-12">
+					<div class="card" style="width: 18rem;">
+						<h5 class="card-title">Heure et jour d'ouverture</h5>
+						{% for hour in hours %}
+							<p class="card-text">Jour :
+								{{hour.dayWeek|date('d/m/Y')}}
+								<br>
+								Heure d'ouverture :
+								{{hour.openingTime|date('H:i')}}
+								<br>
+							{% endfor %}
+						</div>
+					</div>
+				</main>
+			</section>
+		</main>
+	{% endblock %}
