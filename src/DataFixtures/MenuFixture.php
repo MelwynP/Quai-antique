@@ -2,43 +2,28 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Menu;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use App\Entity\Menu;
-use App\Repository\FlatRepository;
-use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Faker;
 
-class MenuFixture extends Fixture implements DependentFixtureInterface
-{   
-    public function __construct(
-    private FlatRepository $flatRepository
-    ){}
-
+class MenuFixture extends Fixture
+{
+    private $counter = 1;
     public function load(ObjectManager $manager): void
     {
-        $faker = \Faker\Factory::create('fr_FR');
+        $faker = Faker\Factory::create('fr_FR');
 
         for($mnu = 1; $mnu <= 5; $mnu++){            
         $menu = new Menu();
         $menu->setName($faker->text(10));
         $menu->setDescription($faker->text(30));
-        $menu->setPrice($faker->randomNumber(3));
+        $menu->setPrice($faker->numberBetween(20, 60));
         $manager->persist($menu);
-        }
-
-        $flat = $this->flatRepository->findAll();
-        foreach($flat as $flat) {
-        $menu->addFlat($flat);
-        $manager->persist($flat);
+        $this->addReference('mnu-' . $this->counter, $menu);
+        $this->counter++;
         }
 
         $manager->flush();
-    }
-
-    public function getDependencies()
-    {
-        return [
-            RestaurantFixture::class,
-        ];
     }
 }

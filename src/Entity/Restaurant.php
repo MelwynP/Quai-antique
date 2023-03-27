@@ -48,16 +48,12 @@ class Restaurant
     #[ORM\Column]
     private ?int $zipcode = null;
 
-    #[ORM\OneToMany(mappedBy: 'restaurant', targetEntity: Flat::class)]
-    private Collection $flats;
-
     #[ORM\OneToMany(mappedBy: 'restaurant', targetEntity: Hour::class)]
     private Collection $hours;
 
 
     public function __construct()
     {
-        $this->flats = new ArrayCollection();
         $this->hours = new ArrayCollection();
     }
 
@@ -194,36 +190,6 @@ class Restaurant
     public function setZipcode(int $zipcode): self
     {
         $this->zipcode = $zipcode;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Flat>
-     */
-    public function getFlats(): Collection
-    {
-        return $this->flats;
-    }
-
-    public function addFlat(Flat $flat): self
-    {
-        if (!$this->flats->contains($flat)) {
-            $this->flats->add($flat);
-            $flat->setRestaurant($this);
-        }
-
-        return $this;
-    }
-
-    public function removeFlat(Flat $flat): self
-    {
-        if ($this->flats->removeElement($flat)) {
-            // set the owning side to null (unless already changed)
-            if ($flat->getRestaurant() === $this) {
-                $flat->setRestaurant(null);
-            }
-        }
 
         return $this;
     }

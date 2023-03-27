@@ -22,28 +22,19 @@ class Flat
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 3, scale: 2)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 4, scale: 2)]
     private ?string $price = null;
 
     #[ORM\ManyToOne(inversedBy: 'flat')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Photo $photo = null;
 
-    #[ORM\ManyToMany(targetEntity: Menu::class, mappedBy: 'flat')]
-    private Collection $menu;
-
-    #[ORM\ManyToOne(inversedBy: 'flats')]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Restaurant $restaurant = null;
-
     #[ORM\ManyToOne(inversedBy: 'flats')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 
-    public function __construct()
-    {
-        $this->menu = new ArrayCollection();
-    }
+    #[ORM\ManyToOne(inversedBy: 'flat')]
+    private ?Menu $menu = null;
 
     public function getId(): ?int
     {
@@ -98,45 +89,6 @@ class Flat
         return $this;
     }
 
-    /**
-     * @return Collection<int, Menu>
-     */
-    public function getMenus(): Collection
-    {
-        return $this->menu;
-    }
-
-    public function addMenu(Menu $menu): self
-    {
-        if (!$this->menu->contains($menu)) {
-            $this->menu->add($menu);
-            $menu->addFlat($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMenu(Menu $menu): self
-    {
-        if ($this->menu->removeElement($menu)) {
-            $menu->removeFlat($this);
-        }
-
-        return $this;
-    }
-
-    public function getRestaurant(): ?Restaurant
-    {
-        return $this->restaurant;
-    }
-
-    public function setRestaurant(?Restaurant $restaurant): self
-    {
-        $this->restaurant = $restaurant;
-
-        return $this;
-    }
-
     public function getCategory(): ?Category
     {
         return $this->category;
@@ -145,6 +97,18 @@ class Flat
     public function setCategory(?Category $category): self
     {
         $this->category = $category;
+
+        return $this;
+    }
+
+    public function getMenu(): ?Menu
+    {
+        return $this->menu;
+    }
+
+    public function setMenu(?Menu $menu): self
+    {
+        $this->menu = $menu;
 
         return $this;
     }

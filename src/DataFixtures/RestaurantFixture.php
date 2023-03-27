@@ -5,17 +5,16 @@ namespace App\DataFixtures;
 use App\Entity\Photo;
 use App\Entity\Flat;
 use App\Entity\Booking;
-use App\Entity\Category;
 use App\Entity\Hour;
 use App\Entity\Restaurant;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\ORM\Query\AST\BetweenExpression;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker;
 
-class RestaurantFixture extends Fixture 
+class RestaurantFixture extends Fixture implements DependentFixtureInterface
 {
-   
+    private $counter = 1;
 
     public function load(ObjectManager $manager): void
     {
@@ -34,49 +33,45 @@ class RestaurantFixture extends Fixture
         $restaurant->setZipCode('73000');
         $manager->persist($restaurant);
 
-        $category = new Category();
-        $category->setName('Entrée');
-        $category->setDescription('C\'est le premier service dans un repas ');
-        $manager->persist($category);
-        $category = new Category();
-        $category->setName('Burger');
-        $category->setDescription('Un burger est un sandwich composé de deux pains de forme ronde, généralement garnis d\'un steak haché et de crudités ainsi que de sauce.');
-        $manager->persist($category);
-        $category = new Category();
-        $category->setName('Plat');
-        $category->setDescription('Un plat peut être pris seul ou avec d\'autre categories.');
-        $manager->persist($category);
 
         $faker = Faker\Factory::create('fr_FR');
-
+        
         for($bkg = 1; $bkg <= 10; $bkg++){
         $booking = new Booking();
         $booking->setDateReservation($faker->dateTimeBetween('-1 week', 'now'));
-        $booking->setHourReservation($faker->dateTimeBetween('-1 week', '+1 week'));
-        $booking->setNumberPeople($faker->randomNumber(1));
+        $booking->setHourReservation($faker->dateTimeBetween('-1 week', 'now'));
+        $booking->setNumberPeople($faker->numberBetween(2, 10));
         $booking->setAllergy($faker->text(10));
         $manager->persist($booking);
         }
-
-        for($pht=1; $pht <=10 ; $pht++){ 
+        
+        for($pht=1; $pht <=20 ; $pht++){ 
         $photo = new Photo();
         $photo->setName($faker->text(10));
         $photo->setFile($faker->text(10));
         $photo->setImage($faker->imageUrl(640, 480, 'food', true));
         $manager->persist($photo);
+        $this->addReference('pht-' . $this->counter, $photo);
+        $this->counter++;
         }
-
-        for ($flt=1; $flt <=10 ; $flt++ ) { 
+        
+        for ($flt=1; $flt <=20 ; $flt++ ) { 
         $flat = new Flat();
         $flat->setName($faker->text(10));
         $flat->setDescription($faker->text(100));
-        $flat->setPrice($faker->randomFloat(2, 10, 10));
-        $flat->setPhoto($photo);
-        $flat->setRestaurant($restaurant);
+        $flat->setPrice($faker->numberBetween(6, 25));
+        //On va chercher une ref de menu aléatoire
+        $menu = $this->getReference('mnu-' . rand(1, 5));
+        $flat->setMenu($menu);
+        //On va chercher une ref de catégorie aléatoire
+        $category = $this->getReference('cat-' . rand(1, 5));
         $flat->setCategory($category);
+        //On va chercher une ref de photo aléatoire
+        $photo = $this->getReference('pht-' . rand(1, 20));
+        $flat->setPhoto($photo);
         $manager->persist($flat);
         }
-    
+
         for($hr = 1; $hr <= 7; $hr++){
         $hour = new Hour();
         $hour->setDayWeek($faker->dateTimeBetween('-1 week', 'now'));
@@ -86,5 +81,13 @@ class RestaurantFixture extends Fixture
         }
 
         $manager->flush();
+    }
+    
+    public function getDependencies()
+    {
+        return [
+            CategoryFixture::class,
+            MenuFixture::class,
+        ];
     }
 }

@@ -22,15 +22,15 @@ class Menu
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 3, scale: 2)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 4, scale: 2)]
     private ?string $price = null;
 
-    #[ORM\ManyToMany(targetEntity: Flat::class, inversedBy: 'menu')]
-    private Collection $flat;
+    #[ORM\OneToMany(mappedBy: 'menu', targetEntity: Flat::class)]
+    private Collection $flats;
 
     public function __construct()
     {
-        $this->flat = new ArrayCollection();
+        $this->flats = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -74,19 +74,19 @@ class Menu
         return $this;
     }
 
-
     /**
      * @return Collection<int, Flat>
      */
     public function getFlat(): Collection
     {
-        return $this->flat;
+        return $this->flats;
     }
 
     public function addFlat(Flat $flat): self
     {
-        if (!$this->flat->contains($flat)) {
-            $this->flat->add($flat);
+        if (!$this->flats->contains($flat)) {
+            $this->flats->add($flat);
+            $flat->setMenu($this);
         }
 
         return $this;
@@ -94,7 +94,12 @@ class Menu
 
     public function removeFlat(Flat $flat): self
     {
-        $this->flat->removeElement($flat);
+        if ($this->flats->removeElement($flat)) {
+            // set the owning side to null (unless already changed)
+            if ($flat->getMenu() === $this) {
+                $flat->setMenu(null);
+            }
+        }
 
         return $this;
     }
