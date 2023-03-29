@@ -39,6 +39,20 @@ class PhotoRepository extends ServiceEntityRepository
         }
     }
 
+     /**
+     * @return Photo[] Returns an array of Flat objects
+     */
+    public function photoSalad()
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.id IN (:val)')
+            ->setParameter('val', [6, 20])
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    
+
 //    /**
 //     * @return Photo[] Returns an array of Photo objects
 //     */

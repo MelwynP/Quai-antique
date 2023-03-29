@@ -39,20 +39,62 @@ class FlatRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Flat[] Returns an array of Flat objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('f')
-//            ->andWhere('f.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('f.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * @return Flat[] Returns an array of Flat objects
+     */
+    public function flatSalad()
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.id IN (:val)')
+            ->setParameter('val', [5, 15])
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+    
+
+    /**
+     * @return Flat[] Returns an array of Flat objects
+     */
+    public function flatFlat()
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.id IN (:val)')
+            ->setParameter('val', [9, 13])
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
+    /**
+     * @return Flat[] Returns an array of Flat objects
+     */
+    public function flatCheese()
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.id IN (:val)')
+            ->setParameter('val', [8, 11])
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
+    /**
+     * @return Flat[] Returns an array of Flat objects
+     */
+    public function flatDessert()
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.id IN (:val)')
+            ->setParameter('val', [17, 18])
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
 
 //    public function findOneBySomeField($value): ?Flat
 //    {

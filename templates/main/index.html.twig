@@ -10,23 +10,72 @@
 				<h1>Le Quai Antique | Chambéry</h1>
 			</div>
 			<div class="col-12 mt-5 ms-5">
-				<h2>Vos plats preférez</h2>
+				<h2>Vos plats préféres, cuisinés avec soin et passion</h2>
+				<br>
+				<h4>Vos salades préférés</h4>
 			</div>
-			{% for flat in flats %}
-				{% for photo in photos %}
-					<div class="col-6 mt-5">
-						<div class="card" style="width: 18rem;">
-							<div class="card-body">
-								<h5 class="card-title">{{flat.name}}</h5>
-								<h6 class="card-subtitle mb-2 text-muted mt-3">{{flat.price}}€</h6>
-								<img src={{photo.image}} class="card-img-top" alt="...">
-								<p class="card-text">Some quick example text to build on the card title and make up.</p>
-							</div>
+			{% for flat in flatSalad %}
+				<div class="col-6 mt-5">
+					<div class="card" style="width: 18rem;">
+						<div class="card-body">
+							<h5 class="card-title">{{flat.name}}</h5>
+							<img src="" class="card-img-top" alt="test">
+							<p class="card-text">{{flat.description}}</p>
 						</div>
 					</div>
-				{% endfor %}
+				</div>
 			{% endfor %}
-			<button class="btn btn-lg btn-primary mt-3" type="submit">
+
+			<div class="col-12 mt-5 ms-5">
+				<h4>Vos plats préférés</h4>
+				<br>
+			</div>
+			{% for flat in flatFlat %}
+				<div class="col-6 mt-5">
+					<div class="card" style="width: 18rem;">
+						<div class="card-body">
+							<h5 class="card-title">{{flat.name}}</h5>
+							<img src="" class="card-img-top" alt="...">
+							<p class="card-text">{{flat.description}}</p>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+
+			<div class="col-12 mt-5 ms-5">
+				<h4>Vos fromages préférés</h4>
+				<br>
+			</div>
+			{% for flat in flatCheese %}
+				<div class="col-6 mt-5">
+					<div class="card" style="width: 18rem;">
+						<div class="card-body">
+							<h5 class="card-title">{{flat.name}}</h5>
+							<img src="" class="card-img-top" alt="...">
+							<p class="card-text">{{flat.description}}</p>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+
+			<div class="col-12 mt-5 ms-5">
+				<h4>Vos dessert préférés</h4>
+				<br>
+			</div>
+			{% for flat in flatDessert %}
+				<div class="col-6 mt-5">
+					<div class="card" style="width: 18rem;">
+						<div class="card-body">
+							<h5 class="card-title">{{flat.name}}</h5>
+							<img src="" class="card-img-top" alt="...">
+							<p class="card-text">{{flat.description}}</p>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+
+
+			<button class="btn btn-lg btn-primary mt-3 mb-3" type="submit">
 				Reserver une table
 			</button>
 			<div class="card" style="width: 18rem;">
@@ -40,11 +89,8 @@
 							{{hour.openingTime|date('H:i')}}
 							<br>
 						{% endfor %}
-
-
 					</div>
 				</div>
-
 			</div>
 		</section>
 	</main>

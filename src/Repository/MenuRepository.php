@@ -40,18 +40,48 @@ class MenuRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return Menu[] Returns an array of Menu objects
+     * @return Menu[] Returns an array of Flat objects
      */
-    public function lastTree()
+    public function menuExpress()
     {
-        return $this->createQueryBuilder('p')
-            ->orderBy('p.id', 'DESC')
-            ->setMaxResults(3)
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.id IN (:val)')
+            ->setParameter('val', [1])
             ->getQuery()
             ->getResult()
         ;
     }
 
+    /**
+     * @return Menu[] Returns an array of Flat objects
+     */
+    public function menuSavoyard()
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.id IN (:val)')
+            ->setParameter('val', [2])
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
+    
+    /**
+     * @return Menu[] Returns an array of Flat objects
+     */
+    public function menuComplet()
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.id IN (:val)')
+            ->setParameter('val', [3])
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
+  
 //    public function findOneBySomeField($value): ?Menu
 //    {
 //        return $this->createQueryBuilder('m')

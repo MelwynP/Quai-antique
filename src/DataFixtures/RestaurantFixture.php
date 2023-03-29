@@ -61,7 +61,7 @@ class RestaurantFixture extends Fixture implements DependentFixtureInterface
         $flat->setDescription($faker->text(100));
         $flat->setPrice($faker->numberBetween(6, 25));
         //On va chercher une ref de menu aléatoire
-        $menu = $this->getReference('mnu-' . rand(1, 5));
+        $menu = $this->getReference('mnu-' . rand(1, 3));
         $flat->setMenu($menu);
         //On va chercher une ref de catégorie aléatoire
         $category = $this->getReference('cat-' . rand(1, 5));
