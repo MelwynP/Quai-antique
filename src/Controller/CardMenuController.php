@@ -19,13 +19,14 @@ class CardMenuController extends AbstractController
         return $this->render('card_menu/index.html.twig',[
             'flats' => $flatRepository->findAll([]),
             'categories' => $categoryRepository->findAll([]),
-            'hours' => $hourRepository->findAll([]),
+            'menus' => $menuRepository->findAll(),
+            'dayClose' => $hourRepository->dayClose(),
+            'dayOpen' => $hourRepository->dayOpen(),
             'menuExpress' => $menuRepository->menuExpress(),
             'menuSavoyard' => $menuRepository->menuSavoyard(),
             'menuComplet' => $menuRepository->menuComplet(),
-            'flatSalad' => $flatRepository->flatSalad(),
-            'flatFlat' => $flatRepository->flatFlat(),
-            'flatDessert' => $flatRepository->flatDessert(),
+            'burger' => $categoryRepository->burger(),
+            'dessert' => $categoryRepository->dessert(),
 
         ]);
 

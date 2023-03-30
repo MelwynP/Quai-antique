@@ -14,14 +14,16 @@ class MainController extends AbstractController
     #[Route('/', name: 'app_main')]
     public function index(FlatRepository $flatRepository, PhotoRepository $photoRepository, HourRepository $hourRepository): Response
     {
+        
         return $this->render('main/index.html.twig',[
-            'flatSalad' => $flatRepository->flatSalad(),
-            'flatFlat' => $flatRepository->flatFlat(),
-            'flatCheese' => $flatRepository->flatCheese(),
-            'flatDessert' => $flatRepository->flatDessert(),
+            'saladPrefer' => $flatRepository->saladPrefer(),
+            'flatPrefer' => $flatRepository->flatPrefer(),
+            'cheesePrefer' => $flatRepository->cheesePrefer(),
+            'dessertPrefer' => $flatRepository->dessertPrefer(),
             'photoSalad' => $photoRepository->photoSalad(),
-            'hours' => $hourRepository->findBy([]),
-
+            'dayClose' => $hourRepository->dayClose(),
+            'dayOpen' => $hourRepository->dayOpen(),
+           
         ]);
     }
 }

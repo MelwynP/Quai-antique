@@ -22,6 +22,8 @@ class UserFixture extends Fixture
         $admin->setFirstname('admin');
         $admin->setPassword($this->passwordEncoder->hashPassword($admin, 'admin'));
         $admin->setRoles(['ROLE_ADMIN']);
+        $admin->setPhone('0606060606');
+        $admin->setAllergy('aucune');
         $manager->persist($admin);
 
         $faker = Faker\Factory::create('fr_FR');
@@ -32,6 +34,8 @@ class UserFixture extends Fixture
         $user->setName($faker->lastName);
         $user->setFirstname($faker->firstName);
         $user->setPassword($this->passwordEncoder->hashPassword($user, 'user'));
+        $user->setPhone($faker->phoneNumber);
+        $user->setAllergy($faker->text(15));
         $manager->persist($user);
         }
 

@@ -39,6 +39,34 @@ class CategoryRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * @return Category[] Returns an array of Flat objects
+     */
+    public function burger()
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.id IN (:val)')
+            ->setParameter('val', [2])
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    /**
+     * @return Category[] Returns an array of Flat objects
+     */
+    public function dessert()
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.id IN (:val)')
+            ->setParameter('val', [5])
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
+
 //    /**
 //     * @return Category[] Returns an array of Category objects
 //     */

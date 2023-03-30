@@ -40,6 +40,20 @@ class RegistrationFormType extends AbstractType
                 'label' => 'Prénom'
             ])
 
+            ->add('phone', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'Téléphone'
+            ])
+
+            ->add('allergy', null, [
+                'attr' => [
+                   'class' => 'form-control'
+                ],
+                'label' => 'Allergie(s)'
+            ])
+
             ->add('RGPDConsent', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
@@ -49,6 +63,7 @@ class RegistrationFormType extends AbstractType
                 ],
                 'label' => 'J\'accepte que mes données personnelles soient utilisées pour la gestion de ma réservation et de ma relation commerciale avec l\'établissement.'
             ])
+            
             ->add('plainPassword', PasswordType::class, [
                 'mapped' => false,
                 'attr' => [

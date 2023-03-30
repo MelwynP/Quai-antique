@@ -42,11 +42,11 @@ class FlatRepository extends ServiceEntityRepository
     /**
      * @return Flat[] Returns an array of Flat objects
      */
-    public function flatSalad()
+    public function saladPrefer()
     {
         return $this->createQueryBuilder('f')
             ->andWhere('f.id IN (:val)')
-            ->setParameter('val', [5, 15])
+            ->setParameter('val', [1, 2])
             ->getQuery()
             ->getResult()
         ;
@@ -56,11 +56,11 @@ class FlatRepository extends ServiceEntityRepository
     /**
      * @return Flat[] Returns an array of Flat objects
      */
-    public function flatFlat()
+    public function flatPrefer()
     {
         return $this->createQueryBuilder('f')
             ->andWhere('f.id IN (:val)')
-            ->setParameter('val', [9, 13])
+            ->setParameter('val', [11, 14])
             ->getQuery()
             ->getResult()
         ;
@@ -70,25 +70,25 @@ class FlatRepository extends ServiceEntityRepository
     /**
      * @return Flat[] Returns an array of Flat objects
      */
-    public function flatCheese()
-    {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.id IN (:val)')
-            ->setParameter('val', [8, 11])
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-
-
-    /**
-     * @return Flat[] Returns an array of Flat objects
-     */
-    public function flatDessert()
+    public function cheesePrefer()
     {
         return $this->createQueryBuilder('f')
             ->andWhere('f.id IN (:val)')
             ->setParameter('val', [17, 18])
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+
+    /**
+     * @return Flat[] Returns an array of Flat objects
+     */
+    public function dessertPrefer()
+    {
+        return $this->createQueryBuilder('f')
+            ->andWhere('f.id IN (:val)')
+            ->setParameter('val', [24, 25])
             ->getQuery()
             ->getResult()
         ;

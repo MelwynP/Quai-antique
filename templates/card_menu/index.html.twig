@@ -32,72 +32,27 @@
 				{% endfor %}
 
 
-				<h3>Nos menus</h3>
-				{% for menu in menuExpress %}
-					<div class="col-12">
+				<div class="col-12">
+					<h3>Nos menus</h3>
+					{% for menu in menuExpress %}
 						<div class="card-body">
 							<h5 class="card-title">Menu
 								{{menu.name}}</h5>
-							<p>description du menu :
-								{{menu.description}}
-							</p>
-							<h6>Burger + Dessert</h6>
-							<h6>Où</h6>
-							<h6>Plat + Dessert</h6>
-							<p>
-								prix :
-								{{menu.price}}
-								€
-							</p>
-						</div>
-					</div>
-				{% endfor %}
 
-				{% for menu in menuSavoyard %}
-					<div class="col-12">
-						<div class="card-body">
-							<h5 class="card-title">Menu
-								{{menu.name}}</h5>
-							<p>description du menu :
-								{{menu.description}}
-							</p>
-							<h6>Entrées au choix :
-								{% for flat in flatSalad %}
-									{{flat.name}}
+							<h6>
+								{% for category in burger %}
+									{{category.name}}
+									+
+								{% endfor %}
+								{% for category in dessert %}
+									{{category.name}}
 								{% endfor %}
 							</h6>
-							<h6>Plats au choix :
-								{% for flat in flatFlat %}
-									{{flat.name}}
-								{% endfor %}
-							</h6>
-							<h6>Dessert au choix :
-								{% for flat in flatDessert %}
-									{{flat.name}}
-								{% endfor %}
-							</h6>
-							<p>
-								prix :
-								{{menu.price}}
-								€
-							</p>
-						</div>
-					</div>
-				{% endfor %}
 
-				{% for menu in menuComplet %}
-					<div class="col-12">
-						<div class="card-body">
-							<h5 class="card-title">Menu
-								{{menu.name}}</h5>
-							<p>description du menu :{{menu.description}}
-							</p>
-							<h6>Entrée au choix</h6>
-							<h6>Burger où Plat au choix</h6>
-							<h6>Fromage au choix</h6>
-							<h6>Dessert au choix</h6>
-							<p>
-								prix :
+
+							<p>description du menu :
+								{{menu.description}}</p>
+							<p>prix :
 								{{menu.price}}
 								€
 							</p>
@@ -110,18 +65,28 @@
 			<button class="btn btn-lg btn-primary mt-3" type="submit">
 				Reserver une table
 			</button>
-			<div class="col-12 mt-3 mb-3">
-				<h5 class="card-title">Heure et jour d'ouverture</h5>
-				{% for hour in hours %}
-					<p class="card-text">Jour :
-						{{hour.dayWeek|date('d/m/Y')}}
-						<br>
-						Heure d'ouverture :
-						{{hour.openingTime|date('H:i')}}
-						<br>
+
+			<div>
+				<h3>Nos horaires</h3>
+				{% for hour in dayClose %}
+					<p class="row">Fermé le :
+						{{hour.dayweek}}</p>
+				{% endfor %}
+				{% for hour in dayOpen %}
+					<p class="row">Ouvert le :
+						{{hour.dayweek}}
+						de
+						{{hour.lunchOpeningTime|date('H\\hi')}}
+						à
+						{{hour.lunchClosingTime|date('H\\hi')}}
+						et le soir de
+						{{hour.dinnerOpeningTime|date('H\\hi')}}
+						à
+						{{hour.dinnerClosingTime|date('H\\hi')}}
 					</p>
 				{% endfor %}
 			</div>
-		</div>
-	</section>
-</main></main>{% endblock %}
+
+		</section>
+	</main>
+</main>{% endblock %}

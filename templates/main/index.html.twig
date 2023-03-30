@@ -14,7 +14,7 @@
 				<br>
 				<h4>Vos salades préférés</h4>
 			</div>
-			{% for flat in flatSalad %}
+			{% for flat in saladPrefer %}
 				<div class="col-6 mt-5">
 					<div class="card" style="width: 18rem;">
 						<div class="card-body">
@@ -30,7 +30,7 @@
 				<h4>Vos plats préférés</h4>
 				<br>
 			</div>
-			{% for flat in flatFlat %}
+			{% for flat in flatPrefer %}
 				<div class="col-6 mt-5">
 					<div class="card" style="width: 18rem;">
 						<div class="card-body">
@@ -46,7 +46,7 @@
 				<h4>Vos fromages préférés</h4>
 				<br>
 			</div>
-			{% for flat in flatCheese %}
+			{% for flat in cheesePrefer %}
 				<div class="col-6 mt-5">
 					<div class="card" style="width: 18rem;">
 						<div class="card-body">
@@ -59,10 +59,10 @@
 			{% endfor %}
 
 			<div class="col-12 mt-5 ms-5">
-				<h4>Vos dessert préférés</h4>
+				<h4>Vos desserts préférés</h4>
 				<br>
 			</div>
-			{% for flat in flatDessert %}
+			{% for flat in dessertPrefer %}
 				<div class="col-6 mt-5">
 					<div class="card" style="width: 18rem;">
 						<div class="card-body">
@@ -78,20 +78,28 @@
 			<button class="btn btn-lg btn-primary mt-3 mb-3" type="submit">
 				Reserver une table
 			</button>
-			<div class="card" style="width: 18rem;">
-				<div class="card-body">
-					<h5 class="card-title">Heure et jour d'ouverture</h5>
-					{% for hour in hours %}
-						<p class="card-text">Jour :
-							{{hour.dayWeek|date('d/m/Y')}}
-							<br>
-							Heure d'ouverture :
-							{{hour.openingTime|date('H:i')}}
-							<br>
-						{% endfor %}
-					</div>
-				</div>
+			<div>
+				<h3>Nos horaires</h3>
+				{% for hour in dayClose %}
+					<p class="row">Fermé le :
+						{{hour.dayweek}}</p>
+				{% endfor %}
+				{% for hour in dayOpen %}
+					<p class="row">Ouvert le :
+						{{hour.dayweek}}
+						de
+						{{hour.lunchOpeningTime|date('H\\hi')}}
+						à
+						{{hour.lunchClosingTime|date('H\\hi')}}
+						et le soir de
+						{{hour.dinnerOpeningTime|date('H\\hi')}}
+						à
+						{{hour.dinnerClosingTime|date('H\\hi')}}
+					</p>
+				{% endfor %}
 			</div>
+
+
 		</section>
 	</main>
 {% endblock %}
