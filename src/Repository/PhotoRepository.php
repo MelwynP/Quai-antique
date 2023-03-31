@@ -46,7 +46,7 @@ class PhotoRepository extends ServiceEntityRepository
     {
         return $this->createQueryBuilder('f')
             ->andWhere('f.id IN (:val)')
-            ->setParameter('val', [6, 20])
+            ->setParameter('val', [10, 2])
             ->getQuery()
             ->getResult()
         ;

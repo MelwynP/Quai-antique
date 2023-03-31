@@ -20,9 +20,10 @@ class MainController extends AbstractController
             'flatPrefer' => $flatRepository->flatPrefer(),
             'cheesePrefer' => $flatRepository->cheesePrefer(),
             'dessertPrefer' => $flatRepository->dessertPrefer(),
-            'photoSalad' => $photoRepository->photoSalad(),
             'dayClose' => $hourRepository->dayClose(),
             'dayOpen' => $hourRepository->dayOpen(),
+            'photoSalad' => $photoRepository->photoSalad(),
+            'photos' => $photoRepository->findAll([]),
            
         ]);
     }

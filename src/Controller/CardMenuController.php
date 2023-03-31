@@ -25,9 +25,6 @@ class CardMenuController extends AbstractController
             'menuExpress' => $menuRepository->menuExpress(),
             'menuSavoyard' => $menuRepository->menuSavoyard(),
             'menuComplet' => $menuRepository->menuComplet(),
-            'burger' => $categoryRepository->burger(),
-            'dessert' => $categoryRepository->dessert(),
-
         ]);
 
     }
