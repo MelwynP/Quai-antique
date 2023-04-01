@@ -24,6 +24,8 @@ class UserFixture extends Fixture
         $admin->setRoles(['ROLE_ADMIN']);
         $admin->setPhone('0606060606');
         $admin->setAllergy('aucune');
+        $admin->setCivility('Monsieur');
+        $admin->setNumberPeople('0');
         $manager->persist($admin);
 
         $faker = Faker\Factory::create('fr_FR');
@@ -36,6 +38,8 @@ class UserFixture extends Fixture
         $user->setPassword($this->passwordEncoder->hashPassword($user, 'user'));
         $user->setPhone($faker->phoneNumber);
         $user->setAllergy($faker->text(15));
+        $user->setCivility($faker->randomElement(['Monsieur', 'Madame']));
+        $user->setNumberPeople($faker->numberBetween(2, 10));
         $manager->persist($user);
         }
 

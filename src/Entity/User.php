@@ -24,6 +24,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private array $roles = [];
 
+    #[ORM\Column]
+    private ?int $numberPeople = null;
+
     /**
      * @var string The hashed password
      */
@@ -44,6 +47,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $allergy = null;
+
+    #[ORM\Column(length: 20)]
+    private ?string $civility = null;
 
     public function __construct()
     {
@@ -132,6 +138,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function getNumberPeople(): ?int
+    {
+        return $this->numberPeople;
+    }
+
+    public function setNumberPeople(int $numberPeople): self
+    {
+        $this->numberPeople = $numberPeople;
+
+        return $this;
+    }
+
     public function getFirstname(): ?string
     {
         return $this->firstname;
@@ -176,6 +194,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setAllergy(?string $allergy): self
     {
         $this->allergy = $allergy;
+
+        return $this;
+    }
+
+    public function getCivility(): ?string
+    {
+        return $this->civility;
+    }
+
+    public function setCivility(string $civility): self
+    {
+        $this->civility = $civility;
 
         return $this;
     }

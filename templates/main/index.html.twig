@@ -70,8 +70,8 @@
 					<div class="card" style="width: 18rem;">
 						<div class="card-body">
 							<h5 class="card-title">{{flat.name}}</h5>
-							{% if flat.getphoto() is not null %}
-								<img src={{ flat.getPhoto().getImage() }} class="card-img-top">
+							{% if flat.getPhoto() is not null %}
+								<img src={{ flat.getPhoto().image() }} class="card-img-top">
 							{% endif %}
 							<p class="card-text">{{flat.description}}</p>
 						</div>

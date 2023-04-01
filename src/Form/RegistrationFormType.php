@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -40,6 +41,17 @@ class RegistrationFormType extends AbstractType
                 'label' => 'Prénom'
             ])
 
+            ->add('civility', ChoiceType::class, [
+            'attr' => [
+                'class' => 'form-control'
+            ],
+            'label' => 'Civilité',
+            'choices' => [
+                'M.' => 'M.',
+                'Mme.' => 'Mme.',
+            ]
+            ])
+
             ->add('phone', TextType::class, [
                 'attr' => [
                     'class' => 'form-control'
@@ -52,6 +64,13 @@ class RegistrationFormType extends AbstractType
                    'class' => 'form-control'
                 ],
                 'label' => 'Allergie(s)'
+            ])
+
+            ->add('numberPeople', null, [
+                'attr' => [
+                   'class' => 'form-control'
+                ],
+                'label' => 'Nombre de convive(s)'
             ])
 
             ->add('RGPDConsent', CheckboxType::class, [
