@@ -17,9 +17,6 @@ class Booking
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateReservation = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE)]
-    private ?\DateTimeInterface $hourReservation = null;
-
     #[ORM\Column]
     private ?int $numberPeople = null;
 
@@ -54,18 +51,6 @@ class Booking
     public function setDateReservation(\DateTimeInterface $dateReservation): self
     {
         $this->dateReservation = $dateReservation;
-
-        return $this;
-    }
-
-    public function getHourReservation(): ?\DateTimeInterface
-    {
-        return $this->hourReservation;
-    }
-
-    public function setHourReservation(\DateTimeInterface $hourReservation): self
-    {
-        $this->hourReservation = $hourReservation;
 
         return $this;
     }

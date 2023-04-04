@@ -21,15 +21,21 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
 
     public const LOGIN_ROUTE = 'app_login';
 
-    public function __construct(private UrlGeneratorInterface $urlGenerator)
+    private UrlGeneratorInterface $urlGenerator;
+
+    public function __construct(UrlGeneratorInterface $urlGenerator)
     {
+        $this->urlGenerator = $urlGenerator;
     }
 
     public function authenticate(Request $request): Passport
-    {   //authenticate crée un objet Passport qui contient les informations de l'utilisateur
+    {  
+         //authenticate crée un objet Passport qui contient les informations de l'utilisateur
         $email = $request->request->get('email', '');
+
         //envoi via post le mail et le mot de passe
         $request->getSession()->set(Security::LAST_USERNAME, $email);
+        
         //on stocke le dernier user qui s'est connecté dans la session
         return new Passport(
             new UserBadge($email),

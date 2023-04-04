@@ -40,7 +40,6 @@ class RestaurantFixture extends Fixture implements DependentFixtureInterface
         for($bkg = 1; $bkg <= 10; $bkg++){
         $booking = new Booking();
         $booking->setDateReservation($faker->dateTimeBetween('now', '+1 week'));
-        $booking->setHourReservation($faker->dateTimeBetween('12:00', '14:00'));
         $booking->setFirstname($faker->firstName);
         $booking->setname($faker->name);
         $booking->setEmail($faker->email);

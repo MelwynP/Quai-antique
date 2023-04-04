@@ -42,14 +42,20 @@ public function generate (array $header, array $payload, string $secret, int $va
 
   // On va generer la signature dans le .env.local on genere une clé secrete
   $secret = base64_encode($secret);
-  // cette clé secrete est utilisée pour générer la signature sha256 c'est un algorithme de hachage puis on concatene le header et le payload 
+
+  // cette clé secrete est utilisée pour générer la signature sha256 c'est un algorithme de hachage puis on concatene
+  // le header et le payload
   $signature = hash_hmac('sha256', $base64Header . '.' . $base64Payload, $secret, true);
+
   // On encode la signature en base64
   $base64Signature = base64_encode($signature);
+
   // On remplace les + / = par des - _ et rien
   $base64Signature = str_replace(['+', '/', '='], ['-', '_', ''], $base64Signature);
+
   // On encode le token en base64
   $jwt = $base64Header . '.' . $base64Payload . '.' . $base64Signature;
+
   // On retourne le token
   return $jwt;
 }
@@ -100,11 +106,8 @@ public function generate (array $header, array $payload, string $secret, int $va
     $now = new DateTimeImmutable();
 
     // On récupère la date d'expiration
-    $exp = $payload['exp'];
-
-
     // On vérifie que la date d'expiration est supérieure à la date actuelle
-    return $exp < $now->getTimestamp();
+    return $payload['exp'] < $now->getTimestamp();  
   }
 
   // On vérifie que la signure du token est bien valide
