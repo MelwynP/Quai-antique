@@ -80,7 +80,7 @@ class BookFormType extends AbstractType
                 'label' => 'Prénom'
             ])
 
-             ->add('name', TextType::class, [
+            ->add('name', TextType::class, [
                 'attr' => [
                     'class' => 'form-control'
                 ],
