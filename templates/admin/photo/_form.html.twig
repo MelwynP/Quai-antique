@@ -5,7 +5,7 @@
 			{{ form_row(photoForm.name) }}
 			{{ form_row(photoForm.file) }}
 			{{ form_row(photoForm.image) }}
-			<button type="submit" class="btn btn-primary">Valider</button>
+			<button type="submit" class="btn btn-primary">{{ button_label | default ('Ajouter') }}</button>
 			{{ form_end(photoForm) }}
 		</div>
 	</div>

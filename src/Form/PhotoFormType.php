@@ -28,12 +28,12 @@ class PhotoFormType extends AbstractType
                 'label' => 'Fichier'
             ])
             ->add('image', FileType::class, [
-                "label" => "l'image",
+                "label" => "Image",
                 "mapped" => false,
                 "required" => false,
                 "constraints" => [
                     new File([
-                        'maxSize' => '5000k',
+                        'maxSize' => '5M',
                         'mimeTypes' => [
                             'image/jpeg',
                             'image/gif',
