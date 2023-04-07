@@ -15,15 +15,15 @@
 				<h4>Vos salades préférés</h4>
 			</div>
 
-			{% for flat in saladPrefer %}
+			{% for flats in saladPrefer %}
 				<div class="col-6 mt-2">
 					<div class="card" style="width: 18rem;">
 						<div class="card-body">
-							<h5 class="card-title">{{ flat.name }}</h5>
-							{% if flat.getphoto() is not null %}
-								<img src={{ flat.getPhoto().getImage() }} class="card-img-top">
+							<h5 class="card-title">{{ flats.name }}</h5>
+							{% if flats.getphoto() is not null %}
+								<img src={{ flats.getPhoto().getImage() }} class="card-img-top">
 							{% endif %}
-							<p class="card-text">{{ flat.description }}</p>
+							<p class="card-text">{{ flats.description }}</p>
 						</div>
 					</div>
 				</div>

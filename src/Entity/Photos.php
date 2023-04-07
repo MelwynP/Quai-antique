@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\PhotoRepository;
+use App\Repository\PhotosRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: PhotoRepository::class)]
-class Photo
+#[ORM\Entity(repositoryClass: PhotosRepository::class)]
+class Photos
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -18,16 +18,14 @@ class Photo
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $file = null;
-    
+  
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image = null;
-    
-    #[ORM\OneToMany(mappedBy: 'photo', targetEntity: Flat::class, orphanRemoval: true)]
+
+    #[ORM\OneToMany(mappedBy: 'photos', targetEntity: Flats::class, orphanRemoval: true)]
     private Collection $flat;
 
-    public function __construct()
+     public function __construct()
     {
         $this->flat = new ArrayCollection();
     }
@@ -49,49 +47,38 @@ class Photo
         return $this;
     }
 
-    public function getFile(): ?string
-    {
-        return $this->file;
-    }
-    
-    public function setFile(string $file): self
-    {
-        $this->file = $file;
-        
-        return $this;
-    }
-    
     public function getImage(): ?string
     {
         return $this->image;
     }
 
-    public function setImage(?string $image): self
+    public function setImage(string $image): self
     {
         $this->image = $image;
 
         return $this;
     }
-    
+
     /**
-     * @return Collection<int, Flat>
+     * @return Collection|Flats[]
      */
+
     public function getFlat(): Collection
     {
         return $this->flat;
     }
-    
-    public function addFlat(Flat $flat): self
+
+    public function addFlat(Flats $flat): self
     {
         if (!$this->flat->contains($flat)) {
-            $this->flat->add($flat);
+            $this->flat[] = $flat;
             $flat->setPhoto($this);
         }
 
         return $this;
     }
 
-    public function removeFlat(Flat $flat): self
+    public function removeFlat(Flats $flat): self
     {
         if ($this->flat->removeElement($flat)) {
             // set the owning side to null (unless already changed)
@@ -102,5 +89,6 @@ class Photo
 
         return $this;
     }
+
 
 }

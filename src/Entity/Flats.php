@@ -2,14 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\MenuRepository;
+use App\Repository\FlatsRepository;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
+use Doctrine\Common\Collections\Collection;
+
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: MenuRepository::class)]
-class Menu
+#[ORM\Entity(repositoryClass: FlatsRepository::class)]
+class Flats
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -22,17 +23,21 @@ class Menu
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 4, scale: 2)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 4, scale: '2')]
     private ?string $price = null;
 
-    #[ORM\OneToMany(mappedBy: 'menu', targetEntity: Flat::class)]
-    private Collection $flats;
+    #[ORM\ManyToOne(inversedBy: 'flats')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Categories $category = null;
 
-    public function __construct()
-    {
-        $this->flats = new ArrayCollection();
-    }
+    #[ORM\ManyToOne(inversedBy: 'flat')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Photos $photo = null;
 
+    #[ORM\ManyToOne(inversedBy: 'flat')]
+    private ?Menus $menus = null;
+
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -74,33 +79,41 @@ class Menu
         return $this;
     }
 
-    /**
-     * @return Collection<int, Flat>
-     */
-    public function getFlat(): Collection
+    public function getCategory(): ?Categories
     {
-        return $this->flats;
+        return $this->category;
     }
 
-    public function addFlat(Flat $flat): self
+    public function setCategory(?Categories $category): self
     {
-        if (!$this->flats->contains($flat)) {
-            $this->flats->add($flat);
-            $flat->setMenu($this);
-        }
+        $this->category = $category;
 
         return $this;
     }
 
-    public function removeFlat(Flat $flat): self
+    public function getMenus(): ?Menus
     {
-        if ($this->flats->removeElement($flat)) {
-            // set the owning side to null (unless already changed)
-            if ($flat->getMenu() === $this) {
-                $flat->setMenu(null);
-            }
-        }
+        return $this->menus;
+    }
+
+    public function setMenus(?Menus $menus): self
+    {
+        $this->menus = $menus;
 
         return $this;
     }
+
+    public function getPhoto(): ?Photos
+    {
+        return $this->photo;
+    }
+
+    public function setPhoto(?Photos $photo): self
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+
 }

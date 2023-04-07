@@ -2,14 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\CategoryRepository;
+use App\Repository\CategoriesRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: CategoryRepository::class)]
-class Category
+#[ORM\Entity(repositoryClass: CategoriesRepository::class)]
+class Categories
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -19,12 +18,12 @@ class Category
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Flat::class)]
-    private Collection $flats;
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Flats::class)]
+    private Collection $fLats;
 
     public function __construct()
     {
-        $this->flats = new ArrayCollection();
+        $this->fLats = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -45,29 +44,29 @@ class Category
     }
 
     /**
-     * @return Collection<int, Flat>
+     * @return Collection<int, Flats>
      */
     public function getFlats(): Collection
     {
-        return $this->flats;
+        return $this->fLats;
     }
 
-    public function addFlat(Flat $flat): self
+    public function addFlat(Flats $fLat): self
     {
-        if (!$this->flats->contains($flat)) {
-            $this->flats->add($flat);
-            $flat->setCategory($this);
+        if (!$this->fLats->contains($fLat)) {
+            $this->fLats->add($fLat);
+            $fLat->setCategory($this);
         }
 
         return $this;
     }
 
-    public function removeFlat(Flat $flat): self
+    public function removeFlat(Flats $fLat): self
     {
-        if ($this->flats->removeElement($flat)) {
+        if ($this->fLats->removeElement($fLat)) {
             // set the owning side to null (unless already changed)
-            if ($flat->getCategory() === $this) {
-                $flat->setCategory(null);
+            if ($fLat->getCategory() === $this) {
+                $fLat->setCategory(null);
             }
         }
 

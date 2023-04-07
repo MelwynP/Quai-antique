@@ -2,10 +2,10 @@
 
 namespace App\Controller;
 
-use App\Repository\CategoryRepository;
-use App\Repository\FlatRepository;
+use App\Repository\CategoriesRepository;
+use App\Repository\FlatsRepository;
 use App\Repository\HourRepository;
-use App\Repository\MenuRepository;
+use App\Repository\MenusRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,18 +13,18 @@ use Symfony\Component\Routing\Annotation\Route;
 class CardMenuController extends AbstractController
 {
     #[Route('/carte-menu', name: 'app_card_menu')]
-    public function index(FlatRepository $flatRepository, CategoryRepository $categoryRepository, MenuRepository $menuRepository, HourRepository $hourRepository): Response
+    public function index(FlatsRepository $flatsRepository, CategoriesRepository $categoriesRepository, MenusRepository $menusRepository, HourRepository $hourRepository): Response
     {
         
         return $this->render('card_menu/index.html.twig',[
-            'flats' => $flatRepository->findAll([]),
-            'categories' => $categoryRepository->findAll([]),
-            'menus' => $menuRepository->findAll(),
+            'flats' => $flatsRepository->findAll([]),
+            'categories' => $categoriesRepository->findAll([]),
+            'menus' => $menusRepository->findAll(),
             'dayClose' => $hourRepository->dayClose(),
             'dayOpen' => $hourRepository->dayOpen(),
-            'menuExpress' => $menuRepository->menuExpress(),
-            'menuSavoyard' => $menuRepository->menuSavoyard(),
-            'menuComplet' => $menuRepository->menuComplet(),
+            'menuExpress' => $menusRepository->menuExpress(),
+            'menuSavoyard' => $menusRepository->menuSavoyard(),
+            'menuComplet' => $menusRepository->menuComplet(),
         ]);
 
     }

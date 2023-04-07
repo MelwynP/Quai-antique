@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\Entity\Photo;
+use App\Entity\Photos;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -51,7 +51,7 @@ class PhotoFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Photo::class,
+            'data_class' => Photos::class,
         ]);
     }
 }
