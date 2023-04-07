@@ -1,0 +1,29 @@
+{{ form_start(flatFormulaire) }}
+
+{{ form_row(flatFormulaire.name) }}
+
+{{ form_row(flatFormulaire.description) }}
+
+{{ form_row(flatFormulaire.price) }}
+
+{{ form_row(flatFormulaire.category) }}
+
+{{ form_row(flatFormulaire.menu) }}
+
+
+{# On affiche les images si on est en édition #}
+{% if app.request.attributes.get('_route') == 'admin_flat_edit' %}
+	<h2>Images</h2>
+	{% for image in flat.images %}
+		<div>
+			<img src="{{ asset('assets/uploads/flats/mini/300x300-' ~ image.name ) }}" alt="Image" width="150">
+			<a href="{{ path('admin_flat_delete_image', {id: image.id}) }}" data-delete data-token="{{ csrf_token('delete' ~ image.id) }}">Supprimer</a>
+		</div>
+	{% endfor %}
+{% endif %}
+
+{{ form_row(flatFormulaire.images) }}
+
+
+<button type="submit" class="btn btn-primary">{{ button_label|default('Ajouter') }}</button>
+{{ form_end(flatFormulaire) }}

@@ -1,0 +1,54 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Liste des plats
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<main class="col-9 border border-light bg-white p-2">
+				<h1>Liste des plats</h1>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Photo</th>
+							<th>Nom</th>
+							<th>Prix</th>
+							<th>Catégorie</th>
+							<th>Menu</th>
+						</tr>
+					</thead>
+					<tbody>
+
+					{#
+						{% for flat in flat %}
+							<tr>
+								<td>{{ flat.id }}</td>
+
+								<td><img src="{{ asset('assets/uploads/flats/mini/300x300-' ~ flat.images[0].name ) }}" alt="{{ flat.name }}" class="img-thumbnail"></td>
+
+
+								<td>{{ flat.name }}</td>
+
+								<td>{{ flat.price / 100 }}</td>
+
+								<td>{{ flat.stock }}</td>
+
+								<td>{{ flat.category.name }}</td>
+
+								<td>{{ flat.menu.name }}</td>
+
+
+								<td>
+									<a href="{{ path('admin_flat_edit', {id: flat.id})}}" class="btn btn-success">Modifier</a>
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+			</main>
+		</div>
+	</div>
+	#}
+{% endblock %}

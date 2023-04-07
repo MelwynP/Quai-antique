@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\CategoriesRepository;
+use App\Repository\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: CategoriesRepository::class)]
-class Categories
+#[ORM\Entity(repositoryClass: CategoryRepository::class)]
+class Category
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -18,12 +18,12 @@ class Categories
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Flats::class)]
-    private Collection $fLats;
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: Flat::class)]
+    private Collection $flats;
 
     public function __construct()
     {
-        $this->fLats = new ArrayCollection();
+        $this->flats = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -44,29 +44,29 @@ class Categories
     }
 
     /**
-     * @return Collection<int, Flats>
+     * @return Collection<int, Flat>
      */
     public function getFlats(): Collection
     {
-        return $this->fLats;
+        return $this->flats;
     }
 
-    public function addFlat(Flats $fLat): self
+    public function addFlat(Flat $flat): self
     {
-        if (!$this->fLats->contains($fLat)) {
-            $this->fLats->add($fLat);
-            $fLat->setCategory($this);
+        if (!$this->flats->contains($flat)) {
+            $this->flats->add($flat);
+            $flat->setCategory($this);
         }
 
         return $this;
     }
 
-    public function removeFlat(Flats $fLat): self
+    public function removeFlat(Flat $flat): self
     {
-        if ($this->fLats->removeElement($fLat)) {
+        if ($this->flats->removeElement($flat)) {
             // set the owning side to null (unless already changed)
-            if ($fLat->getCategory() === $this) {
-                $fLat->setCategory(null);
+            if ($flat->getCategory() === $this) {
+                $flat->setCategory(null);
             }
         }
 

@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Flats;
+use App\Entity\Flat;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @extends ServiceEntityRepository<Flats>
+ * @extends ServiceEntityRepository<Flat>
  *
- * @method Flats|null find($id, $lockMode = null, $lockVersion = null)
- * @method Flats|null findOneBy(array $criteria, array $orderBy = null)
- * @method Flats[]    findAll()
- * @method Flats[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Flat|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Flat|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Flat[]    findAll()
+ * @method Flat[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class FlatsRepository extends ServiceEntityRepository
+class FlatRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Flats::class);
+        parent::__construct($registry, Flat::class);
     }
 
-    public function save(Flats $entity, bool $flush = false): void
+    public function save(Flat $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
 
@@ -30,7 +30,7 @@ class FlatsRepository extends ServiceEntityRepository
         }
     }
 
-    public function remove(Flats $entity, bool $flush = false): void
+    public function remove(Flat $entity, bool $flush = false): void
     {
         $this->getEntityManager()->remove($entity);
 
@@ -39,9 +39,8 @@ class FlatsRepository extends ServiceEntityRepository
         }
     }
 
-
     /**
-     * @return Flats[] Returns an array of Flat objects
+     * @return Flat[] Returns an array of Flat objects
      */
     public function saladPrefer()
     {
@@ -55,7 +54,7 @@ class FlatsRepository extends ServiceEntityRepository
     
 
     /**
-     * @return Flats[] Returns an array of Flat objects
+     * @return Flat[] Returns an array of Flat objects
      */
     public function flatPrefer()
     {
@@ -69,7 +68,7 @@ class FlatsRepository extends ServiceEntityRepository
 
 
     /**
-     * @return Flats[] Returns an array of Flat objects
+     * @return Flat[] Returns an array of Flat objects
      */
     public function cheesePrefer()
     {
@@ -83,7 +82,7 @@ class FlatsRepository extends ServiceEntityRepository
 
 
     /**
-     * @return Flats[] Returns an array of Flat objects
+     * @return Flat[] Returns an array of Flat objects
      */
     public function dessertPrefer()
     {
@@ -95,22 +94,9 @@ class FlatsRepository extends ServiceEntityRepository
         ;
     }
 
-//    /**
-//     * @return Flats[] Returns an array of Flats objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('f')
-//            ->andWhere('f.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('f.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
 
-//    public function findOneBySomeField($value): ?Flats
+
+//    public function findOneBySomeField($value): ?Flat
 //    {
 //        return $this->createQueryBuilder('f')
 //            ->andWhere('f.exampleField = :val')
