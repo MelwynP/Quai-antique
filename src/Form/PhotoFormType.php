@@ -21,12 +21,7 @@ class PhotoFormType extends AbstractType
                 ],
                 'label' => 'Nom'
             ])
-            ->add('file', TextType::class, [
-                'attr' => [
-                    'class' => 'form-control'
-                ],
-                'label' => 'Fichier'
-            ])
+          
             ->add('image', FileType::class, [
                 "label" => "Image",
                 "mapped" => false,
