@@ -21,16 +21,19 @@ class Flat
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $titre = null;
+
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 2, scale: 2)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2,)]
     private ?string $price = null;
 
-    #[ORM\OneToMany(mappedBy: 'flats', targetEntity: Images::class, orphanRemoval: true, cascade: ['persist'])]
+    #[ORM\OneToMany(mappedBy: 'flat', targetEntity: Images::class, orphanRemoval: true, cascade: ['persist'])]
     private $images;
 
-    #[ORM\ManyToOne(inversedBy: 'flats')]
+    #[ORM\ManyToOne(inversedBy: 'flat')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Category $category = null;
 
@@ -56,6 +59,18 @@ class Flat
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getTitre()
+    {
+        return $this->titre;
+    }
+
+    public function setTitre($titre)
+    {
+        $this->titre = $titre;
 
         return $this;
     }
@@ -117,7 +132,7 @@ class Flat
     {
         if (!$this->images->contains($image)) {
             $this->images[] = $image;
-            $image->setProducts($this);
+            $image->setFlat($this);
         }
 
         return $this;
@@ -127,8 +142,8 @@ class Flat
     {
         if ($this->images->removeElement($image)) {
             // set the owning side to null (unless already changed)
-            if ($image->getProducts() === $this) {
-                $image->setProducts(null);
+            if ($image->getFlat() === $this) {
+                $image->setFlat(null);
             }
         }
 

@@ -6,27 +6,29 @@ use App\Entity\Flat;
 use App\Entity\Images;
 use App\Repository\FlatRepository;
 use App\Form\FlatForm;
+use App\Repository\ImagesRepository;
 use App\Service\PictureService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
 
-#[Route('/admin/flat', name: 'admin_flat_')]
+#[Route('/admin/plat', name: 'admin_flat_')]
 
 class FlatController extends AbstractController
 {
     // Route accueil Admin Photo
     #[Route('/', name: 'index')]
 
-    public function index(FlatRepository $flatRepository): Response
+    public function index(FlatRepository $flatRepository, ImagesRepository $imagesRepository): Response
     {
         $flat = $flatRepository->findAll();
-        return $this->render('admin/flat/index.html.twig', compact('flat'));
+        $images = $imagesRepository->findAll();
+        return $this->render('admin/flat/index.html.twig', compact('flat', 'images'));
     }
 
     // Route ajout Flat Admin
@@ -61,6 +63,9 @@ class FlatController extends AbstractController
                 $flat->addImage($img);
             }
 
+            /* Si prix en centimes
+            $price = $flat->getPrice() * 100;
+            $flat->setPrice($price); */
 
 
             $em->persist($flat);
@@ -78,63 +83,76 @@ class FlatController extends AbstractController
         ]);
     }
 
+    
     #[Route('/modifier/{id}', name: 'edit')]
     public function edit(Flat $flat, Request $request, EntityManagerInterface $em, SluggerInterface $slugger, PictureService $pictureService): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-
-
+        /* Si prix en centimes   
+        $price = $flat->getPrice() / 100;
+        $flat->setPrice($price); */
+        
         $flatFormulaire = $this->createForm(FlatForm::class, $flat);
-
+        
         // On traite la requête du formulaire
         $flatFormulaire->handleRequest($request);
-
+        
         //On vérifie si le formulaire est soumis ET valide
         if ($flatFormulaire->isSubmitted() && $flatFormulaire->isValid()) {
             // On récupère les images
             $images = $flatFormulaire->get('images')->getData();
-
+            
             foreach ($images as $image) {
                 // On définit le dossier de destination
                 $folder = 'flats';
 
                 // On appelle le service d'ajout
                 $fichier = $pictureService->add($image, $folder, 300, 300);
-
+                
                 $img = new Images();
                 $img->setTitre($fichier);
                 $flat->addImage($img);
             }
-
-
-
+            
+            /* Si prix en centimes
+            $price = $flat->getPrice() * 100;
+            $flat->setPrice($price); */
+            
             $em->persist($flat);
             $em->flush();
-
+            
             $this->addFlash('success', 'Produit modifié avec succès');
-
-
+            
+            
             // On redirige
             return $this->redirectToRoute('admin_flat_index');
         }
-
-
+        
+        
         return $this->render('admin/flat/edit.html.twig', [
             'flatFormulaire' => $flatFormulaire->createView(),
             'flat' => $flat
         ]);
     }
+    
+    #[Route(
+        '/supprimer/{id<\d+>}',
+        name: "delete"
+    )]
+    public function delete(
+        Flat $flat,
+        ManagerRegistry $doctrine
+    ): Response {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-    #[Route('/supprimer/{id}', name: 'delete')]
-    public function delete(Flat $flat): Response
-    {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN', $flat);
-
-
-        return $this->render('admin/flat/index.html.twig');
+        $em = $doctrine->getManager();
+        $em->remove($flat);
+        $em->flush();
+        return $this->redirectToRoute("admin_flat_index");
     }
-
+    
+    
     #[Route('/supprimer/image/{id}', name: 'delete_image', methods: ['DELETE'])]
     public function deleteImage(Images $image, Request $request, EntityManagerInterface $em, PictureService $pictureService): JsonResponse
     {

@@ -17,6 +17,7 @@ class Images
     private $titre;
 
     #[ORM\ManyToOne(targetEntity: Flat::class, inversedBy: 'images')]
+
     #[ORM\JoinColumn(nullable: false)]
     private $flat;
 
@@ -37,12 +38,12 @@ class Images
         return $this;
     }
 
-    public function getProducts(): ?Flat
+    public function getFlat(): ?Flat
     {
         return $this->flat;
     }
 
-    public function setProducts(?Flat $flat): self
+    public function setFlat(?Flat $flat): self
     {
         $this->flat = $flat;
 

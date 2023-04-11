@@ -29,6 +29,13 @@ class FlatForm extends AbstractType
                 'label' => 'Nom'
             ])
 
+            ->add('titre', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'Titre'
+            ])
+
             ->add('description', TextType::class, [
                 'attr' => [
                     'class' => 'form-control'
@@ -36,8 +43,9 @@ class FlatForm extends AbstractType
                 'label' => 'Description'
             ])
 
-            ->add('price', MoneyType::class, options: [
+            ->add('price', MoneyType::class, [
                 'label' => 'Prix',
+                // Si prix en centime 'divisor' => 100,
                 'constraints' => [
                     new Positive(
                         message: 'Le prix ne peut être négatif'
@@ -46,14 +54,16 @@ class FlatForm extends AbstractType
             ])
 
             ->add('images', FileType::class, [
-                'label' => false,
+                'label' => 'Image',
                 'multiple' => true,
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
                     new All(
                         new Image([
-                            'maxWidth' => 1280,
+                            'maxSize' => '5000k',
+
+                            'maxWidth' => 5000,
                             'maxWidthMessage' => 'L\'image doit faire {{ max_width }} pixels de large au maximum'
                         ])
                     )

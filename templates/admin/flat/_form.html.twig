@@ -1,0 +1,11 @@
+{{ form_start(flatFormulaire) }}
+{{ form_row(flatFormulaire.name) }}
+{{ form_row(flatFormulaire.titre) }}
+{{ form_row(flatFormulaire.description) }}
+{{ form_row(flatFormulaire.price) }}
+{{ form_row(flatFormulaire.category) }}
+{{ form_row(flatFormulaire.menu) }}
+{{ form_row(flatFormulaire.images) }}
+<button type="submit" class="btn btn-primary">
+	{{ button_label|default('Ajouter') }}</button>
+{{ form_end(flatFormulaire) }}

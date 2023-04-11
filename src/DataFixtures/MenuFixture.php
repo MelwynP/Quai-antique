@@ -13,26 +13,25 @@ class MenuFixture extends Fixture
 
         $menu = new Menu();
         $manager->persist($menu);
-        $this->addReference('-----', $menu);
 
         $menu = new Menu();
         $menu->setName('Express');
         $menu->setDescription('Formule uniquement servie lors du déjeuner');
-        $menu->setPrice(21);
+        $menu->setPrice(21.00);
         $manager->persist($menu);
         $this->addReference('express', $menu);
 
         $menu = new Menu();
         $menu->setName('Savoyard');
         $menu->setDescription('Notre terroir en bouche');
-        $menu->setPrice(27);
+        $menu->setPrice(27.00);
         $manager->persist($menu);
         $this->addReference('savoyard', $menu);
 
         $menu = new Menu();
         $menu->setName('Complet');
         $menu->setDescription('Pour ne rien oublier');
-        $menu->setPrice(35);
+        $menu->setPrice(35.00);
         $manager->persist($menu);
         $this->addReference('complet', $menu);
 
