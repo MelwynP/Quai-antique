@@ -24,7 +24,7 @@ class HourController extends AbstractController
     return $this->render('admin/hour/index.html.twig', compact('hour'));
   }
 
-  #[Route('/modifier/{id<\d+>}', name: 'edit')]
+  #[Route('/modifier/{id}', name: 'edit')]
   public function edit(Hour $hour, Request $request, EntityManagerInterface $em): Response
   {
     $this->denyAccessUnlessGranted('ROLE_ADMIN');

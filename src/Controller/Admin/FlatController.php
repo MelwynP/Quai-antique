@@ -13,7 +13,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Persistence\ManagerRegistry;
+
+
+
 
 #[Route('/admin/plat', name: 'admin_flat_')]
 
@@ -74,7 +76,7 @@ class FlatController extends AbstractController
         ]);
     }
 
-    #[Route('/edition/{id}', name: 'edit')]
+    #[Route('/modidier/{id}', name: 'edit')]
     public function edit(Flat $flat, Request $request, EntityManagerInterface $em, PictureService $pictureService): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
@@ -128,12 +130,11 @@ class FlatController extends AbstractController
         ]);
     }
 
-    #[Route('/supprimer/{id<\d+>}', name: "delete")]
-    public function delete(Flat $flat, ManagerRegistry $doctrine): Response
+    #[Route('/supprimer/{id}', name: "delete")]
+    public function delete(Flat $flat, EntityManagerInterface $em): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-        $em = $doctrine->getManager();
         $em->remove($flat);
         $em->flush();
 

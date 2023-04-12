@@ -99,26 +99,19 @@
 				<div>
 					<h3>Nos horaires</h3>
 					<br>
-					{% for hour in dayClose %}
-						<p class="row">Fermé le :
-							{{hour.dayweek}}</p>
-					{% endfor %}
-					{% for hour in dayOpen %}
-						<p class="row">Ouvert le :
-							{{hour.dayweek}}
-							de
-							{{hour.lunchOpeningTime|date('H\\hi')}}
-							à
-							{{hour.lunchClosingTime|date('H\\hi')}}
-							et le soir de
-							{{hour.dinnerOpeningTime|date('H\\hi')}}
-							à
-							{{hour.dinnerClosingTime|date('H\\hi')}}
-						</p>
-					{% endfor %}
-					<br>
-				</div>
-			</section>
-		</main>
+					{% for hour in hour %}
+
+						{{ hour.dayweek }}
+						{{ hour.lunchOpeningTime }}
+
+						{{ hour.lunchClosingTime }}
+						{{ hour.dinnerOpeningTime }}
+
+						{{ hour.dinnerClosingTime }}
+					</p>
+				{% endfor %}
+				<br>
+			</div>
+		</section>
 	</main>
-{% endblock %}
+</main>{% endblock %}

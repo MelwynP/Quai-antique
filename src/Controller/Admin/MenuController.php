@@ -10,7 +10,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Persistence\ManagerRegistry;
 
 #[Route('/admin/menu', name: 'admin_menu_')]
 
@@ -61,76 +60,61 @@ class MenuController extends AbstractController
     ]);
   }
 
-  /*
-  #[Route('/edition/{id}', name: 'edit')]
-  public function edit(Flat $flat, Request $request, EntityManagerInterface $em, PictureService $pictureService): Response
+
+  #[Route('/modifier/{id}', name: 'edit')]
+  public function edit(Request $request, EntityManagerInterface $em, $id): Response
   {
     $this->denyAccessUnlessGranted('ROLE_ADMIN');
-    // On crée le formulaire
-    $flatFormulaire = $this->createForm(FlatForm::class, $flat);
+
+    // On récupère le menu à modifier
+    $menu = $em->getRepository(Menu::class)->find($id);
+
+    // On crée le formulaire en passant l'objet Menu à modifier
+    $menuFormulaire = $this->createForm(MenuForm::class, $menu);
 
     // On traite la requête du formulaire
-    $flatFormulaire->handleRequest($request);
+    $menuFormulaire->handleRequest($request);
 
     //On vérifie si le formulaire est soumis ET valide
-    if ($flatFormulaire->isSubmitted() && $flatFormulaire->isValid()) {
+    if ($menuFormulaire->isSubmitted() && $menuFormulaire->isValid()) {
 
-      foreach ($flat->getImages() as $image) {
-        // Supprime l'image du dossier
-        $pictureService->delete($image->getTitre());
-        // Supprime l'image de la collection
-        // $flat->removeImage($image);
-        $flat->getImages()->removeElement($image);
-      }
+      // On met à jour les données du menu
+      $menu->setName($menuFormulaire->get('name')->getData());
+      $menu->setDescription($menuFormulaire->get('description')->getData());
+      $menu->setPrice($menuFormulaire->get('price')->getData());
 
-      $images = $flatFormulaire->get('images')->getData();
-
-      foreach ($images as $image) {
-        // On définit le dossier de destination
-        $folder = 'flats';
-
-        // On appelle le service d'ajout
-        $fichier = $pictureService->add($image, $folder, 300, 300);
-
-        $img = new Images();
-        $img->setTitre($fichier);
-        $flat->addImage($img);
-      }
-
-      // On stocke
-      $em->persist($flat);
       $em->flush();
 
-      $this->addFlash(
-        'success',
-        'Produit modifié avec succès'
-      );
+      $this->addFlash('success', 'Menu modifié avec succès');
 
-      // On redirige
-      return $this->redirectToRoute('admin_flat_index');
+      // On redirige vers la liste des photos
+      return $this->redirectToRoute('admin_menu_index');
     }
 
-    return $this->render('admin/flat/edit.html.twig', [
-      'flatFormulaire' => $flatFormulaire->createView(),
-      'flat' => $flat
+    return $this->render('admin/menu/add.html.twig', [
+      'menuFormulaire' => $menuFormulaire->createView()
     ]);
   }
 
-  #[Route('/supprimer/{id<\d+>}', name: "delete")]
-  public function delete(Flat $flat, ManagerRegistry $doctrine): Response
+  #[Route('/supprimer/{id}', name: "delete")]
+  public function delete(Menu $menu, EntityManagerInterface $em): Response
   {
     $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-    $em = $doctrine->getManager();
-    $em->remove($flat);
-    $em->flush();
+    try {
+      $em->remove($menu);
+      $em->flush();
+      $this->addFlash(
+        'success',
+        'Menu supprimé avec succès'
+      );
+    } catch (\Exception $e) {
+      $this->addFlash(
+        'danger',
+        'Impossible de supprimer le menu. Il est probablement utilisé avec d\'autres plats. Supprimer ou basculer ces plats avant de supprimer le menu.'
+      );
+    }
 
-    $this->addFlash(
-      'success',
-      'Produit supprimé avec succès'
-    );
-
-    return $this->redirectToRoute("admin_flat_index");
+    return $this->redirectToRoute("admin_menu_index");
   }
-  */
 }

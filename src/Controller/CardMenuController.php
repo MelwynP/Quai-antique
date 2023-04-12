@@ -15,8 +15,8 @@ class CardMenuController extends AbstractController
     #[Route('/carte-menu', name: 'app_card_menu')]
     public function index(FlatRepository $flatRepository, CategoryRepository $categoryRepository, MenuRepository $menuRepository, HourRepository $hourRepository): Response
     {
-        
-        return $this->render('card_menu/index.html.twig',[
+
+        return $this->render('card_menu/index.html.twig', [
             'flats' => $flatRepository->findAll([]),
             'categories' => $categoryRepository->findAll([]),
             'menus' => $menuRepository->findAll(),
@@ -25,7 +25,7 @@ class CardMenuController extends AbstractController
             'menuExpress' => $menuRepository->menuExpress(),
             'menuSavoyard' => $menuRepository->menuSavoyard(),
             'menuComplet' => $menuRepository->menuComplet(),
+            'hour' => $hourRepository->findAll(),
         ]);
-
     }
 }

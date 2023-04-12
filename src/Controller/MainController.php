@@ -28,6 +28,8 @@ class MainController extends AbstractController
             'dayClose' => $hourRepository->dayClose(),
             'dayOpen' => $hourRepository->dayOpen(),
             'hour' => $hourRepository->findAll(),
+            'flat' => $flatRepository->findAll(),
+            'images' => $imagesRepository->findAll(),
 
 
         ]);
