@@ -14,8 +14,8 @@
 						<tr>
 							<th>ID</th>
 							<th>Nom</th>
-							<th>Description</th>
 							<th>Titre</th>
+							<th>Description</th>
 							<th>Prix</th>
 							<th>Catégorie</th>
 							<th>Menu</th>
@@ -27,15 +27,23 @@
 							<tr>
 								<td>{{ flat.id }}</td>
 								<td>{{ flat.name }}</td>
-								<td>{{ flat.description }}</td>
 								<td>{{ flat.titre }}</td>
+								<td>{{ flat.description }}</td>
 								<td>{{ flat.price }}</td>
-								<td>{{ flat.category.name }}</td>
-								{% if flat.menu is null%}
-									{{ "-" }}
-								{% else %}
-									<td>{{ flat.menu.name }}</td>
-								{% endif %}
+								<td>
+									{% if flat.category is null %}
+										{{ "Null" }}
+									{% else %}
+										{{ flat.category.name }}
+									{% endif %}
+								</td>
+								<td>
+									{% if flat.menu is null %}
+										{{ "Null" }}
+									{% else %}
+										{{ flat.menu.name }}
+									{% endif %}
+								</td>
 								<td>
 									{% if flat.images is defined %}
 										{% for image in flat.images %}

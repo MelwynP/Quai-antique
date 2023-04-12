@@ -27,6 +27,7 @@ class MainController extends AbstractController
             'dessertPrefer' => $flatRepository->dessertPrefer(),
             'dayClose' => $hourRepository->dayClose(),
             'dayOpen' => $hourRepository->dayOpen(),
+            'hour' => $hourRepository->findAll(),
 
 
         ]);

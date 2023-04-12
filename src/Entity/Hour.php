@@ -21,18 +21,18 @@ class Hour
     #[ORM\Column(length: 100)]
     private ?string $dayWeek = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $lunchOpeningTime = null;
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $lunchOpeningTime = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $lunchClosingTime = null;
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $lunchClosingTime = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $dinnerOpeningTime = null;
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $dinnerOpeningTime = null;
 
-    #[ORM\Column(type: Types::TIME_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $dinnerClosingTime = null;
-
+    #[ORM\Column(length: 100, nullable: true)]
+    private ?string $dinnerClosingTime = null;
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -61,49 +61,50 @@ class Hour
 
         return $this;
     }
-
-    public function getLunchOpeningTime(): ?\DateTimeInterface
+    
+    public function getLunchOpeningTime()
     {
         return $this->lunchOpeningTime;
     }
 
-    public function setLunchOpeningTime(?\DateTimeInterface $lunchOpeningTime): self
+
+    public function setLunchOpeningTime($lunchOpeningTime)
     {
         $this->lunchOpeningTime = $lunchOpeningTime;
 
         return $this;
     }
 
-    public function getLunchClosingTime(): ?\DateTimeInterface
+    public function getLunchClosingTime()
     {
         return $this->lunchClosingTime;
     }
 
-    public function setLunchClosingTime(?\DateTimeInterface $lunchClosingTime): self
+    public function setLunchClosingTime($lunchClosingTime)
     {
         $this->lunchClosingTime = $lunchClosingTime;
 
         return $this;
     }
 
-    public function getDinnerOpeningTime(): ?\DateTimeInterface
+    public function getDinnerOpeningTime()
     {
         return $this->dinnerOpeningTime;
     }
 
-    public function setDinnerOpeningTime(?\DateTimeInterface $dinnerOpeningTime): self
+    public function setDinnerOpeningTime($dinnerOpeningTime)
     {
         $this->dinnerOpeningTime = $dinnerOpeningTime;
 
         return $this;
     }
 
-    public function getDinnerClosingTime(): ?\DateTimeInterface
+    public function getDinnerClosingTime()
     {
         return $this->dinnerClosingTime;
     }
 
-    public function setDinnerClosingTime(?\DateTimeInterface $dinnerClosingTime): self
+    public function setDinnerClosingTime($dinnerClosingTime)
     {
         $this->dinnerClosingTime = $dinnerClosingTime;
 

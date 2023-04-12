@@ -12,9 +12,6 @@ class MenuFixture extends Fixture
     {
 
         $menu = new Menu();
-        $manager->persist($menu);
-
-        $menu = new Menu();
         $menu->setName('Express');
         $menu->setDescription('Formule uniquement servie lors du déjeuner');
         $menu->setPrice(21.00);

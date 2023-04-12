@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230411190128 extends AbstractMigration
+final class Version20230412141302 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -22,8 +22,8 @@ final class Version20230411190128 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE TABLE booking (id INT AUTO_INCREMENT NOT NULL, date_reservation DATE NOT NULL, number_people INT NOT NULL, allergy LONGTEXT DEFAULT NULL, civility VARCHAR(20) NOT NULL, firstname VARCHAR(100) NOT NULL, name VARCHAR(100) NOT NULL, phone VARCHAR(100) NOT NULL, email VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE category (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE flat (id INT AUTO_INCREMENT NOT NULL, category_id INT NOT NULL, menu_id INT DEFAULT NULL, name VARCHAR(255) NOT NULL, titre VARCHAR(255) DEFAULT NULL, description LONGTEXT DEFAULT NULL, price NUMERIC(10, 2) NOT NULL, INDEX IDX_554AAA4412469DE2 (category_id), INDEX IDX_554AAA44CCD7E912 (menu_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE hour (id INT AUTO_INCREMENT NOT NULL, restaurant_id INT NOT NULL, day_week VARCHAR(100) NOT NULL, lunch_opening_time TIME DEFAULT NULL, lunch_closing_time TIME DEFAULT NULL, dinner_opening_time TIME DEFAULT NULL, dinner_closing_time TIME DEFAULT NULL, INDEX IDX_701E114EB1E7706E (restaurant_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE flat (id INT AUTO_INCREMENT NOT NULL, category_id INT DEFAULT NULL, menu_id INT DEFAULT NULL, name VARCHAR(255) NOT NULL, titre VARCHAR(255) DEFAULT NULL, description LONGTEXT DEFAULT NULL, price NUMERIC(10, 2) NOT NULL, INDEX IDX_554AAA4412469DE2 (category_id), INDEX IDX_554AAA44CCD7E912 (menu_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE hour (id INT AUTO_INCREMENT NOT NULL, restaurant_id INT NOT NULL, day_week VARCHAR(100) NOT NULL, lunch_opening_time VARCHAR(100) DEFAULT NULL, lunch_closing_time VARCHAR(100) DEFAULT NULL, dinner_opening_time VARCHAR(100) DEFAULT NULL, dinner_closing_time VARCHAR(100) DEFAULT NULL, INDEX IDX_701E114EB1E7706E (restaurant_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE images (id INT AUTO_INCREMENT NOT NULL, flat_id INT NOT NULL, titre VARCHAR(255) NOT NULL, INDEX IDX_E01FBE6AD3331C94 (flat_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE menu (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) DEFAULT NULL, description VARCHAR(255) DEFAULT NULL, price NUMERIC(10, 2) DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE restaurant (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, address VARCHAR(255) NOT NULL, phone VARCHAR(255) NOT NULL, email VARCHAR(255) NOT NULL, average_price DOUBLE PRECISION NOT NULL, maximum_capacity INT NOT NULL, availability_capacity INT NOT NULL, number_table INT NOT NULL, number_chair INT NOT NULL, city VARCHAR(50) NOT NULL, zipcode INT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');

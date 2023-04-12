@@ -1,0 +1,57 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Liste des horaires
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<main class="col-9 border border-light bg-white p-2">
+				<h1>Liste des horaires</h1>
+				{#<a href="{{ path('admin_hour_add')}}" class="btn btn-success">Ajouter</a>
+								<a href="{{ path('admin_hour_edit')}}" class="btn btn-success">Modifier</a>#}
+
+
+				<table class="table">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Jour de semaine</th>
+							<th>Heure ouverture déjeuner</th>
+							<th>Heure fermeture déjeuner</th>
+							<th>Heure ouverture dinner</th>
+							<th>Heure fermeture dinner</th>
+							<th>Restaurant</th>
+						</tr>
+					</thead>
+					<body>
+						{% for hour in hour %}
+							<tr>
+
+
+								<td>{{ hour.id }}</td>
+								<td>{{ hour.dayWeek }}</td>
+								<td>{{ hour.lunchOpeningTime }}</td>
+
+								<td>{{ hour.lunchClosingTime }}</td>
+
+								<td>{{ hour.dinnerOpeningTime }}</td>
+
+								<td>{{ hour.dinnerClosingTime }}</td>
+
+								<td>{{ hour.restaurant.name }}</td>
+
+
+								<td>
+									<a href="{{ path('admin_hour_edit', {id: hour.id})}}" class="btn btn-success">Modifier</a>
+								</td>
+
+
+							</tr>
+						</body>
+					{% endfor %}
+				</body>
+			</body>
+		</table>
+	</main>
+</div></div>{% endblock %}

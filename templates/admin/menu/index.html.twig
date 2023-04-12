@@ -1,0 +1,45 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Liste des menus
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<main class="col-9 border border-light bg-white p-2">
+				<h1>Liste des menus</h1>
+				{#<a href="{{ path('admin_hour_add')}}" class="btn btn-success">Ajouter</a>
+																				<a href="{{ path('admin_hour_edit')}}" class="btn btn-success">Modifier</a>#}
+
+
+				<table class="table">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Nom du menu</th>
+							<th>Description</th>
+							<th>Prix</th>
+						</tr>
+					</thead>
+					<body>
+						{% for menu in menu %}
+							<tr>
+
+
+								<td>{{ menu.id }}</td>
+								<td>{{ menu.name }}</td>
+								<td>{{ menu.description }}</td>
+								<td>{{ menu.price }}</td>
+								<td>
+									{# <a href="{{ path('admin_menu_add', {id: hour.id})}}" class="btn btn-success">Publier</a> #}
+								</td>
+
+
+							</tr>
+						</body>
+					{% endfor %}
+				</body>
+			</body>
+		</table>
+	</main>
+</div></div>{% endblock %}

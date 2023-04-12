@@ -15,7 +15,6 @@ use Symfony\Component\Validator\Constraints\Positive;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\File;
 
 class FlatForm extends AbstractType
 {
@@ -33,14 +32,17 @@ class FlatForm extends AbstractType
                 'attr' => [
                     'class' => 'form-control'
                 ],
-                'label' => 'Titre'
+                'label' => 'Titre',
+                'required' => false
             ])
 
             ->add('description', TextType::class, [
                 'attr' => [
                     'class' => 'form-control'
                 ],
-                'label' => 'Description'
+                'label' => 'Description',
+                'required' => false
+
             ])
 
             ->add('price', MoneyType::class, [
@@ -74,6 +76,7 @@ class FlatForm extends AbstractType
                 'class' => Category::class,
                 'choice_label' => 'name',
                 'label' => 'Catégorie',
+                'required' => false,
                 'attr' => [
                     'class' => 'form-control'
                 ]
@@ -83,6 +86,7 @@ class FlatForm extends AbstractType
                 'class' => Menu::class,
                 'choice_label' => 'name',
                 'label' => 'Menu',
+                'required' => false,
                 'attr' => [
                     'class' => 'form-control'
                 ]
