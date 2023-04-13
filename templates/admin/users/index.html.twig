@@ -1,8 +1,48 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Administration des utilisateurs
+{% block title %}Contrôler les utilisateurs
 {% endblock %}
 
 {% block body %}
-	<h1>Administration des utilisateurs</h1>
+
+
+	<div class="container">
+		<div class="row">
+			<main class="col-9 border border-light bg-white p-2">
+				<h1>Contrôler les utilisateurs</h1>
+				<a href="{{ path('app_admin') }}" class="btn btn-primary">Panneau d'administration</a>
+
+
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Civilité</th>
+							<th>Nom</th>
+							<th>Prénom</th>
+							<th>Création du compte</th>
+							<th>Nombre de convive par défault</th>
+							<th>Allergie(s)</th>
+							<th>Téléphone</th>
+							<th>E-mail</th>
+						</tr>
+					</thead>
+
+					{% for user in user %}
+						<tr>
+							<td>{{ user.id }}</td>
+							<td>{{ user.civility }}</td>
+							<td>{{ user.name }}</td>
+							<td>{{ user.firstname }}</td>
+							<td>{{ user.createdAt|date('d/m/Y') }}</td>
+							<td>{{ user.numberPeople }}</td>
+							<td>{{ user.allergy }}</td>
+							<td>{{ user.phone }}</td>
+							<td>{{ user.email }}</td>
+						</tr>
+					{% endfor %}
+				</table>
+			</main>
+		</div>
+	</div>
 {% endblock %}

@@ -8,10 +8,13 @@
 		<div class="row">
 			<main class="col-9 border border-light bg-white p-2">
 				<h1>Les réservations</h1>
+				<a href="{{ path('app_admin') }}" class="btn btn-primary">Panneau d'administration</a>
+
+
 				<table class="table">
 					<thead>
 						<tr>
-							{# <th>Id</th> #}
+							<th>Id</th>
 							<th>Civilité</th>
 							<th>Nom</th>
 							<th>Prénom</th>
@@ -26,12 +29,12 @@
 					<body>
 						{% for booking in bookingOrder %}
 							<tr>
-								{# <td>{{ booking.id }}</td> #}
+								<td>{{ booking.id }}</td>
 								<td>{{ booking.civility }}</td>
 								<td>{{ booking.name }}</td>
 								<td>{{ booking.firstname }}</td>
 								<td>{{ booking.dateReservation|date('d/m/Y') }}</td>
-								<td>{{ booking.hourReservation|date('H:i') }}</td>
+								<td>{{ booking.hourReservation }}</td>
 								<td>{{ booking.numberPeople }}</td>
 								<td>{{ booking.allergy }}</td>
 								<td>{{ booking.phone }}</td>
