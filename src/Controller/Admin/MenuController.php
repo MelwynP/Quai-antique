@@ -29,7 +29,7 @@ class MenuController extends AbstractController
   {
     $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
-    //On crée un nouvel objet Photo
+    //On crée un nouvel objet Menu
     $menu = new Menu();
 
     //On crée le formulaire

@@ -1,0 +1,50 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Consulter les réservations
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<main class="col-9 border border-light bg-white p-2">
+				<h1>Les réservations</h1>
+				<table class="table">
+					<thead>
+						<tr>
+							{# <th>Id</th> #}
+							<th>Civilité</th>
+							<th>Nom</th>
+							<th>Prénom</th>
+							<th>Date de réservation</th>
+							<th>Heure de réservation</th>
+							<th>Nombre de convive</th>
+							<th>Allergie(s)</th>
+							<th>Téléphone</th>
+							<th>E-mail</th>
+						</tr>
+					</thead>
+					<body>
+						{% for booking in bookingOrder %}
+							<tr>
+								{# <td>{{ booking.id }}</td> #}
+								<td>{{ booking.civility }}</td>
+								<td>{{ booking.name }}</td>
+								<td>{{ booking.firstname }}</td>
+								<td>{{ booking.dateReservation|date('d/m/Y') }}</td>
+								<td>{{ booking.hourReservation|date('H:i') }}</td>
+								<td>{{ booking.numberPeople }}</td>
+								<td>{{ booking.allergy }}</td>
+								<td>{{ booking.phone }}</td>
+								<td>{{ booking.email }}</td>
+								<td>
+									<a href="{{ path('admin_reservation_delete', {id: booking.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette réservation ?')">Supprimer</a>
+
+								</td>
+							</tr>
+						</td>
+					</body>
+				</tr>
+			</body>
+		{% endfor %}
+	</table>
+</main></div></div>{% endblock %}

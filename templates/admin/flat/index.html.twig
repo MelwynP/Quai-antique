@@ -55,7 +55,8 @@
 									<a href="{{ path('admin_flat_edit', {id: flat.id})}}" class="btn btn-success">Modifier</a>
 								</td>
 								<td>
-									<a href="{{ path('admin_flat_delete', {'id': flat.id}) }}" class="btn btn-danger">Supprimer</a>
+									<a href="{{ path('admin_flat_delete', {id: flat.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette réservation ?')">Supprimer</a>
+
 
 								</td>
 

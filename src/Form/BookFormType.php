@@ -7,73 +7,71 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Validator\Constraints\IsTrue;
-
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\GreaterThan;
-use Symfony\Component\Validator\Constraints\LessThanOrEqual;
 
 class BookFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        // Récupération de la date actuelle
-    $now = new \DateTime();
-
-    // Calcul de la date maximale de réservation (un mois à l'avance)
-    $maxDate = (clone $now)->add(new \DateInterval('P1M'));
-
-    $builder
-            ->add('dateReservation', DateTimeType::class, [
-                'attr' => [
-                'class' => 'form-control'
-                ],
-                'label' => 'Date et heure de réservation',
-                'html5' => true,
+        $builder
+            ->add('dateReservation', DateType::class, [
                 'widget' => 'single_text',
-                'constraints' => [
-                    new GreaterThan([
-                        'value' => $now,
-                        'message' => 'La date de réservation doit être supérieure ou égale à aujourd\'hui'
-                    ]),
-                    new LessThanOrEqual([
-                        'value' => $maxDate,
-                        'message' => 'La date de réservation doit être inférieure ou égale à ' . $maxDate->format('Y-m-d')
-                    ])
+                'html5' => true,
+            ])
+
+            ->add('hourReservation', ChoiceType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'Heure de réservation',
+                'choices' => [
+                    '12h00' => '12h00',
+                    '12h15' => '12h15',
+                    '13h00' => '13h00',
+                    '13h30' => '13h30',
+                    '19h00' => '19h00',
+                    '19h30' => '19h30',
+                    '20h00' => '20h00',
+                    '20h30' => '20h30',
+                    '21h00' => '21h00',
+                    '21h30' => '21h30',
+                    '22h00' => '22h00',
                 ]
             ])
 
             ->add('numberPeople', null, [
                 'attr' => [
-                   'class' => 'form-control'
+                    'class' => 'form-control'
                 ],
                 'label' => 'Nombre de convive(s)'
             ])
 
             ->add('allergy', null, [
                 'attr' => [
-                   'class' => 'form-control'
+                    'class' => 'form-control'
                 ],
                 'label' => 'Allergie(s)'
             ])
-            
+
             ->add('civility', ChoiceType::class, [
-            'attr' => [
-                'class' => 'form-control'
-            ],
-            'label' => 'Civilité',
-            'choices' => [
-                'M.' => 'M.',
-                'Mme.' => 'Mme.',
-            ]
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'Civilité',
+                'choices' => [
+                    'Monsieur' => 'Monsieur',
+                    'Madame' => 'Madame',
+                ]
             ])
 
             ->add('firstname', TextType::class, [
                 'attr' => [
-                   'class' => 'form-control'
+                    'class' => 'form-control'
                 ],
                 'label' => 'Prénom'
             ])
@@ -84,7 +82,7 @@ class BookFormType extends AbstractType
                 ],
                 'label' => 'Nom'
             ])
-            
+
             ->add('phone', TextType::class, [
                 'attr' => [
                     'class' => 'form-control'
@@ -92,7 +90,7 @@ class BookFormType extends AbstractType
                 'label' => 'Téléphone'
             ])
 
-             ->add('email', EmailType::class, [
+            ->add('email', EmailType::class, [
                 'attr' => [
                     'class' => 'form-control'
                 ],
@@ -107,8 +105,7 @@ class BookFormType extends AbstractType
                     ]),
                 ],
                 'label' => 'J\'accepte que mes données personnelles soient utilisées pour la gestion de ma réservation et de ma relation commerciale avec l\'établissement.'
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

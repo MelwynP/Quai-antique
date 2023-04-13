@@ -42,14 +42,14 @@ class RegistrationFormType extends AbstractType
             ])
 
             ->add('civility', ChoiceType::class, [
-            'attr' => [
-                'class' => 'form-control'
-            ],
-            'label' => 'Civilité',
-            'choices' => [
-                'M.' => 'M.',
-                'Mme.' => 'Mme.',
-            ]
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'Civilité',
+                'choices' => [
+                    'Monsieur' => 'Monsieur',
+                    'Madame' => 'Madame',
+                ]
             ])
 
             ->add('phone', TextType::class, [
@@ -61,14 +61,14 @@ class RegistrationFormType extends AbstractType
 
             ->add('allergy', null, [
                 'attr' => [
-                   'class' => 'form-control'
+                    'class' => 'form-control'
                 ],
                 'label' => 'Allergie(s)'
             ])
 
             ->add('numberPeople', null, [
                 'attr' => [
-                   'class' => 'form-control'
+                    'class' => 'form-control'
                 ],
                 'label' => 'Nombre de convive(s)'
             ])
@@ -82,17 +82,17 @@ class RegistrationFormType extends AbstractType
                 ],
                 'label' => 'J\'accepte que mes données personnelles soient utilisées pour la gestion de ma réservation et de ma relation commerciale avec l\'établissement.'
             ])
-            
+
             ->add('plainPassword', PasswordType::class, [
                 'mapped' => false,
                 'attr' => [
                     'autocomplete' => 'new-password',
                     'class' => 'form-control',
-                   ],
-                    'constraints' => [
-                        new NotBlank([
-                            'message' => 'mot de pass obligatoire',
-                        ]),
+                ],
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'mot de pass obligatoire',
+                    ]),
                     new Length([
                         'min' => 6,
                         'minMessage' => 'Your password should be at least {{ limit }} characters',
@@ -100,9 +100,8 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
-            'label' => 'Mot de passe',
-            ])
-        ;
+                'label' => 'Mot de passe',
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

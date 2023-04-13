@@ -17,6 +17,10 @@ class BookController extends AbstractController
     {
         //on créé une nouvelle réservation
         $booking = new Booking();
+        //on récupère l'utilisateur connecté
+        $user = $this->getUser();
+        //on associe la réservation à l'utilisateur
+        $booking->setUsers($user);
         //on crée un form de réservation
         $bookForm = $this->createForm(BookFormType::class, $booking);
         //on récupère les données du form
@@ -24,7 +28,7 @@ class BookController extends AbstractController
         //on test avec diedump les données du form, c'est ok 
         //dd($bookForm);
         //on verifie si le formulaire est soumis et valide
-        if($bookForm->isSubmitted() && $bookForm->isValid()){
+        if ($bookForm->isSubmitted() && $bookForm->isValid()) {
             //on enregistre la réservation en bdd
             $em->persist($booking);
             $em->flush();
@@ -32,8 +36,16 @@ class BookController extends AbstractController
             return $this->redirectToRoute('app_book_confirm');
         }
 
-        return $this->render('book/index.html.twig',[
+        return $this->render('book/index.html.twig', [
             'bookForm' => $bookForm->createView()
         ]);
+    }
+
+
+
+    #[Route('/reservation/confirmation', name: 'app_book_confirm')]
+    public function confirm(): Response
+    {
+        return $this->render('book/confirm.html.twig');
     }
 }

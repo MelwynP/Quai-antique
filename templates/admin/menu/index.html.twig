@@ -32,7 +32,8 @@
 									<a href="{{ path('admin_menu_edit', {id: menu.id})}}" class="btn btn-success">Modifier</a>
 								</td>
 								<td>
-									<a href="{{ path('admin_menu_delete', {id: menu.id})}}" class="btn btn-danger">Supprimer</a>
+									<a href="{{ path('admin_menu_delete', {id: menu.id})}}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce menu ?')">Supprimer</a>
+
 								</td>
 
 							</tr>

@@ -14,8 +14,10 @@ class Booking
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $dateReservation = null;
+
+
+    #[ORM\Column(length: 100)]
+    private ?string $hourReservation = null;
 
     #[ORM\Column]
     private ?int $numberPeople = null;
@@ -38,19 +40,27 @@ class Booking
     #[ORM\Column(length: 255)]
     private ?string $email = null;
 
+    #[ORM\ManyToOne(inversedBy: 'bookings')]
+    private ?User $users = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $dateReservation = null;
+
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getDateReservation(): ?\DateTimeInterface
+
+
+    public function getHourReservation(): ?string
     {
-        return $this->dateReservation;
+        return $this->hourReservation;
     }
 
-    public function setDateReservation(\DateTimeInterface $dateReservation): self
+    public function setHourReservation(?string $hourReservation): self
     {
-        $this->dateReservation = $dateReservation;
+        $this->hourReservation = $hourReservation;
 
         return $this;
     }
@@ -135,6 +145,30 @@ class Booking
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    public function getUsers(): ?User
+    {
+        return $this->users;
+    }
+
+    public function setUsers(?User $users): self
+    {
+        $this->users = $users;
+
+        return $this;
+    }
+
+    public function getDateReservation(): ?\DateTimeInterface
+    {
+        return $this->dateReservation;
+    }
+
+    public function setDateReservation(\DateTimeInterface $dateReservation): self
+    {
+        $this->dateReservation = $dateReservation;
 
         return $this;
     }
