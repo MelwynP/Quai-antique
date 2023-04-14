@@ -16,15 +16,11 @@ class BookController extends AbstractController
     #[Route('/reservation', name: 'app_book')]
     public function index(Request $request, EntityManagerInterface $em): Response
     {
-        //on récupère l'utilisateur connecté
-        $users = $this->getUser();
-        $lastBooking = $em->getRepository(Booking::class)->findOneBy(['users' => $users], ['id' => 'DESC']);
 
-        // on créé une nouvelle réservation ou on utilise la dernière réservation de l'utilisateur s'il en existe une
-        $booking = $lastBooking ?? new Booking();
+        $booking = new Booking();
         //on associe la réservation à l'utilisateur
         //on crée un form de réservation
-        $booking->setUsers($users);
+            
         $bookForm = $this->createForm(BookFormType::class, $booking);
 
 

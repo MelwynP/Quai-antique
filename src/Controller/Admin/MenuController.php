@@ -102,6 +102,12 @@ class MenuController extends AbstractController
     $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
     try {
+      // Récupérer les plats associés à ce menu
+      $flat = $menu->getFlat();
+      foreach ($flat as $flat) {
+        $flat->setMenu(null);
+        $em->persist($flat);
+      }
       $em->remove($menu);
       $em->flush();
       $this->addFlash(

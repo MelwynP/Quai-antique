@@ -25,7 +25,7 @@ class AccountController extends AbstractController
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        // Vérifier si l'utilisateur actuel est l'auteur du post
+        
         if ($this->getUser()->getId() !== $user->getId()) {
             $this->addFlash("error", "Vous ne pouvez pas modifier.");
             return $this->redirectToRoute("app_account_index");
