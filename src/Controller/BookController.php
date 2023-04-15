@@ -8,11 +8,13 @@ use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class BookController extends AbstractController
 {
+
     #[Route('/reservation', name: 'app_book')]
     public function index(Request $request, EntityManagerInterface $em): Response
     {
@@ -20,9 +22,9 @@ class BookController extends AbstractController
         $booking = new Booking();
         //on associe la réservation à l'utilisateur
         //on crée un form de réservation
-            
-        $bookForm = $this->createForm(BookFormType::class, $booking);
+        $service = $request->query->get('service');
 
+        $bookForm = $this->createForm(BookFormType::class, $booking);
 
         //on récupère les données du form
         $bookForm->handleRequest($request);
@@ -31,6 +33,7 @@ class BookController extends AbstractController
         //on verifie si le formulaire est soumis et valide
         if ($bookForm->isSubmitted() && $bookForm->isValid()) {
 
+            $booking = $bookForm->getData();
 
             //on enregistre la réservation en bdd
             $em->persist($booking);
@@ -39,8 +42,12 @@ class BookController extends AbstractController
             return $this->redirectToRoute('app_book_confirm');
         }
 
+        // Afficher le formulaire de réservation avec les créneaux horaires disponibles
         return $this->render('book/index.html.twig', [
             'bookForm' => $bookForm->createView(),
+            'lunchHours' => ['12:00', '12:30', '13:00'], // heures pour le déjeuner
+            'dinnerHours' => ['19:00', '19:30', '20:00'], // heures pour le dîner
+            'service' => $service,
 
         ]);
     }

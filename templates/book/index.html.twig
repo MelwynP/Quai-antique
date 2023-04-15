@@ -1,6 +1,5 @@
 {% extends 'base.html.twig' %}
 
-
 {% block title %}Reservation
 {% endblock %}
 
@@ -9,10 +8,26 @@
 		<div class="row">
 			<div class="col">
 				<h2>Reservation</h2>
+				{{ form_start(bookForm) }}
+				{{ form_widget(bookForm.dateReservation) }}
+				<div class="btn-group" role="group" aria-label="Service">
+					<button type="button" class="btn btn-secondary" id="btn-lunch" data-hours="{{ lunchHours|join(',') }}">Déjeuner</button>
+					<button type="button" class="btn btn-secondary" id="btn-dinner" data-hours="{{ dinnerHours|join(',') }}">Dîner</button>
+				</div>
+				<div id="hourReservationField" class="form-control"></div>
+				{{ form_widget(bookForm.numberPeople) }}
+				{{ form_row(bookForm.civility) }}
+				{{ form_row(bookForm.firstname) }}
+				{{ form_row(bookForm.name) }}
+				{{ form_row(bookForm.phone) }}
+				{{ form_row(bookForm.email) }}
+				{{ form_row(bookForm.allergy) }}
+				{{ form_row(bookForm.RGPDConsent) }}
 
-
-				{% include "book/_form.html.twig" %}
+				<button type="submit" class="btn btn-primary">Réserver</button>
+				{{ form_end(bookForm) }}
 			</div>
 		</div>
 	</section>
+	<script src="{{ asset('js/reservation.js') }}"></script>
 {% endblock %}

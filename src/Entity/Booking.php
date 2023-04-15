@@ -13,45 +13,51 @@ class Booking
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-
-
-
-    #[ORM\Column(length: 100)]
-    private ?string $hourReservation = null;
-
+    
     #[ORM\Column]
     private ?int $numberPeople = null;
-
+    
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $allergy = null;
 
     #[ORM\Column(length: 20)]
     private ?string $civility = null;
-
+    
     #[ORM\Column(length: 100)]
     private ?string $firstname = null;
-
+    
     #[ORM\Column(length: 100)]
     private ?string $name = null;
-
+    
     #[ORM\Column(length: 100)]
     private ?string $phone = null;
-
+    
     #[ORM\Column(length: 255)]
     private ?string $email = null;
-
+    
     #[ORM\ManyToOne(inversedBy: 'bookings')]
     private ?User $users = null;
 
+    #[ORM\Column(length: 100)]
+    private ?string $hourReservation = null;
+    
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateReservation = null;
+    
+    #[ORM\Column('capacity', nullable: true)]
+    private ?int $capacity = null;
+
+    #[ORM\Column('capacity_available', nullable: true)]
+    private ?int $capacityAvailable = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $service = null;
+
 
     public function getId(): ?int
     {
         return $this->id;
     }
-
-
 
     public function getHourReservation(): ?string
     {
@@ -169,6 +175,42 @@ class Booking
     public function setDateReservation(\DateTimeInterface $dateReservation): self
     {
         $this->dateReservation = $dateReservation;
+
+        return $this;
+    }
+
+    public function getCapacity(): ?int
+    {
+        return $this->capacity;
+    }
+
+    public function setCapacity(int $capacity): self
+    {
+        $this->capacity = $capacity;
+
+        return $this;
+    }
+
+    public function getCapacityAvailable(): ?int
+    {
+        return $this->capacityAvailable;
+    }
+
+    public function setCapacityAvailable(int $capacityAvailable): self
+    {
+        $this->capacityAvailable = $capacityAvailable;
+
+        return $this;
+    }
+
+    public function getService(): ?string
+    {
+        return $this->service;
+    }
+
+    public function setService(?string $service): self
+    {
+        $this->service = $service;
 
         return $this;
     }

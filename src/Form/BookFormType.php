@@ -6,7 +6,6 @@ use App\Entity\Booking;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -21,39 +20,32 @@ class BookFormType extends AbstractType
         $builder
             ->add('dateReservation', DateType::class, [
                 'widget' => 'single_text',
-                'html5' => true,
-            ])
-
-            ->add('hourReservation', ChoiceType::class, [
+                'html5' => false,
+                'format' => 'dd/MM/yyyy',
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'id' => 'book_date_reservation'
                 ],
-                'label' => 'Heure de réservation',
-                'choices' => [
-                    '12h00' => '12h00',
-                    '12h15' => '12h15',
-                    '13h00' => '13h00',
-                    '13h30' => '13h30',
-                    '19h00' => '19h00',
-                    '19h30' => '19h30',
-                    '20h00' => '20h00',
-                    '20h30' => '20h30',
-                    '21h00' => '21h00',
-                    '21h30' => '21h30',
-                    '22h00' => '22h00',
+            ])
+            
+            /* ->add('hourReservation', ChoiceType::class, [
+                'attr' => [
+                    'class' => 'form-control',
+                    'id' => 'book_hour_reservation'
                 ]
             ])
-
+            */
             ->add('numberPeople', null, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'id' => 'book_numberPeople_reservation'
                 ],
-                'label' => 'Nombre de convive(s)'
+                'label' => 'Nombre de convive(s)',
             ])
 
             ->add('allergy', null, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control',
                 ],
                 'label' => 'Allergie(s)'
             ])
