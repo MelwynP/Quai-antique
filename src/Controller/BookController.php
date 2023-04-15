@@ -45,8 +45,8 @@ class BookController extends AbstractController
         // Afficher le formulaire de réservation avec les créneaux horaires disponibles
         return $this->render('book/index.html.twig', [
             'bookForm' => $bookForm->createView(),
-            'lunchHours' => ['12:00', '12:30', '13:00'], // heures pour le déjeuner
-            'dinnerHours' => ['19:00', '19:30', '20:00'], // heures pour le dîner
+            'lunchHours' => ['12:00', '12:15', '12:30', '12:45', '13:00'], // heures pour le déjeuner
+            'dinnerHours' => ['19:00', '19:15', '19:30', '19:45', '20:00'], // heures pour le dîner
             'service' => $service,
 
         ]);

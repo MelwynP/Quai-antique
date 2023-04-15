@@ -24,21 +24,24 @@ class BookFormType extends AbstractType
                 'format' => 'dd/MM/yyyy',
                 'attr' => [
                     'class' => 'form-control',
-                    'id' => 'book_date_reservation'
+                    'id' => 'dateReservation',
                 ],
             ])
-            
+
             /* ->add('hourReservation', ChoiceType::class, [
+                'choices' => [],
+                'label' => 'Heure de réservation',
                 'attr' => [
                     'class' => 'form-control',
-                    'id' => 'book_hour_reservation'
-                ]
-            ])
-            */
+                    'id' => 'hourReservation',
+                ],
+
+            ]) */
+
             ->add('numberPeople', null, [
                 'attr' => [
                     'class' => 'form-control',
-                    'id' => 'book_numberPeople_reservation'
+                    'id' => 'numberPeople_reservation'
                 ],
                 'label' => 'Nombre de convive(s)',
             ])

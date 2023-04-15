@@ -13,37 +13,37 @@ class Booking
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-    
+
     #[ORM\Column]
     private ?int $numberPeople = null;
-    
+
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $allergy = null;
 
     #[ORM\Column(length: 20)]
     private ?string $civility = null;
-    
+
     #[ORM\Column(length: 100)]
     private ?string $firstname = null;
-    
+
     #[ORM\Column(length: 100)]
     private ?string $name = null;
-    
+
     #[ORM\Column(length: 100)]
     private ?string $phone = null;
-    
+
     #[ORM\Column(length: 255)]
     private ?string $email = null;
-    
+
     #[ORM\ManyToOne(inversedBy: 'bookings')]
     private ?User $users = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 100, nullable: true)]
     private ?string $hourReservation = null;
-    
+
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateReservation = null;
-    
+
     #[ORM\Column('capacity', nullable: true)]
     private ?int $capacity = null;
 
