@@ -63,10 +63,10 @@ class Booking
     private ?int $capacityAvailable = null;
 
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $hourDejeuner = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $hourDinner = null;
 
 
