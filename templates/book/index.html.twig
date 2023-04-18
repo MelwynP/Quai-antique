@@ -12,8 +12,10 @@
 
 				{{ form_start(bookForm) }}
 				{{ form_row(bookForm.dateReservation) }}
-				{{ form_row(bookForm.hourDejeuner) }}
-				{{ form_row(bookForm.hourDinner) }}
+				{{ form_row(bookForm.hourDejeuner, {'attr': {'class': 'hour-choice'}}) }}
+
+				{{ form_row(bookForm.hourDinner, {'attr': {'class': 'hour-choice'}}) }}
+
 				{{ form_row(bookForm.numberPeople) }}
 				{{ form_row(bookForm.civility) }}
 				{{ form_row(bookForm.firstname) }}
@@ -29,4 +31,25 @@
 			</div>
 		</div>
 	</section>
+
+	<style>
+		.hour-choice.selected {
+			background-color: gray;
+		}
+	</style>
+	<script>
+		const hourChoices = document.querySelectorAll('.hour-choice');
+
+hourChoices.forEach(choice => {
+choice.addEventListener('change', event => {
+hourChoices.forEach(otherChoice => {
+if (otherChoice !== choice) {
+otherChoice.value = '----';
+otherChoice.classList.remove('selected');
+}
+});
+choice.classList.add('selected');
+});
+});
+	</script>
 {% endblock %}

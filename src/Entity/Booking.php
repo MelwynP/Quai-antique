@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Repository\BookingRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\Callback;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 #[ORM\Entity(repositoryClass: BookingRepository::class)]
 class Booking
@@ -13,6 +15,18 @@ class Booking
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
+
+    /* 
+    #[Callback()]
+    public function validate(ExecutionContextInterface $context, $payload)
+    {
+        if ($this->getHourDejeuner() != '----' && $this->getHourDinner() != '----') {
+            $context->buildViolation('Vous ne pouvez choisir qu\'une seule heure de réservation.')
+            ->atPath('hourDejeuner')
+            ->addViolation();
+        }
+    }
+    */
 
     #[ORM\Column]
     private ?int $numberPeople = null;

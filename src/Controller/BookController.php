@@ -8,6 +8,7 @@ use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Form\FormError;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -34,20 +35,14 @@ class BookController extends AbstractController
             //on récupère les données du form
             $booking = $bookForm->getData();
 
-            if ($booking->getHourDejeuner() != '----') {
-                // Vérifier la capacité disponible et enregistrer la réservation
-            }
-            if ($booking->getHourDinner() != '----'
-            ) {
-                // Vérifier la capacité disponible et enregistrer la réservation
-            }
-
-
-            //on enregistre la réservation en bdd
-            $em->persist($booking);
-            $em->flush();
-            //on redirige vers la page de confirmation
-            return $this->redirectToRoute('app_book_confirm');
+        
+            // Vérifiez à nouveau si le formulaire est valide après avoir ajouté une erreur personnalisée
+                //on enregistre la réservation en bdd
+                $em->persist($booking);
+                $em->flush();
+                //on redirige vers la page de confirmation
+                return $this->redirectToRoute('app_book_confirm');
+        
         }
 
         // Afficher le formulaire de réservation avec les créneaux horaires disponibles
@@ -55,8 +50,6 @@ class BookController extends AbstractController
             'bookForm' => $bookForm->createView(),
         ]);
     }
-
-
 
     #[Route('/reservation/confirmation', name: 'app_book_confirm')]
     public function confirm(): Response

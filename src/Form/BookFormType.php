@@ -51,7 +51,7 @@ class BookFormType extends AbstractType
 
             ->add('hourDinner', ChoiceType::class, [
                 'choices' => [
-                    'Dînner' => [
+                    'Dîner' => [
 
                         '----' => '----',
                         '19:00' => '19:00',
