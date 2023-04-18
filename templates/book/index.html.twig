@@ -12,10 +12,12 @@
 
 				{{ form_start(bookForm) }}
 				{{ form_row(bookForm.dateReservation) }}
-				{{ form_row(bookForm.hourDejeuner, {'attr': {'class': 'hour-choice'}}) }}
-
-				{{ form_row(bookForm.hourDinner, {'attr': {'class': 'hour-choice'}}) }}
-
+				<select id="service-select">
+					<option value="choice">Choisir un service</option>
+					<option value="dejeuner">Déjeuner</option>
+					<option value="diner">Dîner</option>
+				</select>
+				<select id="time-select"><!-- options will be dynamically updated here --></select>
 				{{ form_row(bookForm.numberPeople) }}
 				{{ form_row(bookForm.civility) }}
 				{{ form_row(bookForm.firstname) }}
@@ -24,32 +26,95 @@
 				{{ form_row(bookForm.email) }}
 				{{ form_row(bookForm.allergy) }}
 				{{ form_row(bookForm.RGPDConsent) }}
-
-				<button type="submit" class="btn btn-primary">Réserver</button>
 				{{ form_end(bookForm) }}
+				<input type="hidden" id="service-hidden" name="bookForm[service]" value="">
+				<input type="hidden" id="hour-hidden" name="bookForm[hour]" value="">
+				<button type="submit" class="btn btn-primary">Réserver</button>
+
 
 			</div>
 		</div>
 	</section>
 
-	<style>
-		.hour-choice.selected {
-			background-color: gray;
-		}
-	</style>
 	<script>
-		const hourChoices = document.querySelectorAll('.hour-choice');
 
-hourChoices.forEach(choice => {
-choice.addEventListener('change', event => {
-hourChoices.forEach(otherChoice => {
-if (otherChoice !== choice) {
-otherChoice.value = '----';
-otherChoice.classList.remove('selected');
+		document.querySelector('form').addEventListener('submit', function (event) { // Get selected service and hour
+var serviceSelect = document.getElementById("service-select");
+var timeSelect = document.getElementById("time-select");
+var service = serviceSelect.value;
+var hour = timeSelect.value;
+
+// Add service and hour to hidden fields
+var serviceField = document.getElementById("service-hidden");
+serviceField.value = service;
+
+var hourField = document.getElementById("hour-hidden");
+hourField.value = hour;
+});
+
+
+function updateTimeOptions() {
+var serviceSelect = document.getElementById("service-select");
+var timeSelect = document.getElementById("time-select");
+
+// Clear existing options
+timeSelect.innerHTML = "";
+
+// Add new options based on selected service
+if (serviceSelect.value === "dejeuner") {
+for (var i = 12; i <= 13; i++) {
+for (var j = 0; j < 4; j++) {
+var hour = i < 10 ? "0" + i : i;
+var minute = j * 15;
+var time = hour + ":" + minute;
+var option = document.createElement("option");
+option.value = time;
+option.textContent = time;
+timeSelect.appendChild(option);
 }
-});
-choice.classList.add('selected');
-});
+}
+} else if (serviceSelect.value === "diner") {
+for (var i = 19; i <= 21; i++) {
+for (var j = 0; j < 4; j++) {
+var hour = i < 10 ? "0" + i : i;
+var minute = j * 15;
+var time = hour + ":" + minute;
+var option = document.createElement("option");
+option.value = time;
+option.textContent = time;
+timeSelect.appendChild(option);
+}
+}
+}
+}
+document.getElementById("service-select").addEventListener("change", updateTimeOptions);
+
+document.querySelector('bookForm').addEventListener('submit', function (event) { // Get selected service and hour
+var serviceSelect = document.getElementById("service-select");
+var timeSelect = document.getElementById("time-select");
+var service = serviceSelect.value;
+var hour = timeSelect.value;
+// Get container div and remove it
+var selectContainer = document.getElementById("select-container");
+document.querySelector("bookForm").removeChild(selectContainer);
+
+
+// Add service and hour to hidden fields
+var serviceField = document.createElement('input');
+serviceField.type = 'hidden';
+serviceField.name = 'bookForm[service]';
+serviceField.value = service;
+document.querySelector('bookForm').appendChild(serviceField);
+
+
+var hourField = document.createElement('input');
+hourField.type = 'hidden';
+hourField.name = 'bookForm[hour]';
+hourField.value = hour;
+document.querySelector('bookForm').appendChild(hourField);
+
 });
 	</script>
+
+
 {% endblock %}

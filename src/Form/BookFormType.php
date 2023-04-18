@@ -10,9 +10,11 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\LessThanOrEqual;
 
 class BookFormType extends AbstractType
 {
@@ -27,55 +29,38 @@ class BookFormType extends AbstractType
                 'html5' => true,
             ])
 
-            ->add('hourDejeuner', ChoiceType::class, [
+            ->add('service', ChoiceType::class, [
+                'label' => 'Service',
                 'choices' => [
-                    'Déjeuner' => [
-
-                        '----' => '----',
-                        '12:00' => '12:00',
-                        '12:15' => '12:15',
-                        '12:30' => '12:30',
-                        '12:45' => '12:45',
-                        '13:00' => '13:00',
-                    ],
+                    'Déjeuner' => 'dejeuner',
+                    'Dîner' => 'diner',
                 ],
                 'attr' => [
-                    'id' => 'hourDejeuner',
                     'class' => 'form-control',
+                    'id' => 'service-select', // add this
+                    'placeholder' => 'Choisissez un service',
                 ],
-
-                'label' => 'Choisissez votre heure de dejeuner',
-
-
             ])
 
-            ->add('hourDinner', ChoiceType::class, [
-                'choices' => [
-                    'Dîner' => [
-
-                        '----' => '----',
-                        '19:00' => '19:00',
-                        '19:15' => '19:15',
-                        '19:30' => '19:30',
-                        '19:45' => '19:45',
-                        '20:00' => '20:00',
-                    ],
-                ],
-                'attr' => [
-                    'id' => 'hourDinner',
-                    'class' => 'form-control',
-                ],
-
-                'label' => 'Choisissez votre heure de dîner',
-
-            ])
-
-            ->add('numberPeople', null, [
+            ->add('hour', ChoiceType::class, [
+                'label' => 'Heure',
                 'attr' => [
                     'class' => 'form-control'
                 ],
-                'label' => 'Nombre de convive(s)'
+                'choices' => [],
             ])
+
+            ->add('numberPeople', IntegerType::class, [
+                'label' => 'Nombre de convives',
+                'constraints' => [
+                    new LessThanOrEqual([
+                        'value' => 8,
+                        'message' => 'Au delà de 8 convives, merci de nous appeler.',
+                    ]),
+                ],
+            ])
+
+
 
             ->add('allergy', null, [
                 'attr' => [

@@ -5,8 +5,6 @@ namespace App\Entity;
 use App\Repository\BookingRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints\Callback;
-use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 #[ORM\Entity(repositoryClass: BookingRepository::class)]
 class Booking
@@ -15,18 +13,6 @@ class Booking
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
-
-    /* 
-    #[Callback()]
-    public function validate(ExecutionContextInterface $context, $payload)
-    {
-        if ($this->getHourDejeuner() != '----' && $this->getHourDinner() != '----') {
-            $context->buildViolation('Vous ne pouvez choisir qu\'une seule heure de réservation.')
-            ->atPath('hourDejeuner')
-            ->addViolation();
-        }
-    }
-    */
 
     #[ORM\Column]
     private ?int $numberPeople = null;
@@ -63,11 +49,13 @@ class Booking
     private ?int $capacityAvailable = null;
 
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $hourDejeuner = null;
+
 
     #[ORM\Column(length: 255, nullable: true)]
-    private ?string $hourDinner = null;
+    private ?string $hour = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $service = null;
 
 
     public function getId(): ?int
@@ -75,26 +63,16 @@ class Booking
         return $this->id;
     }
 
-    public function getHourDejeuner(): ?string
+
+
+    public function getHour(): ?string
     {
-        return $this->hourDejeuner;
+        return $this->hour;
     }
 
-    public function setHourDejeuner(?string $hourDejeuner): self
+    public function setHour(?string $hour): self
     {
-        $this->hourDejeuner = $hourDejeuner;
-
-        return $this;
-    }
-
-    public function getHourDinner(): ?string
-    {
-        return $this->hourDinner;
-    }
-
-    public function setHourDinner(?string $hourDinner): self
-    {
-        $this->hourDinner = $hourDinner;
+        $this->hour = $hour;
 
         return $this;
     }
@@ -227,6 +205,18 @@ class Booking
     public function setCapacityAvailable(int $capacityAvailable): self
     {
         $this->capacityAvailable = $capacityAvailable;
+
+        return $this;
+    }
+
+    public function getService(): ?string
+    {
+        return $this->service;
+    }
+
+    public function setService(string $service): self
+    {
+        $this->service = $service;
 
         return $this;
     }
