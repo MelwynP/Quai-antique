@@ -6,6 +6,7 @@ use App\Entity\Booking;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -17,38 +18,68 @@ class BookFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+
+
+
         $builder
             ->add('dateReservation', DateType::class, [
                 'widget' => 'single_text',
-                'html5' => false,
-                'format' => 'dd/MM/yyyy',
-                'attr' => [
-                    'class' => 'form-control',
-                    'id' => 'dateReservation',
-                ],
+                'html5' => true,
             ])
 
-            /* ->add('hourReservation', ChoiceType::class, [
-                'choices' => [],
-                'label' => 'Heure de réservation',
+            ->add('hourDejeuner', ChoiceType::class, [
+                'choices' => [
+                    'Déjeuner' => [
+
+                        '----' => '----',
+                        '12:00' => '12:00',
+                        '12:15' => '12:15',
+                        '12:30' => '12:30',
+                        '12:45' => '12:45',
+                        '13:00' => '13:00',
+                    ],
+                ],
                 'attr' => [
+                    'id' => 'hourDejeuner',
                     'class' => 'form-control',
-                    'id' => 'hourReservation',
                 ],
 
-            ]) */
+                'label' => 'Choisissez votre heure de dejeuner',
+
+
+            ])
+
+            ->add('hourDinner', ChoiceType::class, [
+                'choices' => [
+                    'Dînner' => [
+
+                        '----' => '----',
+                        '19:00' => '19:00',
+                        '19:15' => '19:15',
+                        '19:30' => '19:30',
+                        '19:45' => '19:45',
+                        '20:00' => '20:00',
+                    ],
+                ],
+                'attr' => [
+                    'id' => 'hourDinner',
+                    'class' => 'form-control',
+                ],
+
+                'label' => 'Choisissez votre heure de dîner',
+
+            ])
 
             ->add('numberPeople', null, [
                 'attr' => [
-                    'class' => 'form-control',
-                    'id' => 'numberPeople_reservation'
+                    'class' => 'form-control'
                 ],
-                'label' => 'Nombre de convive(s)',
+                'label' => 'Nombre de convive(s)'
             ])
 
             ->add('allergy', null, [
                 'attr' => [
-                    'class' => 'form-control',
+                    'class' => 'form-control'
                 ],
                 'label' => 'Allergie(s)'
             ])

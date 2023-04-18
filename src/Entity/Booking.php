@@ -38,20 +38,22 @@ class Booking
     #[ORM\ManyToOne(inversedBy: 'bookings')]
     private ?User $users = null;
 
-    #[ORM\Column(length: 100, nullable: true)]
-    private ?string $hourReservation = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateReservation = null;
 
-    #[ORM\Column('capacity', nullable: true)]
+    #[ORM\Column('capacity', type: Types::INTEGER, nullable: true)]
     private ?int $capacity = null;
 
-    #[ORM\Column('capacity_available', nullable: true)]
+    #[ORM\Column('capacity_available', type: Types::INTEGER, nullable: true)]
     private ?int $capacityAvailable = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $service = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $hourDejeuner = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $hourDinner = null;
 
 
     public function getId(): ?int
@@ -59,14 +61,26 @@ class Booking
         return $this->id;
     }
 
-    public function getHourReservation(): ?string
+    public function getHourDejeuner(): ?string
     {
-        return $this->hourReservation;
+        return $this->hourDejeuner;
     }
 
-    public function setHourReservation(?string $hourReservation): self
+    public function setHourDejeuner(?string $hourDejeuner): self
     {
-        $this->hourReservation = $hourReservation;
+        $this->hourDejeuner = $hourDejeuner;
+
+        return $this;
+    }
+
+    public function getHourDinner(): ?string
+    {
+        return $this->hourDinner;
+    }
+
+    public function setHourDinner(?string $hourDinner): self
+    {
+        $this->hourDinner = $hourDinner;
 
         return $this;
     }
@@ -199,18 +213,6 @@ class Booking
     public function setCapacityAvailable(int $capacityAvailable): self
     {
         $this->capacityAvailable = $capacityAvailable;
-
-        return $this;
-    }
-
-    public function getService(): ?string
-    {
-        return $this->service;
-    }
-
-    public function setService(?string $service): self
-    {
-        $this->service = $service;
 
         return $this;
     }

@@ -8,21 +8,12 @@
 		<div class="row">
 			<div class="col">
 				<h2>Reservation</h2>
+
+
 				{{ form_start(bookForm) }}
 				{{ form_row(bookForm.dateReservation) }}
-				<div class="btn-group" role="group" aria-label="Service">
-					<button type="button" class="btn btn-secondary" id="btn-lunch" data-hours="{{ lunchHours|join(',') }}">Déjeuner</button>
-					<button type="button" class="btn btn-secondary" id="btn-dinner" data-hours="{{ dinnerHours|join(',') }}">Dîner</button>
-				</div>
-
-				<div class="form-group">
-					<label for="book_hourReservation">Horaire de la réservation</label>
-					<select name="book[hourReservation]" id="book_hourReservation" class="form-control" disabled>
-						<option value="">Choisir entre Déjeuner et Dîner</option>
-					</select>
-				</div>
-
-
+				{{ form_row(bookForm.hourDejeuner) }}
+				{{ form_row(bookForm.hourDinner) }}
 				{{ form_row(bookForm.numberPeople) }}
 				{{ form_row(bookForm.civility) }}
 				{{ form_row(bookForm.firstname) }}
@@ -34,8 +25,8 @@
 
 				<button type="submit" class="btn btn-primary">Réserver</button>
 				{{ form_end(bookForm) }}
+
 			</div>
 		</div>
 	</section>
-
 {% endblock %}
