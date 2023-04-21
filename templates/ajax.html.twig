@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+
+	<h1>AJAX Demo</h1>
+	<div id="result"></div>
+
+	<script>
+		fetch('{{ path('ajax') }}').then(response => response.json()).then(data => {
+document.getElementById('result').innerHTML = data.message;
+}).catch(error => console.log(error));
+	</script>
+
+
+{% endblock %}

@@ -6,6 +6,7 @@ use App\Entity\Flat;
 use App\Entity\Booking;
 use App\Entity\Hour;
 use App\Entity\Restaurant;
+use App\Entity\Capacity;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -35,6 +36,17 @@ class RestaurantFixture extends Fixture implements DependentFixtureInterface
 
     $faker = Faker\Factory::create('fr_FR');
 
+    for ($cpt = 1; $cpt <= 5; $cpt++) {
+      $capacity = new Capacity();
+      $capacity->setCapacityMaxLunch($faker->numberBetween(2, 10));
+      $capacity->setCapacityMaxDinner($faker->numberBetween(2, 10));
+      $capacity->setCapacityAvailableLunch($faker->numberBetween(2, 10));
+      $capacity->setCapacityAvailableDinner($faker->numberBetween(2, 10));
+      $manager->persist($capacity);
+      # code...
+    }
+
+
     for ($bkg = 1; $bkg <= 10; $bkg++) {
       $booking = new Booking();
       $booking->setDateReservation($faker->dateTimeBetween('now', '+1 week'));
@@ -46,6 +58,8 @@ class RestaurantFixture extends Fixture implements DependentFixtureInterface
       $booking->setCivility($faker->randomElement(['Monsieur', 'Madame']));
       $booking->setNumberPeople($faker->numberBetween(2, 10));
       $booking->setAllergy($faker->text(20));
+      $capacity = $this->getReference('capacity_' . $faker->numberBetween(1, 5));
+      $booking->setCapacity($capacity);
       $manager->persist($booking);
     }
 

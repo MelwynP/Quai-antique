@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Form\BookFormType;
 use App\Entity\Booking;
+use App\Repository\BookingRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
@@ -13,12 +14,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class BookController extends AbstractController
 {
 
-
     #[Route('/reservation', name: 'app_book')]
-    public function index(Request $request, EntityManagerInterface $em): Response
+
+    
+    public function index(Request $request, EntityManagerInterface $em, BookingRepository $bookingRepository): Response
     {
 
         $booking = new Booking();
+        $dateReservation = $request->request->get('dateReservation');
+        $hour = $request->request->get('hour');
 
         $bookForm = $this->createForm(BookFormType::class, $booking);
 
@@ -32,24 +36,25 @@ class BookController extends AbstractController
             $bookForm->get('email')->setData($user->getEmail());
             $bookForm->get('allergy')->setData($user->getAllergy());
         }
-
         $bookForm->handleRequest($request);
 
         if ($bookForm->isSubmitted() && $bookForm->isValid()) {
-
             $booking = $bookForm->getData();
 
-
+            
             $em->persist($booking);
             $em->flush();
-
             return $this->redirectToRoute('app_book_confirm');
         }
-
         return $this->render('book/index.html.twig', [
             'bookForm' => $bookForm->createView(),
+            'dateReservation' => $dateReservation,
+            'hour' => $hour,
         ]);
     }
+
+
+
 
     #[Route('/reservation/confirmation', name: 'app_book_confirm')]
     public function confirm(): Response
