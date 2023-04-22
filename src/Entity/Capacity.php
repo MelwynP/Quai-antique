@@ -15,6 +15,9 @@ class Capacity
     #[ORM\Column]
     private ?int $id = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $capacityType = null;
+
     #[ORM\Column]
     private ?int $capacityMaxLunch = null;
 
@@ -30,6 +33,7 @@ class Capacity
     #[ORM\OneToMany(mappedBy: 'capacity', targetEntity: Booking::class)]
     private Collection $bookings;
 
+
     public function __construct()
     {
         $this->bookings = new ArrayCollection();
@@ -38,6 +42,29 @@ class Capacity
     public function getId(): ?int
     {
         return $this->id;
+    }
+    // function qui depend de BookController.php
+    public function getCapacityAvailable(): ?int
+    {
+        if ($this->capacityType === 'lunch') {
+            return $this->capacityAvailableLunch;
+        } elseif ($this->capacityType === 'dinner') {
+            return $this->capacityAvailableDinner;
+        } else {
+            return null;
+        }
+    }
+
+    public function getCapacityType(): ?string
+    {
+        return $this->capacityType;
+    }
+
+    public function setCapacityType(?string $capacityType): self
+    {
+        $this->capacityType = $capacityType;
+
+        return $this;
     }
 
     public function getCapacityMaxLunch(): ?int
