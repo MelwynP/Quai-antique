@@ -5,24 +5,28 @@ namespace App\Controller;
 use App\Form\BookFormType;
 use App\Entity\Booking;
 use App\Entity\Capacity;
+use App\Entity\User;
 use DateTime;
 use App\Repository\BookingRepository;
+use App\Repository\CapacityRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\VarDumper\VarDumper;
 
 class BookController extends AbstractController
 {
 
     #[Route('/reservation', name: 'app_book')]
 
+    public function index(Request $request, EntityManagerInterface $em, CapacityRepository $capacityRepository, BookingRepository $bookingRepository): Response
 
-    public function index(Request $request, EntityManagerInterface $em, BookingRepository $bookingRepository): Response
     {
+
+
         $booking = new Booking();
+
         $bookForm = $this->createForm(BookFormType::class, $booking);
 
         $user = $this->getUser();
@@ -35,106 +39,77 @@ class BookController extends AbstractController
             $bookForm->get('email')->setData($user->getEmail());
             $bookForm->get('allergy')->setData($user->getAllergy());
         }
+
         $bookForm->handleRequest($request);
 
         if ($bookForm->isSubmitted() && $bookForm->isValid()) {
 
-            $booking = $bookForm->getData();
+            $serviceType = $bookForm->get('serviceType')->getData();
+            $numberPeople = $bookForm->get('numberPeople')->getData();
+            $dateReservation = $bookForm->get('dateReservation')->getData();
 
-            $capacity = $em->getRepository(Capacity::class)->find(1);
-            //$booking->setCapacity($capacity);
-
-            $dateReservation = $booking->getDateReservation();
-
-            // On récupère l'heure choisie par l'utilisateur
-            $hour = $booking->getHour();
-
-            if ($hour >= '11:00' && $hour <= '14:00') {
-                $capacity = $em->getRepository(Capacity::class)->findOneBy(['capacityType' => 'lunch']);
-                $capacity->setCapacityType('lunch');
-            } elseif ($hour >= '18:00' && $hour <= '21:00') {
-                $capacity = $em->getRepository(Capacity::class)->findOneBy(['capacityType' => 'dinner']);
-                $capacity->setCapacityType('dinner');
+            if (self::isFull($serviceType, $dateReservation, $bookingRepository, $capacityRepository)) { // si on est plein
+                $this->addFlash('danger', 'La capacité maximale est atteinte pour la date ' . $dateReservation->format('Y-m-d') . ' pour le service' . $serviceType . ' !');
             } else {
-                // Erreur, le créneau ne correspond ni au lunch ni au dîner
+                $em->persist($booking);
+                $em->flush();
+                return $this->redirectToRoute("app_book_confirm");
             }
-
-            if ($capacity) {
-                if ($booking->getNumberPeople() > $capacity->getCapacityAvailable()) {
-                    // Capacité insuffisante
-                    $this->addFlash('danger', 'Capacité insuffisante pour ce créneau horaire');
-                } else {
-                    // Capacité suffisante
-                    $booking->setCapacity($capacity);
-                    $em->persist($booking);
-                    $em->flush();
-
-                    // Mise à jour de la capacité disponible
-                    $capacity->setCapacityAvailable($capacity->getCapacityAvailable() - $booking->getNumberPeople());
-                    $em->persist($capacity);
-                    $em->flush();
-
-                    $this->addFlash('success', 'Réservation enregistrée');
-                    return $this->redirectToRoute('app_book_index');
-                }
-            } else {
-                $this->addFlash('danger', 'Le créneau ne correspond ni au lunch ni au dîner');
-            }
-
-            /*
-            $dateTime = new DateTime();
-            if ($dateTime->format('H:i') >= '11:00' && $dateTime->format('H:i') <= '14:00') {
-                $capacity = $em->getRepository(Capacity::class)->find(1);
-                $booking->setCapacity($capacity->getCapacityMaxLunch());
-                $capacity->setCapacityAvailableLunch($capacity->getCapacityAvailableLunch() - $booking->getNumberPeople());
-            } elseif ($dateTime->format('H:i') >= '18:00' && $dateTime->format('H:i') <= '21:00') {
-                // Le créneau est entre 19h00 et 21h00, on considère que c'est le dîner
-                $capacity = $em->getRepository(Capacity::class)->find(1);
-                $booking->setCapacity($capacity->getCapacityMaxDinner());
-
-                //                $booking->setCapacity($capacityMaxDinner);
-                $capacity->setCapacityAvailableDinner($capacity->getCapacityAvailableDinner() - $booking->getNumberPeople());
-            } else {
-                if ($booking->getCapacity() === null) {
-                    $this->addFlash('danger', 'Le créneau ne correspond ni au lunch ni au dîner');
-                }
-
-                $this->addFlash('danger', 'Le créneau ne correspond ni au lunch ni au dîner');
-            }
-            */
-
-
-            
-            return $this->redirectToRoute('app_book_confirm');
         }
+
+
         return $this->render('book/index.html.twig', [
             'bookForm' => $bookForm->createView(),
         ]);
     }
-
-
-    private function getCapacityByHour(EntityManagerInterface $em, $hour): ?Capacity
-    {
-        $capacityType = null;
-
-        if ($hour >= '11:00' && $hour <= '14:00') {
-            $capacityType = 'lunch';
-        } elseif ($hour >= '18:00' && $hour <= '21:00') {
-            $capacityType = 'dinner';
-        } else {
-            // Erreur, le créneau ne correspond ni au lunch ni au dîner
-            return null;
-        }
-
-        $capacity = $em->getRepository(Capacity::class)->findOneBy(['capacityType' => $capacityType]);
-        return $capacity;
-    }
-
-
     #[Route('/reservation/confirmation', name: 'app_book_confirm')]
     public function confirm(): Response
     {
 
         return $this->render('book/confirm.html.twig');
+    }
+
+    public static function getTotalBooking($serviceType, $dateReservation, BookingRepository $bookingRepository) // number of reservations for a given date and service type
+    {
+        $ret = 0;
+        $bookings = new Booking();
+        $bookings = $bookingRepository->findAll();
+        foreach ($bookings as $booking) {
+            if ($booking->getDateReservation()->format('Y-m-d') == $dateReservation->format('Y-m-d')) {
+                if ($booking->getServiceType() == $serviceType) {
+                    $ret += $booking->getNumberPeople();
+                }
+            }
+        }
+        // $booking = getBookings($currentDate, $serviceType);
+        return $ret;
+    }
+
+    public static function getCapacity($serviceType, CapacityRepository $capacityRepository)
+    {
+        $capacity = new Capacity();
+        $capacity = $capacityRepository->find(1);
+        $ret = 0;
+        // $ret = $capacity->getCapacity($serviceType);
+        if ($serviceType == "lunch") {
+            $ret = $capacity->getCapacityMaxLunch();
+        } else if ($serviceType == "dinner") {
+            $ret = $capacity->getCapacityMaxDinner();
+        } else {
+            $ret = 0;
+        }
+        return $ret;
+    }
+
+    public static function isFull($serviceType, $dateReservation, $bookingRepository, $capacityRepository)
+    {
+        $ret = false; // de base, on considère que le restaurant n'est pas complet
+        $totalBooking = self::getTotalBooking($serviceType, $dateReservation, $bookingRepository);
+        $capacity = self::getCapacity($serviceType, $capacityRepository);
+        if ($totalBooking > $capacity) {
+            $ret = true;
+        }
+
+        return $ret;
     }
 }

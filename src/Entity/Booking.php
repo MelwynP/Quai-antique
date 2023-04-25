@@ -17,6 +17,9 @@ class Booking
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateReservation = null;
 
+    #[ORM\Column(length: 100)]
+    private ?string $serviceType = null;
+
     #[ORM\Column(length: 255)]
     private ?string $hour = null;
 
@@ -44,9 +47,8 @@ class Booking
     #[ORM\ManyToOne(inversedBy: 'bookings')]
     private ?User $users = null;
 
-    #[ORM\ManyToOne(inversedBy: 'bookings')]
-    #[ORM\JoinColumn(nullable: true)]
-    private ?Capacity $capacity = null;
+
+
 
     public function getId(): ?int
     {
@@ -61,6 +63,18 @@ class Booking
     public function setDateReservation(\DateTimeInterface $dateReservation): self
     {
         $this->dateReservation = $dateReservation;
+
+        return $this;
+    }
+
+    public function getServiceType(): ?string
+    {
+        return $this->serviceType;
+    }
+
+    public function setServiceType(?string $serviceType): self
+    {
+        $this->serviceType = $serviceType;
 
         return $this;
     }
@@ -169,18 +183,6 @@ class Booking
     public function setUsers(?User $users): self
     {
         $this->users = $users;
-
-        return $this;
-    }
-
-    public function getCapacity(): ?Capacity
-    {
-        return $this->capacity;
-    }
-
-    public function setCapacity(?Capacity $capacity): self
-    {
-        $this->capacity = $capacity;
 
         return $this;
     }

@@ -15,62 +15,29 @@ class Capacity
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $capacityType = null;
-
     #[ORM\Column]
     private ?int $capacityMaxLunch = null;
 
     #[ORM\Column]
     private ?int $capacityMaxDinner = null;
 
-    #[ORM\Column]
-    private ?int $capacityAvailableLunch = null;
-
-    #[ORM\Column]
-    private ?int $capacityAvailableDinner = null;
-
-    #[ORM\OneToMany(mappedBy: 'capacity', targetEntity: Booking::class)]
-    private Collection $bookings;
-
-
-    public function __construct()
-    {
-        $this->bookings = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
-    // function qui depend de BookController.php
-    public function getCapacityAvailable(): ?int
-    {
-        if ($this->capacityType === 'lunch') {
-            return $this->capacityAvailableLunch;
-        } elseif ($this->capacityType === 'dinner') {
-            return $this->capacityAvailableDinner;
-        } else {
-            return null;
-        }
-    }
 
-    public function getCapacityType(): ?string
-    {
-        return $this->capacityType;
-    }
-
-    public function setCapacityType(?string $capacityType): self
-    {
-        $this->capacityType = $capacityType;
-
-        return $this;
-    }
+    // public function getCapacity($type)
+    // {
+    //     $ret = $capacityRepository->find($type)->number;
+    //     return $ret;
+    // }
 
     public function getCapacityMaxLunch(): ?int
     {
         return $this->capacityMaxLunch;
     }
+
 
     public function setCapacityMaxLunch(int $capacityMaxLunch): self
     {
@@ -87,60 +54,6 @@ class Capacity
     public function setCapacityMaxDinner(int $capacityMaxDinner): self
     {
         $this->capacityMaxDinner = $capacityMaxDinner;
-
-        return $this;
-    }
-
-    public function getCapacityAvailableLunch(): ?int
-    {
-        return $this->capacityAvailableLunch;
-    }
-
-    public function setCapacityAvailableLunch(int $capacityAvailableLunch): self
-    {
-        $this->capacityAvailableLunch = $capacityAvailableLunch;
-
-        return $this;
-    }
-
-    public function getCapacityAvailableDinner(): ?int
-    {
-        return $this->capacityAvailableDinner;
-    }
-
-    public function setCapacityAvailableDinner(int $capacityAvailableDinner): self
-    {
-        $this->capacityAvailableDinner = $capacityAvailableDinner;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Booking>
-     */
-    public function getBookings(): Collection
-    {
-        return $this->bookings;
-    }
-
-    public function addBooking(Booking $booking): self
-    {
-        if (!$this->bookings->contains($booking)) {
-            $this->bookings->add($booking);
-            $booking->setCapacity($this);
-        }
-
-        return $this;
-    }
-
-    public function removeBooking(Booking $booking): self
-    {
-        if ($this->bookings->removeElement($booking)) {
-            // set the owning side to null (unless already changed)
-            if ($booking->getCapacity() === $this) {
-                $booking->setCapacity(null);
-            }
-        }
 
         return $this;
     }
