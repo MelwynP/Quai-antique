@@ -5,26 +5,28 @@
 {% endblock %}
 
 {% block body %}
-<section class="container">
-	<div class="row">
-		<div class="col">
-			<h2>Reservation</h2>
-			{{ form_start(bookForm, {'attr': {'id': 'monFormulaire'}}) }}
-			{{ form_row(bookForm.dateReservation) }}
-			{{ form_row(bookForm.hour) }}
-			{{ form_row(bookForm.numberPeople) }}
-			{{ form_row(bookForm.civility) }}
-			{{ form_row(bookForm.firstname) }}
-			{{ form_row(bookForm.name) }}
-			{{ form_row(bookForm.phone) }}
-			{{ form_row(bookForm.email) }}
-			{{ form_row(bookForm.allergy) }}
-			{{ form_row(bookForm.RGPDConsent) }}
-			<button type="submit" class="btn btn-primary">Réserver</button>
-			{{ form_end(bookForm) }}
+	<section class="container">
+		<div class="row">
+			<div class="col">
+				<h2>Reservation</h2>
+				{{ form_start(bookForm, {'attr': {'id': 'monFormulaire'}}) }}
+				{{ form_row(bookForm.dateReservation) }}
+				{{ form_row(bookForm.serviceType) }}
+				{{ form_row(bookForm.hour) }}
 
+				{{ form_row(bookForm.numberPeople) }}
+				{{ form_row(bookForm.civility) }}
+				{{ form_row(bookForm.firstname) }}
+				{{ form_row(bookForm.name) }}
+				{{ form_row(bookForm.phone) }}
+				{{ form_row(bookForm.email) }}
+				{{ form_row(bookForm.allergy) }}
+				{{ form_row(bookForm.RGPDConsent) }}
+				<button type="submit" class="btn btn-primary">Réserver</button>
+				{{ form_end(bookForm) }}
+
+			</div>
 		</div>
-	</div>
-</section>
+	</section>
 
 {% endblock %}

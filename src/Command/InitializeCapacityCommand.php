@@ -32,9 +32,6 @@ class InitializeCapacityCommand extends Command
     $capacity = new Capacity();
     $capacity->setCapacityMaxLunch(60);
     $capacity->setCapacityMaxDinner(60);
-    $capacity->setCapacityAvailableLunch(60);
-    $capacity->setCapacityAvailableDinner(60);
-
 
     $this->em->persist($capacity);
     $this->em->flush();

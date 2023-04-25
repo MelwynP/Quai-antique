@@ -46,24 +46,33 @@ class BookFormType extends AbstractType
                 ],
             ])
 
-            /* ->add('hour', ChoiceType::class, [
-                'label' => 'Heure',
-                'placeholder' => 'Sélectionnez une heure',
+            ->add('serviceType', ChoiceType::class, [
+                'label' => 'Service',
+                'placeholder' => 'Sélectionnez un service',
                 'choices' => [
-                    '12:00' => 'Déjeuner - 12:00',
-                    '12:15' => 'Déjeuner - 12:15',
-                    '12:30' => 'Déjeuner - 12:30',
-                    '12:45' => 'Déjeuner - 12:45',
-                    '13:00' => 'Déjeuner - 13:00',
-                    '19:00' => 'Dîner - 19:00',
-                    '19:15' => 'Dîner - 19:15',
-                    '19:30' => 'Dîner - 19:30',
-                    '19:45' => 'Dîner - 19:45',
-                    '20:00' => 'Dîner - 20:00',
+                    'Déjeuner' => 'lunch',
+                    'Dîner' => 'dinner',
                 ],
             ])
 
-*/
+            ->add('hour', ChoiceType::class, [
+                'label' => 'Heure',
+                'placeholder' => 'Sélectionnez une heure',
+                'choices' => [
+                    '12:00' => '12:00',
+                    '12:15' => '12:15',
+                    '12:30' => '12:30',
+                    '12:45' => '12:45',
+                    '13:00' => '13:00',
+                    '19:00' => '19:00',
+                    '19:15' => '19:15',
+                    '19:30' => '19:30',
+                    '19:45' => '19:45',
+                    '20:00' => '20:00',
+                ],
+            ])
+
+            /*
             ->add('hour', ChoiceType::class, [
                 'label' => 'Heure',
                 'placeholder' => 'Sélectionnez une heure',
@@ -75,7 +84,7 @@ class BookFormType extends AbstractType
                     return 'Dîner';
                 }
             ])
-
+*/
 
             ->add('numberPeople', IntegerType::class, [
                 'label' => 'Nombre de convives',
@@ -160,7 +169,7 @@ class BookFormType extends AbstractType
     }
 
 
-
+    /*
     private function getTimeSlotsWithLabels()
     {
         $timeSlots = [];
@@ -179,4 +188,5 @@ class BookFormType extends AbstractType
         }
         return $timeSlots;
     }
+    */
 }
