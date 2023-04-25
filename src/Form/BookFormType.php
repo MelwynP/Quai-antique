@@ -88,7 +88,7 @@ class BookFormType extends AbstractType
 
             ->add('numberPeople', IntegerType::class, [
                 'label' => 'Nombre de convives',
-                'constraints' => [
+                /*  'constraints' => [
                     new GreaterThan([
                         'value' => -1,
                         'message' => 'Le nombre de convive ne peut pas être negatif.',
@@ -101,7 +101,7 @@ class BookFormType extends AbstractType
                         'value' => 8,
                         'message' => 'Au delà de 8 convives, merci de nous appeler.',
                     ]),
-                ],
+                ],*/
             ])
 
             ->add('allergy', null, [

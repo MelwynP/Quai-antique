@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230422202424 extends AbstractMigration
+final class Version20230425173939 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,8 +20,8 @@ final class Version20230422202424 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE booking (id INT AUTO_INCREMENT NOT NULL, users_id INT DEFAULT NULL, capacity_id INT DEFAULT NULL, date_reservation DATE NOT NULL, hour VARCHAR(255) NOT NULL, number_people INT NOT NULL, civility VARCHAR(20) NOT NULL, name VARCHAR(100) NOT NULL, firstname VARCHAR(100) NOT NULL, phone VARCHAR(100) NOT NULL, email VARCHAR(255) NOT NULL, allergy LONGTEXT DEFAULT NULL, INDEX IDX_E00CEDDE67B3B43D (users_id), INDEX IDX_E00CEDDE66B6F0BA (capacity_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
-        $this->addSql('CREATE TABLE capacity (id INT AUTO_INCREMENT NOT NULL, capacity_max_lunch INT NOT NULL, capacity_max_dinner INT NOT NULL, capacity_available_lunch INT NOT NULL, capacity_available_dinner INT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE booking (id INT AUTO_INCREMENT NOT NULL, users_id INT DEFAULT NULL, date_reservation DATE NOT NULL, service_type VARCHAR(100) NOT NULL, hour VARCHAR(255) NOT NULL, number_people INT NOT NULL, civility VARCHAR(20) NOT NULL, name VARCHAR(100) NOT NULL, firstname VARCHAR(100) NOT NULL, phone VARCHAR(100) NOT NULL, email VARCHAR(255) NOT NULL, allergy LONGTEXT DEFAULT NULL, INDEX IDX_E00CEDDE67B3B43D (users_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE capacity (id INT AUTO_INCREMENT NOT NULL, capacity_max_lunch INT NOT NULL, capacity_max_dinner INT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE category (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE flat (id INT AUTO_INCREMENT NOT NULL, category_id INT DEFAULT NULL, menu_id INT DEFAULT NULL, name VARCHAR(255) NOT NULL, titre VARCHAR(255) DEFAULT NULL, description LONGTEXT DEFAULT NULL, price NUMERIC(10, 2) NOT NULL, INDEX IDX_554AAA4412469DE2 (category_id), INDEX IDX_554AAA44CCD7E912 (menu_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE hour (id INT AUTO_INCREMENT NOT NULL, restaurant_id INT NOT NULL, day_week VARCHAR(100) NOT NULL, lunch_opening_time VARCHAR(100) DEFAULT NULL, lunch_closing_time VARCHAR(100) DEFAULT NULL, dinner_opening_time VARCHAR(100) DEFAULT NULL, dinner_closing_time VARCHAR(100) DEFAULT NULL, INDEX IDX_701E114EB1E7706E (restaurant_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
@@ -31,7 +31,6 @@ final class Version20230422202424 extends AbstractMigration
         $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, number_people INT NOT NULL, password VARCHAR(255) NOT NULL, name VARCHAR(255) NOT NULL, firstname VARCHAR(255) NOT NULL, created_at DATETIME NOT NULL COMMENT \'(DC2Type:datetime_immutable)\', phone VARCHAR(255) NOT NULL, allergy VARCHAR(255) DEFAULT NULL, civility VARCHAR(20) NOT NULL, is_verified TINYINT(1) NOT NULL, reset_token VARCHAR(100) DEFAULT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE messenger_messages (id BIGINT AUTO_INCREMENT NOT NULL, body LONGTEXT NOT NULL, headers LONGTEXT NOT NULL, queue_name VARCHAR(190) NOT NULL, created_at DATETIME NOT NULL, available_at DATETIME NOT NULL, delivered_at DATETIME DEFAULT NULL, INDEX IDX_75EA56E0FB7336F0 (queue_name), INDEX IDX_75EA56E0E3BD61CE (available_at), INDEX IDX_75EA56E016BA31DB (delivered_at), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('ALTER TABLE booking ADD CONSTRAINT FK_E00CEDDE67B3B43D FOREIGN KEY (users_id) REFERENCES user (id)');
-        $this->addSql('ALTER TABLE booking ADD CONSTRAINT FK_E00CEDDE66B6F0BA FOREIGN KEY (capacity_id) REFERENCES capacity (id)');
         $this->addSql('ALTER TABLE flat ADD CONSTRAINT FK_554AAA4412469DE2 FOREIGN KEY (category_id) REFERENCES category (id)');
         $this->addSql('ALTER TABLE flat ADD CONSTRAINT FK_554AAA44CCD7E912 FOREIGN KEY (menu_id) REFERENCES menu (id)');
         $this->addSql('ALTER TABLE hour ADD CONSTRAINT FK_701E114EB1E7706E FOREIGN KEY (restaurant_id) REFERENCES restaurant (id)');
@@ -42,7 +41,6 @@ final class Version20230422202424 extends AbstractMigration
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE booking DROP FOREIGN KEY FK_E00CEDDE67B3B43D');
-        $this->addSql('ALTER TABLE booking DROP FOREIGN KEY FK_E00CEDDE66B6F0BA');
         $this->addSql('ALTER TABLE flat DROP FOREIGN KEY FK_554AAA4412469DE2');
         $this->addSql('ALTER TABLE flat DROP FOREIGN KEY FK_554AAA44CCD7E912');
         $this->addSql('ALTER TABLE hour DROP FOREIGN KEY FK_701E114EB1E7706E');

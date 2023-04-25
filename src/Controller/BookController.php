@@ -45,11 +45,10 @@ class BookController extends AbstractController
         if ($bookForm->isSubmitted() && $bookForm->isValid()) {
 
             $serviceType = $bookForm->get('serviceType')->getData();
-            $numberPeople = $bookForm->get('numberPeople')->getData();
             $dateReservation = $bookForm->get('dateReservation')->getData();
-            dd($serviceType);
+
             if (self::isFull($serviceType, $dateReservation, $bookingRepository, $capacityRepository)) { // si on est plein
-                $this->addFlash('danger', 'La capacité maximale est atteinte pour la date ' . $dateReservation->format('Y-m-d') . ' pour le service' . $serviceType . ' !');
+                $this->addFlash('danger', 'La capacité maximale est atteinte pour la date ' . $dateReservation->format('Y-m-d') . ' pour le service ' . $serviceType . ' !');
             } else {
                 $em->persist($booking);
                 $em->flush();
