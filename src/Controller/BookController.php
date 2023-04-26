@@ -5,10 +5,9 @@ namespace App\Controller;
 use App\Form\BookFormType;
 use App\Entity\Booking;
 use App\Entity\Capacity;
-use App\Entity\User;
-use DateTime;
 use App\Repository\BookingRepository;
 use App\Repository\CapacityRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
@@ -21,10 +20,7 @@ class BookController extends AbstractController
     #[Route('/reservation', name: 'app_book')]
 
     public function index(Request $request, EntityManagerInterface $em, CapacityRepository $capacityRepository, BookingRepository $bookingRepository): Response
-
     {
-
-
         $booking = new Booking();
 
         $bookForm = $this->createForm(BookFormType::class, $booking);
@@ -40,15 +36,19 @@ class BookController extends AbstractController
             $bookForm->get('allergy')->setData($user->getAllergy());
         }
 
+        //function a remettre en place 
+        // $userConnected = $this->isUserConnected($this, $bookForm);
+
         $bookForm->handleRequest($request);
 
         if ($bookForm->isSubmitted() && $bookForm->isValid()) {
 
             $serviceType = $bookForm->get('serviceType')->getData();
             $dateReservation = $bookForm->get('dateReservation')->getData();
+            $numberPeople = $bookForm->get('numberPeople')->getData();
 
-            if (self::isFull($serviceType, $dateReservation, $bookingRepository, $capacityRepository)) { // si on est plein
-                $this->addFlash('danger', 'La capacité maximale est atteinte pour la date ' . $dateReservation->format('Y-m-d') . ' pour le service ' . $serviceType . ' !');
+            if (self::isFull($serviceType, $dateReservation, $numberPeople, $bookingRepository, $capacityRepository)) { // si on est plein
+                $this->addFlash('danger', 'La capacité maximale est atteinte pour la date ' . $dateReservation->format('d-m-Y') . ' pour le ' . $serviceType . ' !');
             } else {
                 $em->persist($booking);
                 $em->flush();
@@ -59,6 +59,7 @@ class BookController extends AbstractController
 
         return $this->render('book/index.html.twig', [
             'bookForm' => $bookForm->createView(),
+            //'userConnected' => $userConnected,
         ]);
     }
     #[Route('/reservation/confirmation', name: 'app_book_confirm')]
@@ -100,15 +101,29 @@ class BookController extends AbstractController
         return $ret;
     }
 
-    public static function isFull($serviceType, $dateReservation, $bookingRepository, $capacityRepository)
+    public static function isFull($serviceType, $dateReservation, $numberPeople, $bookingRepository, $capacityRepository)
     {
         $ret = false; // de base, on considère que le restaurant n'est pas complet
         $totalBooking = self::getTotalBooking($serviceType, $dateReservation, $bookingRepository);
         $capacity = self::getCapacity($serviceType, $capacityRepository);
-        if ($totalBooking > $capacity) {
+        if ($totalBooking + $numberPeople > $capacity) {
             $ret = true;
         }
 
         return $ret;
     }
+
+    // public function isUserConnected($controller, $bookForm)
+    // {
+    //     $user = $controller->getUser();
+    //     if ($user) {
+    //         $bookForm->get('numberPeople')->setData($user->getNumberPeople());
+    //         $bookForm->get('civility')->setData($user->getCivility());
+    //         $bookForm->get('firstname')->setData($user->getFirstname());
+    //         $bookForm->get('name')->setData($user->getName());
+    //         $bookForm->get('phone')->setData($user->getPhone());
+    //         $bookForm->get('email')->setData($user->getEmail());
+    //         $bookForm->get('allergy')->setData($user->getAllergy());
+    //     }
+    // }
 }

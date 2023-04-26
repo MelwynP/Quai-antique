@@ -1,0 +1,40 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Gérer la capacité d'accueil
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<div class="row">
+			<main class="col-9 border border-light bg-white p-2">
+				<h1>Gérer la capacité</h1>
+				<a href="{{ path('app_admin') }}" class="btn btn-primary">Panneau d'administration</a>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Capacité Maximum du déjeuner</th>
+							<th>Capacité Maximum du dîner</th>
+						</tr>
+					</thead>
+					<body>
+						{% for cap in capacity %}
+							<tr>
+								<td>{{ cap.capacityMaxLunch }}</td>
+								<td>{{ cap.capacityMaxDinner }}</td>
+								<td>
+									<pre>
+								{{ dump(capactiy) }}
+							</pre>
+									<a href="{{ path('admin_capacity_edit', {id: cap.id}) }}" class="btn btn-success">Modifier</a>
+									<p>oh ?</p>
+
+
+								</td>
+							</tr>
+						</td>
+					</body>
+				</tr>
+			</body>
+		{% endfor %}
+	</body>
+</body></table></main></div></div>{% endblock %}

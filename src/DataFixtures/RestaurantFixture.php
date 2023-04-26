@@ -14,17 +14,21 @@ use Faker;
 
 class RestaurantFixture extends Fixture implements DependentFixtureInterface
 {
-  private $counter = 1;
 
   public function load(ObjectManager $manager): void
   {
+
+    $capacity = new Capacity();
+    $capacity->setCapacityMaxLunch(60);
+    $capacity->setCapacityMaxDinner(60);
+    $manager->persist($capacity);
 
     $restaurant = new Restaurant();
     $restaurant->setName('Quai-Antique');
     $restaurant->setAddress('2 rue Favre');
     $restaurant->setPhone('0388888888');
     $restaurant->setEmail('contact@quai-antique.com');
-    $restaurant->setAveragePrice(40.50);
+    $restaurant->setAveragePrice(35.50);
     $restaurant->setMaximumCapacity(60);
     $restaurant->setAvailabilityCapacity(40);
     $restaurant->setNumberTable(30);
@@ -36,20 +40,10 @@ class RestaurantFixture extends Fixture implements DependentFixtureInterface
 
     $faker = Faker\Factory::create('fr_FR');
 
-    for ($cpt = 1; $cpt <= 5; $cpt++) {
-      $capacity = new Capacity();
-      $capacity->setCapacityMaxLunch($faker->numberBetween(2, 10));
-      $capacity->setCapacityMaxDinner($faker->numberBetween(2, 10));
-      $capacity->setCapacityAvailableLunch($faker->numberBetween(2, 10));
-      $capacity->setCapacityAvailableDinner($faker->numberBetween(2, 10));
-      $manager->persist($capacity);
-      # code...
-    }
-
-
     for ($bkg = 1; $bkg <= 10; $bkg++) {
       $booking = new Booking();
       $booking->setDateReservation($faker->dateTimeBetween('now', '+1 week'));
+      $booking->setServiceType($faker->randomElement(['déjeuner', 'dîner']));
       $booking->setHour($faker->randomElement(['12:00', '12:15', '12:30', '19:00', '19:15', '19:30', '19:45', '20:00']));
       $booking->setFirstname($faker->firstName);
       $booking->setname($faker->name);
@@ -58,8 +52,6 @@ class RestaurantFixture extends Fixture implements DependentFixtureInterface
       $booking->setCivility($faker->randomElement(['Monsieur', 'Madame']));
       $booking->setNumberPeople($faker->numberBetween(2, 10));
       $booking->setAllergy($faker->text(20));
-      $capacity = $this->getReference('capacity_' . $faker->numberBetween(1, 5));
-      $booking->setCapacity($capacity);
       $manager->persist($booking);
     }
 
