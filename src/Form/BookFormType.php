@@ -24,9 +24,8 @@ class BookFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-
             ->add('dateReservation', DateType::class, [
-                'label' => 'Date',
+                'label' => 'Date de réservation',
                 'placeholder' => 'Sélectionnez une date',
                 'widget' => 'single_text',
                 'attr' => [
@@ -72,19 +71,18 @@ class BookFormType extends AbstractType
                 ],
             ])
 
-            /*
-            ->add('hour', ChoiceType::class, [
-                'label' => 'Heure',
-                'placeholder' => 'Sélectionnez une heure',
-                'choices' => $this->getTimeSlotsWithLabels(),
-                'group_by' => function ($value, $key, $index) {
-                    if (strpos($value, 'Déjeuner') !== false) {
-                        return 'Déjeuner';
-                    }
-                    return 'Dîner';
-                }
-            ])
-*/
+
+            // ->add('hour', ChoiceType::class, [
+            //     'label' => 'Heure',
+            //     'placeholder' => 'Sélectionnez une heure',
+            //     'choices' => $this->getTimeSlotsWithLabels(),
+            //     'group_by' => function ($value, $key, $index) {
+            //         if (strpos($value, 'Déjeuner') !== false) {
+            //             return 'Déjeuner';
+            //         }
+            //         return 'Dîner';
+            //     }
+            // ])
 
             ->add('numberPeople', IntegerType::class, [
                 'label' => 'Nombre de convives',
@@ -169,24 +167,23 @@ class BookFormType extends AbstractType
     }
 
 
-    /*
-    private function getTimeSlotsWithLabels()
-    {
-        $timeSlots = [];
-        $lunchStart = new \DateTime('12:00');
-        $dinnerStart = new \DateTime('19:00');
-        $interval = new \DateInterval('PT15M'); // 15 minutes interval
-        $lunchEnd = (clone $lunchStart)->add(new \DateInterval('PT1H'));
-        $dinnerEnd = (clone $dinnerStart)->add(new \DateInterval('PT1H'));
-        while ($lunchStart < $lunchEnd) {
-            $timeSlots[$lunchStart->format('H:i')] = 'Déjeuner - ' . $lunchStart->format('H:i');
-            $lunchStart->add($interval);
-        }
-        while ($dinnerStart < $dinnerEnd) {
-            $timeSlots[$dinnerStart->format('H:i')] = 'Dîner - ' . $dinnerStart->format('H:i');
-            $dinnerStart->add($interval);
-        }
-        return $timeSlots;
-    }
-    */
+
+    // private function getTimeSlotsWithLabels()
+    // {
+    //     $timeSlots = [];
+    //     $lunchStart = new \DateTime('12:00');
+    //     $dinnerStart = new \DateTime('19:00');
+    //     $interval = new \DateInterval('PT15M'); // 15 minutes interval
+    //     $lunchEnd = (clone $lunchStart)->add(new \DateInterval('PT1H15M'));
+    //     $dinnerEnd = (clone $dinnerStart)->add(new \DateInterval('PT1H15M'));
+    //     while ($lunchStart < $lunchEnd) {
+    //         $timeSlots[$lunchStart->format('H:i')] = 'Déjeuner - ' . $lunchStart->format('H:i');
+    //         $lunchStart->add($interval);
+    //     }
+    //     while ($dinnerStart < $dinnerEnd) {
+    //         $timeSlots[$dinnerStart->format('H:i')] = 'Dîner - ' . $dinnerStart->format('H:i');
+    //         $dinnerStart->add($interval);
+    //     }
+    //     return $timeSlots;
+    // }
 }

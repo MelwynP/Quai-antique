@@ -2,11 +2,6 @@ controllers:
   resource: ../src/Controller/
   type: attribute
 
-nombre_de_places_disponibles:
-  path: /nombre-de-places-disponibles
-  methods: [POST]
-  controller: App\Controller\BookController::getNombreDePlacesDisponibles
-
 ajax_demo:
-  path: /ajax-demo
-  controller: App\Controller\TestController::ajaxDemoAction
+  path: /reservation
+  controller: App\Controller\BookController::isFull

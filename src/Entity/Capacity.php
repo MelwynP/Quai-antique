@@ -3,11 +3,14 @@
 namespace App\Entity;
 
 use App\Repository\CapacityRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\ApiResource;
+
 
 #[ORM\Entity(repositoryClass: CapacityRepository::class)]
+#[ApiResource]
+
+
 class Capacity
 {
     #[ORM\Id]
