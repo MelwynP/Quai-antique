@@ -33,6 +33,7 @@ class CapacityForm extends AbstractType
           ]),
         ],
       ])
+
       ->add('capacityMaxDinner', IntegerType::class, [
         'label' => 'Nombre de convive maximum pour le déjeuner',
         'constraints' => [
@@ -47,6 +48,42 @@ class CapacityForm extends AbstractType
           new LessThanOrEqual([
             'value' => 120,
             'message' => 'Le nombre de convive ne peut pas être supérieur à 120.',
+          ]),
+        ],
+      ])
+
+      ->add('numberTable', IntegerType::class, [
+        'label' => 'Nombre de table',
+        'constraints' => [
+          new GreaterThan([
+            'value' => -1,
+            'message' => 'Le nombre de table ne peut pas être negatif.',
+          ]),
+          new NotEqualTo([
+            'value' => 0,
+            'message' => 'Le nombre de table ne peut pas être égal à zéro.',
+          ]),
+          new LessThanOrEqual([
+            'value' => 60,
+            'message' => 'Le nombre de table ne peut pas être supérieur à 60.',
+          ]),
+        ],
+      ])
+
+      ->add('numberChair', IntegerType::class, [
+        'label' => 'Nombre de chaise',
+        'constraints' => [
+          new GreaterThan([
+            'value' => -1,
+            'message' => 'Le nombre de chaise ne peut pas être negatif.',
+          ]),
+          new NotEqualTo([
+            'value' => 0,
+            'message' => 'Le nombre de chaise ne peut pas être égal à zéro.',
+          ]),
+          new LessThanOrEqual([
+            'value' => 60,
+            'message' => 'Le nombre de chaise ne peut pas être supérieur à 60.',
           ]),
         ],
       ]);

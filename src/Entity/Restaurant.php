@@ -30,18 +30,6 @@ class Restaurant
     #[ORM\Column]
     private ?float $averagePrice = null;
 
-    #[ORM\Column]
-    private ?int $maximumCapacity = null;
-
-    #[ORM\Column]
-    private ?int $availabilityCapacity = null;
-
-    #[ORM\Column]
-    private ?int $numberTable = null;
-
-    #[ORM\Column]
-    private ?int $numberChair = null;
-
     #[ORM\Column(length: 50)]
     private ?string $city = null;
 
@@ -122,54 +110,7 @@ class Restaurant
         return $this;
     }
 
-    public function getMaximumCapacity(): ?int
-    {
-        return $this->maximumCapacity;
-    }
-    
-    public function setMaximumCapacity(int $maximumCapacity): self
-    {
-        $this->maximumCapacity = $maximumCapacity;
 
-        return $this;
-    }
-
-    public function getAvailabilityCapacity(): ?int
-    {
-        return $this->availabilityCapacity;
-    }
-
-    public function setAvailabilityCapacity(int $availabilityCapacity): self
-    {
-        $this->availabilityCapacity = $availabilityCapacity;
-        
-        return $this;
-    }
-
-    public function getNumberTable(): ?int
-    {
-        return $this->numberTable;
-    }
-    
-    public function setNumberTable(int $numberTable): self
-    {
-        $this->numberTable = $numberTable;
-        
-        return $this;
-    }
-    
-    public function getNumberChair(): ?int
-    {
-        return $this->numberChair;
-    }
-    
-    public function setNumberChair(int $numberChair): self
-    {
-        $this->numberChair = $numberChair;
-        
-        return $this;
-    }
-    
     public function getCity(): ?string
     {
         return $this->city;

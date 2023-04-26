@@ -12,29 +12,25 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<th>Capacité Maximum du déjeuner</th>
-							<th>Capacité Maximum du dîner</th>
+							<th>Capacité maximum du déjeuner</th>
+							<th>Capacité maximum du dîner</th>
+							<th>Nombre de table</th>
+							<th>Nombre de chaise</th>
 						</tr>
 					</thead>
 					<body>
-						{% for cap in capacity %}
-							<tr>
-								<td>{{ cap.capacityMaxLunch }}</td>
-								<td>{{ cap.capacityMaxDinner }}</td>
-								<td>
-									<pre>
-								{{ dump(capactiy) }}
-							</pre>
-									<a href="{{ path('admin_capacity_edit', {id: cap.id}) }}" class="btn btn-success">Modifier</a>
-									<p>oh ?</p>
-
-
-								</td>
-							</tr>
-						</td>
+						<tr>
+							<td>{{ capacity.capacityMaxLunch }}</td>
+							<td>{{ capacity.capacityMaxDinner }}</td>
+							<td>{{ capacity.numberTable }}</td>
+							<td>{{ capacity.numberChair }}</td>
+							<td>
+								<a href="{{ path('admin_capacity_edit', {id: capacity.id}) }}" class="btn btn-success">Modifier</a>
+							</td>
+						</tr>
 					</body>
-				</tr>
+				</td>
 			</body>
-		{% endfor %}
+		</tr>
 	</body>
-</body></table></main></div></div>{% endblock %}
+</body></body></table></main></div></div>{% endblock %}

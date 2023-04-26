@@ -7,6 +7,7 @@ use App\Entity\Booking;
 use App\Entity\Hour;
 use App\Entity\Restaurant;
 use App\Entity\Capacity;
+use App\Entity\Images;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -21,6 +22,8 @@ class RestaurantFixture extends Fixture implements DependentFixtureInterface
     $capacity = new Capacity();
     $capacity->setCapacityMaxLunch(60);
     $capacity->setCapacityMaxDinner(60);
+    $capacity->setNumberTable(30);
+    $capacity->setNumberChair(60);
     $manager->persist($capacity);
 
     $restaurant = new Restaurant();
@@ -29,10 +32,6 @@ class RestaurantFixture extends Fixture implements DependentFixtureInterface
     $restaurant->setPhone('0388888888');
     $restaurant->setEmail('contact@quai-antique.com');
     $restaurant->setAveragePrice(35.50);
-    $restaurant->setMaximumCapacity(60);
-    $restaurant->setAvailabilityCapacity(40);
-    $restaurant->setNumberTable(30);
-    $restaurant->setNumberChair(80);
     $restaurant->setCity('Chambéry');
     $restaurant->setZipCode(73000);
     $manager->persist($restaurant);
@@ -57,14 +56,19 @@ class RestaurantFixture extends Fixture implements DependentFixtureInterface
 
 
     //Entrées
-    $flat = new Flat();
-    $flat->setName('Salade gourmet');
-    $flat->setDescription('roquette, endives, tommates cerises, noix de cajou grillées, pignon de pin, fromage de chèvre, vinaigrette au miel');
-    $flat->setPrice(12.50);
+    $flat1 = new Flat();
+    $flat1->setName('Salade gourmet');
+    $flat1->setDescription('roquette, endives, tommates cerises, noix de cajou grillées, pignon de pin, fromage de chèvre, vinaigrette au miel');
+    $flat1->setPrice(12.50);
     $category = $this->getReference('entrees');
-    $flat->setCategory($category);
+    $flat1->setCategory($category);
+    //j'associe l'image
+    $image1 = new Images();
+    $image1->setTitre('0b87215031316f2c612f85ac90990416.webp');
+    $image1->setFlat($flat1);
+    $manager->persist($image1);
 
-    $manager->persist($flat);
+    $manager->persist($flat1);
 
     $flat = new Flat();
     $flat->setName('Salade printanière');
@@ -193,14 +197,19 @@ class RestaurantFixture extends Fixture implements DependentFixtureInterface
 
     $manager->persist($flat);
 
-    $flat = new Flat();
-    $flat->setName('Filet de poisson grillé aux herbes');
-    $flat->setDescription('selon les saisons');
-    $flat->setPrice(16.50);
+    $flat2 = new Flat();
+    $flat2->setName('Filet de poisson grillé aux herbes');
+    $flat2->setDescription('selon les saisons');
+    $flat2->setPrice(16.50);
     $category = $this->getReference('plats');
-    $flat->setCategory($category);
+    $flat2->setCategory($category);
+    // j'associe l'image au plat
+    $image2 = new Images();
+    $image2->setTitre('71df7fdc97353589bbdf38f2324f8888.webp');
+    $image2->setFlat($flat2);
+    $manager->persist($image2);
 
-    $manager->persist($flat);
+    $manager->persist($flat2);
 
     //Fromages
     $flat = new Flat();

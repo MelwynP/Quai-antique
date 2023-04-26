@@ -21,6 +21,11 @@ class Capacity
     #[ORM\Column]
     private ?int $capacityMaxDinner = null;
 
+    #[ORM\Column]
+    private ?int $numberTable = null;
+
+    #[ORM\Column]
+    private ?int $numberChair = null;
 
     public function getId(): ?int
     {
@@ -54,6 +59,31 @@ class Capacity
     public function setCapacityMaxDinner(int $capacityMaxDinner): self
     {
         $this->capacityMaxDinner = $capacityMaxDinner;
+
+        return $this;
+    }
+
+
+    public function getNumberTable(): ?int
+    {
+        return $this->numberTable;
+    }
+
+    public function setNumberTable(int $numberTable): self
+    {
+        $this->numberTable = $numberTable;
+
+        return $this;
+    }
+
+    public function getNumberChair(): ?int
+    {
+        return $this->numberChair;
+    }
+
+    public function setNumberChair(int $numberChair): self
+    {
+        $this->numberChair = $numberChair;
 
         return $this;
     }

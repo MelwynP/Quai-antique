@@ -26,26 +26,16 @@
 					<body>
 						{% for hour in hour %}
 							<tr>
-
-
 								<td>{{ hour.id }}</td>
 								<td>{{ hour.dayWeek }}</td>
 								<td>{{ hour.lunchOpeningTime }}</td>
-
 								<td>{{ hour.lunchClosingTime }}</td>
-
 								<td>{{ hour.dinnerOpeningTime }}</td>
-
 								<td>{{ hour.dinnerClosingTime }}</td>
-
 								<td>{{ hour.restaurant.name }}</td>
-
-
 								<td>
 									<a href="{{ path('admin_hour_edit', {id: hour.id})}}" class="btn btn-success">Modifier</a>
 								</td>
-
-
 							</tr>
 						</body>
 					{% endfor %}

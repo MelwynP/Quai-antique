@@ -20,7 +20,9 @@ class CapacityController extends AbstractController
   {
     $capacity = $capacityRepository->find(1);
 
-    return $this->render('admin/capacity/index.html.twig', compact('capacity'));
+    return $this->render('admin/capacity/index.html.twig', [
+      'capacity' => $capacity
+    ]);
   }
 
   #[Route('/modifier/{id}', name: 'edit')]
