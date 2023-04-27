@@ -1,7 +1,3 @@
 controllers:
   resource: ../src/Controller/
   type: attribute
-
-ajax_demo:
-  path: /reservation
-  controller: App\Controller\BookController::isFull

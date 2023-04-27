@@ -4,17 +4,20 @@
 {% block title %}Reservation
 {% endblock %}
 
+
 {% block body %}
+
 	<section class="container">
 		<div class="row">
 			<div class="col">
 				<h2>Reservation</h2>
 				{{ form_start(bookForm, {'attr': {'id': 'monFormulaire'}}) }}
+				<div id="erreur"></div>
 				{{ form_row(bookForm.dateReservation) }}
 				{{ form_row(bookForm.serviceType) }}
 				{{ form_row(bookForm.hour) }}
-
 				{{ form_row(bookForm.numberPeople) }}
+				<h5 id="responseRequete"></h5>
 				{{ form_row(bookForm.civility) }}
 				{{ form_row(bookForm.firstname) }}
 				{{ form_row(bookForm.name) }}
@@ -24,10 +27,12 @@
 				{{ form_row(bookForm.RGPDConsent) }}
 				<button type="submit" class="btn btn-primary">Réserver</button>
 				{{ form_end(bookForm) }}
-				<div id="resultats"></div>
+
+
 			</div>
 		</div>
 	</section>
 
 
+	<script src="{{ asset('assets/js/fichier/bookCapacity.js') }}" defer></script>
 {% endblock %}

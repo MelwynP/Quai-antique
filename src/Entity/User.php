@@ -9,12 +9,12 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use ApiPlatform\Metadata\ApiResource;
+//use ApiPlatform\Metadata\ApiResource;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 //une entité User doit avoir un email unique
 #[UniqueEntity(fields: ['email'], message: 'Un compte existe déjà avec cet email')]
-#[ApiResource]
+//#[ApiResource]
 
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {

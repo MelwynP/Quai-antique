@@ -4,11 +4,11 @@ namespace App\Entity;
 
 use App\Repository\CapacityRepository;
 use Doctrine\ORM\Mapping as ORM;
-use ApiPlatform\Metadata\ApiResource;
+//use ApiPlatform\Metadata\ApiResource;
 
 
 #[ORM\Entity(repositoryClass: CapacityRepository::class)]
-#[ApiResource]
+//#[ApiResource]
 
 
 class Capacity

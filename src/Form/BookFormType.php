@@ -84,22 +84,39 @@ class BookFormType extends AbstractType
             //     }
             // ])
 
-            ->add('numberPeople', IntegerType::class, [
-                'label' => 'Nombre de convives',
-                'constraints' => [
-                    new GreaterThan([
-                        'value' => -1,
-                        'message' => 'Le nombre de convive ne peut pas être negatif.',
-                    ]),
-                    new NotEqualTo([
-                        'value' => 0,
-                        'message' => 'Le nombre de convive ne peut pas être égal à zéro.',
-                    ]),
-                    new LessThanOrEqual([
-                        'value' => 8,
-                        'message' => 'Au delà de 8 convives, merci de nous appeler.',
-                    ]),
+            // ->add('numberPeople', IntegerType::class, [
+            //     'label' => 'Nombre de convives',
+            //     'constraints' => [
+            //         new GreaterThan([
+            //             'value' => -1,
+            //             'message' => 'Le nombre de convive ne peut pas être negatif.',
+            //         ]),
+            //         new NotEqualTo([
+            //             'value' => 0,
+            //             'message' => 'Le nombre de convive ne peut pas être égal à zéro.',
+            //         ]),
+            //         new LessThanOrEqual([
+            //             'value' => 8,
+            //             'message' => 'Au delà de 8 convives, merci de nous appeler.',
+            //         ]),
+            //     ],
+            // ])
+
+            ->add('numberPeople', ChoiceType::class, [
+                'attr' => [
+                    'class' => 'form-control'
                 ],
+                'label' => 'Nombre de convive(s)',
+                'choices' => [
+                    '1' => '1',
+                    '2' => '2',
+                    '3' => '3',
+                    '4' => '4',
+                    '5' => '5',
+                    '6' => '6',
+                    '7' => '7',
+                    '8' => '8',
+                ]
             ])
 
             ->add('allergy', null, [
