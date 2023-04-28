@@ -1,3 +1,7 @@
 controllers:
   resource: ../src/Controller/
   type: attribute
+
+is_full_api:
+    path: /is-full-api
+    controller: App\Controller\BookController::isFullApi

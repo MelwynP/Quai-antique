@@ -27,12 +27,69 @@
 				{{ form_row(bookForm.RGPDConsent) }}
 				<button type="submit" class="btn btn-primary">Réserver</button>
 				{{ form_end(bookForm) }}
-
-
 			</div>
 		</div>
 	</section>
 
+	<script>
 
-	<script src="{{ asset('assets/js/fichier/bookCapacity.js') }}" defer></script>
+		const bookingForm = document.querySelector('#monFormulaire');
+
+// console.log(formData);
+const serviceType = document.querySelector('#book_form_serviceType');
+
+const dateReservation = document.querySelector('#book_form_dateReservation');
+
+const numberPeople = document.querySelector('#book_form_numberPeople');
+
+
+const responseRequete = document.getElementById('responseRequete')
+const numberPeopleField = document.getElementById('book_form_numberPeople');
+numberPeopleField.addEventListener('change', () => { // console.log(document.querySelector('#monFormulaire')[1].value)
+console.log(serviceType.value);
+console.log(serviceType);
+fetch(`/reservation/check-availability/${
+serviceType.value
+}/${
+dateReservation.value
+}/${
+numberPeople.value
+}`)
+.then(res => res.json())
+.then(ret => {
+
+console.log(ret)
+
+responseRequete.textContent = `Bonjour ${
+ret
+} ${
+ret
+}, votre réservation a bien été prise en compte.`
+})
+})
+	</script>
+
 {% endblock %}
+
+{#  Boucle ForEach sur Fetch
+// 	fetch('/is-full-api').then(res => res.json()).then(ret => {
+// 	ret.forEach(element => {
+// 	console.log(element.name)
+// 	console.log(element.firstname)
+// 	responseRequete.textContent = `Bonjour ${
+// 	element.name
+// 	} ${
+// 	element.firstname
+// 	}, votre réservation a bien été prise en compte.`
+// 	}) #}
+
+
+{# Afiiche le 2eme element du tableau
+// 	fetch('/is-full-api').then(res => res.json()).then(ret => {
+// 	console.log(ret[1].firstname)
+// 	responseRequete.textContent = `Bonjour ${
+// 	ret[1].name
+// 	} ${
+// 	ret[1].firstname
+// 	}, votre réservation a bien été prise en compte.`
+// 	}) #}

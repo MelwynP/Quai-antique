@@ -7,7 +7,6 @@ use App\Entity\Booking;
 use App\Entity\Capacity;
 use App\Repository\BookingRepository;
 use App\Repository\CapacityRepository;
-use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ORM\EntityManagerInterface;
@@ -107,7 +106,6 @@ class BookController extends AbstractController
     }
 
 
-
     #[Route('/reservation/confirmation', name: 'app_book_confirm')]
     public function confirm(): Response
     {
@@ -115,36 +113,50 @@ class BookController extends AbstractController
     }
 
 
-    #[Route('/reservation/requete', name: 'app_book_cancel')]
-    public function requete(BookingRepository $bookingRepository, CapacityRepository $capacityRepository): JsonResponse
+
+
+    #[Route('/reservation/check-availability/{serviceType}/{dateReservation}/{numberPeople}')]
+    public function isFullApi(Request $request, EntityManagerInterface $entityManager)
     {
-        $bookings = $bookingRepository->findAll();
-        $capacities = $capacityRepository->findAll();
-        $bookingsData = [];
-        $capacitiesData = [];
+        // Récupérer les paramètres de la requête
+        $serviceType = $request->query->get('serviceType');
+        $dateReservation = new \DateTime($request->query->get('dateReservation'));
+        $numberPeople = $request->query->get('numberPeople');
 
-        foreach ($bookings as $booking) {
-            $bookingsData[] = [
-                'name' => $booking->getName(),
-                'firstname' => $booking->getFirstname(),
-            ];
-        }
+        // Récupérer les repositories nécessaires
+        $bookingRepository = $entityManager->getRepository(Booking::class);
+        $capacityRepository = $entityManager->getRepository(Capacity::class);
 
-        foreach ($capacities as $capacity) {
-            $capacitiesData[] = [
-                'capacityMaxLunch' => $capacity->getCapacityMaxLunch(),
-                'capacityMaxDinner' => $capacity->getCapacityMaxDinner(),
-            ];
-        }
+        // Appeler la fonction isFull()
+        $isFull = BookController::isFull($serviceType, $dateReservation, $numberPeople, $bookingRepository, $capacityRepository);
 
-        $responseData = [
-            'capacities' => $capacitiesData,
-            'bookings' => $bookingsData
-        ];
-
-        return new JsonResponse($responseData);
+        // Retourner la réponse en JSON
+        return new JsonResponse(['isFull' => $isFull]);
     }
 
+
+    //CA fonctionne pour le test
+    // public function requete(BookingRepository $bookingRepository): JsonResponse
+    // {
+    //     $bookings = $bookingRepository->findAll();
+    //     $bookingsData = [];
+
+    //     foreach ($bookings as $booking) {
+    //         $bookingsData[] = [
+    //             'name' => $booking->getName(),
+    //             'firstname' => $booking->getFirstname(),
+    //             // ... ajoutez d' champs de la réservation ici
+    //         ];
+    //     }
+    //     return new JsonResponse($bookingsData);
+    // }
+
+
+
+
+
+
+    // FUNCTION A REVOIR
     // public function isUserConnected($controller, $bookForm)
     // {
     //     $user = $controller->getUser();
