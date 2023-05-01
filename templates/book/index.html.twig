@@ -59,9 +59,11 @@ numberPeople.value
 }`).then(res => res.json()).then(ret => {
 console.log(ret);
 if (ret.isFull) {
-responseRequete.textContent = "Désolé, il ne reste plus de place pour cette date.";
-} else {
 responseRequete.textContent = "Il reste des places pour cette date.";
+
+} else {
+responseRequete.textContent = "Désolé, il ne reste plus de place pour cette date.";
+
 }
 })
 })
