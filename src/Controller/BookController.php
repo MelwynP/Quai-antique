@@ -96,15 +96,15 @@ class BookController extends AbstractController
 
     public static function isFull($serviceType, $dateReservation, $numberPeople, $bookingRepository, $capacityRepository)
     {
+        $ret = false; // de base, on considère que le restaurant n'est pas complet
         $totalBooking = self::getTotalBooking($serviceType, $dateReservation, $bookingRepository);
         $capacity = self::getCapacity($serviceType, $capacityRepository);
-        $isFull = $totalBooking + $numberPeople > $capacity;
-        return [
-            'isFull' => $isFull,
-            'getCapacity' => $capacity,
-            'getTotalBooking' => $totalBooking,
-        ];
+        if ($totalBooking + $numberPeople > $capacity) {
+            $ret = true;
+        }
+        return $ret;
     }
+
 
 
     #[Route('/reservation/confirmation', name: 'app_book_confirm')]
@@ -128,19 +128,11 @@ class BookController extends AbstractController
         $bookingRepository = $entityManager->getRepository(Booking::class);
         $capacityRepository = $entityManager->getRepository(Capacity::class);
 
-        // Appeler la fonction getCapacity()
-        $getCapacity = BookController::getCapacity($serviceType, $capacityRepository);
-        // Appeler la fonction getTotalBooking()
-        $getTotalBooking = BookController::getTotalBooking($serviceType, $dateReservation, $bookingRepository);
         // Appeler la fonction isFull()
-        $ret = BookController::isFull($serviceType, $dateReservation, $numberPeople, $bookingRepository, $capacityRepository);
+        $isFull = BookController::isFull($serviceType, $dateReservation, $numberPeople, $bookingRepository, $capacityRepository);
 
         // Retourner la réponse en JSON
-        return new JsonResponse([
-            'isFull' => $ret,
-            'getCapacity' => $getCapacity,
-            'getTotalBooking' => $getTotalBooking,
-        ]);
+        return new JsonResponse(['isFull' => $isFull]);
     }
 
 
