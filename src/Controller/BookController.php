@@ -127,11 +127,20 @@ class BookController extends AbstractController
         $bookingRepository = $entityManager->getRepository(Booking::class);
         $capacityRepository = $entityManager->getRepository(Capacity::class);
 
+        //Appeler la fonction getCapacity()
+        $getCapacity = BookController::getCapacity($serviceType, $capacityRepository);
+        // Appeler la fonction getTotalBooking()
+        $getTotalBooking = BookController::getTotalBooking($serviceType, $dateReservation, $bookingRepository);
         // Appeler la fonction isFull()
         $isFull = BookController::isFull($serviceType, $dateReservation, $numberPeople, $bookingRepository, $capacityRepository);
 
+
         // Retourner la réponse en JSON
-        return new JsonResponse(['isFull' => $isFull]);
+        return new JsonResponse([
+            'isFull' => $isFull,
+            'getCapacity' => $getCapacity,
+            'getTotalBooking' => $getTotalBooking,
+        ]);
     }
 
 

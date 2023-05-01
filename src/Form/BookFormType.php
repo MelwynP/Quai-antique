@@ -116,9 +116,10 @@ class BookFormType extends AbstractType
                     '6' => '6',
                     '7' => '7',
                     '8' => '8',
+                    '30' => '30',
                 ]
             ])
-            
+
             ->add('allergy', null, [
                 'attr' => [
                     'class' => 'form-control'

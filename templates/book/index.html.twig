@@ -34,37 +34,35 @@
 	<script>
 
 		const bookingForm = document.querySelector('#monFormulaire');
+// console.log(monFormulaire);
 
-// console.log(formData);
 const serviceType = document.querySelector('#book_form_serviceType');
-
 const dateReservation = document.querySelector('#book_form_dateReservation');
-
 const numberPeople = document.querySelector('#book_form_numberPeople');
 
 
 const responseRequete = document.getElementById('responseRequete')
 const numberPeopleField = document.getElementById('book_form_numberPeople');
-numberPeopleField.addEventListener('change', () => { // console.log(document.querySelector('#monFormulaire')[1].value)
+numberPeopleField.addEventListener('change', () => {
+console.log(document.querySelector('#monFormulaire')[1].value)
 console.log(serviceType.value);
-console.log(serviceType);
+console.log(responseRequete);
+
+console.log(dateReservation.value);
+console.log(numberPeople.value);
 fetch(`/reservation/check-availability/${
 serviceType.value
 }/${
 dateReservation.value
 }/${
 numberPeople.value
-}`)
-.then(res => res.json())
-.then(ret => {
-
-console.log(ret)
-
-responseRequete.textContent = `Bonjour ${
-ret
-} ${
-ret
-}, votre réservation a bien été prise en compte.`
+}`).then(res => res.json()).then(ret => {
+console.log(ret);
+if (ret.isFull) {
+responseRequete.textContent = "Désolé, il ne reste plus de place pour cette date.";
+} else {
+responseRequete.textContent = "Il reste des places pour cette date.";
+}
 })
 })
 	</script>
