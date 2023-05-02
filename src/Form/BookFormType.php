@@ -78,13 +78,24 @@ class BookFormType extends AbstractType
                 ],
             ])
 
-            // ->add('hour', ChoiceType::class, [
-            //     'label' => 'Heure *',
-            //     'placeholder' => 'Sélectionnez une heure',
-            //     'required' => true,
 
+            // ->add('numberPeople', IntegerType::class, [
+            //     'label' => 'Nombre de convives',
+            //     'constraints' => [
+            //         new GreaterThan([
+            //             'value' => -1,
+            //             'message' => 'Le nombre de convive ne peut pas être negatif.',
+            //         ]),
+            //         new NotEqualTo([
+            //             'value' => 0,
+            //             'message' => 'Le nombre de convive ne peut pas être égal à zéro.',
+            //         ]),
+            //         new LessThanOrEqual([
+            //             'value' => 8,
+            //             'message' => 'Au delà de 8 convives, merci de nous appeler.',
+            //         ]),
+            //     ],
             // ])
-
 
             ->add('numberPeople', ChoiceType::class, [
                 'attr' => [

@@ -46,10 +46,6 @@ function resetFormElements() {
   // Activation du champ de saisie de l'heure après sélection du service
   serviceType.addEventListener("change", () => {
     hour.disabled = false;
-  });
-
-  // Activation du champ de saisie du nombre de personnes après sélection de l'heure
-  hour.addEventListener("change", () => {
     numberPeople.disabled = false;
   });
 
@@ -107,28 +103,30 @@ serviceType.addEventListener("change", (event) => {
 
 // ----------------------------------
 // fonction pour réinitialiser le nombre de personnes si changement de service ou de date
-function resetNumberPeople() {
-  numberPeople.value = "";
-  responseRequete.textContent = "";
-}
-// écouter les changements de service et de date
-serviceType.addEventListener("change", () => {
-  resetNumberPeople();
-});
-dateReservation.addEventListener("change", () => {
-  resetNumberPeople();
-});
+// function resetNumberPeople() {
+//   numberPeople.value = "";
+//   responseRequete.textContent = "";
+//   // écouter les changements de service et de date
+//   serviceType.addEventListener("change", () => {
+//     resetNumberPeople();
+//   });
+//   dateReservation.addEventListener("change", () => {
+//     resetNumberPeople();
+//   });
+// }
 
 // ----------------------------------
 // fonction pour réinitialiser le service / l'heure / le nb de personnes si changement de date
 function resetInfoBook() {
   serviceType.value = "";
   hour.value = "";
-  numberPeople.value = "";
   responseRequete.textContent = "";
 }
-// écouter les changements de service et de date
+
+// ----------------------------------
+// écouter les changements date de réservation pour réinitialiser le service / l'heure
 dateReservation.addEventListener("change", () => {
+  resetFormElements();
   resetInfoBook();
 });
 
@@ -137,7 +135,9 @@ dateReservation.addEventListener("change", () => {
 const responseRequete = document.getElementById("responseRequete");
 const erreur = document.querySelector("#erreur");
 
-numberPeople.addEventListener("change", () => {
+serviceType.addEventListener("change", handleSelectChange);
+numberPeople.addEventListener("change", handleSelectChange);
+function handleSelectChange() {
   fetch(
     `/reservation/check-availability/${serviceType.value}/${dateReservation.value}/${numberPeople.value}`
   )
@@ -160,14 +160,14 @@ numberPeople.addEventListener("change", () => {
         });
       } else {
         responseRequete.textContent =
-          "Aprés vérification, il reste de la place pour cette date, vous pouvez réserver.";
+          "Il reste de la place pour cette date, vous pouvez réserver.";
         submitBtn.disabled = false;
         formElements.forEach((element) => {
           if (
             element.id !== "book_form_dateReservation" &&
-            "book_form_serviceType" &&
-            "book_form_hour" &&
-            "book_form_numberPeople"
+            element.id !== "book_form_serviceType" &&
+            element.id !== "book_form_hour" &&
+            element.id !== "book_form_numberPeople"
           ) {
             element.disabled = false;
           }
@@ -179,7 +179,7 @@ numberPeople.addEventListener("change", () => {
       document.querySelector("#erreur").textContent =
         "Une erreur est survenue lors de la vérification de la disponibilité.";
     });
-});
+}
 
 // ----------------------------------
 // Réinitialisation du formulaire si la page est rechargée et/ou retournée via le retour du navigateur

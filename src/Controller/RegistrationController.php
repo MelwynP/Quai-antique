@@ -122,7 +122,7 @@ class RegistrationController extends AbstractController
         // On récupère l'utilisateur connecté
         $user = $this->getUser();
 
-        // On vérifie si l'utilisateur est connecté et qu'il n'a pas déjà activé son compte
+        // On vérifie si l'utilisateur est connecté et qu'il n'est pas déjà activé
         if (!$user) {
             $this->addFlash('danger', 'Vous devez être connecté pour accéder à cette page');
             return $this->redirectToRoute('app_login');
