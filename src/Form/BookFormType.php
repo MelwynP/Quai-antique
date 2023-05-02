@@ -32,16 +32,16 @@ class BookFormType extends AbstractType
                 'placeholder' => 'Sélectionnez une date',
                 'widget' => 'single_text',
                 'required' => true,
+                'html5' => false, // désactiver l'option html5
+                'format' => 'd-M-y',
                 'attr' => [
                     'class' => 'form-control',
                     'required' => 'required',
-
                 ]
-
             ])
 
             ->add('serviceType', ChoiceType::class, [
-                'label' => 'Service',
+                'label' => 'Service *',
                 'placeholder' => 'Sélectionnez un service',
                 'required' => true,
 
@@ -50,65 +50,41 @@ class BookFormType extends AbstractType
                     'required' => 'required',
                 ],
                 'choices' => [
-                    'Déjeuner' => 'lunch',
-                    'Dîner' => 'dinner',
+                    'Déjeuner' => 'Déjeuner',
+                    'Dîner' => 'Dîner',
                 ],
             ])
 
+
             ->add('hour', ChoiceType::class, [
-                'label' => 'Heure',
+                'label' => 'Heure *',
                 'placeholder' => 'Sélectionnez une heure',
                 'required' => true,
-
+                'choices' => [
+                    '12:00' => '12:00',
+                    '12:15' => '12:15',
+                    '12:30' => '12:30',
+                    '12:45' => '12:45',
+                    '13:00' => '13:00',
+                    '19:00' => '19:00',
+                    '19:15' => '19:15',
+                    '19:30' => '19:30',
+                    '19:45' => '19:45',
+                    '20:00' => '20:00',
+                    '20:15' => '20:15',
+                    '20:30' => '20:30',
+                    '20:45' => '20:45',
+                    '21:00' => '21:00',
+                ],
             ])
 
             // ->add('hour', ChoiceType::class, [
-            //     'label' => 'Heure',
+            //     'label' => 'Heure *',
             //     'placeholder' => 'Sélectionnez une heure',
-            //     'choices' => [
-            //         '12:00' => '12:00',
-            //         '12:15' => '12:15',
-            //         '12:30' => '12:30',
-            //         '12:45' => '12:45',
-            //         '13:00' => '13:00',
-            //         '19:00' => '19:00',
-            //         '19:15' => '19:15',
-            //         '19:30' => '19:30',
-            //         '19:45' => '19:45',
-            //         '20:00' => '20:00',
-            //     ],
+            //     'required' => true,
+
             // ])
 
-
-            // ->add('hour', ChoiceType::class, [
-            //     'label' => 'Heure',
-            //     'placeholder' => 'Sélectionnez une heure',
-            //     'choices' => $this->getTimeSlotsWithLabels(),
-            //     'group_by' => function ($value, $key, $index) {
-            //         if (strpos($value, 'Déjeuner') !== false) {
-            //             return 'Déjeuner';
-            //         }
-            //         return 'Dîner';
-            //     }
-            // ])
-
-            // ->add('numberPeople', IntegerType::class, [
-            //     'label' => 'Nombre de convives',
-            //     'constraints' => [
-            //         new GreaterThan([
-            //             'value' => -1,
-            //             'message' => 'Le nombre de convive ne peut pas être negatif.',
-            //         ]),
-            //         new NotEqualTo([
-            //             'value' => 0,
-            //             'message' => 'Le nombre de convive ne peut pas être égal à zéro.',
-            //         ]),
-            //         new LessThanOrEqual([
-            //             'value' => 8,
-            //             'message' => 'Au delà de 8 convives, merci de nous appeler.',
-            //         ]),
-            //     ],
-            // ])
 
             ->add('numberPeople', ChoiceType::class, [
                 'attr' => [
@@ -206,25 +182,4 @@ class BookFormType extends AbstractType
             'data_class' => Booking::class,
         ]);
     }
-
-
-
-    // private function getTimeSlotsWithLabels()
-    // {
-    //     $timeSlots = [];
-    //     $lunchStart = new \DateTime('12:00');
-    //     $dinnerStart = new \DateTime('19:00');
-    //     $interval = new \DateInterval('PT15M'); // 15 minutes interval
-    //     $lunchEnd = (clone $lunchStart)->add(new \DateInterval('PT1H15M'));
-    //     $dinnerEnd = (clone $dinnerStart)->add(new \DateInterval('PT1H15M'));
-    //     while ($lunchStart < $lunchEnd) {
-    //         $timeSlots[$lunchStart->format('H:i')] = 'Déjeuner - ' . $lunchStart->format('H:i');
-    //         $lunchStart->add($interval);
-    //     }
-    //     while ($dinnerStart < $dinnerEnd) {
-    //         $timeSlots[$dinnerStart->format('H:i')] = 'Dîner - ' . $dinnerStart->format('H:i');
-    //         $dinnerStart->add($interval);
-    //     }
-    //     return $timeSlots;
-    // }
 }
