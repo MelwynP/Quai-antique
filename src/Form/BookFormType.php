@@ -12,6 +12,8 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\Test\FormInterface as TestFormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Callback;
 use Symfony\Component\Validator\Constraints\GreaterThan;
@@ -24,30 +26,29 @@ class BookFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+
             ->add('dateReservation', DateType::class, [
-                'label' => 'Date de réservation',
+                'label' => 'Date de réservation *',
                 'placeholder' => 'Sélectionnez une date',
                 'widget' => 'single_text',
+                'required' => true,
                 'attr' => [
                     'class' => 'form-control',
-                    'min' => (new \DateTime())->format('Y-m-d'), // ajoute l'attribut min avec la date actuelle
-                ],
-                'constraints' => [
-                    new Callback([
-                        'callback' => function ($value, ExecutionContextInterface $context) {
-                            $dayOfWeek = $value->format('N'); // Récupère le jour de la semaine (1 pour lundi, 7 pour dimanche)
-                            if ($dayOfWeek >= 1 && $dayOfWeek <= 3) { // Vérifie si c'est un jour de fermeture
-                                $context->buildViolation('Nous sommes en repos les lundis, mardis et mercredis. Merci de choisir une autre date.')
-                                    ->addViolation();
-                            }
-                        },
-                    ]),
-                ],
+                    'required' => 'required',
+
+                ]
+
             ])
 
             ->add('serviceType', ChoiceType::class, [
                 'label' => 'Service',
                 'placeholder' => 'Sélectionnez un service',
+                'required' => true,
+
+                'attr' => [
+                    'class' => 'form-control',
+                    'required' => 'required',
+                ],
                 'choices' => [
                     'Déjeuner' => 'lunch',
                     'Dîner' => 'dinner',
@@ -57,19 +58,26 @@ class BookFormType extends AbstractType
             ->add('hour', ChoiceType::class, [
                 'label' => 'Heure',
                 'placeholder' => 'Sélectionnez une heure',
-                'choices' => [
-                    '12:00' => '12:00',
-                    '12:15' => '12:15',
-                    '12:30' => '12:30',
-                    '12:45' => '12:45',
-                    '13:00' => '13:00',
-                    '19:00' => '19:00',
-                    '19:15' => '19:15',
-                    '19:30' => '19:30',
-                    '19:45' => '19:45',
-                    '20:00' => '20:00',
-                ],
+                'required' => true,
+
             ])
+
+            // ->add('hour', ChoiceType::class, [
+            //     'label' => 'Heure',
+            //     'placeholder' => 'Sélectionnez une heure',
+            //     'choices' => [
+            //         '12:00' => '12:00',
+            //         '12:15' => '12:15',
+            //         '12:30' => '12:30',
+            //         '12:45' => '12:45',
+            //         '13:00' => '13:00',
+            //         '19:00' => '19:00',
+            //         '19:15' => '19:15',
+            //         '19:30' => '19:30',
+            //         '19:45' => '19:45',
+            //         '20:00' => '20:00',
+            //     ],
+            // ])
 
 
             // ->add('hour', ChoiceType::class, [
@@ -104,9 +112,13 @@ class BookFormType extends AbstractType
 
             ->add('numberPeople', ChoiceType::class, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'required' => 'required',
                 ],
-                'label' => 'Nombre de convive(s)',
+                'label' => 'Nombre de convive(s) *',
+                'required' => true,
+
+                'placeholder' => 'Sélectionnez un nombre de convive(s)',
                 'choices' => [
                     '1' => '1',
                     '2' => '2',
@@ -116,7 +128,6 @@ class BookFormType extends AbstractType
                     '6' => '6',
                     '7' => '7',
                     '8' => '8',
-                    '30' => '30',
                 ]
             ])
 
@@ -124,17 +135,21 @@ class BookFormType extends AbstractType
                 'attr' => [
                     'class' => 'form-control'
                 ],
-                'label' => 'Allergie(s)'
+                'label' => 'Allergie(s)',
+                'required' => false, // rend le champ obligatoire
+
             ])
 
             ->add('civility', ChoiceType::class, [
                 'attr' => [
                     'class' => 'form-control'
                 ],
-                'label' => 'Civilité',
+                'label' => 'Civilité *',
+                'required' => true,
+                'placeholder' => 'Veuillez renseigner votre civilité',
                 'choices' => [
                     'Monsieur' => 'Monsieur',
-                    'Madame' => 'Madame',
+                    'Madame' => 'Madame'
                 ]
             ])
 
@@ -142,6 +157,7 @@ class BookFormType extends AbstractType
                 'attr' => [
                     'class' => 'form-control'
                 ],
+                'required' => false, // rend le champ obligatoire
                 'label' => 'Prénom'
             ])
 
@@ -149,28 +165,34 @@ class BookFormType extends AbstractType
                 'attr' => [
                     'class' => 'form-control'
                 ],
-                'label' => 'Nom'
+                'label' => 'Nom *',
+                'required' => true
+
             ])
 
             ->add('phone', TextType::class, [
                 'attr' => [
                     'class' => 'form-control'
                 ],
+                'required' => false, // rend le champ obligatoire
                 'label' => 'Téléphone'
             ])
 
             ->add('email', EmailType::class, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'placeholder' => 'exemple@domaine.com'
+
                 ],
-                'label' => 'E-mail'
+                'required' => true, // rend le champ obligatoire
+                'label' => 'E-mail *'
             ])
 
             ->add('RGPDConsent', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => 'Vous devez accepter les conditions d\'utilisation.',
                     ]),
                 ],
                 'label' => 'J\'accepte que mes données personnelles soient utilisées pour la gestion de ma réservation et de ma relation commerciale avec l\'établissement.'
@@ -179,6 +201,7 @@ class BookFormType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver): void
     {
+
         $resolver->setDefaults([
             'data_class' => Booking::class,
         ]);
