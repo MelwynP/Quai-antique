@@ -27,22 +27,22 @@ class BookController extends AbstractController
         $bookForm = $this->createForm(BookFormType::class, $booking);
 
         $user = $this->getUser();
-        if ($user) {
-            $bookForm->get('numberPeople')->setData($user->getNumberPeople());
-            $bookForm->get('civility')->setData($user->getCivility());
-            $bookForm->get('firstname')->setData($user->getFirstname());
-            $bookForm->get('name')->setData($user->getName());
-            $bookForm->get('phone')->setData($user->getPhone());
-            $bookForm->get('email')->setData($user->getEmail());
-            $bookForm->get('allergy')->setData($user->getAllergy());
-        }
-
         // if ($user) {
-        //     $userData = self::getUserConnected($user);
-        //     foreach ($userData as $key => $value) {
-        //         $bookForm->get($key)->setData($value);
-        //     }
+        //     $bookForm->get('numberPeople')->setData($user->getNumberPeople());
+        //     $bookForm->get('civility')->setData($user->getCivility());
+        //     $bookForm->get('firstname')->setData($user->getFirstname());
+        //     $bookForm->get('name')->setData($user->getName());
+        //     $bookForm->get('phone')->setData($user->getPhone());
+        //     $bookForm->get('email')->setData($user->getEmail());
+        //     $bookForm->get('allergy')->setData($user->getAllergy());
         // }
+
+        if ($user) {
+            $userData = self::getUserConnected($user);
+            foreach ($userData as $key => $value) {
+                $bookForm->get($key)->setData($value);
+            }
+        }
 
         $bookForm->handleRequest($request);
 
@@ -53,7 +53,10 @@ class BookController extends AbstractController
             $numberPeople = $bookForm->get('numberPeople')->getData();
 
             if (self::isFull($serviceType, $dateReservation, $numberPeople, $bookingRepository, $capacityRepository)) { // si on est plein
-                $this->addFlash('danger', 'La capacité maximale est atteinte pour la date ' . $dateReservation->format('d-m-Y') . ' pour le ' . $serviceType . ' !');
+                $this->addFlash(
+                    'danger',
+                    'La capacité maximale pour le service du ' . $serviceType . ' a été atteinte pour la date ' . $dateReservation->format('d-m-Y') . '.'
+                );
             } else {
                 $em->persist($booking);
                 $em->flush();
@@ -118,21 +121,21 @@ class BookController extends AbstractController
     }
 
 
-    //-------------------
+    // -------------------
     // Fonctions pour récupérer les données de l'utilisateur connecté
-    // public static function getUserConnected(User $user): array
-    // {
-    //     $userData = [
-    //         'numberPeople' => $user->getNumberPeople(),
-    //         'civility' => $user->getCivility(),
-    //         'firstname' => $user->getFirstname(),
-    //         'name' => $user->getName(),
-    //         'phone' => $user->getPhone(),
-    //         'email' => $user->getEmail(),
-    //         'allergy' => $user->getAllergy(),
-    //     ];
-    //     return $userData;
-    // }
+    public static function getUserConnected(User $user): array
+    {
+        $userData = [
+            'numberPeople' => $user->getNumberPeople(),
+            'civility' => $user->getCivility(),
+            'firstname' => $user->getFirstname(),
+            'name' => $user->getName(),
+            'phone' => $user->getPhone(),
+            'email' => $user->getEmail(),
+            'allergy' => $user->getAllergy(),
+        ];
+        return $userData;
+    }
 
 
     //-------------------
@@ -157,61 +160,13 @@ class BookController extends AbstractController
         $bookingRepository = $entityManager->getRepository(Booking::class);
         $capacityRepository = $entityManager->getRepository(Capacity::class);
 
-        // Pas besoin d'appeler la fonction getCapacity() car on a déjà la capacité max dans le paramètre $numberPeople
-        // Appeler la fonction getTotalBooking()
-        // $getTotalBooking = BookController::getTotalBooking($serviceType, $dateReservation, $bookingRepository);
-        // Appeler la fonction getCapacity()
-        // $getCapacity = BookController::getCapacity($serviceType, $capacityRepository);
-
+        // Pas besoin d'appeler la fonction getCapacity() car on a déjà la capacité max dans le paramètre numberPeople
         // Appeler la fonction isFull()
         $isFull = BookController::isFull($serviceType, $dateReservation, $numberPeople, $bookingRepository, $capacityRepository);
 
-
-
         // Retourner la réponse en JSON
         return new JsonResponse([
-            // 'getCapacity' => $getCapacity,
-            // 'getTotalBooking' => $getTotalBooking,
             'isFull' => $isFull,
-
         ]);
     }
-
-
-
-    //CA fonctionne pour le test
-    // public function requete(BookingRepository $bookingRepository): JsonResponse
-    // {
-    //     $bookings = $bookingRepository->findAll();
-    //     $bookingsData = [];
-
-    //     foreach ($bookings as $booking) {
-    //         $bookingsData[] = [
-    //             'name' => $booking->getName(),
-    //             'firstname' => $booking->getFirstname(),
-    //             // ... ajoutez d' champs de la réservation ici
-    //         ];
-    //     }
-    //     return new JsonResponse($bookingsData);
-    // }
-
-
-
-
-
-
-    // FUNCTION A REVOIR
-    // public function isUserConnected($controller, $bookForm)
-    // {
-    //     $user = $controller->getUser();
-    //     if ($user) {
-    //         $bookForm->get('numberPeople')->setData($user->getNumberPeople());
-    //         $bookForm->get('civility')->setData($user->getCivility());
-    //         $bookForm->get('firstname')->setData($user->getFirstname());
-    //         $bookForm->get('name')->setData($user->getName());
-    //         $bookForm->get('phone')->setData($user->getPhone());
-    //         $bookForm->get('email')->setData($user->getEmail());
-    //         $bookForm->get('allergy')->setData($user->getAllergy());
-    //     }
-    // }
 }

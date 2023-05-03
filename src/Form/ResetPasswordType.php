@@ -6,8 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class ResetPasswordType extends AbstractType
 {
@@ -22,14 +21,9 @@ class ResetPasswordType extends AbstractType
                     'placeholder' => '********',
                 ],
                 'constraints' => [
-                    new NotBlank([
-                        'message' => 'mot de pass obligatoire',
-                    ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'Le mot de passe doit comporter au minimum {{ limit }} caractères',
-                        'max' => 200,
-                        'maxMessage' => 'Le mot de passe doit comporter au maximum {{ limit }} caractères',
+                    new Regex([
+                        'pattern' => '/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{8,}$/',
+                        'message' => 'Votre mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.'
                     ]),
                 ],
                 'label' => 'Mot de passe',

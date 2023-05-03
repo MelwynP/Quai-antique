@@ -24,24 +24,35 @@
 					{{ form_row(registrationForm.numberPeople) }}
 					{{ form_row(registrationForm.allergy) }}
 					{{ form_row(registrationForm.email) }}
+					{{ form_label(registrationForm.plainPassword, 'Mot de passe *') }}
 					<div class="input-group">
-						{{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control', 'autocomplete': 'current-password', 'required': true, 'id': 'inputPassword'}}) }}
+						{{ form_widget(registrationForm.plainPassword) }}
 						<button type="button" class="btn btn-outline-secondary" onclick="document.getElementById('registration_form_plainPassword').type = (document.getElementById('registration_form_plainPassword').type === 'password') ? 'text' : 'password'">
 							Afficher/Masquer
 						</button>
 					</div>
-
+					<br>
+					<p id="mdpinfo"></p>
 					{{ form_row(registrationForm.RGPDConsent) }}
 				</fieldset>
-
-
 				<button type="submit" class="btn btn-primary btn-lg my-3">S'inscrire</button>
 				<a href="{{ path('app_login') }}" class="btn btn-secondary">Me connecter</a>
-
-
 				{{ form_end(registrationForm) }}
 			</div>
 		</div>
 	</section>
+
+	<script>
+
+		const mdp = document.querySelector("#registration_form_plainPassword");
+const mdpinfo = document.querySelector("#mdpinfo");
+
+// function qui envoi un message expliquant le mot de passe demandé
+mdp.addEventListener("click", function () {
+mdpinfo.textContent = "Votre mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.";
+mdpinfo.classList.add("text-secondary");
+
+});
+	</script>
 
 {% endblock %}
