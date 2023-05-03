@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230502131144 extends AbstractMigration
+final class Version20230503081212 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,7 +20,7 @@ final class Version20230502131144 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('CREATE TABLE booking (id INT AUTO_INCREMENT NOT NULL, users_id INT DEFAULT NULL, date_reservation DATE NOT NULL, service_type VARCHAR(100) NOT NULL, hour VARCHAR(255) NOT NULL, number_people INT NOT NULL, civility VARCHAR(20) NOT NULL, name VARCHAR(100) NOT NULL, firstname VARCHAR(100) NOT NULL, phone VARCHAR(100) NOT NULL, email VARCHAR(255) NOT NULL, allergy LONGTEXT DEFAULT NULL, INDEX IDX_E00CEDDE67B3B43D (users_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE booking (id INT AUTO_INCREMENT NOT NULL, users_id INT DEFAULT NULL, date_reservation DATE NOT NULL, service_type VARCHAR(100) NOT NULL, hour VARCHAR(255) NOT NULL, number_people INT NOT NULL, civility VARCHAR(20) NOT NULL, name VARCHAR(100) NOT NULL, firstname VARCHAR(100) DEFAULT NULL, phone VARCHAR(100) DEFAULT NULL, email VARCHAR(255) NOT NULL, allergy LONGTEXT DEFAULT NULL, INDEX IDX_E00CEDDE67B3B43D (users_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE capacity (id INT AUTO_INCREMENT NOT NULL, capacity_max_lunch INT NOT NULL, capacity_max_dinner INT NOT NULL, number_table INT NOT NULL, number_chair INT NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE category (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(255) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
         $this->addSql('CREATE TABLE flat (id INT AUTO_INCREMENT NOT NULL, category_id INT DEFAULT NULL, menu_id INT DEFAULT NULL, name VARCHAR(255) NOT NULL, titre VARCHAR(255) DEFAULT NULL, description LONGTEXT DEFAULT NULL, price NUMERIC(10, 2) NOT NULL, INDEX IDX_554AAA4412469DE2 (category_id), INDEX IDX_554AAA44CCD7E912 (menu_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');

@@ -47,7 +47,6 @@ class BookFormType extends AbstractType
 
                 'attr' => [
                     'class' => 'form-control',
-                    'required' => 'required',
                 ],
                 'choices' => [
                     'Déjeuner' => 'Déjeuner',
@@ -58,6 +57,7 @@ class BookFormType extends AbstractType
 
             ->add('hour', ChoiceType::class, [
                 'label' => 'Heure *',
+                'required' => true,
                 'placeholder' => 'Sélectionnez une heure',
                 'choices' => [
                     '12:00' => '12:00',
@@ -78,23 +78,6 @@ class BookFormType extends AbstractType
             ])
 
 
-            // ->add('numberPeople', IntegerType::class, [
-            //     'label' => 'Nombre de convives',
-            //     'constraints' => [
-            //         new GreaterThan([
-            //             'value' => -1,
-            //             'message' => 'Le nombre de convive ne peut pas être negatif.',
-            //         ]),
-            //         new NotEqualTo([
-            //             'value' => 0,
-            //             'message' => 'Le nombre de convive ne peut pas être égal à zéro.',
-            //         ]),
-            //         new LessThanOrEqual([
-            //             'value' => 8,
-            //             'message' => 'Au delà de 8 convives, merci de nous appeler.',
-            //         ]),
-            //     ],
-            // ])
 
             ->add('numberPeople', ChoiceType::class, [
                 'attr' => [
@@ -103,7 +86,6 @@ class BookFormType extends AbstractType
                 ],
                 'label' => 'Nombre de convive(s) *',
                 'required' => true,
-
                 'choices' => [
                     '1' => '1',
                     '2' => '2',
@@ -116,14 +98,6 @@ class BookFormType extends AbstractType
                 ]
             ])
 
-            ->add('allergy', null, [
-                'attr' => [
-                    'class' => 'form-control'
-                ],
-                'label' => 'Allergie(s)',
-                'required' => false, // rend le champ obligatoire
-
-            ])
 
             ->add('civility', ChoiceType::class, [
                 'attr' => [
@@ -140,10 +114,10 @@ class BookFormType extends AbstractType
 
             ->add('firstname', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control',
                 ],
-                'required' => false, // rend le champ obligatoire
-                'label' => 'Prénom'
+                'label' => 'Prénom',
+                'required' => false,
             ])
 
             ->add('name', TextType::class, [
@@ -159,8 +133,9 @@ class BookFormType extends AbstractType
                 'attr' => [
                     'class' => 'form-control'
                 ],
-                'required' => false, // rend le champ obligatoire
-                'label' => 'Téléphone'
+                'label' => 'Téléphone',
+                'required' => false,
+
             ])
 
             ->add('email', EmailType::class, [
@@ -171,6 +146,15 @@ class BookFormType extends AbstractType
                 ],
                 'required' => true, // rend le champ obligatoire
                 'label' => 'E-mail *'
+            ])
+
+            ->add('allergy', null, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'Allergie(s)',
+                'required' => false,
+
             ])
 
             ->add('RGPDConsent', CheckboxType::class, [
