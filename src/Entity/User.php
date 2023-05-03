@@ -10,6 +10,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 //use ApiPlatform\Metadata\ApiResource;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 //une entité User doit avoir un email unique
@@ -24,12 +25,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 180, unique: true)]
+    #[Assert\NotBlank(message: 'L\'adresse email est obligatoire')]
+    #[Assert\Email(message: 'L\'adresse email n\'est pas valide')]
     private ?string $email = null;
 
     #[ORM\Column]
     private array $roles = [];
 
     #[ORM\Column]
+    #[Assert\NotBlank(message: 'Le nombre de personnes est obligatoire')]
     private ?int $numberPeople = null;
 
     /**
@@ -39,21 +43,27 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $password = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Le nom est obligatoire')]
+    #[Assert\Length(min: 2, max: 80, minMessage: 'Le nom doit contenir au moins {{ limit }} caractères', maxMessage: 'Le nom doit contenir au maximum {{ limit }} caractères')]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Length(min: 2, max: 80, minMessage: 'Le prénom doit contenir au moins {{ limit }} caractères', maxMessage: 'Le prénom doit contenir au maximum {{ limit }} caractères')]
     private ?string $firstname = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Length(max: 10, maxMessage: 'Le numéro de téléphone est optionnel mais il doit contenir {{ limit }} chiffres')]
     private ?string $phone = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Length(max: 200, maxMessage: 'Le champ allergie(s) est optionnel mais il doit contenir au maximum {{ limit }} caractères')]
     private ?string $allergy = null;
 
     #[ORM\Column(length: 20)]
+    #[Assert\NotBlank(message: 'La civilité est obligatoire')]
     private ?string $civility = null;
 
     #[ORM\Column(type: 'boolean')]

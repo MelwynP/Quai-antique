@@ -37,19 +37,7 @@ class MenuForm extends AbstractType
             message: 'Le prix ne peut être négatif'
           )
         ]
-      ])
-
-      /*
-      ->add('category', EntityType::class, [
-        'class' => Category::class,
-        'choice_label' => 'name',
-        'label' => 'Catégorie',
-        'required' => false,
-        'attr' => [
-          'class' => 'form-control'
-        ]
-      ])
-      */;
+      ]);
   }
 
   public function configureOptions(OptionsResolver $resolver): void

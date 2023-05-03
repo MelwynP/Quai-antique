@@ -9,6 +9,16 @@ const radioConsent = document.querySelector("#book_form_RGPDConsent");
 const responseRequete = document.querySelector("#responseRequete");
 const erreur = document.querySelector("#erreur");
 const form = document.querySelector("#monFormulaire");
+const firstname = document.querySelector("#book_form_firstname");
+const firstnameError = document.querySelector("#firstnameError");
+const nameUser = document.querySelector("#book_form_name");
+const nameUserError = document.querySelector("#nameError");
+const phone = document.querySelector("#book_form_phone");
+const phoneError = document.querySelector("#phoneError");
+const email = document.querySelector("#book_form_email");
+const emailError = document.querySelector("#emailError");
+const allergy = document.querySelector("#book_form_allergy");
+const allergyError = document.querySelector("#allergyError");
 
 // ----------------------------------
 // Calendrier flatpickr
@@ -118,9 +128,8 @@ function senseForm() {
     numberPeople.disabled = false;
     radioConsent.disabled = false;
   });
-
-  // // Mettre à jour la date précédente
-  // previousDate = dateReservation.value;
+  // Mettre à jour la date précédente
+  previousDate = dateReservation.value;
 }
 
 // Appel de la fonction senseForm
@@ -153,6 +162,106 @@ function updateAvailability() {
 }
 serviceType.addEventListener("change", updateAvailability);
 numberPeople.addEventListener("change", updateAvailability);
+
+// ----------------------------------
+// function verif firstname
+firstname.addEventListener("blur", function () {
+  const firstnameValue = firstname.value.trim();
+  if (
+    firstnameValue !== "" &&
+    (firstnameValue.length < 2 || firstnameValue.length > 80)
+  ) {
+    firstnameError.textContent =
+      "Le prénom est optionnel mais il doit contenir entre 2 et 80 caractères.";
+    firstnameError.classList.add("text-secondary");
+    firstname.classList.add("is-invalid");
+    submitBtn.disabled = true;
+  } else {
+    firstnameError.textContent = "";
+    firstnameError.classList.remove("text-secondary");
+    firstname.classList.remove("is-invalid");
+    submitBtn.disabled = false;
+  }
+});
+
+// ----------------------------------
+// function verif name
+nameUser.addEventListener("blur", function () {
+  const nameUserValue = nameUser.value.trim();
+  if (nameUserValue.length < 2 || nameUserValue.length > 80) {
+    nameUserError.textContent =
+      "Entrez votre nom qui doit contenir entre 2 et 80 caractères pour debloquer le formulaire";
+    nameUserError.classList.add("text-danger");
+    nameUser.classList.add("is-invalid");
+    submitBtn.disabled = true;
+  } else {
+    nameUserError.textContent = "";
+    nameUserError.classList.remove("text-danger");
+    nameUser.classList.remove("is-invalid");
+    submitBtn.disabled = false;
+  }
+});
+
+// ----------------------------------
+// function verif phone
+phone.addEventListener("blur", function () {
+  const phoneValue = phone.value.trim();
+  if (
+    phoneValue !== "" &&
+    (phoneValue.length !== 10 || !phoneValue.match(/^\d{10}$/))
+  ) {
+    phoneError.textContent =
+      "Le numéro de téléphone est optionnel mais il doit contenir 10 chiffres, exemple : 0601020304";
+    phoneError.classList.add("text-secondary");
+    phone.classList.add("is-invalid");
+    submitBtn.disabled = true;
+  } else {
+    phoneError.textContent = "";
+    phoneError.classList.remove("text-secondary");
+    phone.classList.remove("is-invalid");
+    submitBtn.disabled = false;
+  }
+});
+
+// ----------------------------------
+// function verif email
+email.addEventListener("blur", function () {
+  const emailValue = email.value.trim();
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // expression régulière qui vérifie si l'entrée est une adresse email valide
+  if (emailValue.length > 200 || !emailRegex.test(emailValue)) {
+    emailError.textContent =
+      "Entrez une adresse e-mail valide, exemple : exemple@domaine.com";
+    emailError.classList.add("text-danger");
+    email.classList.add("is-invalid");
+    submitBtn.disabled = true;
+  } else {
+    emailError.textContent = "";
+    emailError.classList.remove("text-danger");
+    email.classList.remove("is-invalid");
+    submitBtn.disabled = false;
+  }
+});
+
+// ----------------------------------
+// function verif allergy
+allergy.addEventListener("blur", function () {
+  const allergyValue = allergy.value.trim();
+  if (
+    allergyValue !== "" &&
+    (allergyValue.length < 2 || allergyValue.length > 200)
+  ) {
+    allergyError.textContent =
+      "Le champ allergie(s) est optionnel mais il doit contenir entre 2 et 200 caractères.";
+    allergyError.classList.add("text-secondary");
+    allergy.classList.add("is-invalid");
+    submitBtn.disabled = true;
+  } else {
+    allergyError.textContent = "";
+    allergyError.classList.remove("text-secondary");
+    allergy.classList.remove("is-invalid");
+    submitBtn.disabled = false;
+  }
+});
 
 // ----------------------------------
 // Réinitialiser le formulaire lors du chargement de la page

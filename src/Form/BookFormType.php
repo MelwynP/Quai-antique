@@ -9,17 +9,11 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\Test\FormInterface as TestFormInterface;
+
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\Callback;
-use Symfony\Component\Validator\Constraints\GreaterThan;
-use Symfony\Component\Validator\Constraints\LessThanOrEqual;
-use Symfony\Component\Validator\Constraints\NotEqualTo;
-use Symfony\Component\Validator\Context\ExecutionContextInterface;
+
 
 class BookFormType extends AbstractType
 {
@@ -28,21 +22,15 @@ class BookFormType extends AbstractType
         $builder
 
             ->add('dateReservation', DateType::class, [
-                'label' => 'Date de réservation *',
-                'placeholder' => 'Sélectionnez une date',
                 'widget' => 'single_text',
                 'required' => true,
-                'html5' => false, // désactiver l'option html5
+                'html5' => false,
                 'format' => 'd-M-y',
-                'attr' => [
-                    'class' => 'form-control',
-                    'required' => 'required',
-                ]
             ])
 
             ->add('serviceType', ChoiceType::class, [
-                'label' => 'Service *',
-                'placeholder' => 'Sélectionnez un service',
+                'label' => 'Sélectionnez un service *',
+                'placeholder' => 'Choix du repas',
                 'required' => true,
 
                 'attr' => [
@@ -56,9 +44,9 @@ class BookFormType extends AbstractType
 
 
             ->add('hour', ChoiceType::class, [
-                'label' => 'Heure *',
+                'label' => 'Sélectionnez une heure *',
                 'required' => true,
-                'placeholder' => 'Sélectionnez une heure',
+                'placeholder' => 'Choix de l\'horaire',
                 'choices' => [
                     '12:00' => '12:00',
                     '12:15' => '12:15',
@@ -80,12 +68,8 @@ class BookFormType extends AbstractType
 
 
             ->add('numberPeople', ChoiceType::class, [
-                'attr' => [
-                    'class' => 'form-control',
-                    'required' => 'required',
-                ],
-                'label' => 'Nombre de convive(s) *',
                 'required' => true,
+                'label' => 'Nombre de personnes *',
                 'choices' => [
                     '1' => '1',
                     '2' => '2',
@@ -100,12 +84,7 @@ class BookFormType extends AbstractType
 
 
             ->add('civility', ChoiceType::class, [
-                'attr' => [
-                    'class' => 'form-control'
-                ],
-                'label' => 'Civilité *',
                 'required' => true,
-                'placeholder' => 'Veuillez renseigner votre civilité',
                 'choices' => [
                     'Monsieur' => 'Monsieur',
                     'Madame' => 'Madame'
@@ -114,37 +93,38 @@ class BookFormType extends AbstractType
 
             ->add('firstname', TextType::class, [
                 'attr' => [
+                    'placeholder' => 'Ecrivez votre prénom ici',
                     'class' => 'form-control',
                 ],
                 'label' => 'Prénom',
                 'required' => false,
+
             ])
 
             ->add('name', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'placeholder' => 'Ecrivez votre nom ici',
+                    'class' => 'form-control',
                 ],
                 'label' => 'Nom *',
                 'required' => true
-
             ])
 
             ->add('phone', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'placeholder' => '06 00 00 00 00',
                 ],
                 'label' => 'Téléphone',
                 'required' => false,
-
             ])
 
             ->add('email', EmailType::class, [
                 'attr' => [
                     'class' => 'form-control',
                     'placeholder' => 'exemple@domaine.com'
-
                 ],
-                'required' => true, // rend le champ obligatoire
+                'required' => true,
                 'label' => 'E-mail *'
             ])
 
@@ -153,7 +133,6 @@ class BookFormType extends AbstractType
                     'class' => 'form-control'
                 ],
                 'label' => 'Allergie(s)',
-                'required' => false,
 
             ])
 

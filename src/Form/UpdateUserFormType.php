@@ -4,11 +4,10 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\IsTrue;
 
 class UpdateUserFormType extends AbstractType
 {
@@ -18,48 +17,55 @@ class UpdateUserFormType extends AbstractType
 
       ->add('name', TextType::class, [
         'attr' => [
-          'class' => 'form-control'
+          'placeholder' => 'Modifiez votre nom ici',
+          'class' => 'form-control',
         ],
-        'label' => 'Nom'
+        'label' => 'Nom *',
+        'required' => true
       ])
 
       ->add('firstname', TextType::class, [
         'attr' => [
-          'class' => 'form-control'
+          'placeholder' => 'Modifiez votre prénom ici',
+          'class' => 'form-control',
         ],
-        'label' => 'Prénom'
+        'label' => 'Prénom',
+        'required' => false,
+
       ])
 
 
       ->add('phone', TextType::class, [
         'attr' => [
-          'class' => 'form-control'
+          'class' => 'form-control',
+          'placeholder' => '06 00 00 00 00',
         ],
-        'label' => 'Téléphone'
+        'label' => 'Téléphone',
+        'required' => false,
       ])
+
 
       ->add('allergy', null, [
         'attr' => [
           'class' => 'form-control'
         ],
-        'label' => 'Allergie(s)'
+        'label' => 'Allergie(s)',
+        'required' => false,
       ])
 
-      ->add('numberPeople', null, [
-        'attr' => [
-          'class' => 'form-control'
-        ],
-        'label' => 'Nombre de convive(s)'
-      ])
-
-      ->add('RGPDConsent', CheckboxType::class, [
-        'mapped' => false,
-        'constraints' => [
-          new IsTrue([
-            'message' => 'You should agree to our terms.',
-          ]),
-        ],
-        'label' => 'J\'accepte que mes données personnelles soient utilisées pour la gestion de ma réservation et de ma relation commerciale avec l\'établissement.'
+      ->add('numberPeople', ChoiceType::class, [
+        'required' => true,
+        'label' => 'Nombre de personnes *',
+        'choices' => [
+          '1' => '1',
+          '2' => '2',
+          '3' => '3',
+          '4' => '4',
+          '5' => '5',
+          '6' => '6',
+          '7' => '7',
+          '8' => '8',
+        ]
       ]);
   }
 

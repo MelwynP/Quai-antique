@@ -20,43 +20,57 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', EmailType::class, [
-                'attr' => [
-                    'class' => 'form-control'
-                ],
-                'label' => 'E-mail'
-            ])
 
-            ->add('name', TextType::class, [
-                'attr' => [
-                    'class' => 'form-control'
-                ],
-                'label' => 'Nom'
+            ->add('civility', ChoiceType::class, [
+                'required' => true,
+                'choices' => [
+                    'Monsieur' => 'Monsieur',
+                    'Madame' => 'Madame'
+                ]
             ])
 
             ->add('firstname', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'placeholder' => 'Ecrivez votre prénom ici',
+                    'class' => 'form-control',
                 ],
-                'label' => 'Prénom'
+                'label' => 'Prénom',
+                'required' => false,
+
             ])
 
-            ->add('civility', ChoiceType::class, [
+            ->add('name', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'placeholder' => 'Ecrivez votre nom ici',
+                    'class' => 'form-control',
                 ],
-                'label' => 'Civilité',
-                'choices' => [
-                    'Monsieur' => 'Monsieur',
-                    'Madame' => 'Madame',
-                ]
+                'label' => 'Nom *',
+                'required' => true
             ])
 
             ->add('phone', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'placeholder' => '06 00 00 00 00',
+
                 ],
-                'label' => 'Téléphone'
+                'label' => 'Téléphone',
+                'required' => false,
+            ])
+
+            ->add('numberPeople', ChoiceType::class, [
+                'required' => true,
+                'label' => 'Nombre de personnes *',
+                'choices' => [
+                    '1' => '1',
+                    '2' => '2',
+                    '3' => '3',
+                    '4' => '4',
+                    '5' => '5',
+                    '6' => '6',
+                    '7' => '7',
+                    '8' => '8',
+                ]
             ])
 
             ->add('allergy', null, [
@@ -66,21 +80,13 @@ class RegistrationFormType extends AbstractType
                 'label' => 'Allergie(s)'
             ])
 
-            ->add('numberPeople', null, [
+            ->add('email', EmailType::class, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control',
+                    'placeholder' => 'exemple@domaine.com'
                 ],
-                'label' => 'Nombre de convive(s)'
-            ])
-
-            ->add('RGPDConsent', CheckboxType::class, [
-                'mapped' => false,
-                'constraints' => [
-                    new IsTrue([
-                        'message' => 'You should agree to our terms.',
-                    ]),
-                ],
-                'label' => 'J\'accepte que mes données personnelles soient utilisées pour la gestion de ma réservation et de ma relation commerciale avec l\'établissement.'
+                'required' => true,
+                'label' => 'E-mail *'
             ])
 
             ->add('plainPassword', PasswordType::class, [
@@ -88,6 +94,7 @@ class RegistrationFormType extends AbstractType
                 'attr' => [
                     'autocomplete' => 'new-password',
                     'class' => 'form-control',
+                    'placeholder' => '********',
                 ],
                 'constraints' => [
                     new NotBlank([
@@ -95,12 +102,22 @@ class RegistrationFormType extends AbstractType
                     ]),
                     new Length([
                         'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
+                        'minMessage' => 'Le mot de passe doit comporter au minimum {{ limit }} caractères',
+                        'max' => 200,
+                        'maxMessage' => 'Le mot de passe doit comporter au maximum {{ limit }} caractères',
                     ]),
                 ],
-                'label' => 'Mot de passe',
+                'label' => 'Mot de passe *',
+            ])
+
+            ->add('RGPDConsent', CheckboxType::class, [
+                'mapped' => false,
+                'constraints' => [
+                    new IsTrue([
+                        'message' => 'Vous devez accepter les conditions d\'utilisation.',
+                    ]),
+                ],
+                'label' => 'J\'accepte que mes données personnelles soient utilisées pour la gestion de ma réservation et de ma relation commerciale avec l\'établissement.'
             ]);
     }
 
