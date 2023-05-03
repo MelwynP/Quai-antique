@@ -13,6 +13,7 @@
 				{{ form_row(bookForm.dateReservation) }}
 				{{ form_row(bookForm.serviceType) }}
 				{{ form_row(bookForm.hour) }}
+				<h5 id="hourObligatoire"></h5>
 				{{ form_row(bookForm.numberPeople) }}
 				<h5 id="responseRequete"></h5>
 				<h3>Veuillez saisir vos informations personnelles.</h3>
@@ -29,5 +30,6 @@
 		</div>
 	</section>
 	<script src="{{ asset('assets/js/fichier/scriptBook.js') }}" async></script>
+
 
 {% endblock %}

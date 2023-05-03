@@ -5,6 +5,9 @@ const serviceType = document.querySelector("#book_form_serviceType");
 const hour = document.querySelector("#book_form_hour");
 const numberPeople = document.querySelector("#book_form_numberPeople");
 const submitBtn = document.querySelector("#submitBtn");
+const form = document.querySelector("#monFormulaire");
+const responseRequete = document.querySelector("#responseRequete");
+const erreur = document.querySelector("#erreur");
 const formElements = document.querySelectorAll(
   "input, select, textarea, button"
 );
@@ -56,8 +59,9 @@ function resetFormElements() {
     });
   });
 }
+
 // Appel de la fonction pour réinitialiser les éléments
-resetFormElements();
+//resetFormElements();
 
 // ----------------------------------
 // Affichage des horaires pour Lunch ou Dinner
@@ -92,6 +96,8 @@ serviceType.addEventListener("change", (event) => {
   placeholderOption.textContent = "Choisissez une heure";
   hour.appendChild(placeholderOption);
 
+ 
+
   // Générer les options pour chaque heure disponible
   hours.forEach((time) => {
     const option = document.createElement("option");
@@ -104,15 +110,15 @@ serviceType.addEventListener("change", (event) => {
 // ----------------------------------
 // fonction pour réinitialiser le nombre de personnes si changement de service ou de date
 // function resetNumberPeople() {
-//   numberPeople.value = "";
-//   responseRequete.textContent = "";
-//   // écouter les changements de service et de date
-//   serviceType.addEventListener("change", () => {
+// numberPeople.value = "";
+// responseRequete.textContent = "";
+// // écouter les changements de service et de date
+// serviceType.addEventListener("change", () => {
 //     resetNumberPeople();
-//   });
-//   dateReservation.addEventListener("change", () => {
+// });
+// dateReservation.addEventListener("change", () => {
 //     resetNumberPeople();
-//   });
+// });
 // }
 
 // ----------------------------------
@@ -126,66 +132,88 @@ function resetInfoBook() {
 // ----------------------------------
 // écouter les changements date de réservation pour réinitialiser le service / l'heure
 dateReservation.addEventListener("change", () => {
-  resetFormElements();
+  //resetFormElements();
   resetInfoBook();
 });
 
 // ----------------------------------
-// Request API Fetch
-const responseRequete = document.getElementById("responseRequete");
-const erreur = document.querySelector("#erreur");
-
-serviceType.addEventListener("change", handleSelectChange);
-numberPeople.addEventListener("change", handleSelectChange);
-function handleSelectChange() {
+function updateAvailability() {
   fetch(
     `/reservation/check-availability/${serviceType.value}/${dateReservation.value}/${numberPeople.value}`
   )
-    .then((res) => res.json())
-    .then((ret) => {
-      if (ret.isFull === true) {
-        responseRequete.textContent =
-          "Désolé, il ne reste plus de place pour cette date, choisissez une autre date et/ou un autre service.";
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.isFull) {
+        document.querySelector("#responseRequete").textContent =
+          "Désolé, il n'y a plus de place disponible pour cette date et ce service.";
         submitBtn.disabled = true;
-        // désactiver tous les champs sauf la date
-        formElements.forEach((element) => {
-          if (
-            element.id !== "book_form_dateReservation" &&
-            element.id !== "book_form_serviceType" &&
-            element.id !== "book_form_hour" &&
-            element.id !== "book_form_numberPeople"
-          ) {
-            element.disabled = true;
-          }
-        });
       } else {
-        responseRequete.textContent =
-          "Il reste de la place pour cette date, vous pouvez réserver.";
+        document.querySelector("#responseRequete").textContent =
+          "Il reste des places disponibles pour cette date et ce service.";
         submitBtn.disabled = false;
-        formElements.forEach((element) => {
-          if (
-            element.id !== "book_form_dateReservation" &&
-            element.id !== "book_form_serviceType" &&
-            element.id !== "book_form_hour" &&
-            element.id !== "book_form_numberPeople"
-          ) {
-            element.disabled = false;
-          }
-        });
       }
-    })
-    .catch((error) => {
-      console.error(error);
-      document.querySelector("#erreur").textContent =
-        "Une erreur est survenue lors de la vérification de la disponibilité.";
     });
+  // .catch(error) {
+  // console.error("Error:", error)
+  // document.querySelector("#erreur").textContent =
+  //     "Une erreur est survenue lors de la vérification de la disponibilité.";
+  // };
 }
+serviceType.addEventListener("change", updateAvailability);
+numberPeople.addEventListener("change", updateAvailability);
+
+// ----------------------------------
+// // Request API Fetch
+
+// numberPeople.addEventListener("change", () => {
+// fetch(
+//     `/reservation/check-availability/${serviceType.value}/${dateReservation.value}/${numberPeople.value}`
+// )
+//     .then((res) => res.json())
+//     .then((ret) => {
+//       if (ret.isFull === true) {
+//         responseRequete.textContent =
+//           "Désolé, il ne reste plus de place pour cette date, choisissez une autre date et/ou un autre service.";
+//         submitBtn.disabled = true;
+//         // désactiver tous les champs sauf la date
+//         formElements.forEach((element) => {
+//           if (
+//             element.id !== "book_form_dateReservation" &&
+//             element.id !== "book_form_serviceType" &&
+//             element.id !== "book_form_hour" &&
+//             element.id !== "book_form_numberPeople"
+//           ) {
+//             element.disabled = true;
+//           }
+//         });
+//       } else {
+//         responseRequete.textContent =
+//           "Il reste de la place pour cette date, vous pouvez réserver.";
+//         submitBtn.disabled = false;
+//         formElements.forEach((element) => {
+//           if (
+//             element.id !== "book_form_dateReservation" &&
+//             element.id !== "book_form_serviceType" &&
+//             element.id !== "book_form_hour" &&
+//             element.id !== "book_form_numberPeople"
+//           ) {
+//             element.disabled = false;
+//           }
+//         });
+//       }
+//     });
+// // .catch((error) => {
+// //   console.error(error);
+// //   document.querySelector("#erreur").textContent =
+// //     "Une erreur est survenue lors de la vérification de la disponibilité.";
+// // });
+// });
 
 // ----------------------------------
 // Réinitialisation du formulaire si la page est rechargée et/ou retournée via le retour du navigateur
-window.addEventListener("pageshow", function (event) {
-  resetFormElements();
-  dateReservation.value = "";
-  resetInfoBook();
-  submitBtn.disabled = true;
-});
+// window.addEventListener("pageshow", function (event) {
+//   resetFormElements();
+//   dateReservation.value = "";
+//   resetInfoBook();
+//   submitBtn.disabled = true;
+// });

@@ -28,12 +28,22 @@ class BookController extends AbstractController
 
         $user = $this->getUser();
         if ($user) {
-            $userData = self::getUserConnected($user);
-            foreach ($userData as $key => $value) {
-                $bookForm->get($key)->setData($value);
-            }
+            $bookForm->get('numberPeople')->setData($user->getNumberPeople());
+            $bookForm->get('civility')->setData($user->getCivility());
+            $bookForm->get('firstname')->setData($user->getFirstname());
+            $bookForm->get('name')->setData($user->getName());
+            $bookForm->get('phone')->setData($user->getPhone());
+            $bookForm->get('email')->setData($user->getEmail());
+            $bookForm->get('allergy')->setData($user->getAllergy());
         }
-       
+
+        // if ($user) {
+        //     $userData = self::getUserConnected($user);
+        //     foreach ($userData as $key => $value) {
+        //         $bookForm->get($key)->setData($value);
+        //     }
+        // }
+
         $bookForm->handleRequest($request);
 
         if ($bookForm->isSubmitted() && $bookForm->isValid()) {
@@ -74,7 +84,7 @@ class BookController extends AbstractController
         return $ret;
     }
 
-    
+
     //-------------------
     // Fonction pour récupérer la capacité maximale
     public static function getCapacity($serviceType, CapacityRepository $capacityRepository)
@@ -110,31 +120,31 @@ class BookController extends AbstractController
 
     //-------------------
     // Fonctions pour récupérer les données de l'utilisateur connecté
-    public static function getUserConnected(User $user): array
-    {
-        $userData = [
-            'numberPeople' => $user->getNumberPeople(),
-            'civility' => $user->getCivility(),
-            'firstname' => $user->getFirstname(),
-            'name' => $user->getName(),
-            'phone' => $user->getPhone(),
-            'email' => $user->getEmail(),
-            'allergy' => $user->getAllergy(),
-        ];
-        return $userData;
-    }
+    // public static function getUserConnected(User $user): array
+    // {
+    //     $userData = [
+    //         'numberPeople' => $user->getNumberPeople(),
+    //         'civility' => $user->getCivility(),
+    //         'firstname' => $user->getFirstname(),
+    //         'name' => $user->getName(),
+    //         'phone' => $user->getPhone(),
+    //         'email' => $user->getEmail(),
+    //         'allergy' => $user->getAllergy(),
+    //     ];
+    //     return $userData;
+    // }
 
 
-//-------------------
-// Route pour la page de confirmation
+    //-------------------
+    // Route pour la page de confirmation
     #[Route('/reservation/confirmation', name: 'app_book_confirm')]
     public function confirm(): Response
     {
         return $this->render('book/confirm.html.twig');
     }
 
-//-------------------
-// Route pour la requête fetch
+    //-------------------
+    // Route pour la requête fetch
     #[Route('/reservation/check-availability/{serviceType}/{dateReservation}/{numberPeople}')]
     public function isFullApi(Request $request, EntityManagerInterface $entityManager, BookingRepository $bookingRepository, CapacityRepository $capacityRepository)
     {
@@ -147,12 +157,23 @@ class BookController extends AbstractController
         $bookingRepository = $entityManager->getRepository(Booking::class);
         $capacityRepository = $entityManager->getRepository(Capacity::class);
 
+        // Pas besoin d'appeler la fonction getCapacity() car on a déjà la capacité max dans le paramètre $numberPeople
+        // Appeler la fonction getTotalBooking()
+        // $getTotalBooking = BookController::getTotalBooking($serviceType, $dateReservation, $bookingRepository);
+        // Appeler la fonction getCapacity()
+        // $getCapacity = BookController::getCapacity($serviceType, $capacityRepository);
+
         // Appeler la fonction isFull()
         $isFull = BookController::isFull($serviceType, $dateReservation, $numberPeople, $bookingRepository, $capacityRepository);
 
+
+
         // Retourner la réponse en JSON
         return new JsonResponse([
+            // 'getCapacity' => $getCapacity,
+            // 'getTotalBooking' => $getTotalBooking,
             'isFull' => $isFull,
+
         ]);
     }
 }

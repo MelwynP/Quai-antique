@@ -1,3 +1,8 @@
 controllers:
   resource: ../src/Controller/
   type: attribute
+
+is_full_api:
+  path: /reservation/check-availability/{serviceType}/{dateReservation}/{numberPeople}
+  controller: App\Controller\BookController::isFullApi
+  methods: [GET]

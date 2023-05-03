@@ -59,7 +59,6 @@ class BookFormType extends AbstractType
             ->add('hour', ChoiceType::class, [
                 'label' => 'Heure *',
                 'placeholder' => 'Sélectionnez une heure',
-                'required' => true,
                 'choices' => [
                     '12:00' => '12:00',
                     '12:15' => '12:15',
@@ -105,7 +104,6 @@ class BookFormType extends AbstractType
                 'label' => 'Nombre de convive(s) *',
                 'required' => true,
 
-                'placeholder' => 'Sélectionnez un nombre de convive(s)',
                 'choices' => [
                     '1' => '1',
                     '2' => '2',
