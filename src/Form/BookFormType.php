@@ -9,17 +9,11 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\Test\FormInterface as TestFormInterface;
+
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\Callback;
-use Symfony\Component\Validator\Constraints\GreaterThan;
-use Symfony\Component\Validator\Constraints\LessThanOrEqual;
-use Symfony\Component\Validator\Constraints\NotEqualTo;
-use Symfony\Component\Validator\Context\ExecutionContextInterface;
+
 
 class BookFormType extends AbstractType
 {
@@ -36,12 +30,11 @@ class BookFormType extends AbstractType
                 'format' => 'd-M-y',
                 'attr' => [
                     'class' => 'form-control',
-                    'required' => 'required',
                 ]
             ])
 
             ->add('serviceType', ChoiceType::class, [
-                'label' => 'Service *',
+                'label' => 'Sélectionnez un service *',
                 'placeholder' => 'Sélectionnez un service',
                 'required' => true,
 
@@ -56,7 +49,7 @@ class BookFormType extends AbstractType
 
 
             ->add('hour', ChoiceType::class, [
-                'label' => 'Heure *',
+                'label' => 'Sélectionnez une heure *',
                 'required' => true,
                 'placeholder' => 'Sélectionnez une heure',
                 'choices' => [
@@ -101,11 +94,9 @@ class BookFormType extends AbstractType
 
             ->add('civility', ChoiceType::class, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'class' => 'form-control',
                 ],
-                'label' => 'Civilité *',
                 'required' => true,
-                'placeholder' => 'Veuillez renseigner votre civilité',
                 'choices' => [
                     'Monsieur' => 'Monsieur',
                     'Madame' => 'Madame'
@@ -114,15 +105,18 @@ class BookFormType extends AbstractType
 
             ->add('firstname', TextType::class, [
                 'attr' => [
+                    'placeholder' => 'Ecrivez votre prénom ici',
                     'class' => 'form-control',
                 ],
                 'label' => 'Prénom',
                 'required' => false,
+
             ])
 
             ->add('name', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control'
+                    'placeholder' => 'Ecrivez votre nom ici',
+                    'class' => 'form-control',
                 ],
                 'label' => 'Nom *',
                 'required' => true
@@ -153,7 +147,6 @@ class BookFormType extends AbstractType
                     'class' => 'form-control'
                 ],
                 'label' => 'Allergie(s)',
-                'required' => false,
 
             ])
 
