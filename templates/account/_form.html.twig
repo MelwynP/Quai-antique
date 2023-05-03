@@ -1,10 +1,14 @@
 {{ form_start(updateUserForm) }}
 {{ form_row(updateUserForm.name) }}
+<p id="nameUserError"></p>
 {{ form_row(updateUserForm.firstname) }}
+<p id="firstnameError"></p>
 {{ form_row(updateUserForm.numberPeople) }}
 {{ form_row(updateUserForm.phone) }}
+<p id="phoneError"></p>
 {{ form_row(updateUserForm.allergy) }}
-{{ form_row(updateUserForm.RGPDConsent) }}
-
-<button class="btn btn-primary">Modifier</button>
+<p id="allergyError"></p>
+<button id="submitBtn" class="btn btn-primary">Modifier</button>
 {{ form_end(updateUserForm) }}
+
+<script src="{{ asset('assets/js/fichier/scriptUpdateInfoUser.js') }}"></script>

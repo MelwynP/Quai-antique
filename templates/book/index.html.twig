@@ -10,20 +10,25 @@
 				<h3>Pour reservez une table, sélectionnez d'abord une date</h3>
 				{{ form_start(bookForm, {'attr': {'id': 'monFormulaire'}}) }}
 				<div id="erreur"></div>
-				{{ form_row(bookForm.dateReservation) }}
+				{{ form_label(bookForm.dateReservation, 'Date de réservation *') }}
+				{{ form_widget(bookForm.dateReservation, {
+							'placeholder': 'Sélectionnez une date',
+							'attr': {
+									'class': 'form-control'
+							}
+					}) }}
 				{{ form_row(bookForm.serviceType) }}
 				{{ form_row(bookForm.hour) }}
 				{{ form_row(bookForm.numberPeople) }}
 				<h5 id="responseRequete"></h5>
 				<h3>Veuillez saisir vos informations personnelles.</h3>
 				{{ form_label(bookForm.civility, 'Civilité *') }}
-
 				{{ form_widget(bookForm.civility, {
-    'placeholder': 'Veuillez renseigner votre civilité',
-    'attr': {
-        'class': 'form-control'
-    }
-}) }}
+						'placeholder': 'Veuillez renseigner votre civilité',
+						'attr': {
+								'class': 'form-control'
+						}
+				}) }}
 				{{ form_row(bookForm.firstname) }}
 				<p id="firstnameError"></p>
 

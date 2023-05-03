@@ -11,14 +11,26 @@
 				{{ form_start(registrationForm) }}
 				<fieldset>
 					<legend>Informations personnelles</legend>
-					{{ form_row(registrationForm.civility) }}
+					{{ form_label(registrationForm.civility, 'Civilité *') }}
+					{{ form_widget(registrationForm.civility, {
+							'placeholder': 'Veuillez renseigner votre civilité',
+							'attr': {
+									'class': 'form-control'
+							}
+					}) }}
 					{{ form_row(registrationForm.firstname) }}
 					{{ form_row(registrationForm.name) }}
 					{{ form_row(registrationForm.phone) }}
 					{{ form_row(registrationForm.numberPeople) }}
 					{{ form_row(registrationForm.allergy) }}
 					{{ form_row(registrationForm.email) }}
-					{{ form_row(registrationForm.plainPassword) }}
+					<div class="input-group">
+						{{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control', 'autocomplete': 'current-password', 'required': true, 'id': 'inputPassword'}}) }}
+						<button type="button" class="btn btn-outline-secondary" onclick="document.getElementById('registration_form_plainPassword').type = (document.getElementById('registration_form_plainPassword').type === 'password') ? 'text' : 'password'">
+							Afficher/Masquer
+						</button>
+					</div>
+
 					{{ form_row(registrationForm.RGPDConsent) }}
 				</fieldset>
 

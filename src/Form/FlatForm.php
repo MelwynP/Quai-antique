@@ -64,9 +64,9 @@ class FlatForm extends AbstractType
                     new All(
                         new Image([
                             'maxSize' => '5000k',
-
-                            'maxWidth' => 5000,
-                            'maxWidthMessage' => 'L\'image doit faire {{ max_width }} pixels de large au maximum'
+                            'maxWidth' => 1280,
+                            'maxWidthMessage' => 'L\'image doit faire {{ max_width }} pixels de large au maximum',
+                            'maxSizeMessage' => 'L\'image ne doit pas dépasser 5Mo',
                         ])
                     )
                 ]
