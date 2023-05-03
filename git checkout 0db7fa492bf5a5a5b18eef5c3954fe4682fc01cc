@@ -1,0 +1,494 @@
+[33mcommit dd9f25bf613f875369f6e6da5701bfa58fcd4360[m[33m ([m[1;36mHEAD -> [m[1;32mdevops[m[33m, [m[1;31morigin/devops[m[33m)[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Wed May 3 00:37:19 2023 +0200
+
+    error
+
+[33mcommit 0db7fa492bf5a5a5b18eef5c3954fe4682fc01cc[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Tue May 2 17:52:42 2023 +0200
+
+    i search solution for people 0 / fetch
+
+[33mcommit 3154574f98ac930b9fca80b55495613c51795390[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Tue May 2 16:42:43 2023 +0200
+
+    update code v2
+
+[33mcommit a6199fb109b07930e18a812066d5c054770b295b[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Tue May 2 14:48:43 2023 +0200
+
+    update code back for the END
+
+[33mcommit fc351c9a368a31f2c627bfb4c88586ac6abd8651[m[33m ([m[1;31morigin/master[m[33m, [m[1;32mmaster[m[33m)[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Tue May 2 02:29:16 2023 +0200
+
+    fetch / js => booking OK
+
+[33mcommit cd04ede1ef8f95085fedf127759f19b557f43d54[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Mon May 1 15:17:00 2023 +0200
+
+    work fetch
+
+[33mcommit 97800ce75685e457cc89e0a69a6f976c2f23c218[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Mon May 1 14:56:09 2023 +0200
+
+    work in fetch
+
+[33mcommit 759ef4e507e3635094034a2f64b91a7d1437311d[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Fri Apr 28 17:06:54 2023 +0200
+
+    fetch / booking OOK
+
+[33mcommit 97641ac433940ee3a3279bb19300887c43198588[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Thu Apr 27 17:13:49 2023 +0200
+
+    work of method fetch
+
+[33mcommit e3bb55c0857f77dfec42ae81033974f86885faa7[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Wed Apr 26 16:50:48 2023 +0200
+
+    fect / api
+
+[33mcommit cd7bf501d95b6e13640be3f115cce29d7bb9ea27[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Wed Apr 26 13:49:29 2023 +0200
+
+    update datafixture images
+
+[33mcommit 017ac8631798b53577523e4e06eedd988af35788[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Wed Apr 26 11:36:41 2023 +0200
+
+    ok book cap
+
+[33mcommit 9967f78772d43088f683d8cb4a81a96b158413c4[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Tue Apr 25 20:00:50 2023 +0200
+
+    ok book/capacity 25/04
+
+[33mcommit 9dda86c27caac99d9bf027c1423162b3a47626da[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Tue Apr 25 19:35:49 2023 +0200
+
+    booking + capacity ok
+
+[33mcommit 9750643b49c80f28b7eb3c10d299415a91657cfa[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Tue Apr 25 19:23:01 2023 +0200
+
+    booking & capacity OK
+
+[33mcommit a24872668b79ab6c2d2d921937519613a7ce2784[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Sat Apr 22 23:49:47 2023 +0200
+
+    pause sur la reserv controle du nb de personne et capacité
+
+[33mcommit aeab2e5e5c27736b50901928c6061f070ce41a34[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Fri Apr 21 17:01:01 2023 +0200
+
+    dynamic booking progress
+
+[33mcommit 9ef5840c2219bc5fd45bf358354a2ab81f3f6c9e[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Wed Apr 19 12:03:18 2023 +0200
+
+    date & constraints ok | hour ok | change branch for capacity
+
+[33mcommit a95da6b1964ea33c4c7c7b6b2a046a65fb7ec040[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Tue Apr 18 21:44:10 2023 +0200
+
+    last commit 18.04 problem $service & $hour
+
+[33mcommit 47b8524b2bbddcdd05ec2878f6487b995aa491fc[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Tue Apr 18 18:34:21 2023 +0200
+
+    erreur sauvegarde
+
+[33mcommit 91b2fc6bd56a6b0c45726d4afc297b2b67673eb9[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Tue Apr 18 12:09:10 2023 +0200
+
+    one hour selected dinner od lunch
+
+[33mcommit ae5e7bd9365b3d7ca9d787e0595bd3be9b6986bc[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Tue Apr 18 11:13:08 2023 +0200
+
+     commit hour/booking
+
+[33mcommit 5e6fc31fa8c40ffd1077d52e3feae6c18e54b162[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Sat Apr 15 16:07:40 2023 +0200
+
+    book hour ok
+
+[33mcommit 9a8e0b02f6136e74c448aabb112116891aff4be1[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Sat Apr 15 14:54:10 2023 +0200
+
+    work problem for book hour
+
+[33mcommit 3620b359d3d568a156d6f30117440fce20bc9a0f[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Fri Apr 14 14:06:54 2023 +0200
+
+    panel admin ok
+
+[33mcommit fa0089f3d3725cc1ba40cecc9659fe45d0caaca2[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Thu Apr 13 22:50:50 2023 +0200
+
+    ^pannel admin ok just one problem booking
+
+[33mcommit 9cbf050df9aae1236fe8d2777193e4651b2d14e9[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Thu Apr 13 21:25:26 2023 +0200
+
+    ok for controller admin
+
+[33mcommit 25cb2657e439e08ebde412c2c665ff9f3fe4a213[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Wed Apr 12 22:28:50 2023 +0200
+
+    control admin flat/menu/hour OK after user
+
+[33mcommit 3127d426e55f472737267e3449ae8071c8cc0b22[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Wed Apr 12 17:15:27 2023 +0200
+
+    form add flat/hour/menu maintenance
+
+[33mcommit 04fce6ce57c2ea99b1e5d720620e7d6a53c3d824[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Tue Apr 11 22:21:54 2023 +0200
+
+    add/edit/delette flat
+
+[33mcommit c4067ac8300731f0369d71c1cf052e88007e6624[m[33m ([m[1;31morigin/devtry[m[33m)[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Fri Apr 7 17:12:03 2023 +0200
+
+    upload in test /  i am happy
+
+[33mcommit dfcf16a873088b13e31fe57846956febf17dfb06[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Fri Apr 7 11:20:42 2023 +0200
+
+    save for delete
+
+[33mcommit 4e1edd60ce9ff7285f7d2d1e9addaf53a50f40c5[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Fri Apr 7 08:56:49 2023 +0200
+
+    try again upload image
+
+[33mcommit 49a505eb203f1394dee9a1ade3eda7cd4c791e14[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Thu Apr 6 16:56:03 2023 +0200
+
+    problem photo/upload
+
+[33mcommit 4640290f87361072222a1e47e9cbc2c6881a9716[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Wed Apr 5 17:10:22 2023 +0200
+
+    today redirecterror page / update symfony + package / ROLE / add photo in class
+
+[33mcommit 1210a81cf53a41de0820d3e5ff66a849966864f1[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Tue Apr 4 15:58:05 2023 +0200
+
+    option rest password without bundle it ok
+
+[33mcommit e7b167eae841dbc4aa7c953114c8d63b2fcabc6e[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Tue Apr 4 11:11:16 2023 +0200
+
+    resolve beug login user/problem template id/class
+
+[33mcommit e8f5ad9310fb1f2fa664956520eb70afa20a192f[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Mon Apr 3 15:50:51 2023 +0200
+
+    Setting up user authentication via mailhog / JWTService + SendMailService + RegistrationController
+
+[33mcommit d11f27acd3e314628c2adfcb374e566a61ee703c[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Sat Apr 1 14:44:08 2023 +0200
+
+    update bdd/formS
+
+[33mcommit a7be126fe680a53753f4976e111aaff47b4d0bbc[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Fri Mar 31 14:18:00 2023 +0200
+
+    test deploy
+
+[33mcommit 575083f4a12946e03cacfefaef4b29063ae91365[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Fri Mar 31 13:30:50 2023 +0200
+
+    Db ok > view ok
+
+[33mcommit a13df840d51c1991902b196d5b92f2044869af8a[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Thu Mar 30 17:16:32 2023 +0200
+
+    today update DB & fixture & the view twig
+
+[33mcommit 9778727f31cb1f97c188756a7d25f593c31e0f84[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Wed Mar 29 17:50:33 2023 +0200
+
+    sortie des données en vue
+
+[33mcommit 7cf393e7b882a3d02debcc1e5ca8ed101639f88c[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Mon Mar 27 17:16:51 2023 +0200
+
+    integration data in the view
+
+[33mcommit d0be4d1102a3577dde5a822d7edfe523ab7b5862[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Mon Mar 27 12:35:23 2023 +0200
+
+    fixtures finish and DB update
+
+[33mcommit 9e93e922f4ba4f573c633f01eebbb0adfb17e526[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Fri Mar 24 15:38:51 2023 +0100
+
+    controller admin
+
+[33mcommit 81d6d371b93e7efd9c085af7272548334004804b[m
+Merge: 9f8e9ec 6b63e65
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Fri Mar 24 15:00:20 2023 +0100
+
+    Merge branch 'devtest'
+
+[33mcommit 9f8e9ece6be83f708e0ec57bf914a221cd806df2[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Fri Mar 24 14:58:01 2023 +0100
+
+    always datafixture ok but i have the same id photo/flat/menu
+
+[33mcommit 3cb73f8522db34861ad4128545ab874cb359b0a3[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Fri Mar 24 09:14:37 2023 +0100
+
+    .env dans .gitignore
+
+[33mcommit d77f72e02e66d3c3abb5f0eee11e6c8d96436cd8[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Thu Mar 23 17:11:13 2023 +0100
+
+    new migration/new fixture
+
+[33mcommit 5b9d98564b242b80b09bc78c744d9cec4179e20b[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Thu Mar 23 16:48:36 2023 +0100
+
+    datafixture it s OK
+
+[33mcommit 6b63e65bc401bc0e60cf183ddc36993876e93f40[m
+Author: MelwynP <103537889+MelwynP@users.noreply.github.com>
+Date:   Thu Mar 23 10:48:57 2023 +0100
+
+    Delete .env
+
+[33mcommit 69724d70c9d0109bb747648b86a778f7de9fa9f6[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Thu Mar 23 10:48:25 2023 +0100
+
+    dotEnv
+
+[33mcommit 674496872c6144e9db9b72a83785a14dcacb7c0e[m
+Merge: a9b3f20 6c72bdd
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Thu Mar 23 10:45:09 2023 +0100
+
+    Merge branch 'devtest' of https://github.com/MelwynP/quai-antique into devtest
+
+[33mcommit a9b3f20e19049fc4687fadbad8fd3a5727c3185c[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Thu Mar 23 10:44:19 2023 +0100
+
+    try again
+
+[33mcommit 6c72bdd96ed0c236674e4a20710979df617721c8[m
+Author: MelwynP <103537889+MelwynP@users.noreply.github.com>
+Date:   Thu Mar 23 10:42:09 2023 +0100
+
+    Delete .env
+
+[33mcommit 6a4514ffb44194aed7a857b631780c42b91a6943[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Wed Mar 22 15:12:34 2023 +0100
+
+    try again
+
+[33mcommit 426f97917d7a0714988a5c38f213b4fa1639cb49[m
+Merge: 3b44e14 d49f9d6
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Wed Mar 22 17:49:44 2023 +0100
+
+    Merge branch 'master' of github.com:MelwynP/quai-antique
+
+[33mcommit 3b44e146ef3b3c1b0ac1546b06cfd099312ce284[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Wed Mar 22 17:49:14 2023 +0100
+
+    test
+
+[33mcommit d49f9d675615a47320242c1c85d93747707fb1ef[m
+Author: MelwynP <103537889+MelwynP@users.noreply.github.com>
+Date:   Wed Mar 22 16:57:07 2023 +0100
+
+    Delete .env
+
+[33mcommit 9959242496ad94df3839f47b7e74cfd1e2b8530c[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Wed Mar 22 15:12:34 2023 +0100
+
+    fakerfixture OK but i want add a few upddate
+
+[33mcommit 4720d8542265edf406288f9f8a89cb7b2433cd65[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Wed Mar 22 12:01:09 2023 +0100
+
+    update migration add fakerfixture
+
+[33mcommit 7da3a1761ef24012c620ca3419d8e5c94c161006[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Tue Mar 21 17:13:10 2023 +0100
+
+    fixtures database
+
+[33mcommit 7cf39a4e40c03cfba87a7734ad79a5c81b582651[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Tue Mar 21 13:39:32 2023 +0100
+
+    form booking
+
+[33mcommit 0e73b4035cab69ab506afa3e61deacd404a946dc[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Tue Mar 21 12:34:33 2023 +0100
+
+    remote FK restaurant in reservation
+
+[33mcommit 2c6381fe4299793b70283e7694440319db20d0b2[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Tue Mar 21 10:49:35 2023 +0100
+
+    push repository
+
+[33mcommit ba946bd1c8b66af8cb146d0e9df6b31199cc710e[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Tue Mar 21 10:47:48 2023 +0100
+
+    git merge ok
+
+[33mcommit 2be43bc316bd7031db98375f5636ffe21f2b2b09[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Mon Mar 20 17:16:07 2023 +0100
+
+    update bdd, create form booking
+
+[33mcommit 19d8e5b5202ce3eac693dad1223d6240048540d6[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Mon Mar 20 14:55:53 2023 +0100
+
+    form the booking
+
+[33mcommit 520bd203cdd08eea250bd90e6d4489e0192696aa[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Mon Mar 20 14:51:31 2023 +0100
+
+    create form login/logout/register & style
+
+[33mcommit 8604a6134b5dd8e53f82c5594c599439382e9f18[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Mon Mar 20 10:05:26 2023 +0100
+
+    test deploy
+
+[33mcommit 4b7f29e4483dd911670a0a50edf30091be6bec7f[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Fri Mar 17 11:35:43 2023 +0100
+
+    create controller & template
+
+[33mcommit afffe49f471b019af15c7b82931707584391cb11[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Fri Mar 17 10:43:59 2023 +0100
+
+    insert bootstrap / assets & partials
+
+[33mcommit cb75ab1f6214e07e062be4f4563be1b118f8f24d[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Thu Mar 16 17:26:44 2023 +0100
+
+    create first controller main*
+
+[33mcommit 81edabfb183f8bc10fc0844304452a37d9c75490[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Thu Mar 16 15:40:26 2023 +0100
+
+    insertions de la bdd
+
+[33mcommit 2656e30d52299689095ead7b8eccae1de4d5c0c6[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Thu Mar 16 08:53:04 2023 +0100
+
+    modif manuel entity admin/user
+
+[33mcommit 1e176a203d85a5e8bda98c02fcc4922bbcfaf8d6[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Wed Mar 15 16:27:37 2023 +0100
+
+    insert entity bdd
+
+[33mcommit 2fe4cc7143ed9ddeb8b498855237d4bdb065080b[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Wed Mar 15 13:10:29 2023 +0100
+
+    modif readme
+
+[33mcommit ff268b526c47208d3dd3a917d05d7abfd0127564[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Wed Mar 15 11:43:12 2023 +0100
+
+    modif du readme
+
+[33mcommit 7fbd8f829667e9958d2c0bea246680fcff35526e[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Wed Mar 15 11:33:52 2023 +0100
+
+    insertion fichier readme.md
+
+[33mcommit 497e7533108f20f09a7e43f47f166e2d04ac016a[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Wed Mar 15 11:31:18 2023 +0100
+
+    first commit
+
+[33mcommit 9b4d6f4258b08eafa330ee33dc41db6402071505[m
+Author: Perrin Melwyn <melwyn_438@hotmail.com>
+Date:   Tue Mar 14 15:15:17 2023 +0100
+
+    Add initial set of files

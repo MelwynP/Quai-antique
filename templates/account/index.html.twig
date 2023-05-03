@@ -6,27 +6,39 @@
 {% block body %}
 	<h2>Mon compte</h2>
 
-	<p>Bienvenue
-		{{ app.user.civility }}
-		{{ app.user.name }}
-		{{ app.user.firstname }}
+	{% if not app.user.isVerified %}
+		<p>Votre compte n'est pas vérifié.
+			<br>
+			Par mesure de sécurité, vous ne pouvez pas modifier vos informations personnelles.
+			<br>
+			Pour renvoyer un e-mail de vérification à cette adresse :
+			{{ app.user.email }}.
+			<br>
+			Vous pouvez cliquez sur
+			<a href="{{ path('resend_verification') }}">ce lien</a>.
+		</p>
+	{% else %}
+		<p>Bienvenue
+			{{ app.user.civility }}
+			{{ app.user.name }}
+			{{ app.user.firstname }}
+			<br>
+			Voici vos informations enregistrées :<br>
+		</p>
+		<p>Votre numéro de téléphone :
+			{{ app.user.phone }}</p>
+		<p>Le nombre de convive(s) :
+			{{ app.user.numberPeople }}</p>
+		<p>Vos allergies :
+			{{ app.user.allergy }}</p>
+
+		<p>Vous pouvez modifier vos informations personnelles ici :
+			<a href="{{ path('app_account_edit_email', {'email': app.user.email}) }}" class="btn btn-success">Modifier vos données personnelles</a>
+		</p>
 		<br>
-		Voici vos informations enregistrés :<br>
-	</p>
-	<p>Votre numéro de téléphone :
-		{{ app.user.phone }}</p>
-	<p>Le nombre de convive(s) :
-		{{ app.user.numberPeople }}</p>
-	<p>Vos allergies :
-		{{ app.user.allergy }}</p>
-
-
-	<p>Vous pouvez modifiez vos informations personnelles ici</p>
-	<a href="{{ path('app_account_edit', {id: app.user.id})}}" class="btn btn-success">Modifier vos données personnelles</a>
-	<br>
-
-	Où effectuer une réservation.
-	<br>
-	<a href="{{ path('app_book') }}" class="mt-3 mb-5 btn btn-primary">Reserver une table</a>
-
-</p>{% endblock %}
+		<p>
+			Où effectuer une réservation :
+			<a href="{{ path('app_book') }}" class="btn btn-primary">Réserver une table</a>
+		</p>
+	{% endif %}
+{% endblock %}

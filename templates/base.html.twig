@@ -23,8 +23,6 @@
 		{% block javascripts %}
 			<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 			<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/fr.js"></script>
-
-
 			<script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}" defer></script>
 		{% endblock %}
 
@@ -36,8 +34,8 @@
 			<div class="alert alert-warning alert-dismissible" role="alert">
 				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-labael="close"></button>
 				<div class="alert-message">
-					Votre compte n'est pas activé,
-					<a href="{{ path('resend_verification') }}">renvoyer le lien d'activation</a>
+					Pour accéder à votre compte, vous devez valider votre adresse e-mail, où
+					<a href="{{ path('resend_verification') }}">Renvoyer un lien d'activation</a>
 				</div>
 			</div>
 		{% endif %}

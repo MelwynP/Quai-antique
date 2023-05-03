@@ -19,11 +19,15 @@ use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
 class RegistrationController extends AbstractController
 {
     #[Route('/inscription', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher,
-     UserAuthenticatorInterface $userAuthenticator, UserAuthenticator $authenticator,
-      EntityManagerInterface $entityManager, SendMailService $sendMailService,
-      JWTService $jwtService): Response
-    {
+    public function register(
+        Request $request,
+        UserPasswordHasherInterface $userPasswordHasher,
+        UserAuthenticatorInterface $userAuthenticator,
+        UserAuthenticator $authenticator,
+        EntityManagerInterface $entityManager,
+        SendMailService $sendMailService,
+        JWTService $jwtService
+    ): Response {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
@@ -43,7 +47,7 @@ class RegistrationController extends AbstractController
 
             // On génère le JWT pour l'utilisateur
             // On crée le header
-            $header = [ 
+            $header = [
                 'alg' => 'HS256',
                 'typ' => 'JWT'
             ];
@@ -59,13 +63,13 @@ class RegistrationController extends AbstractController
             //on envoie un email 
             $sendMailService->send(
                 'nepasrepondre@quai-antique.tech',
-                $user->getEmail(), 
+                $user->getEmail(),
                 //on récupère l'email de l'utilisateur avec la methode getemail()
                 'Activation de votre compte Quai Antique', //le subject
                 'register', //le template
                 [
                     'user' => $user,
-                    'token' => $token 
+                    'token' => $token
                     //on passe l'utilisateur dans le tableau. 
                     // La syntaxe compact('user') est équivalente
                     // Puis on passe le token directement dans le mail
@@ -86,24 +90,24 @@ class RegistrationController extends AbstractController
 
     #[Route('/verification/{token}', name: 'verify_user')]
     // On passe a notre fonction le token que l'on récupère dans l'url grace a la route 
-    public function verifyUser($token, JWTService $jwtService, UserRepository $userRepository, EntityManagerInterface $entityManager) : Response
+    public function verifyUser($token, JWTService $jwtService, UserRepository $userRepository, EntityManagerInterface $entityManager): Response
     {
         // On vérifie si le token est valide, qu'il n'a pas expiré, qu'il n'a pas été modifié
-        if($jwtService->isValid($token) && !$jwtService->isExpired($token) && $jwtService->check($token, $this->getParameter('app.jwtsecret'))){
-        // Si toutes ces conditions sont réunis ca veut dire que le token est valide et je peux activer l'utilisateur
-        // On récupère le payload du token
-        $payload = $jwtService->getPayload($token);
+        if ($jwtService->isValid($token) && !$jwtService->isExpired($token) && $jwtService->check($token, $this->getParameter('app.jwtsecret'))) {
+            // Si toutes ces conditions sont réunis ca veut dire que le token est valide et je peux activer l'utilisateur
+            // On récupère le payload du token
+            $payload = $jwtService->getPayload($token);
 
-        // On récupère l'utilisateur du token on ajoute le Repository a la function
-        // Dans le payload on a l'id de l'utilisateur, on va donc chercher l'utilisateur en bdd grace a son id
-        $user = $userRepository->find($payload['user_id']);
+            // On récupère l'utilisateur du token on ajoute le Repository a la function
+            // Dans le payload on a l'id de l'utilisateur, on va donc chercher l'utilisateur en bdd grace a son id
+            $user = $userRepository->find($payload['user_id']);
 
-        // On vérifie si l'utilisateur existe et n'est pas déjà activé, on ajoute EntityManagerInterface a la function
-         if($user && !$user->getIsVerified()){
+            // On vérifie si l'utilisateur existe et n'est pas déjà activé, on ajoute EntityManagerInterface a la function
+            if ($user && !$user->getIsVerified()) {
                 $user->setIsVerified(true);
                 $entityManager->flush($user);
-                $this->addFlash('success', 'Votre compte est activé');
-                return $this->redirectToRoute('app_account');
+                $this->addFlash('success', 'Votre compte est activé, vous pouvez maintenant modifier vos informations personnelles');
+                return $this->redirectToRoute('app_main');
             }
         }
         // Ici un problème se pose dans le token
@@ -119,47 +123,46 @@ class RegistrationController extends AbstractController
         $user = $this->getUser();
 
         // On vérifie si l'utilisateur est connecté et qu'il n'est pas déjà activé
-        if(!$user){
+        if (!$user) {
             $this->addFlash('danger', 'Vous devez être connecté pour accéder à cette page');
             return $this->redirectToRoute('app_login');
         }
 
-        if($user->getIsVerified()){
+        if ($user->getIsVerified()) {
             $this->addFlash('warning', 'Votre compte est déjà activé');
             return $this->redirectToRoute('app_account');
         }
-            // On génère le JWT pour l'utilisateur
-            // On crée le header
-            $header = [ 
-                'alg' => 'HS256',
-                'typ' => 'JWT'
-            ];
-            // On crée le payload
-            $payload = [
-                'user_id' => $user->getId(),
-            ];
-            // On génère le token
-            $token = $jwtService->generate($header, $payload, $this->getParameter('app.jwtsecret'));
-            // On peut changer la duré du token ici
-            // dd($token); voir le token dans le dd
+        // On génère le JWT pour l'utilisateur
+        // On crée le header
+        $header = [
+            'alg' => 'HS256',
+            'typ' => 'JWT'
+        ];
+        // On crée le payload
+        $payload = [
+            'user_id' => $user->getId(),
+        ];
+        // On génère le token
+        $token = $jwtService->generate($header, $payload, $this->getParameter('app.jwtsecret'));
+        // On peut changer la duré du token ici
+        // dd($token); voir le token dans le dd
 
-            //on envoie un email 
-            $sendMailService->send(
-                'nepasrepondre@quai-antique.tech',
-                $user->getEmail(), 
-                //on récupère l'email de l'utilisateur avec la methode getemail()
-                'Activation de votre compte Quai Antique', //le subject
-                'register', //le template
-                [
-                    'user' => $user,
-                    'token' => $token 
-                    //on passe l'utilisateur dans le tableau. 
-                    // La syntaxe compact('user') est équivalente
-                    // Puis on passe le token directement dans le mail
-                ]
-            );
-            $this->addFlash('success', 'Email de vérification envoyé');
-            return $this->redirectToRoute('app_account');
+        //on envoie un email 
+        $sendMailService->send(
+            'nepasrepondre@quai-antique.tech',
+            $user->getEmail(),
+            //on récupère l'email de l'utilisateur avec la methode getemail()
+            'Activation de votre compte Quai Antique', //le subject
+            'register', //le template
+            [
+                'user' => $user,
+                'token' => $token
+                //on passe l'utilisateur dans le tableau. 
+                // La syntaxe compact('user') est équivalente
+                // Puis on passe le token directement dans le mail
+            ]
+        );
+        $this->addFlash('success', 'Email de vérification envoyé');
+        return $this->redirectToRoute('app_main');
     }
 }
-

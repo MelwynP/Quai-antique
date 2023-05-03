@@ -8,7 +8,7 @@ use Symfony\Component\Mailer\MailerInterface;
 // On créé une classe SendMailService
 class SendMailService
 {
-  //cette classs va envoyer un mail en privé, propriété mailer que l'on va appeler a plein d'endroit
+  //cette class va envoyer un mail en privé, propriété mailer que l'on va appeler a plein d'endroit
   private $mailer;
 
   // On créé un constructeur qui va prendre en paramètre un objet de type MailerInterface

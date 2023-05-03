@@ -20,13 +20,18 @@ class AccountController extends AbstractController
         return $this->render('account/index.html.twig');
     }
 
-    #[Route('/modifier/{id}', name: "edit")]
-    public function update(Request $request, User $user, EntityManagerInterface $em): Response
+    #[Route('/modifier/{email}', name: "edit_email")]
+    public function update(Request $request, string $email, User $user, EntityManagerInterface $em): Response
     {
+        $user = $em->getRepository(User::class)->findOneBy(['email' => $email]);
+        if (!$user) {
+            throw $this->createNotFoundException('L\'utilisateur n\'existe pas.');
+        }
+
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        
-        if ($this->getUser()->getId() !== $user->getId()) {
+
+        if ($this->getUser()->getEmail() !== $email) {
             $this->addFlash("error", "Vous ne pouvez pas modifier.");
             return $this->redirectToRoute("app_account_index");
         }

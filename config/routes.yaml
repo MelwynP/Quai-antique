@@ -3,5 +3,6 @@ controllers:
   type: attribute
 
 is_full_api:
-    path: /is-full-api
-    controller: App\Controller\BookController::isFullApi
+  path: /reservation/check-availability/{serviceType}/{dateReservation}/{numberPeople}
+  controller: App\Controller\BookController::isFullApi
+  methods: [GET]
