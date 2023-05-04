@@ -16,7 +16,6 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<th>ID</th>
 							<th>Nom du menu</th>
 							<th>Description</th>
 							<th>Prix</th>
@@ -25,9 +24,6 @@
 					<body>
 						{% for menu in menu %}
 							<tr>
-
-
-								<td>{{ menu.id }}</td>
 								<td>{{ menu.name }}</td>
 								<td>{{ menu.description }}</td>
 								<td>{{ menu.price }}</td>
@@ -36,9 +32,7 @@
 								</td>
 								<td>
 									<a href="{{ path('admin_menu_delete', {id: menu.id})}}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce menu ?')">Supprimer</a>
-
 								</td>
-
 							</tr>
 						</td>
 					</body>

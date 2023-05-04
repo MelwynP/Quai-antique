@@ -101,13 +101,11 @@
 					<h3>Nos horaires</h3>
 					<br>
 					{% for hour in hour %}
-
+						Le
 						{{ hour.dayweek }}
 						{{ hour.lunchOpeningTime }}
-
 						{{ hour.lunchClosingTime }}
 						{{ hour.dinnerOpeningTime }}
-
 						{{ hour.dinnerClosingTime }}
 					</p>
 				{% endfor %}

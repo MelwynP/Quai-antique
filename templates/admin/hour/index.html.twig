@@ -14,7 +14,6 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<th>ID</th>
 							<th>Jour de semaine</th>
 							<th>Heure ouverture déjeuner</th>
 							<th>Heure fermeture déjeuner</th>
@@ -26,7 +25,6 @@
 					<body>
 						{% for hour in hour %}
 							<tr>
-								<td>{{ hour.id }}</td>
 								<td>{{ hour.dayWeek }}</td>
 								<td>{{ hour.lunchOpeningTime }}</td>
 								<td>{{ hour.lunchClosingTime }}</td>

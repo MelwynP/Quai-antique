@@ -16,21 +16,18 @@
 				<table class="table">
 					<thead>
 						<tr>
-							<th>Id</th>
 							<th>Civilité</th>
 							<th>Nom</th>
 							<th>Prénom</th>
 							<th>Création du compte</th>
-							<th>Nombre de convive par défault</th>
+							<th>Nombre de convive(s)</th>
 							<th>Allergie(s)</th>
 							<th>Téléphone</th>
 							<th>E-mail</th>
 						</tr>
 					</thead>
-
 					{% for user in user %}
 						<tr>
-							<td>{{ user.id }}</td>
 							<td>{{ user.civility }}</td>
 							<td>{{ user.name }}</td>
 							<td>{{ user.firstname }}</td>

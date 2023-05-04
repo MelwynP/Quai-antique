@@ -53,6 +53,7 @@ class BookController extends AbstractController
       $dateReservation = $bookForm->get('dateReservation')->getData();
       $numberPeople = $bookForm->get('numberPeople')->getData();
 
+
       if (self::isFull($serviceType, $dateReservation, $numberPeople, $bookingRepository, $capacityRepository)) { // si on est plein
         $this->addFlash(
           'danger',
@@ -61,7 +62,15 @@ class BookController extends AbstractController
       } else {
         $em->persist($booking);
         $em->flush();
-        return $this->redirectToRoute("app_book_confirm");
+
+        return $this->redirectToRoute("app_book_confirm", [
+          'civility' => $bookForm->get('civility')->getData(),
+          'name' => $bookForm->get('name')->getData(),
+          'hour' => $bookForm->get('hour')->getData(),
+          'serviceType' => $bookForm->get('serviceType')->getData(),
+          'dateReservation' => $bookForm->get('dateReservation')->getData(),
+          'numberPeople' => $bookForm->get('numberPeople')->getData(),
+        ]);
       }
     }
     return $this->render('book/index.html.twig', [
@@ -144,10 +153,24 @@ class BookController extends AbstractController
   //-------------------
   // Route pour la page de confirmation
   #[Route('/reservation/confirmation', name: 'app_book_confirm')]
-  public function confirm(): Response
+  public function confirm(Request $request): Response
   {
-    return $this->render('book/confirm.html.twig');
+    $civility = $request->query->get('civility');
+    $name = $request->query->get('name');
+    $hour = $request->query->get('hour');
+    $serviceType = $request->query->get('serviceType');
+    $dateReservation = new \DateTime($request->query->get('dateReservation'));
+    $numberPeople = $request->query->get('numberPeople');
+    return $this->render('book/confirm.html.twig', [
+      'civility' => $civility,
+      'name' => $name,
+      'hour' => $hour,
+      'serviceType' => $serviceType,
+      'dateReservation' => $dateReservation,
+      'numberPeople' => $numberPeople,
+    ]);
   }
+
 
   //-------------------
   // Route pour la requête fetch

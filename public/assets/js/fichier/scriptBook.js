@@ -147,7 +147,7 @@ function updateAvailability() {
       }
     })
     .catch((error) => {
-      console.error("Error:", error);
+      console.error("Error:", error)
       document.querySelector("#erreur").textContent =
         "Une erreur est survenue lors de la vérification de la disponibilité.";
     });
@@ -226,7 +226,7 @@ email.addEventListener("blur", function () {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // expression régulière qui vérifie si l'entrée est une adresse email valide
   if (emailValue.length > 200 || !emailRegex.test(emailValue)) {
     emailError.textContent =
-      "Entrez une adresse e-mail valide, exemple : exemple@domaine.com";
+      "Entrez une adresse e-mail valide pour debloquer le formulaire";
     emailError.classList.add("text-danger");
     email.classList.add("is-invalid");
     submitBtn.disabled = true;
