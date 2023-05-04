@@ -1,4 +1,4 @@
-// ----------------------------------
+  // ----------------------------------
 // Déclaration des variables
 const dateReservation = document.querySelector("#book_form_dateReservation");
 const serviceType = document.querySelector("#book_form_serviceType");
@@ -20,6 +20,7 @@ const emailError = document.querySelector("#emailError");
 const allergy = document.querySelector("#book_form_allergy");
 const allergyError = document.querySelector("#allergyError");
 
+
 // ----------------------------------
 // Calendrier flatpickr
 flatpickr(dateReservation, {
@@ -33,22 +34,13 @@ flatpickr(dateReservation, {
   ],
 });
 
+
 // ----------------------------------
 // Gestion des heures de réservation placeholder et options
 function changePlaceholder() {
   const hoursByService = {
     Déjeuner: ["12:00", "12:15", "12:30", "12:45", "13:00"],
-    Dîner: [
-      "19:00",
-      "19:15",
-      "19:30",
-      "19:45",
-      "20:00",
-      "20:15",
-      "20:30",
-      "20:45",
-      "21:00",
-    ],
+    Dîner: ["19:00", "19:15", "19:30", "19:45", "20:00", "20:15", "20:30", "20:45", "21:00"],
   };
 
   // Ajouter un événement d'écoute sur le champ de saisie du service
@@ -79,10 +71,10 @@ function changePlaceholder() {
 // Appel de la fonction changePlaceholder
 changePlaceholder();
 
+
 // ----------------------------------
 // Fonction de désactivation des champs de saisie, donne un sens au formulaire
 function senseForm() {
-  // Désactivation des champs de saisie du service, de l'heure du nombre de personnes et du consentement
   let previousDate = "";
   let previousService = "";
   serviceType.disabled = true;
@@ -135,6 +127,7 @@ function senseForm() {
 // Appel de la fonction senseForm
 senseForm();
 
+
 //----------------------------------
 // Requête Fetch
 function updateAvailability() {
@@ -144,7 +137,6 @@ function updateAvailability() {
     .then((response) => response.json())
     .then((data) => {
       if (data.isFull) {
-        console.log(data);
         submitBtn.disabled = true;
         document.querySelector("#responseRequete").textContent =
           "Désolé, il n'y a plus de place disponible pour cette date et ce service.";
@@ -162,6 +154,7 @@ function updateAvailability() {
 }
 serviceType.addEventListener("change", updateAvailability);
 numberPeople.addEventListener("change", updateAvailability);
+
 
 // ----------------------------------
 // function verif firstname
@@ -184,6 +177,7 @@ firstname.addEventListener("blur", function () {
   }
 });
 
+
 // ----------------------------------
 // function verif name
 nameUser.addEventListener("blur", function () {
@@ -201,6 +195,7 @@ nameUser.addEventListener("blur", function () {
     submitBtn.disabled = false;
   }
 });
+
 
 // ----------------------------------
 // function verif phone
@@ -223,6 +218,7 @@ phone.addEventListener("blur", function () {
   }
 });
 
+
 // ----------------------------------
 // function verif email
 email.addEventListener("blur", function () {
@@ -241,6 +237,7 @@ email.addEventListener("blur", function () {
     submitBtn.disabled = false;
   }
 });
+
 
 // ----------------------------------
 // function verif allergy
@@ -263,6 +260,7 @@ allergy.addEventListener("blur", function () {
   }
 });
 
+
 // ----------------------------------
 // Réinitialiser le formulaire lors du chargement de la page
 function resetWindow() {
@@ -276,4 +274,8 @@ function resetWindow() {
     }
   });
 }
+
+// Appel de la fonction resetWindow
 resetWindow();
+
+
