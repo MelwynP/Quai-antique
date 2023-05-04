@@ -16,17 +16,11 @@ class MainController extends AbstractController
     {
 
         return $this->render('main/index.html.twig', [
-            'saladPrefer' => $flatRepository->saladPrefer(),
-            'flatPrefer' => $flatRepository->flatPrefer(),
-            'cheesePrefer' => $flatRepository->cheesePrefer(),
-            'dessertPrefer' => $flatRepository->dessertPrefer(),
             'dayClose' => $hourRepository->dayClose(),
             'dayOpen' => $hourRepository->dayOpen(),
             'hour' => $hourRepository->findAll(),
             'flat' => $flatRepository->findAll(),
             'images' => $imagesRepository->findAll(),
-
-
         ]);
     }
 }
