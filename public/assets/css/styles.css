@@ -1,170 +1,607 @@
+/* Fonts */
+
+/* ------------------------------- */
 @font-face {
   font-family: 'David Libre';
   src: url('/assets/fonts/DavidLibre-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
-
-  <style>@import url('https://fonts.googleapis.com/css2?family=Saira&display=swap');
-    </style>
 }
 
-.horaire-container {
-  border: 2px solid black;
-  border-radius: 5px;
-  padding: 20px 10px 10px;
-  max-width: 600px;
-  margin: 0 auto;
-  width: calc(100% - 30px);
-  font-family: 'David Libre', sans-serif;
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
+@font-face {
+  font-family: 'Saira Medium';
+  src: url('/assets/fonts/Saira-Medium.ttf');
+  font-weight: normal;
+  font-style: normal;
 }
 
-.titre-horaire {
-  font-family: 'David Libre', sans-serif;
-  font-size: 30px;
-  font-weight: bold;
-  text-align: center;
+/* ------------VUE--PC------------- */
+
+body {
+  margin: 0px;
+  padding: 0;
+  background-color: rgb(255, 255, 255);
 }
 
-.title-h2 {
-  font-family: 'David Libre', sans-serif;
-  font-size: 34px;
-  text-align: center;
-  margin-top: 50px;
-  margin-bottom: 50px;
-}
-
-.image-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: auto;
-  /* hauteur de ligne automatique */
-  grid-gap: 20px;
-}
-
-.image-container {
-  position: relative;
-  overflow: hidden;
-  height: auto;
-  transition: transform 0.5s ease;
-  border-radius: 10px;
-  border: 2px solid black;
-}
-
-.image-container img {
-  height: auto;
-  transition: transform 0.5s ease;
-  border-radius: 10px;
-  border: 2px solid black;
+.containerPrincipal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
   width: 100%;
-  height: auto;
-  transition: transform 0.5s ease;
+  margin: 0 auto;
 }
 
-.image-container:hover img {
-  transform: scale(1.2);
-  height: auto;
-  transition: transform 0.5s ease;
-  border-radius: 10px;
-  border: 2px solid black;
-}
+/* ------------VUE--PC------------- */
+@media(min-width: 1024px) {
 
-.overlay {
-  font-family: 'David Libre', sans-serif;
-  font-size: 22px;
-  font-weight: bold;
-  color: black;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: black;
-  color: white;
-  opacity: 0;
-  text-align: center;
-  padding: 5px;
-  transition: opacity 0.5s ease;
-}
-
-.image-container:hover .overlay {
-  opacity: 0.7;
-}
-
-/* -------------------TABLETTE ---------------------*/
-@media(max-width: 1024px) {
-
-  .image-grid {
-    grid-template-columns: repeat(3, 1fr);
+  /* Image accueil + titre h1 */
+  /* -------------------------- */
+  .imageAccueil-container {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    width: 80%;
+    margin: 25px;
   }
 
+  .rounded-image {
+    border-radius: 7px;
+    border: 1px solid black;
+    width: 80%;
+    height: auto;
+  }
 
-  .title-h2 {
+  .image-title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: white;
     font-family: 'David Libre', sans-serif;
-    font-size: 30px;
-    text-align: center;
-    margin-top: 50px;
+    font-size: 45px;
+    font-weight: bold;
     margin-bottom: 50px;
   }
 
-  .horaire-container {
+  /* Notre histoire + titre h2 */
+  /* ------------- */
+  .histoire-title {
+    text-align: center;
+    font-size: 42px;
+    font-weight: 500;
+    color: #040F48;
+    font-family: 'David Libre', sans-serif;
+    margin-top: 45px;
+    margin-bottom: 45px;
+  }
+
+  .info-box {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    width: 55%;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    background-color: #C78522;
+    border-radius: 12px;
+    border: 1px solid black;
+  }
+
+  .info-box p {
+    color: #FFF;
+    font-family: 'Saira', sans-serif;
+    font-size: 24px;
+    margin: 35px 45px;
+    text-align: center;
+  }
+
+  /* Titre h3 */
+  /* ---------------------- */
+  .title-h3 {
+    font-family: 'David Libre', sans-serif;
+    font-size: 42px;
+    font-weight: 500;
+    color: #040F48;
+    text-align: center;
+    margin: 40px 25px 30px 25px;
+    margin-top: 45px;
+    margin-bottom: 45px;
+  }
+
+  /* Les plats préférés */
+  /* --------------------- */
+  .imageFlat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 30px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    width: 80%;
+  }
+
+  .imageFlat-container {
+    position: relative;
+    height: 0;
+    padding-bottom: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3px;
+  }
+
+  .imageFlat-container img {
+    border-radius: 7px;
     border: 2px solid black;
-    border-radius: 5px;
-    padding: 20px 10px 10px;
-    max-width: 400px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .overlay {
+    font-family: 'David Libre', sans-serif;
+    font-size: 30px;
+    background-color: rgba(255, 255, 255, 255);
+    position: absolute;
+    padding: 5px 0 5px 0;
+    margin: 0px 20px 5px 20px;
+    border-radius: 10px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: #040F48;
+    opacity: 0;
+    text-align: center;
+    transition: opacity 0.4s ease;
+  }
+
+  .imageFlat-container:hover .overlay {
+    opacity: 1;
+  }
+
+  /* Bouton */
+  /* ---------------------- */
+  .btn-reserve {
+    font-family: 'Saira', sans-serif;
+    font-weight: 600;
+    font-size: 22px;
+    color: white;
+    background-color: #493414;
+    padding: 10px 35px 15px 35px;
+    border-radius: 7px;
+    display: block;
+    margin: 50px auto;
+    margin-top: 70px;
+    margin-bottom: 30px;
+    width: 250px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.1s ease;
+    border: 4px solid #493414;
+  }
+
+  .btn-reserve:hover {
+    color: #493414;
+    font-weight: 600;
+    font-size: 22px;
+    background-color: white;
+    border: 4px solid #493414;
+  }
+
+  /* Les horaires */
+  /* ---------------------- */
+  .titre-horaire {
+    font-family: 'David Libre', sans-serif;
+    font-size: 42px;
+    font-weight: 500;
+    color: #040F48;
+    text-align: center;
+    margin-bottom: 55px;
+  }
+
+  .horaire-container {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px 15px 10px 15px;
+    margin-top: 40px;
     margin: 0 auto;
+    max-width: 550px;
     width: calc(100% - 30px);
     font-family: 'David Libre', sans-serif;
     font-size: 22px;
-    font-weight: bold;
     text-align: center;
   }
 
-  .titre-horaire {
+  .horaire-container p::before {
+    content: "";
+    display: inline-block;
+    margin-right: 10px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgb(124, 116, 116);
+  }
+
+
+}
+
+/* ------------VUE--TABLETTE------------- */
+@media(max-width: 1024px) {
+
+  /* Image accueil + titre h1 */
+  /* -------------------------- */
+  .imageAccueil-container {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    width: 95%;
+    margin: 25px;
+  }
+
+  .rounded-image {
+    border-radius: 7px;
+    border: 1px solid black;
+    width: 95%;
+    height: auto;
+  }
+
+  .image-title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: white;
     font-family: 'David Libre', sans-serif;
     font-size: 28px;
     font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  /* Notre histoire + titre h2 */
+  /* ------------- */
+  .histoire-title {
     text-align: center;
-  }
-}
-
-/* ------------FIN-----TABLETTE -------FIN-------------*/
-
-
-/*---------------------- TELEPHONE -----------------------*/
-@media(max-width: 768px) {
-  .image-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .title-h2 {
+    font-size: 28px;
+    font-weight: 500;
+    color: #040F48;
     font-family: 'David Libre', sans-serif;
-    font-size: 24px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+  }
+
+  .info-box {
+    position: relative;
+    display: inline-block;
     text-align: center;
-    margin-top: 50px;
-    margin-bottom: 50px;
+    width: 85%;
+    margin-top: 20px;
+    background-color: #C78522;
+    border-radius: 12px;
+    border: 1px solid black;
+  }
+
+  .info-box p {
+    color: #FFF;
+    font-family: 'Saira', sans-serif;
+    font-size: 18px;
+    margin: 18px;
+    text-align: center;
+  }
+
+  /* Titre h3 */
+  /* ---------------------- */
+  .title-h3 {
+    font-family: 'David Libre', sans-serif;
+    font-size: 28px;
+    font-weight: 500;
+    color: #040F48;
+    text-align: center;
+    margin: 40px 25px 30px 25px;
+  }
+
+  /* Les plats préférés */
+  /* --------------------- */
+  .imageFlat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 10px;
+    width: 97%;
+  }
+
+  .imageFlat-container {
+    position: relative;
+    height: 0;
+    padding-bottom: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3px;
+  }
+
+  .imageFlat-container img {
+    border-radius: 7px;
+    border: 2px solid black;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .overlay {
+    font-family: 'David Libre', sans-serif;
+    font-size: 20px;
+    background-color: rgba(255, 255, 255, 255);
+    position: absolute;
+    padding: 5px 0 5px 0;
+    margin: 0px 20px 5px 20px;
+    border-radius: 10px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: #040F48;
+    opacity: 0;
+    text-align: center;
+    transition: opacity 0.4s ease;
+  }
+
+  .imageFlat-container:hover .overlay {
+    opacity: 1;
+  }
+
+  /* Bouton */
+  /* ---------------------- */
+  .btn-reserve {
+    font-family: 'Saira', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: white;
+    background-color: #493414;
+    padding: 10px 25px;
+    border-radius: 7px;
+    display: block;
+    margin: 50px auto;
+    margin-bottom: 10px;
+    width: 200px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.1s ease;
+    border: 2px solid #493414;
+  }
+
+  .btn-reserve:hover {
+    color: #493414;
+    font-weight: 600;
+    font-size: 20px;
+    background-color: white;
+    border: 2px solid #493414;
+  }
+
+  /* Les horaires */
+  /* ---------------------- */
+  .titre-horaire {
+    font-family: 'David Libre', sans-serif;
+    font-size: 28px;
+    font-weight: 500;
+    color: #040F48;
+    text-align: center;
+    margin-bottom: 30px;
   }
 
   .horaire-container {
-    border: 2px solid black;
-    border-radius: 5px;
-    padding: 20px 10px 10px;
-    max-width: 400px;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px 15px 10px 15px;
     margin: 0 auto;
+    max-width: 450px;
     width: calc(100% - 30px);
     font-family: 'David Libre', sans-serif;
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 18px;
     text-align: center;
   }
 
-  .titre-horaire {
-    font-family: 'David Libre', sans-serif;
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
+  .horaire-container p::before {
+    content: "";
+    display: inline-block;
+    margin-right: 10px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: rgb(49, 46, 46);
   }
 }
 
-/* --------------FIN TELEPHONE FIN --------------------- */
+/* ------------VUE--SMARTPHONE------------- */
+@media(max-width: 768px) {
+
+  /* Image accueil + titre h1 */
+  /* -------------------------- */
+  .imageAccueil-container {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    width: 95%;
+    margin: 25px;
+  }
+
+  .rounded-image {
+    border-radius: 7px;
+    border: 1px solid black;
+    width: 95%;
+    height: auto;
+  }
+
+  .image-title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: white;
+    font-family: 'David Libre', sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  /* Notre histoire + titre h2 */
+  /* ------------- */
+  .histoire-title {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 500;
+    color: #040F48;
+    font-family: 'David Libre', sans-serif;
+    margin-top: 20px;
+    margin-bottom: 5px;
+  }
+
+  .info-box {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    width: 85%;
+    margin-top: 20px;
+    background-color: #C78522;
+    border-radius: 12px;
+    border: 1px solid black;
+  }
+
+  .info-box p {
+    color: #FFF;
+    font-family: 'Saira', sans-serif;
+    font-size: 16px;
+    margin: 15px;
+    text-align: center;
+  }
+
+  /* Titre h3 */
+  /* ---------------------- */
+  .title-h3 {
+    font-family: 'David Libre', sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    color: #040F48;
+    text-align: center;
+    margin: 40px 25px 30px 25px;
+  }
+
+  /* Les plats préférés */
+  /* --------------------- */
+  .imageFlat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    width: 97%;
+  }
+
+  .imageFlat-container {
+    position: relative;
+    height: 0;
+    padding-bottom: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3px;
+  }
+
+  .imageFlat-container img {
+    border-radius: 7px;
+    border: 2px solid black;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .overlay {
+    font-family: 'David Libre', sans-serif;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 255);
+    position: absolute;
+    padding: 5px 0 5px 0;
+    margin: 0px 20px 5px 20px;
+    border-radius: 10px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: #040F48;
+    opacity: 0;
+    text-align: center;
+    transition: opacity 0.4s ease;
+  }
+
+  .imageFlat-container:hover .overlay {
+    opacity: 1;
+  }
+
+  /* Bouton */
+  /* ---------------------- */
+  .btn-reserve {
+    font-family: 'Saira', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: white;
+    background-color: #493414;
+    padding: 10px 25px;
+    border-radius: 7px;
+    display: block;
+    margin: 50px auto;
+    margin-bottom: 10px;
+    width: 180px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.1s ease;
+    border: 2px solid #493414;
+  }
+
+  .btn-reserve:hover {
+    color: #493414;
+    font-weight: 500;
+    font-size: 16px;
+    background-color: white;
+    border: 2px solid #493414;
+  }
+
+  /* Les horaires */
+  /* ---------------------- */
+  .titre-horaire {
+    font-family: 'David Libre', sans-serif;
+    font-size: 24px;
+    font-weight: 500;
+    color: #040F48;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .horaire-container {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px 15px 10px 15px;
+    margin: 0 auto;
+    max-width: 320px;
+    width: calc(100% - 30px);
+    font-family: 'David Libre', sans-serif;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .horaire-container p::before {
+    content: "";
+    display: inline-block;
+    margin-right: 10px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: rgb(49, 46, 46);
+  }
+
+  /* -------------------NAVBAR------------------------- */
+
+}

@@ -3,538 +3,58 @@
 {% block title %}Accueil
 {% endblock %}
 
+
 {% block body %}
+	<link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
 
+	<div class="containerPrincipal">
+		<div class="imageAccueil-container">
+			<img src="assets/pictures/restaurant.jpg" alt="restaurant le Quai Antique" class="rounded-image">
+			<h1 class="image-title">DECOUVREZ NOTRE RESTAURANT<br>SAVOYARD | CHAMBERY</h1>
+		</div>
 
-	<div class="image-container">
-		<img src="assets/pictures/restaurant.jpg" alt="restaurant le Quai Antique" class="rounded-image">
-		<h1 class="image-title">DECOUVREZ NOTRE RESTAURANT
-			<br>
-			SAVOYARD | CHAMBERY</h1>
+		<h2 class="histoire-title">Notre histoire</h2>
+		<div class="info-box">
+			<p>Le restaurant au Quai Antique est un nouvel établissement situé au cœur de Chambéry qui propose une cuisine traditionnelle savoyarde, utilisant des ingrédients locaux et de saison pour des plats savoureux et authentiques. Le chef Arnaud Michant, formé dans les meilleurs restaurants de la région, dirige le restaurant et propose une carte qui change régulièrement pour refléter les meilleurs produits de la saison. Le service est amical et attentif.</p>
+		</div>
+
+		<h3 class="title-h3">
+			Vos plats préférés,<br>
+			cuisinés avec soin et passion
+		</h3>
+
+		<div class="imageFlat-grid">
+			{% for flat in flat %}
+				{% if flat.images.first() %}
+					<div class="imageFlat-container">
+						<img src="{{ asset('assets/uploads/flats/mini/300x300-' ~ flat.images.first().titre) }}" alt="{{ flat.name }}">
+						<div class="overlay">{{ flat.name }}</div>
+					</div>
+				{% endif %}
+			{% endfor %}
+		</div>
+
+		<a href="{{ path('app_book') }}" class="btn-reserve">
+			Reserver une table</a>
+
+		<h3 class="titre-horaire">Nos horaires</h3>
+
+		<div class="horaire-container">
+			{% for hour in hour %}
+				<p>Le
+					{{ hour.dayWeek }}
+					{{ hour.lunchOpeningTime }}
+					-
+					{{ hour.lunchClosingTime }}
+					et
+					{{ hour.dinnerOpeningTime }}
+					-
+					{{ hour.dinnerClosingTime }}</p>
+			{% endfor %}
+		</div>
+
 	</div>
+	<!-- containerPrincipal -->
 
 
-	<div class="info-box">
-		<p>Le restaurant au Quai Antique est un nouvel établissement situé au cœur de Chambéry qui propose une cuisine traditionnelle savoyarde, utilisant des ingrédients locaux et de saison pour des plats savoureux et authentiques. Le chef Arnaud Michant, formé dans les meilleurs restaurants de la région, dirige le restaurant et propose une carte qui change régulièrement pour refléter les meilleurs produits de la saison. Le service est amical et attentif.</p>
-	</div>
-
-
-	<h2 class="title-h2">
-		Vos plats préférés, cuisinés avec soin et passion
-	</h2>
-
-	<div class="image-grid">
-		{% for flat in flat %}
-			{% if flat.images.first() %}
-				<div class="image-container">
-					<img src="{{ asset('assets/uploads/flats/mini/300x300-' ~ flat.images.first().titre) }}" alt="{{ flat.name }}">
-					<div class="overlay">{{ flat.name }}</div>
-				</div>
-			{% endif %}
-		{% endfor %}
-	</div>
-
-
-	<a href="{{ path('app_book') }}" class="btn-reserve">
-		Reserver une table</a>
-
-	<h3 class="titre-horaire">Nos horaires</h3>
-
-	<div class="horaire-container">
-		{% for hour in hour %}
-			<p>Le
-				{{ hour.dayWeek }}
-				{{ hour.lunchOpeningTime }}
-				-
-				{{ hour.lunchClosingTime }}
-				et
-				{{ hour.dinnerOpeningTime }}
-				-
-				{{ hour.dinnerClosingTime }}</p>
-		{% endfor %}
-	</div>
-
-	<style>
-		@font-face {
-			font-family: 'David Libre';
-			src: url('/assets/fonts/DavidLibre-Regular.ttf') format('truetype');
-			font-weight: normal;
-			font-style: normal;
-		}
-		@font-face {
-			font-family: 'Saira Medium';
-			src: url('/assets/fonts/Saira-Medium.ttf');
-			font-weight: normal;
-			font-style: normal;
-		}
-
-		.image-container {
-			position: relative; /* pour permettre un positionnement absolu de l'h1 */
-			display: inline-block; /* pour centrer l'image et l'h1 */
-			text-align: center;
-		}
-
-		.rounded-image {
-			border-radius: 7px;
-			border: 1px solid black;
-			width: 20px;
-		}
-
-		.image-title {
-			position: absolute; /* pour positionner l'h1 à l'intérieur de la div */
-			bottom: 0; /* pour placer l'h1 vers le bas */
-			left: 0; /* pour centrer l'h1 */
-			width: 100%; /* pour que l'h1 prenne toute la largeur de la div */
-			color: white;
-			font-family: 'David Libre', sans-serif;
-			font-size: 50px;
-			font-weight: bold;
-			margin: 0;
-			text-shadow: 2px 2px 0 black; /* pour ajouter une ombre au texte */
-		}
-
-
-		.info-box {
-			background-color: #C78522;
-			border-radius: 7px;
-			border: 1px solid black;
-			margin: 75px;
-			padding: 20px;
-		}
-
-		.info-box p {
-			color: #FFF;
-			font-family: 'Saira', sans-serif;
-			font-size: 22px;
-			text-align: center;
-		}
-
-
-		.horaire-container {
-			border: 2px solid black;
-			border-radius: 5px;
-			padding: 20px 10px 10px;
-			max-width: 600px;
-			margin: 0 auto;
-			width: calc(100% - 30px);
-			font-family: 'David Libre', sans-serif;
-			font-size: 22px;
-			font-weight: bold;
-			text-align: center;
-		}
-
-		.titre-horaire {
-			font-family: 'David Libre', sans-serif;
-			font-size: 30px;
-			font-weight: bold;
-			text-align: center;
-			margin-bottom: 40px;
-
-
-		}
-
-		.title-h2 {
-			font-family: 'David Libre', sans-serif;
-			font-size: 34px;
-			text-align: center;
-			margin-top: 50px;
-			margin-bottom: 50px;
-		}
-
-		.btn-reserve {
-			font-family: 'Saira', sans-serif;
-			font-weight: 500;
-			font-size: 22px;
-			color: white;
-			background-color: #493414;
-			padding: 15px 30px;
-			border-radius: 7px;
-			display: block;
-			margin: 50px auto;
-			width: 300px;
-			text-align: center;
-			text-decoration: none;
-			transition: all 0.3s ease;
-			border: 4px solid #493414;
-		}
-
-		.btn-reserve:hover {
-			color: #493414;
-			font-weight: 600;
-			background-color: white;
-			border: 4px solid #493414;
-		}
-
-
-		.image-grid {
-			display: grid;
-			grid-template-columns: repeat(4, 1fr);
-			grid-auto-rows: auto;
-			/* hauteur de ligne automatique */
-			grid-gap: 40px;
-			margin: 70px;
-		}
-
-		.image-container {
-			position: relative;
-			overflow: hidden;
-			height: auto;
-			transition: transform 0.5s ease;
-			border-radius: 10px;
-			border: 2px solid black;
-		}
-
-		.image-container img {
-			height: auto;
-			transition: transform 0.5s ease;
-			border-radius: 10px;
-			border: 2px solid black;
-			width: 100%;
-			height: auto;
-			transition: transform 0.5s ease;
-		}
-
-		.image-container:hover img {
-			transform: scale(1.2);
-			height: auto;
-			transition: transform 0.5s ease;
-			border-radius: 10px;
-			border: 2px solid black;
-		}
-
-		.overlay {
-			font-family: 'David Libre', sans-serif;
-			font-size: 22px;
-			font-weight: bold;
-			color: black;
-			position: absolute;
-			bottom: 0;
-			left: 0;
-			right: 0;
-			background-color: black;
-			color: white;
-			opacity: 0;
-			text-align: center;
-			padding: 5px;
-			transition: opacity 0.5s ease;
-		}
-
-		.image-container:hover .overlay {
-			opacity: 0.7;
-		}
-
-		/* -------------------TABLETTE ---------------------*/
-		@media(max-width: 1024px) {
-			/* image accueil------------- */
-
-			.image-container {
-				position: relative; /* pour permettre un positionnement absolu de l'h1 */
-				display: inline-block; /* pour centrer l'image et l'h1 */
-				text-align: center; /* pour centrer l'h1 */
-				margin: 20px; /* pour ajouter une marge */
-			}
-
-			.rounded-image {
-				border-radius: 7px;
-				border: 1px solid black;
-			}
-
-			.image-title {
-				position: absolute; /* pour positionner l'h1 à l'intérieur de la div */
-				bottom: 0; /* pour placer l'h1 vers le bas */
-				left: 0; /* pour centrer l'h1 */
-				width: 100%; /* pour que l'h1 prenne toute la largeur de la div */
-				color: white;
-				font-family: 'David Libre', sans-serif;
-				font-size: 35px;
-				font-weight: bold;
-				margin-bottom: 10px;
-				text-shadow: 2px 2px 0 black; /* pour ajouter une ombre au texte */
-			}
-
-			/* --------------------- */
-			/* plat prefere ------------ */
-			.image-grid {
-				grid-template-columns: repeat(3, 1fr);
-				grid-gap: 20px;
-				margin: 30px;
-			}
-
-			.image-container {
-				position: relative;
-				overflow: hidden;
-				height: auto;
-				transition: transform 0.5s ease;
-				border-radius: 10px;
-				border: 2px solid black;
-			}
-
-			.image-container img {
-				height: auto;
-				transition: transform 0.5s ease;
-				border-radius: 10px;
-				border: 2px solid black;
-				width: 100%;
-				height: auto;
-				transition: transform 0.5s ease;
-			}
-
-			.image-container:hover img {
-				transform: scale(1.2);
-				height: auto;
-				transition: transform 0.5s ease;
-				border-radius: 10px;
-				border: 2px solid black;
-			}
-
-			.overlay {
-				font-family: 'David Libre', sans-serif;
-				font-size: 22px;
-				font-weight: bold;
-				color: black;
-				position: absolute;
-				bottom: 0;
-				left: 0;
-				right: 0;
-				background-color: black;
-				color: white;
-				opacity: 0;
-				text-align: center;
-				padding: 5px;
-				transition: opacity 0.5s ease;
-			}
-
-			.image-container:hover .overlay {
-				opacity: 0.7;
-			}
-
-			/*  ------------ */
-
-
-			.info-box {
-				background-color: #C78522;
-				border-radius: 7px;
-				border: 1px solid black;
-				margin: 50px;
-				padding: 15px;
-			}
-
-			.info-box p {
-				color: #FFF;
-				font-family: 'Saira', sans-serif;
-				font-size: 20px;
-				text-align: center;
-			}
-
-			.title-h2 {
-				font-family: 'David Libre', sans-serif;
-				font-size: 28px;
-				text-align: center;
-				margin-top: 50px;
-				margin-bottom: 50px;
-			}
-
-			.horaire-container {
-				border: 2px solid black;
-				border-radius: 5px;
-				padding: 20px 10px 10px;
-				max-width: 550px;
-				margin: 0 auto;
-				width: calc(100% - 30px);
-				font-family: 'David Libre', sans-serif;
-				font-size: 20px;
-				font-weight: bold;
-				text-align: center;
-			}
-
-			.titre-horaire {
-				font-family: 'David Libre', sans-serif;
-				font-size: 28px;
-				font-weight: bold;
-				text-align: center;
-				margin-bottom: 35px;
-			}
-
-			.btn-reserve {
-				font-family: 'Saira', sans-serif;
-				font-weight: 500;
-				font-size: 20px;
-				color: white;
-				background-color: #493414;
-				padding: 10px 30px;
-				border-radius: 7px;
-				display: block;
-				margin: 50px auto;
-				width: 250px;
-				text-align: center;
-				text-decoration: none;
-				transition: all 0.3s ease;
-				border: 2px solid #493414;
-			}
-
-			.btn-reserve:hover {
-				color: #493414;
-				font-weight: 600;
-				background-color: white;
-				border: 2px solid #493414;
-			}
-		}
-
-		/* ------------FIN-----TABLETTE -------FIN-------------*/
-
-
-		/*---------------------- TELEPHONE -----------------------*/
-		@media(max-width: 768px) {
-			.image-grid {
-				grid-template-columns: repeat(2, 1fr);
-				grid-gap: 5px;
-				margin: 5px;
-			}
-
-			.image-container {
-				position: relative;
-				overflow: hidden;
-				height: auto;
-				transition: transform 0.5s ease;
-				border-radius: 10px;
-				border: 2px solid black;
-			}
-
-			.image-container img {
-				height: auto;
-				transition: transform 0.5s ease;
-				border-radius: 10px;
-				border: 2px solid black;
-				width: 100%;
-				height: auto;
-				transition: transform 0.5s ease;
-			}
-
-			.image-container:hover img {
-				transform: scale(1.2);
-				height: auto;
-				transition: transform 0.5s ease;
-				border-radius: 10px;
-				border: 2px solid black;
-			}
-
-			.overlay {
-				font-family: 'David Libre', sans-serif;
-				font-size: 22px;
-				font-weight: bold;
-				color: black;
-				position: absolute;
-				bottom: 0;
-				left: 0;
-				right: 0;
-				background-color: black;
-				color: white;
-				opacity: 0;
-				text-align: center;
-				padding: 5px;
-				transition: opacity 0.5s ease;
-			}
-
-			.image-container:hover .overlay {
-				opacity: 0.7;
-			}
-
-
-			/* image accueil --------------*/
-			.image-container {
-				position: relative; /* pour permettre un positionnement absolu de l'h1 */
-				display: inline-block; /* pour centrer l'image et l'h1 */
-				text-align: center; /* pour centrer l'h1 */
-				margin: 20px; /* pour ajouter une marge */
-
-			}
-
-			.rounded-image {
-				border-radius: 7px;
-				border: 1px solid black;
-			}
-
-			.image-title {
-				position: absolute; /* pour positionner l'h1 à l'intérieur de la div */
-				bottom: 0; /* pour placer l'h1 vers le bas */
-				left: 0; /* pour centrer l'h1 */
-				width: 100%; /* pour que l'h1 prenne toute la largeur de la div */
-				color: white;
-				font-family: 'David Libre', sans-serif;
-				font-size: 22px;
-				font-weight: bold;
-				margin-bottom: 5px;
-				text-shadow: 2px 2px 0 black; /* pour ajouter une ombre au texte */
-			}
-			/* ------------- */
-			.info-box {
-				background-color: #C78522;
-				border-radius: 7px;
-				border: 1px solid black;
-				margin: 20px;
-				padding: 10px;
-			}
-
-			.info-box p {
-				color: #FFF;
-				font-family: 'Saira', sans-serif;
-				font-size: 18px;
-				text-align: center;
-			}
-
-			.title-h2 {
-				font-family: 'David Libre', sans-serif;
-				font-size: 26px;
-				text-align: center;
-				margin: 50px 20px;
-			}
-
-			.horaire-container {
-				border: 2px solid black;
-				border-radius: 5px;
-				padding: 20px 10px 10px;
-				max-width: 500px;
-				margin: 0 auto;
-				width: calc(100% - 30px);
-				font-family: 'David Libre', sans-serif;
-				font-size: 16px;
-				font-weight: bold;
-				text-align: center;
-			}
-
-			.titre-horaire {
-				font-family: 'David Libre', sans-serif;
-				font-size: 26px;
-				font-weight: bold;
-				text-align: center;
-				margin-bottom: 30px;
-			}
-
-			.btn-reserve {
-				font-family: 'Saira', sans-serif;
-				font-weight: 500;
-				font-size: 16px;
-				color: white;
-				background-color: #493414;
-				padding: 10px 25px;
-				border-radius: 7px;
-				display: block;
-				margin: 50px auto;
-				width: 200px;
-				text-align: center;
-				text-decoration: none;
-				transition: all 0.3s ease;
-				border: 2px solid #493414;
-			}
-
-			.btn-reserve:hover {
-				color: #493414;
-				font-weight: 600;
-				background-color: white;
-				border: 2px solid #493414;
-			}
-		}
-
-		/* --------------FIN TELEPHONE FIN --------------------- */
-	</style>
 {% endblock %}
