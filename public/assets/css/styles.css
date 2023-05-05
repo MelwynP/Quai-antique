@@ -200,6 +200,7 @@ body {
     font-weight: 500;
     color: #040F48;
     text-align: center;
+    margin-top: 30px;
     margin-bottom: 55px;
   }
 
@@ -212,6 +213,7 @@ body {
     max-width: 550px;
     width: calc(100% - 30px);
     font-family: 'David Libre', sans-serif;
+    font-weight: 600;
     font-size: 22px;
     text-align: center;
   }
@@ -366,8 +368,9 @@ body {
     border-radius: 7px;
     display: block;
     margin: 50px auto;
-    margin-bottom: 10px;
-    width: 200px;
+    margin-top: 50px;
+    margin-bottom: 40px;
+    width: 300px;
     text-align: center;
     text-decoration: none;
     transition: all 0.1s ease;
@@ -402,6 +405,7 @@ body {
     width: calc(100% - 30px);
     font-family: 'David Libre', sans-serif;
     font-size: 18px;
+    font-weight: 600;
     text-align: center;
   }
 
@@ -549,12 +553,12 @@ body {
     font-size: 16px;
     color: white;
     background-color: #493414;
-    padding: 10px 25px;
+    padding: 10px 15px;
     border-radius: 7px;
     display: block;
     margin: 50px auto;
-    margin-bottom: 10px;
-    width: 180px;
+    margin-bottom: 30px;
+    width: 220px;
     text-align: center;
     text-decoration: none;
     transition: all 0.1s ease;
@@ -589,6 +593,7 @@ body {
     width: calc(100% - 30px);
     font-family: 'David Libre', sans-serif;
     font-size: 14px;
+    font-weight: 600;
     text-align: center;
   }
 

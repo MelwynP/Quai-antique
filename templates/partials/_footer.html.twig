@@ -1,17 +1,205 @@
-{# <footer class="container-fluid bg-light">
-	<div class="row">
-		<section class="col">
-			<p>Le quai-antique</p>
-			<p>chambery</p>
-		</section>
-		<section class="col">
-			<p>Réalisation</p>
-		</section>
-		<section class="col">
-			<p>accueil</p>
-			<p>carte & menu</p>
-			<p>Reserver</p>
-			<p>mon compte</p>
-		</section>
+<footer>
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="address text-center">
+					Quai Antique<br>
+					2 Rue Favre<br>
+					73000 Chambery<br>
+					03 88 88 88 88
+				</div>
+				<div class="logo-container">
+					<a href="#">
+						<img src="assets/pictures/logo.png" alt="Logo">
+					</a>
+				</div>
+				<div class="links text-center">
+					<a href="{{path('app_main')}}">Accueil</a>
+					<a href="{{ path('app_card_menu')}}">Menu & Carte</a>
+					<a href="{{ path('app_book')}}">Réserver</a>
+					<a href="{{path('app_login')}}">Se connecter</a>
+				</div>
+				<div class="credit text-center">
+					Réalisé par Melwyn -
+					<a href="{{path('app_privacy_policy')}} ">Copyright 2023</a>
+					-
+					<a href="{{path('app_legal_notice')}}">Mentions légales</a>
+				</div>
+			</div>
+		</div>
 	</div>
-</footer> #}
+</footer>
+
+
+<style>
+	/* -----------------NAVBAR--VUE--DESKTOP------------- */
+	@media(min-width: 1024px) {
+		footer {
+			background-color: #C78522;
+			color: #ffffff;
+			font-family: 'David Libre', sans-serif;
+			font-size: 22px;
+			margin-top: 60px;
+			padding: 20px;
+		}
+
+		.address {
+			float: left;
+			font-size: 20px;
+			margin-right: 40px;
+			margin-bottom: 20px;
+		}
+
+		.logo-container {
+			display: flex;
+			justify-content: center;
+		}
+
+		.logo-container img {
+			height: 90px;
+			margin-right: 180px;
+		}
+
+
+		.credit {
+			margin-top: 40px;
+			text-align: center;
+		}
+		.links {
+			float: right;
+			text-align: right;
+			margin-top: -100px;
+			font-size: 20px;
+			margin-right: 40px;
+		}
+
+		.links a {
+			display: block;
+			margin-bottom: 10px;
+			text-decoration: none;
+			color: #ffffff;
+		}
+
+		.credit a {
+			color: white;
+			text-decoration: none;
+		}
+
+		.credit a:hover {
+			text-decoration: underline;
+		}
+
+		.links a:hover {
+			text-decoration: underline;
+		}
+	}
+
+	/* -----------------NAVBAR--VUE--TABLETTE------------- */
+	@media(max-width: 1024px) {
+		footer {
+			background-color: #C78522;
+			color: #ffffff;
+			font-family: 'David Libre', sans-serif;
+			font-size: 20px;
+			margin-top: 60px;
+			padding: 20px;
+		}
+
+		.address {
+			font-size: 20px;
+			margin-bottom: 20px;
+		}
+
+		.logo-container {
+			display: flex;
+			justify-content: center;
+			margin-bottom: 20px;
+		}
+
+		.logo-container img {
+			height: 90px;
+		}
+
+		.credit {
+			font-size: 16px;
+			margin-top: 20px;
+			margin-bottom: -10px;
+		}
+
+		.links a {
+			color: #ffffff;
+			text-decoration: none;
+			display: block;
+		}
+
+		.credit a {
+			color: white;
+			text-decoration: none;
+		}
+
+		.credit a:hover {
+			text-decoration: underline;
+		}
+
+		.links a:hover {
+			text-decoration: underline;
+		}
+
+	}
+
+
+	/* -----------------NAVBAR--VUE--MOBILE------------- */
+	@media(max-width: 768px) {
+
+		footer {
+			background-color: #C78522;
+			color: #ffffff;
+			font-family: 'David Libre', sans-serif;
+			font-size: 20px;
+			margin-top: 60px;
+
+			padding: 20px;
+		}
+
+		.address {
+			font-size: 20px;
+			margin-bottom: 20px;
+		}
+
+		.logo-container {
+			display: flex;
+			justify-content: center;
+			margin-bottom: 20px;
+		}
+
+		.logo-container img {
+			height: 90px;
+		}
+
+		.credit {
+			font-size: 14px;
+			margin-top: 20px;
+		}
+
+
+		.links a {
+			color: #ffffff;
+			text-decoration: none;
+			display: block;
+		}
+
+		.credit a {
+			color: white;
+			text-decoration: none;
+		}
+
+		.credit a:hover {
+			text-decoration: underline;
+		}
+
+		.links a:hover {
+			text-decoration: underline;
+		}
+
+	}
+</style>
