@@ -171,13 +171,13 @@ body {
     font-size: 22px;
     color: white;
     background-color: #493414;
-    padding: 10px 35px 15px 35px;
+    padding: 10px 10px 15px 10px;
     border-radius: 7px;
     display: block;
     margin: 50px auto;
     margin-top: 70px;
     margin-bottom: 30px;
-    width: 250px;
+    width: 280px;
     text-align: center;
     text-decoration: none;
     transition: all 0.1s ease;
@@ -601,7 +601,4 @@ body {
     border-radius: 50%;
     background-color: rgb(49, 46, 46);
   }
-
-  /* -------------------NAVBAR------------------------- */
-
 }

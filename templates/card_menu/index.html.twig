@@ -30,87 +30,86 @@
 						</div>
 					</div>
 				{% endfor %}
-
-				<div class="col-12">
-					<h3>Nos menus</h3>
-					{% for menu in menuExpress %}
-						<div class="card-body">
-							<h5 class="card-title">Menu
-								{{menu.name}}*</h5>
-							<br>
-							<h6>Burger + Dessert</h6>
-							<p>Où</p>
-							<h6>Plat + Dessert</h6>
-							<p>
-								*{{menu.description}}</p>
-							<p>prix :
-								{{menu.price}}
-								€
-							</p>
-						</div>
-					{% endfor %}
-				</div>
-
-				<div class="col-12">
-					<h3>Nos menus</h3>
-					{% for menu in menuSavoyard %}
-						<div class="card-body">
-							<h5 class="card-title">Menu
-								{{menu.name}}</h5>
-							<h6>Entrées</h6>
-							<p>Soupe de crozet où diots</p>
-							<h6>Plats</h6>
-							<p>fondue savoyarde où croziflette</p>
-							<h6>Desserts</h6>
-							<p>Tiramisu où salade de fruits</p>
-							<p>
-								{{menu.description}}</p>
-							<p>prix :
-								{{menu.price}}
-								€
-							</p>
-						</div>
-					{% endfor %}
-				</div>
-
-				<div class="col-12">
-					<h3>Nos menus</h3>
-					{% for menu in menuComplet %}
-						<div class="card-body">
-							<h5 class="card-title">Menu
-								{{menu.name}}</h5>
-							<h6>Entrée au choix</h6>
-							<h6>Burger où plat au choix</h6>
-							<h6>Fromage au choix</h6>
-							<h6>Dessert au choix</h6>
-							<p>
-								{{menu.description}}</p>
-							<p>prix :
-								{{menu.price}}
-								€
-							</p>
-						</div>
-					{% endfor %}
-				</div>
-
-				{# Reserver une table lien #}
-				<a href="{{ path('app_book') }}" class="mt-3 mb-4 btn btn-primary">Reserver une table</a>
-
-
-				<div>
-					<h3>Nos horaires</h3>
-					<br>
-					{% for hour in hour %}
-						Le
-						{{ hour.dayweek }}
-						{{ hour.lunchOpeningTime }}
-						{{ hour.lunchClosingTime }}
-						{{ hour.dinnerOpeningTime }}
-						{{ hour.dinnerClosingTime }}
-					</p>
-				{% endfor %}
-				<br>
+				{# 
+								<div class="col-12">
+									<h3>Nos menus</h3>
+									{% for menu in menuExpress %}
+										<div class="card-body">
+											<h5 class="card-title">Menu
+												{{menu.name}}*</h5>
+											<br>
+											<h6>Burger + Dessert</h6>
+											<p>Où</p>
+											<h6>Plat + Dessert</h6>
+											<p>
+												*{{menu.description}}</p>
+											<p>prix :
+												{{menu.price}}
+												€
+											</p>
+										</div>
+									{% endfor %}
+								</div>
+				
+								<div class="col-12">
+									<h3>Nos menus</h3>
+									{% for menu in menuSavoyard %}
+										<div class="card-body">
+											<h5 class="card-title">Menu
+												{{menu.name}}</h5>
+											<h6>Entrées</h6>
+											<p>Soupe de crozet où diots</p>
+											<h6>Plats</h6>
+											<p>fondue savoyarde où croziflette</p>
+											<h6>Desserts</h6>
+											<p>Tiramisu où salade de fruits</p>
+											<p>
+												{{menu.description}}</p>
+											<p>prix :
+												{{menu.price}}
+												€
+											</p>
+										</div>
+									{% endfor %}
+								</div>
+				
+								<div class="col-12">
+									<h3>Nos menus</h3>
+									{% for menu in menuComplet %}
+										<div class="card-body">
+											<h5 class="card-title">Menu
+												{{menu.name}}</h5>
+											<h6>Entrée au choix</h6>
+											<h6>Burger où plat au choix</h6>
+											<h6>Fromage au choix</h6>
+											<h6>Dessert au choix</h6>
+											<p>
+												{{menu.description}}</p>
+											<p>prix :
+												{{menu.price}}
+												€
+											</p>
+										</div>
+									{% endfor %} #}
 			</div>
-		</section>
-	</main>
-</main>{% endblock %}
+
+			{# Reserver une table lien #}
+			<a href="{{ path('app_book') }}" class="mt-3 mb-4 btn btn-primary">Reserver une table</a>
+
+
+			<div>
+				<h3>Nos horaires</h3>
+				<br>
+				{% for hour in hour %}
+					Le
+					{{ hour.dayweek }}
+					{{ hour.lunchOpeningTime }}
+					{{ hour.lunchClosingTime }}
+					{{ hour.dinnerOpeningTime }}
+					{{ hour.dinnerClosingTime }}
+				</p>
+			{% endfor %}
+			<br>
+		</div>
+	</section>
+</main></main>{% endblock %}
