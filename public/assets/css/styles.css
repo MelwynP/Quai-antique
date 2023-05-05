@@ -3,6 +3,9 @@
   src: url('/assets/fonts/DavidLibre-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
+
+  <style>@import url('https://fonts.googleapis.com/css2?family=Saira&display=swap');
+    </style>
 }
 
 .horaire-container {
