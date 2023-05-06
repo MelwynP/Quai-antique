@@ -73,8 +73,7 @@ body {
     font-weight: 500;
     color: #040F48;
     font-family: 'David Libre', sans-serif;
-    margin-top: 45px;
-    margin-bottom: 45px;
+    margin: 45px 25px 45px 25px
   }
 
   .info-box {
@@ -461,6 +460,7 @@ body {
     color: #040F48;
     font-family: 'David Libre', sans-serif;
     margin-top: 20px;
+    margin: 20px 25px 10px 25px;
     margin-bottom: 5px;
   }
 
