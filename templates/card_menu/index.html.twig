@@ -5,167 +5,173 @@
 {% block body %}
 	<div class="containerPrincipal">
 		<h2 class="histoire-title">Savourez nos délicieux plats faits maison, inspiré par le chef Arnaud Michant</h2>
+
 		<span class="separateur"><img src="assets/pictures/separateur.png" alt="séparateur"></span>
+
 		{% for category in categories %}
-			<div class="category">
-				<h2>{{category.name}}</h2>
-				{% for flat in category.flats %}
+			<span class="titre-category-name">
+				<h2 class="histoire-title">{{category.name}}</h2>
+			</span>
 
-					<div class="menu-item">
-						<div class="menu-item-name">{{ flat.name }}<span class="dots">...................</span>
-							<span class="menu-item-price">{{ flat.price }}</span>
+			{% for flat in category.flats %}
+
+				<div class="flat-item">
+
+					<span class="flat-name">{{ flat.name }}</span>
+
+					<span class="flat-price">{{ flat.price }}€<span></div>
+
+						<span class="flat-description">{{ flat.description }}</span>
+
+					{% endfor %}
+				{% endfor %}
+				<span class="titre-category-name">
+					<h2 class="histoire-title">Découvrez nos menus variés pour tous les goûts</h2>
+				</span>
+
+				<div class="menu-container">
+
+					{% for menu in menus %}
+						<div class="cardMenu">
+							<h5 class="titreMenu">Menu
+								{{ menu.name }}*</h5>
+							<br>
+							{% if menu.id == 1 %}
+								<h6>Burger + Dessert</h6>
+								<p>Où</p>
+								<h6>Plat + Dessert</h6>
+							{% elseif menu.id == 2 %}
+								<h6>Pizza + Boisson</h6>
+								<p>Quand</p>
+								<h6>Entrée + Plat + Dessert</h6>
+							{% else %}
+								<h6>Plat + Boisson</h6>
+								<p>Comment</p>
+								<h6>Entrée + Plat</h6>
+							{% endif %}
+							<p>*{{ menu.description }}</p>
+							<p>prix :
+								{{ menu.price }}
+								€</p>
 						</div>
-						<div class="menu-item-description">{{ flat.description }}
-						</div>
-					</div>
+					{% endfor %}
+
+
 				</div>
-			{% endfor %}
-		</div>
-	{% endfor %}
-</div>
+				{#
+																																																																																							<div class="col-12">
+																																																																																								<h3>Nos menus</h3>
+																																																																																								{% for menu in menu %}
+																																																																																									<div class="card-body">
+																																																																																										<h5 class="card-title">Menu
+																																																																																											{{menu.name}}</h5>
+																																																																																										<h6>Entrées</h6>
+																																																																																										<p>Soupe de crozet où diots</p>
+																																																																																										<h6>Plats</h6>
+																																																																																										<p>fondue savoyarde où croziflette</p>
+																																																																																										<h6>Desserts</h6>
+																																																																																										<p>Tiramisu où salade de fruits</p>
+																																																																																										<p>
+																																																																																											{{menu.description}}</p>
+																																																																																										<p>prix :
+																																																																																											{{menu.price}}
+																																																																																											€
+																																																																																										</p>
+																																																																																									</div>
+																																																																																								{% endfor %}
+																																																																																							</div>
+																																																																																			
+																																																																																							<div class="col-12">
+																																																																																								<h3>Nos menus</h3>
+																																																																																								{% for menu in menu %}
+																																																																																									<div class="card-body">
+																																																																																										<h5 class="card-title">Menu
+																																																																																											{{menu.name}}</h5>
+																																																																																										<h6>Entrée au choix</h6>
+																																																																																										<h6>Burger où plat au choix</h6>
+																																																																																										<h6>Fromage au choix</h6>
+																																																																																										<h6>Dessert au choix</h6>
+																																																																																										<p>
+																																																																																											{{menu.description}}</p>
+																																																																																										<p>prix :
+																																																																																											{{menu.price}}
+																																																																																											€
+																																																																																										</p>
+																																																																																									</div>
+																																																																																								{% endfor %} #}
 
 
-<style>
-	.separateur {
-		display: flex;
-		justify-content: center;
-		margin: 10px 0;
-	}
+				<style>
+					@font-face {
+						font-family: 'Saira Medium';
+						src: url('/assets/fonts/Saira-Medium.ttf');
+						font-weight: normal;
+						font-style: normal;
+					}
+					/* séparateur */
+					.separateur {
+						display: flex;
+						justify-content: center;
+						margin: 20px 0 -20px;
+					}
 
-	.separateur img {
-		height: 60px;
-	}
-	.menu-item {
-		display: flex;
-		flex-direction: column;
-	}
+					.separateur img {
+						height: 60px;
+					}
+					.titre-category-name {
+						margin-top: 35px;
+					}
+					.flat-item {
+						font-family: 'Saira', sans-serif;
+						color: #C78522;
+						display: flex;
+						justify-content: space-between;
+						align-items: center;
+						margin-top: 5px;
+						width: 100%;
+					}
 
-	.menu-item-name {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		font-size: 18px;
-	}
+					.flat-name {
+						font-size: 17px;
+						margin-left: 20px;
+					}
 
-	.dots {
-		width: 100%;
-		text-align: center;
-	}
 
-	.menu-item-price {
-		margin-left: 5px;
-	}
+					.flat-price {
+						font-size: 17px;
+						margin-right: 20px;
+					}
 
-	.menu-item-description {
-		font-size: 14px;
-		margin-top: 5px;
-	}
+					.flat-description {
+						font family: 'Saira', sans-serif;
+						color: #493414;
+						display: flex;
+						width: 100%;
+						max-width: 90%;
+						font-size: 12px;
+						justify-content: flex-start;
+						margin-top: -5px;
+					}
 
-	/* 
-		.category {
-			text-align: center;
-		}
+					.menu-container {
+						display: flex;
+						flex-wrap: wrap;
+						justify-content: center;
+						text-align: center;
+					}
 
-		.category h2 {
-			color: #040F48;
-			font-family: 'David Libre', sans-serif;
-			font-size: 26px;
-		}
+					.cardMenu {
+						width: 300px;
+						margin: 10px;
+						background-color: #f2f2f2;
+						padding: 10px;
+						border-radius: 5px;
+					}
 
-		.flat {
-			display: flex;
-			align-items: center;
-			margin: 10px 0;
-		}
-
-		.flat-info {
-			display: flex;
-			flex-direction: column;
-			margin-right: 10px;
-		}
-
-		.flat-name {
-			color: #C78522;
-			font-family: 'Saira', sans-serif;
-			font-size: 18px;
-			flex: left;
-		}
-		.flat-price {
-			color: #C78522;
-			font-family: 'Saira', sans-serif;
-			font-size: 18px;
-			flex: right;
-		}
-
-		.flat-description {
-			color: #493414;
-			font-family: 'Saira', sans-serif;
-			font-size: 14px;
-		}
-
-		.flat-price {
-			color: #C78522;
-			font-family: 'Saira', sans-serif;
-			font-size: 18px;
-		} */
-</style>{% endblock %}{# 
-																																							<div class="col-12">
-																																								<h3>Nos menus</h3>
-																																								{% for menu in menuExpress %}
-																																									<div class="card-body">
-																																										<h5 class="card-title">Menu
-																																											{{menu.name}}*</h5>
-																																										<br>
-																																										<h6>Burger + Dessert</h6>
-																																										<p>Où</p>
-																																										<h6>Plat + Dessert</h6>
-																																										<p>
-																																											*{{menu.description}}</p>
-																																										<p>prix :
-																																											{{menu.price}}
-																																											€
-																																										</p>
-																																									</div>
-																																								{% endfor %}
-																																							</div>
-																																			
-																																							<div class="col-12">
-																																								<h3>Nos menus</h3>
-																																								{% for menu in menuSavoyard %}
-																																									<div class="card-body">
-																																										<h5 class="card-title">Menu
-																																											{{menu.name}}</h5>
-																																										<h6>Entrées</h6>
-																																										<p>Soupe de crozet où diots</p>
-																																										<h6>Plats</h6>
-																																										<p>fondue savoyarde où croziflette</p>
-																																										<h6>Desserts</h6>
-																																										<p>Tiramisu où salade de fruits</p>
-																																										<p>
-																																											{{menu.description}}</p>
-																																										<p>prix :
-																																											{{menu.price}}
-																																											€
-																																										</p>
-																																									</div>
-																																								{% endfor %}
-																																							</div>
-																																			
-																																							<div class="col-12">
-																																								<h3>Nos menus</h3>
-																																								{% for menu in menuComplet %}
-																																									<div class="card-body">
-																																										<h5 class="card-title">Menu
-																																											{{menu.name}}</h5>
-																																										<h6>Entrée au choix</h6>
-																																										<h6>Burger où plat au choix</h6>
-																																										<h6>Fromage au choix</h6>
-																																										<h6>Dessert au choix</h6>
-																																										<p>
-																																											{{menu.description}}</p>
-																																										<p>prix :
-																																											{{menu.price}}
-																																											€
-																																										</p>
-																																									</div>
-																																								{% endfor %} #}
+					.titreMenu {
+						font-family: 'Saira', sans-serif;
+						color: #C78522;
+						font-size: 20px;
+					}
+				</style>
+			{% endblock %}
