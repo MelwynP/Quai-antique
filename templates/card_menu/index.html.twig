@@ -4,174 +4,104 @@
 {% endblock %}
 {% block body %}
 	<div class="containerPrincipal">
-		<h2 class="histoire-title">Savourez nos délicieux plats faits maison, inspiré par le chef Arnaud Michant</h2>
+		<span class="titleMargeh2">
+
+			<h2 class="histoire-title">Savourez nos délicieux plats faits maison, inspiré par le chef Arnaud Michant</h2>
+		</span>
 
 		<span class="separateur"><img src="assets/pictures/separateur.png" alt="séparateur"></span>
-
 		{% for category in categories %}
 			<span class="titre-category-name">
 				<h2 class="histoire-title">{{category.name}}</h2>
 			</span>
-
 			{% for flat in category.flats %}
-
 				<div class="flat-item">
-
 					<span class="flat-name">{{ flat.name }}</span>
-
 					<span class="flat-price">{{ flat.price }}€<span></div>
-
 						<span class="flat-description">{{ flat.description }}</span>
-
 					{% endfor %}
 				{% endfor %}
 				<span class="titre-category-name">
-					<h2 class="histoire-title">Découvrez nos menus variés pour tous les goûts</h2>
+					<h2 class="histoire-title">Découvrez nos menus variés,<br>
+						pour tous les goûts</h2>
 				</span>
-
 				<div class="menu-container">
-
 					{% for menu in menus %}
 						<div class="cardMenu">
-							<h5 class="titreMenu">Menu
-								{{ menu.name }}*</h5>
+							<h5 class="titreMenu">
+								<U>
+									{{ menu.name }}</U>
+							</h5>
 							<br>
 							{% if menu.id == 1 %}
-								<h6>Burger + Dessert</h6>
-								<p>Où</p>
-								<h6>Plat + Dessert</h6>
+								<p class="choiceMenu"><br>
+									Burger + Dessert
+									<br><br><B>
+										<U>ou</U>
+									</B>
+									<br><br>
+									Plat + Dessert</p><br>
 							{% elseif menu.id == 2 %}
-								<h6>Pizza + Boisson</h6>
-								<p>Quand</p>
-								<h6>Entrée + Plat + Dessert</h6>
+								<br>
+								<p class="choiceMenu">Soupe de crozet
+									<B>
+										<U>ou</U>
+									</B>
+									Diots
+									<br>-------------<br>
+									Fondue savoyarde
+									<B>
+										<U>ou</U>
+									</B>
+									Croziflette
+									<br>-------------<br>
+									Tiramisu
+									<B>
+										<U>ou</U>
+									</B>
+									Salade de fruits
+								</p><br>
 							{% else %}
-								<h6>Plat + Boisson</h6>
-								<p>Comment</p>
-								<h6>Entrée + Plat</h6>
+								<p class="choiceMenu">Entrée au choix
+									<br>-------------<br>
+									Burger
+									<B>
+										<U>ou</U>
+									</B>
+									Plat au choix
+									<br>-------------<br>
+									Fromage au choix
+									<br>-------------<br>
+									Dessert au choix
+								</p>
 							{% endif %}
-							<p>*{{ menu.description }}</p>
-							<p>prix :
-								{{ menu.price }}
-								€</p>
+							<p class="prixDescriptionMenu">
+								<span class="description">{{ menu.description }}</span>
+								<span class="prix">{{ menu.price }}€</span>
+							</p>
 						</div>
+						<span class="separateur"><img src="assets/pictures/separateur.png" alt="séparateur"></span>
+
 					{% endfor %}
 
-
 				</div>
-				{#
-																																																																																							<div class="col-12">
-																																																																																								<h3>Nos menus</h3>
-																																																																																								{% for menu in menu %}
-																																																																																									<div class="card-body">
-																																																																																										<h5 class="card-title">Menu
-																																																																																											{{menu.name}}</h5>
-																																																																																										<h6>Entrées</h6>
-																																																																																										<p>Soupe de crozet où diots</p>
-																																																																																										<h6>Plats</h6>
-																																																																																										<p>fondue savoyarde où croziflette</p>
-																																																																																										<h6>Desserts</h6>
-																																																																																										<p>Tiramisu où salade de fruits</p>
-																																																																																										<p>
-																																																																																											{{menu.description}}</p>
-																																																																																										<p>prix :
-																																																																																											{{menu.price}}
-																																																																																											€
-																																																																																										</p>
-																																																																																									</div>
-																																																																																								{% endfor %}
-																																																																																							</div>
-																																																																																			
-																																																																																							<div class="col-12">
-																																																																																								<h3>Nos menus</h3>
-																																																																																								{% for menu in menu %}
-																																																																																									<div class="card-body">
-																																																																																										<h5 class="card-title">Menu
-																																																																																											{{menu.name}}</h5>
-																																																																																										<h6>Entrée au choix</h6>
-																																																																																										<h6>Burger où plat au choix</h6>
-																																																																																										<h6>Fromage au choix</h6>
-																																																																																										<h6>Dessert au choix</h6>
-																																																																																										<p>
-																																																																																											{{menu.description}}</p>
-																																																																																										<p>prix :
-																																																																																											{{menu.price}}
-																																																																																											€
-																																																																																										</p>
-																																																																																									</div>
-																																																																																								{% endfor %} #}
 
+				<a href="{{ path('app_book') }}" class="btn-reserve">
+					Reserver une table</a>
 
-				<style>
-					@font-face {
-						font-family: 'Saira Medium';
-						src: url('/assets/fonts/Saira-Medium.ttf');
-						font-weight: normal;
-						font-style: normal;
-					}
-					/* séparateur */
-					.separateur {
-						display: flex;
-						justify-content: center;
-						margin: 20px 0 -20px;
-					}
+				<h3 class="titre-horaire">Nos horaires</h3>
 
-					.separateur img {
-						height: 60px;
-					}
-					.titre-category-name {
-						margin-top: 35px;
-					}
-					.flat-item {
-						font-family: 'Saira', sans-serif;
-						color: #C78522;
-						display: flex;
-						justify-content: space-between;
-						align-items: center;
-						margin-top: 5px;
-						width: 100%;
-					}
-
-					.flat-name {
-						font-size: 17px;
-						margin-left: 20px;
-					}
-
-
-					.flat-price {
-						font-size: 17px;
-						margin-right: 20px;
-					}
-
-					.flat-description {
-						font family: 'Saira', sans-serif;
-						color: #493414;
-						display: flex;
-						width: 100%;
-						max-width: 90%;
-						font-size: 12px;
-						justify-content: flex-start;
-						margin-top: -5px;
-					}
-
-					.menu-container {
-						display: flex;
-						flex-wrap: wrap;
-						justify-content: center;
-						text-align: center;
-					}
-
-					.cardMenu {
-						width: 300px;
-						margin: 10px;
-						background-color: #f2f2f2;
-						padding: 10px;
-						border-radius: 5px;
-					}
-
-					.titreMenu {
-						font-family: 'Saira', sans-serif;
-						color: #C78522;
-						font-size: 20px;
-					}
-				</style>
+				<div class="horaire-container">
+					{% for hour in hour %}
+						<p>Le
+							{{ hour.dayWeek }}
+							{{ hour.lunchOpeningTime }}
+							-
+							{{ hour.lunchClosingTime }}
+							et
+							{{ hour.dinnerOpeningTime }}
+							-
+							{{ hour.dinnerClosingTime }}</p>
+					{% endfor %}
+				</div>
 			{% endblock %}
