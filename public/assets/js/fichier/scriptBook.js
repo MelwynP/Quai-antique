@@ -51,6 +51,7 @@ function changePlaceholder() {
 
     // Vider les options actuelles du champ de saisie de l'heure
     hour.innerHTML = "";
+    
 
     // Ajouter un placeholder pour le champ de saisie de l'heure
     const placeholderOption = document.createElement("option");

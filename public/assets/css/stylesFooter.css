@@ -1,0 +1,173 @@
+/* -----------------NAVBAR--VUE--DESKTOP------------- */
+@media(min-width: 1024px) {
+  footer {
+    background-color: #C78522;
+    color: #ffffff;
+    font-family: 'David Libre', sans-serif;
+    font-size: 22px;
+    margin-top: 60px;
+    padding: 20px;
+  }
+
+  .address {
+    float: left;
+    font-size: 20px;
+    margin-right: 40px;
+    margin-top: 10px;
+  }
+
+  .logo-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .logo-container img {
+    height: 90px;
+    margin-right: 180px;
+  }
+
+
+  .credit {
+    margin-top: 60px;
+    margin-bottom:-15px;
+    text-align: center;
+  }
+
+  .links {
+    float: right;
+    text-align: right;
+    margin-top: -80px;
+    font-size: 20px;
+    margin-right: -70px;
+  }
+
+  .links a {
+    display: block;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: #ffffff;
+  }
+
+  .credit a {
+    color: white;
+    text-decoration: none;
+  }
+
+  .credit a:hover {
+    text-decoration: underline;
+  }
+
+  .links a:hover {
+    text-decoration: underline;
+  }
+}
+
+/* -----------------NAVBAR--VUE--TABLETTE------------- */
+@media(max-width: 1024px) {
+  footer {
+    background-color: #C78522;
+    color: #ffffff;
+    font-family: 'David Libre', sans-serif;
+    font-size: 20px;
+    margin-top: 60px;
+    padding: 20px;
+  }
+
+  .address {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .logo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .logo-container img {
+    height: 90px;
+  }
+
+  .credit {
+    font-size: 16px;
+    margin-top: 20px;
+    margin-bottom: -10px;
+  }
+
+  .links a {
+    color: #ffffff;
+    text-decoration: none;
+    display: block;
+  }
+
+  .credit a {
+    color: white;
+    text-decoration: none;
+  }
+
+  .credit a:hover {
+    text-decoration: underline;
+  }
+
+  .links a:hover {
+    text-decoration: underline;
+  }
+
+}
+
+
+/* -----------------NAVBAR--VUE--MOBILE------------- */
+@media(max-width: 768px) {
+
+  footer {
+    background-color: #C78522;
+    color: #ffffff;
+    font-family: 'David Libre', sans-serif;
+    font-size: 20px;
+    margin-top: 60px;
+
+    padding: 20px;
+  }
+
+  .address {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .logo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .logo-container img {
+    height: 90px;
+  }
+
+  .credit {
+    font-size: 14px;
+    margin-top: 20px;
+  }
+
+
+  .links a {
+    color: #ffffff;
+    text-decoration: none;
+    display: block;
+  }
+
+  .credit a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .credit a:hover {
+    text-decoration: underline;
+  }
+
+  .links a:hover {
+    text-decoration: underline;
+  }
+
+}
