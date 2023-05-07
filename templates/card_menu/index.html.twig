@@ -2,14 +2,16 @@
 
 {% block title %}Carte et Menu
 {% endblock %}
+
 {% block body %}
+	<link rel="stylesheet" href="stylesCardMenu.css">
 	<div class="containerPrincipal">
 		<span class="titleMargeh2">
-
 			<h2 class="histoire-title">Savourez nos délicieux plats faits maison, inspiré par le chef Arnaud Michant</h2>
 		</span>
-
-		<span class="separateur"><img src="assets/pictures/separateur.png" alt="séparateur"></span>
+		<span class="separateur">
+			<img src="assets/pictures/separateur.png" alt="séparateur">
+		</span>
 		{% for category in categories %}
 			<span class="titre-category-name">
 				<h2 class="histoire-title">{{category.name}}</h2>
@@ -29,71 +31,58 @@
 					{% for menu in menus %}
 						<div class="cardMenu">
 							<h5 class="titreMenu">
-								<U>
-									{{ menu.name }}</U>
+								<U>{{ menu.name }}</U>
 							</h5>
-							<br>
 							{% if menu.id == 1 %}
-								<p class="choiceMenu"><br>
-									Burger + Dessert
-									<br><br><B>
+								<p class="choiceMenu"><br><br>Burger + Dessert<br><br><B>
 										<U>ou</U>
-									</B>
-									<br><br>
-									Plat + Dessert</p><br>
+									</B><br><br>Plat + Dessert<br></p>
 							{% elseif menu.id == 2 %}
-								<br>
-								<p class="choiceMenu">Soupe de crozet
+								<p class="choiceMenu"><br>Soupe de crozet
 									<B>
 										<U>ou</U>
 									</B>
-									Diots
-									<br>-------------<br>
-									Fondue savoyarde
+									Diots<br>-------------<br>Fondue savoyarde
 									<B>
 										<U>ou</U>
 									</B>
-									Croziflette
-									<br>-------------<br>
-									Tiramisu
+									Croziflette<br>-------------<br>Tiramisu
 									<B>
 										<U>ou</U>
 									</B>
-									Salade de fruits
-								</p><br>
+									Salade de fruits<br></p>
 							{% else %}
-								<p class="choiceMenu">Entrée au choix
-									<br>-------------<br>
-									Burger
+								<p class="choiceMenu">Entrée au choix<br>-------------<br>Burger
 									<B>
-										<U>ou</U>
-									</B>
-									Plat au choix
-									<br>-------------<br>
-									Fromage au choix
-									<br>-------------<br>
-									Dessert au choix
-								</p>
+										<U>ou
+										</U>
+									</B>Plat au choix<br>-------------<br>Fromage au choix<br>-------------<br>Dessert au choix</p>
 							{% endif %}
 							<p class="prixDescriptionMenu">
 								<span class="description">{{ menu.description }}</span>
 								<span class="prix">{{ menu.price }}€</span>
 							</p>
 						</div>
-						<span class="separateur"><img src="assets/pictures/separateur.png" alt="séparateur"></span>
-
+						{# cardMenu #}
+						<span class="separateur">
+							<img src="assets/pictures/separateur.png" alt="séparateur">
+						</span>
 					{% endfor %}
+				</div>
+				{# menu-container #}
 
+				<div class="boutonHeure">
+					<a href="{{ path('app_book') }}" class="btn-reserve">Reserver une table</a>
 				</div>
 
-				<a href="{{ path('app_book') }}" class="btn-reserve">
-					Reserver une table</a>
-
-				<h3 class="titre-horaire">Nos horaires</h3>
+				<div class="titreHoraire">
+					<h3 class="titre-horaire">Nos horaires</h3>
+				</div>
 
 				<div class="horaire-container">
 					{% for hour in hour %}
-						<p>Le
+						<p>
+							Le
 							{{ hour.dayWeek }}
 							{{ hour.lunchOpeningTime }}
 							-
@@ -101,7 +90,10 @@
 							et
 							{{ hour.dinnerOpeningTime }}
 							-
-							{{ hour.dinnerClosingTime }}</p>
+							{{ hour.dinnerClosingTime }}
+						</p>
 					{% endfor %}
 				</div>
-			{% endblock %}
+			</div>
+			{# containerPrincipal #}
+		{% endblock %}

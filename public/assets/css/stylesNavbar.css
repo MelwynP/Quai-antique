@@ -1,0 +1,181 @@
+/* -----------------NAVBAR--VUE--DESKTOP------------- */
+@media(min-width: 1024px) {
+  .containerNavbar {
+    margin-bottom: 45px;
+  }
+
+  .nav-link {
+    font-family: 'David Libre', sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+    margin-right: 30px;
+  }
+
+  .navbar {
+    background-color: #C78522;
+    width: 100%;
+  }
+
+  .navbar-text,
+  .navbar-brand,
+  .nav-link,
+  .navbar-toggler {
+    color: #fff !important;
+    font-family: 'David Libre', sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+  }
+
+     .navbar-nav {
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       width: 100%;
+       text-align: center;
+       margin-top: 10px;
+     }
+  
+  .navbar-light .navbar-toggler {
+    border: 2px solid rgba(255, 255, 255, 255);
+  }
+
+.cadenas {
+  position: absolute;
+  right: 15px;
+  margin-right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.logoQuai{
+  margin-left: 40px;
+}
+}
+/* -----------------NAVBAR--VUE--TABLETTE------------- */
+@media (min-width: 768px) and (max-width: 1024px) {
+
+.containerNavbar {
+    margin-bottom: 45px;
+  }
+
+  
+  .navbar {
+    background-color: #C78522;
+    width: 100%;
+  }
+
+  .navbar-text,
+  .navbar-brand,
+  .nav-link,
+  .navbar-toggler {
+    color: #fff !important;
+    font-family: 'David Libre', sans-serif;
+font-size: 20px;
+  font-weight: 500;
+  margin-right: 30px;
+  }
+
+
+  .navbar-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+
+  .navbar-light .navbar-toggler {
+    border: 2px solid rgba(255, 255, 255, 255);
+  }
+
+
+
+
+  .nav-link {
+    font-family: 'David Libre', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    margin-right: 10px;
+    margin-left: 10px;
+  }
+
+
+  .navbar-light .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml, %3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 255.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  }
+
+  .navbar-toggler-icon {
+    width: 25px;
+    height: 35px;
+  }
+
+  .navbar-toggler {
+     position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: -20px; 
+  }
+
+
+
+}
+
+
+/* --------------NAVBAR--CSS--SMARTPHONE-------------- */
+@media(max-width: 768px) {
+  .containerNavbar {
+    margin-bottom: 35px;
+  }
+
+  .navbar-nav>li>a {
+    padding-top: 10px;
+    padding-bottom: 15px;
+    margin-right: 0;
+    margin-left: 160px;
+    font-family: 'David Libre', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+  .nav-link {
+    font-family: 'David Libre', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+  }
+
+
+  .navbar {
+    background-color: #C78522;
+  }
+
+  .navbar-text,
+  .navbar-brand,
+  .nav-link,
+  .navbar-toggler {
+    color: #fff !important;
+  }
+
+  .navbar-light .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml, %3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 255.55%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  }
+
+  .navbar-toggler-icon {
+    width: 25px;
+    height: 35px;
+
+  }
+
+  .navbar-toggler {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: -20px;
+
+
+  }
+
+  .navbar-light .navbar-toggler {
+    border: 2px solid rgba(255, 255, 255, 255);
+  }
+}

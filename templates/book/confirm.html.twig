@@ -1,29 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Confirmation réservation
-{% endblock %}
+{% block title %}Confirmation réservation{% endblock %}
 
 {% block body %}
+<div class="confirmBook">
 	<h1>Confirmation de la réservation</h1>
-
-
-	<h3>Récapitulatif de la réservation</h3>
-
+  <h3>Récapitulatif de la réservation</h3>
 	<p>
-		{{ civility }}
-		{{ name }}
-		Votre table vous attend le
-		{{ dateReservation|date('d/m/Y') }}
-		pour le service du
-		{{ serviceType }}
-		à
-		{{ hour|date('H:i') }}
-		pour
-		{{ numberPeople }}
-		personne(s).
-		<br>
+		{{ civility }} {{ name }} Votre table vous attend le {{ dateReservation|date('d/m/Y') }}pour le service du {{ serviceType }} à {{ hour|date('H:i') }} pour {{ numberPeople }} personne(s).<br>
 		En cas d'empechement merci de nous contacter.
 	</p>
-
-
+</div>
 {% endblock %}
