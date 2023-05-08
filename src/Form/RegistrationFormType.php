@@ -79,8 +79,7 @@ class RegistrationFormType extends AbstractType
 
             ->add('email', EmailType::class, [
                 'attr' => [
-                    'class' => 'form-control',
-                    'placeholder' => 'exemple@domaine.com'
+                    'placeholder' => 'exemple@domaine.com',
                 ],
                 'required' => true,
                 'label' => 'E-mail *'
@@ -90,7 +89,6 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'attr' => [
                     'autocomplete' => 'new-password',
-                    'class' => 'form-control',
                     'placeholder' => '********',
                 ],
                 'constraints' => [

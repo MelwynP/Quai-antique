@@ -1,3 +1,6 @@
+/* FORMULAIRE RESERVATION + INSCRIPTION */
+
+
 #monFormulaire {
   font-family: 'David Libre', sans-serif;
   font-weight: 600;
@@ -11,7 +14,7 @@
   font-size: 22px;
 }
 
-.reserver-title {
+.resReg-title {
   text-align: center;
   font-size: 34px;
   font-weight: 500;
@@ -21,7 +24,7 @@
 }
 
 
-#submitBtn {
+.btn-style {
   font-family: 'Saira', sans-serif;
   font-weight: 600;
   font-size: 22px;
@@ -40,13 +43,33 @@
   border: 4px solid #493414;
 }
 
-#submitBtn:hover {
+.btn-style:hover {
   color: #493414;
   font-weight: 600;
   font-size: 22px;
   background-color: white;
   border: 4px solid #493414;
 }
+
+.btn-style.secondary {
+  color: white;
+  background-color: #C78522;
+  border: 4px solid #C78522
+}
+
+.btn-style.secondary:hover {
+  color: #C78522;
+  background-color: white;
+  border: 4px solid #C78522;
+}
+
+.btnx2 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+
 
 #erreur,
 #responseRequete {
@@ -57,6 +80,8 @@
   margin-bottom: 22px;
 }
 
+
+/* TABLETTE ------------------ */
 @media screen and (max-width: 1024px) {
   #monFormulaire {
     width: 70%;
@@ -64,7 +89,7 @@
   }
 
 
-  .reserver-title {
+  .resReg-title {
     text-align: center;
     font-size: 24px;
     font-weight: 500;
@@ -74,7 +99,7 @@
   }
 
 
-  #submitBtn {
+  .btn-style {
     font-family: 'Saira', sans-serif;
     font-weight: 600;
     font-size: 20px;
@@ -93,12 +118,34 @@
     border: 2px solid #493414;
   }
 
-  #submitBtn:hover {
+  .btn-style:hover {
     color: #493414;
     font-weight: 600;
     font-size: 20px;
     background-color: white;
     border: 2px solid #493414;
+  }
+
+  .btn-style.secondary {
+    color: white;
+    background-color: #C78522;
+    border: 4px solid #C78522
+  }
+
+  .btn-style.secondary:hover {
+    color: #C78522;
+    background-color: white;
+    border: 4px solid #C78522;
+  }
+
+  .btnx2 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .btnx2 button {
+    margin-right: 15px;
   }
 
   #erreur,
@@ -112,6 +159,7 @@
 
 }
 
+/* MOBILE ------------------- */
 @media screen and (max-width: 768px) {
   #monFormulaire {
     width: 95%;
@@ -119,7 +167,7 @@
   }
 
 
-  .reserver-title {
+  .resReg-title {
     text-align: center;
     font-size: 24px;
     font-weight: 500;
@@ -129,7 +177,7 @@
   }
 
 
-  #submitBtn {
+  .btn-style {
     font-family: 'Saira', sans-serif;
     font-weight: 500;
     font-size: 16px;
@@ -147,13 +195,36 @@
     border: 2px solid #493414;
   }
 
-  #submitBtn:hover {
+  .btn-style:hover {
     color: #493414;
     font-weight: 500;
     font-size: 16px;
     background-color: white;
     border: 2px solid #493414;
   }
+
+  .btn-style.secondary {
+    color: white;
+    background-color: #C78522;
+    border: 4px solid #C78522
+  }
+
+  .btn-style.secondary:hover {
+    color: #C78522;
+    background-color: white;
+    border: 4px solid #C78522;
+  }
+
+  .btnx2 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .btnx2 button {
+    margin-right: 15px;
+  }
+
 
   #erreur,
   #responseRequete {

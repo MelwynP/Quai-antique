@@ -7,44 +7,39 @@
 	<section class="container">
 		<div class="row">
 			<div class="col">
-				<h1>Inscription</h1>
-				{{ form_start(registrationForm) }}
-				<fieldset>
-					<legend>Informations personnelles</legend>
-					{{ form_label(registrationForm.civility, 'Civilité *') }}
-					{{ form_widget(registrationForm.civility, {
-							'placeholder': 'Veuillez renseigner votre civilité',
-							'attr': {
-									'class': 'form-control'
-							}
-					}) }}
-					{{ form_row(registrationForm.firstname) }}
-					{{ form_row(registrationForm.name) }}
-					{{ form_row(registrationForm.phone) }}
-					{{ form_row(registrationForm.numberPeople) }}
-					{{ form_row(registrationForm.allergy) }}
-					{{ form_row(registrationForm.email) }}
-					{{ form_label(registrationForm.plainPassword, 'Mot de passe *') }}
+        <h2 class="resReg-title">Inscritpion</h2>
+        {{ form_start(registrationForm, {'attr': {'id': 'monFormulaire'}}) }}
+				{{ form_label(registrationForm.civility, 'Civilité *') }}
+				{{ form_widget(registrationForm.civility, {
+						'placeholder': 'Veuillez renseigner votre civilité',
+						'attr': {'class': 'form-control'}}) }}
+        {{ form_row(registrationForm.firstname) }}
+        {{ form_row(registrationForm.name) }}
+        {{ form_row(registrationForm.phone) }}
+        {{ form_row(registrationForm.numberPeople) }}
+        {{ form_row(registrationForm.allergy) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_label(registrationForm.plainPassword, 'Mot de passe *') }}
 					<div class="input-group">
 						{{ form_widget(registrationForm.plainPassword) }}
 						<button type="button" class="btn btn-outline-secondary" onclick="document.getElementById('registration_form_plainPassword').type = (document.getElementById('registration_form_plainPassword').type === 'password') ? 'text' : 'password'">
 							Afficher/Masquer
 						</button>
 					</div>
-					<br>
-					<p id="mdpinfo"></p>
-					{{ form_row(registrationForm.RGPDConsent) }}
-				</fieldset>
-				<button type="submit" class="btn btn-primary btn-lg my-3">S'inscrire</button>
-				<a href="{{ path('app_login') }}" class="btn btn-secondary">Me connecter</a>
-				{{ form_end(registrationForm) }}
+				<p id="mdpinfo"></p>
+				{{ form_row(registrationForm.RGPDConsent) }}
+        <div class="btnx2">
+          <button type="submit" id="submitBtn" class="btn-style primary">M'inscrire</button>
+          <a href="{{ path('app_login') }}" id="submitBtn" class="btn-style secondary">Me connecter</a>
+        </div>
+        {{ form_end(registrationForm) }}
 			</div>
 		</div>
 	</section>
 
-	<script>
+<script>
 
-		const mdp = document.querySelector("#registration_form_plainPassword");
+const mdp = document.querySelector("#registration_form_plainPassword");
 const mdpinfo = document.querySelector("#mdpinfo");
 
 // function qui envoi un message expliquant le mot de passe demandé
@@ -52,6 +47,7 @@ mdp.addEventListener("click", function () {
 mdpinfo.textContent = "Votre mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.";
 mdpinfo.classList.add("text-secondary");
 });
-	</script>
+
+</script>
 
 {% endblock %}

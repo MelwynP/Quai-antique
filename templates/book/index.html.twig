@@ -8,7 +8,7 @@
 	<section class="container">
 		<div class="row">
 			<div class="col">
-				<h2 class="reserver-title">Pour reservez une table, sélectionnez une date</h3>
+				<h2 class="resReg-title">Pour reservez une table, sélectionnez une date</h2>
         {{ form_start(bookForm, {'attr': {'id': 'monFormulaire'}}) }}
 				<div id="erreur"></div>
         {{ form_row(bookForm.dateReservation, { 'attr': {'class': 'form-group col-md-4'} }) }}
@@ -16,7 +16,7 @@
         {{ form_row(bookForm.hour, { 'attr': {'class': 'form-group col-md-4'} }) }}
         {{ form_row(bookForm.numberPeople, { 'attr': {'class': 'form-group col-md-4'} }) }}
         <div id="responseRequete"></div>
-			  <h2 class="reserver-title">Remplir vos données personnelles</h3>
+			  <h2 class="resReg-title">Remplir vos données personnelles</h2>
         {{ form_label(bookForm.civility, 'Civilité *') }}
         {{ form_widget(bookForm.civility, {
                     'placeholder': 'Veuillez renseigner votre civilité',
@@ -35,7 +35,7 @@
         {{ form_row(bookForm.allergy, { 'attr': {'class': 'form-group col-md-12'} }) }}
         <p id="allergyError"></p>
         {{ form_row(bookForm.RGPDConsent, { 'attr': {'class': 'form-group col-md-12'} }) }}
-        <button type="submit" id="submitBtn" class="btn btn-primary">Réserver</button>
+        <button type="submit" id="submitBtn" class="btn-style primary">Réserver</button>
       </div>
     </div>
   </section>

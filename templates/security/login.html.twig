@@ -7,11 +7,11 @@
 	<section class="container">
 		<div class="row">
 			<div class="col">
-				<form method="post">
+        <h2 class="resReg-title">Formulaire de connexion</h2>
+				<form method="post" id="monFormulaire">
 					{% if error %}
 						<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
 					{% endif %}
-
 					{% if app.user %}
 						<div class="mb-3">
 							Vous êtes connecté(e) comme
@@ -19,24 +19,19 @@
 							<a href="{{ path('app_logout') }}">Me déconnecter</a>
 						</div>
 					{% endif %}
-
-					<h1 class="h3 mb-3 font-weight-normal">Formulaire de connexion</h1>
 					<label for="inputEmail">E-mail</label>
 					<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
 					<label for="inputPassword">Mot de passe</label>
 					<div class="input-group">
 						<input type="password" name="password" class="form-control" id="inputPassword" autocomplete="current-password" required>
-
 						<button type="button" class="btn btn-outline-secondary" onclick="document.getElementById('inputPassword').type = (document.getElementById('inputPassword').type === 'password') ? 'text' : 'password'">
 							Afficher/Masquer
 						</button>
 					</div>
 					<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-					<button class="btn btn-lg btn-primary mt-3" type="submit">
-						Me connecter
-					</button>
-					<a href="{{ path('app_register') }}" class="btn btn-secondary mt-3">S'inscrire</a>
-					<a href="{{ path('app_forgot_password') }}" class="btn btn-secondary mt-3">Mot de passe oublié</a>
+          <button class="btn-style primary" type="submit">Me connecter</button>
+          <a href="{{ path('app_register') }}" class="btn-style secondary">S'inscrire</a>
+          <a href="{{ path('app_forgot_password') }}" class="btn-style secondary">Mot de passe oublié</a>
 				</form>
 			</div>
 		</div>
