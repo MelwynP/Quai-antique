@@ -4,54 +4,50 @@
 {% endblock %}
 
 {% block body %}
-<section class="container my-3">
-	<div class="row">
-		<div class="col">
-
-				<h2 class="histoire-title">Les réservations</h2>
+	<h2 class="histoire-title">Les réservations</h2>
+	<section class="container my-3">
+		<div class="row">
+			<div class="col">
 				<a href="{{ path('app_admin') }}" class="btn btn-primary">Panneau d'administration</a>
-
-
-				<table class="table">
-					<thead>
-						<tr>
-							<th>Civilité</th>
-							<th>Nom</th>
-							<th>Prénom</th>
-							<th>Date de réservation</th>
-							<th>Type de service</th>
-							<th>Heure de réservation</th>
-							<th>Nombre de convive</th>
-							<th>Allergie(s)</th>
-							<th>Téléphone</th>
-							<th>E-mail</th>
-						</tr>
-					</thead>
-					<body>
-						{% for booking in bookingOrder %}
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
 							<tr>
-								<td>{{ booking.civility }}</td>
-								<td>{{ booking.name }}</td>
-								<td>{{ booking.firstname }}</td>
-								<td>{{ booking.dateReservation|date('d/m/Y') }}</td>
-								<td>{{ booking.ServiceType }}</td>
-								<td>{{ booking.hour }}</td>
-								<td>{{ booking.numberPeople }}</td>
-								<td>{{ booking.allergy }}</td>
-								<td>{{ booking.phone }}</td>
-								<td>{{ booking.email }}</td>
-								<td>
-									<a href="{{ path('admin_reservation_delete', {id: booking.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette réservation ?')">Supprimer</a>
-
-								</td>
+								<th>Civilité</th>
+								<th>Nom</th>
+								<th>Prénom</th>
+								<th>Date de réservation</th>
+								<th>Type de service</th>
+								<th>Heure de réservation</th>
+								<th>Nombre de convive</th>
+								<th>Allergie(s)</th>
+								<th>Téléphone</th>
+								<th>E-mail</th>
 							</tr>
-						</td>
-					</body>
-				</tr>
-			</body>
-		{% endfor %}
-	</table>
-</div>
-</div>
-</section>
+						</thead>
+						<tbody>
+							{% for booking in bookingOrder %}
+								<tr>
+									<td>{{ booking.civility }}</td>
+									<td>{{ booking.name }}</td>
+									<td>{{ booking.firstname }}</td>
+									<td>{{ booking.dateReservation|date('d/m/Y') }}</td>
+									<td>{{ booking.ServiceType }}</td>
+									<td>{{ booking.hour }}</td>
+									<td>{{ booking.numberPeople }}</td>
+									<td>{{ booking.allergy }}</td>
+									<td>{{ booking.phone }}</td>
+									<td>{{ booking.email }}</td>
+									<td>
+										<a href="{{ path('admin_reservation_delete', {id: booking.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette réservation ?')">Supprimer</a>
+									</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</section>
 {% endblock %}
+

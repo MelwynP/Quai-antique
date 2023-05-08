@@ -27,7 +27,7 @@
 	</head>
 	<body>
 		{# avant mon bloc body je veux la nav #}
-	  {% include 'partials/_nav.html.twig' %}
+	  {% include './partials/_nav.html.twig' %}
 		{% if app.user and app.user.isVerified == false %}
 			<div class="alert alert-warning alert-dismissible" role="alert">
 				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-labael="close"></button>
@@ -37,7 +37,7 @@
 				</div>
 			</div>
 		{% endif %}
-		{% include 'partials/_flash.html.twig' %}
+		{% include './partials/_flash.html.twig' %}
 
 		{% block body %}{% endblock %}
 

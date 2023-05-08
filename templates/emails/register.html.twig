@@ -2,7 +2,7 @@
 <br>
 <p>Bonjour
 	{{ user.firstname }},</p>
-<p>Votre inscription est à valiser en cliquant sur le lien ci-dessous.</p>
+<p>Votre inscription est à valider en cliquant sur le lien ci-dessous.</p>
 <br>
 	<a href="{{ absolute_url(path('verify_user', {token: token})) }}">{{ absolute_url(path('verify_user', {token: token})) }}</a>
 

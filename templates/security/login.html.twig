@@ -14,9 +14,10 @@
 					{% endif %}
 					{% if app.user %}
 						<div class="mb-3">
-							Vous êtes connecté(e) comme
-							{{ app.user.userIdentifier }},
-							<a href="{{ path('app_logout') }}">Me déconnecter</a>
+							Vous êtes connecté(e) en tant que :<br>
+							{{ app.user.userIdentifier }}
+<a class="btn-style primary" href="{{ path('app_logout') }}">Me déconnecter</a>
+
 						</div>
 					{% endif %}
 					<label for="inputEmail">E-mail</label>

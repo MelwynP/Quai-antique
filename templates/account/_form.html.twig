@@ -1,4 +1,6 @@
-{{ form_start(updateUserForm) }}
+{{ form_start(updateUserForm, {'attr': {'id': 'monFormulaire'}}) }}
+
+
 {{ form_row(updateUserForm.name) }}
 <p id="nameUserError"></p>
 {{ form_row(updateUserForm.firstname) }}
@@ -8,7 +10,8 @@
 <p id="phoneError"></p>
 {{ form_row(updateUserForm.allergy) }}
 <p id="allergyError"></p>
-<button id="submitBtn" class="btn btn-primary">Modifier</button>
+<button id="submitBtn" class="btn-style primary">Modifier</button>
+
 {{ form_end(updateUserForm) }}
 
 <script src="{{ asset('assets/js/fichier/scriptUpdateInfoUser.js') }}"></script>

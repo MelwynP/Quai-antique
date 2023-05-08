@@ -6,31 +6,34 @@
 {% block body %}
 	<div class="container">
 		<div class="row">
-			<main class="col-9 border border-light bg-white p-2">
-				<h1>Gérer la capacité</h1>
-				<a href="{{ path('app_admin') }}" class="btn btn-primary">Panneau d'administration</a>
-				<table class="table">
-					<thead>
-						<tr>
-							<th>Capacité maximum du déjeuner</th>
-							<th>Capacité maximum du dîner</th>
-							<th>Nombre de table</th>
-							<th>Nombre de chaise</th>
-						</tr>
-					</thead>
-					<body>
-						<tr>
-							<td>{{ capacity.capacityMaxLunch }}</td>
-							<td>{{ capacity.capacityMaxDinner }}</td>
-							<td>{{ capacity.numberTable }}</td>
-							<td>{{ capacity.numberChair }}</td>
-							<td>
-								<a href="{{ path('admin_capacity_edit', {id: capacity.id}) }}" class="btn btn-success">Modifier</a>
-							</td>
-						</tr>
-					</body>
-				</td>
-			</body>
-		</tr>
-	</body>
-</body></body></table></main></div></div>{% endblock %}
+			<main class="col-md-9 mx-auto bg-white p-2">
+				<h2 class="histoire-title">Gérer la capacité</h2>
+				<div class="d-flex justify-content-between mb-3">
+					<a href="{{ path('app_admin') }}" class="btn btn-primary">Panneau d'administration</a>
+					<a href="{{ path('admin_capacity_edit', {id: capacity.id}) }}" class="btn btn-success">Modifier</a>
+				</div>
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">Capacité maximum du déjeuner</th>
+								<th scope="col">Capacité maximum du dîner</th>
+								<th scope="col">Nombre de table</th>
+								<th scope="col">Nombre de chaise</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>{{ capacity.capacityMaxLunch }}</td>
+								<td>{{ capacity.capacityMaxDinner }}</td>
+								<td>{{ capacity.numberTable }}</td>
+								<td>{{ capacity.numberChair }}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</main>
+		</div>
+	</div>
+{% endblock %}
+

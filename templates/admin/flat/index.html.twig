@@ -4,12 +4,13 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container">
+				<h2 class="histoire-title">Liste des plats</h2>
+	<section class="container my-3">
 		<div class="row">
-			<main class="col-9 border border-light bg-white p-2">
-				<h1>Liste des plats</h1>
+			<div class="col">
 				<a href="{{ path('admin_flat_add') }}" class="btn btn-success">Ajouter un plat</a>
 				<a href="{{ path('app_admin') }}" class="btn btn-primary">Panneau d'administration</a>
+        <div class="table-responsive">
 				<table class="table">
 					<thead>
 						<tr>
@@ -20,6 +21,7 @@
 							<th>Catégorie</th>
 							<th>Menu</th>
 							<th>Photo</th>
+							<th>Actions</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -52,18 +54,15 @@
 								</td>
 								<td>
 									<a href="{{ path('admin_flat_edit', {id: flat.id})}}" class="btn btn-success">Modifier</a>
-								</td>
-								<td>
 									<a href="{{ path('admin_flat_delete', {id: flat.id}) }}" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette réservation ?')">Supprimer</a>
-
-
 								</td>
-
 							</tr>
-						</td>
+						{% endfor %}
 					</tbody>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</tbody>
-</table></main></div></div>{% endblock %}
+				</table>
+        </div>
+			</div>
+		</div>
+	</section>
+{% endblock %}
+
