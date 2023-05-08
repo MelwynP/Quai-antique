@@ -154,7 +154,7 @@ body {
   .btn-reserve {
     font-family: 'Saira', sans-serif;
     font-weight: 600;
-    font-size: 22px;
+    font-size: 18px;
     color: white;
     background-color: #493414;
     padding: 10px 10px 15px 10px;
@@ -163,7 +163,7 @@ body {
     margin: 50px auto;
     margin-top: 70px;
     margin-bottom: 30px;
-    width: 280px;
+    width: 200px;
     text-align: center;
     text-decoration: none;
     transition: all 0.1s ease;
@@ -173,7 +173,7 @@ body {
   .btn-reserve:hover {
     color: #493414;
     font-weight: 600;
-    font-size: 22px;
+    font-size: 18px;
     background-color: white;
     border: 4px solid #493414;
   }
@@ -347,7 +347,7 @@ body {
   .btn-reserve {
     font-family: 'Saira', sans-serif;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 17px;
     color: white;
     background-color: #493414;
     padding: 10px 25px;
@@ -356,7 +356,7 @@ body {
     margin: 50px auto;
     margin-top: 50px;
     margin-bottom: 40px;
-    width: 300px;
+    width: 200px;
     text-align: center;
     text-decoration: none;
     transition: all 0.1s ease;
@@ -366,7 +366,7 @@ body {
   .btn-reserve:hover {
     color: #493414;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 17px;
     background-color: white;
     border: 2px solid #493414;
   }
@@ -545,7 +545,7 @@ body {
     display: block;
     margin: 50px auto;
     margin-bottom: 30px;
-    width: 220px;
+    width: 190px;
     text-align: center;
     text-decoration: none;
     transition: all 0.1s ease;

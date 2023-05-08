@@ -1,9 +1,10 @@
-<h1>Activez votre compte</h1>
+<h2 class="histoire-title">Activez votre compte</h1>
+<br>
 <p>Bonjour
 	{{ user.firstname }},</p>
 <p>Votre inscription est à valiser en cliquant sur le lien ci-dessous.</p>
-<p>
+<br>
 	<a href="{{ absolute_url(path('verify_user', {token: token})) }}">{{ absolute_url(path('verify_user', {token: token})) }}</a>
 
-</p>
+<br>
 <p>Ce lien expirera dans 3 heures.</p>
