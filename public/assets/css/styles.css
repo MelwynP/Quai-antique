@@ -1,19 +1,5 @@
 /* Fonts */
 
-/* ------------------------------- */
-@font-face {
-  font-family: 'David Libre';
-  src: url('/assets/fonts/DavidLibre-Regular.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: 'Saira Medium';
-  src: url('/assets/fonts/Saira-Medium.ttf');
-  font-weight: normal;
-  font-style: normal;
-}
 
 /* ------------VUE--PC------------- */
 /* PAGE MENU  */
@@ -272,7 +258,7 @@ body {
     color: #040F48;
     font-family: 'David Libre', sans-serif;
     margin-top: 20px;
-    margin-bottom: 5px;
+    margin-bottom: 20px;
   }
 
   .info-box {

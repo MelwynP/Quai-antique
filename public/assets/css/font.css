@@ -1,0 +1,20 @@
+@font-face {
+  font-family: 'David Libre';
+  src: url('/assets/fonts/DavidLibre-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Saira Medium';
+  src: url('/assets/fonts/Saira-Medium.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Oregano Regular';
+  src: url('/assets/fonts/Oregano-Regular.ttf');
+  font-weight: Regular;
+  font-style: Regular;
+}

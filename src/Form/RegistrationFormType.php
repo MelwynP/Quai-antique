@@ -33,7 +33,6 @@ class RegistrationFormType extends AbstractType
             ->add('firstname', TextType::class, [
                 'attr' => [
                     'placeholder' => 'Ecrivez votre prénom ici',
-                    'class' => 'form-control',
                 ],
                 'label' => 'Prénom',
                 'required' => false,
@@ -43,7 +42,6 @@ class RegistrationFormType extends AbstractType
             ->add('name', TextType::class, [
                 'attr' => [
                     'placeholder' => 'Ecrivez votre nom ici',
-                    'class' => 'form-control',
                 ],
                 'label' => 'Nom *',
                 'required' => true
@@ -51,7 +49,6 @@ class RegistrationFormType extends AbstractType
 
             ->add('phone', TextType::class, [
                 'attr' => [
-                    'class' => 'form-control',
                     'placeholder' => '06 00 00 00 00',
 
                 ],
@@ -76,7 +73,6 @@ class RegistrationFormType extends AbstractType
 
             ->add('allergy', null, [
                 'attr' => [
-                    'class' => 'form-control'
                 ],
                 'label' => 'Allergie(s)'
             ])

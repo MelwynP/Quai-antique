@@ -150,7 +150,7 @@ function updateAvailability() {
     .catch((error) => {
       console.error("Error:", error)
       document.querySelector("#erreur").textContent =
-        "Une erreur est survenue lors de la vérification de la disponibilité.";
+        "Une erreur est survenue lors de la vérification de la disponibilité."
     });
 }
 serviceType.addEventListener("change", updateAvailability);

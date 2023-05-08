@@ -4,42 +4,43 @@
 {% endblock %}
 
 {% block body %}
+
 	<section class="container">
 		<div class="row">
 			<div class="col">
-				<h3>Pour reservez une table, sélectionnez d'abord une date</h3>
-				{{ form_start(bookForm, {'attr': {'id': 'monFormulaire'}}) }}
+				<h2 class="reserver-title">Pour reservez une table, sélectionnez une date</h3>
+        {{ form_start(bookForm, {'attr': {'id': 'monFormulaire'}}) }}
 				<div id="erreur"></div>
-				{{ form_row(bookForm.dateReservation) }}
-				{{ form_row(bookForm.serviceType) }}
-				{{ form_row(bookForm.hour) }}
-				{{ form_row(bookForm.numberPeople) }}
-				<h5 id="responseRequete"></h5>
-				<h3>Veuillez saisir vos informations personnelles.</h3>
-				{{ form_label(bookForm.civility, 'Civilité *') }}
-				{{ form_widget(bookForm.civility, {
-						'placeholder': 'Veuillez renseigner votre civilité',
-						'attr': {
-								'class': 'form-control'
-						}
-				}) }}
-				{{ form_row(bookForm.firstname) }}
-				<p id="firstnameError"></p>
-				{{ form_row(bookForm.name) }}
-				<p id="nameError"></p>
-				{{ form_row(bookForm.phone) }}
-				<p id="phoneError"></p>
-				{{ form_row(bookForm.email) }}
-				<p id="emailError"></p>
-				{{ form_row(bookForm.allergy) }}
-				<p id="allergyError"></p>
-				{{ form_row(bookForm.RGPDConsent) }}
-				<button type="submit" id="submitBtn" class="btn btn-primary">Réserver</button>
-				{{ form_end(bookForm) }}
-			</div>
-		</div>
-	</section>
+        {{ form_row(bookForm.dateReservation, { 'attr': {'class': 'form-group col-md-4'} }) }}
+        {{ form_row(bookForm.serviceType, { 'attr': {'class': 'form-group col-md-4'} }) }}
+        {{ form_row(bookForm.hour, { 'attr': {'class': 'form-group col-md-4'} }) }}
+        {{ form_row(bookForm.numberPeople, { 'attr': {'class': 'form-group col-md-4'} }) }}
+        <div id="responseRequete"></div>
+			  <h2 class="reserver-title">Remplir vos données personnelles</h3>
+        {{ form_label(bookForm.civility, 'Civilité *') }}
+        {{ form_widget(bookForm.civility, {
+                    'placeholder': 'Veuillez renseigner votre civilité',
+                    'attr': {
+                    'class': 'form-group col-md-4'
+                    }
+                }) }}
+        {{ form_row(bookForm.firstname, { 'attr': {'class': 'form-group col-md-4'} }) }}
+        <p id="firstnameError"></p>
+        {{ form_row(bookForm.name, { 'attr': {'class': 'form-group col-md-4'} }) }}
+        <p id="nameError"></p>
+        {{ form_row(bookForm.phone, { 'attr': {'class': 'form-group col-md-4'} }) }}
+        <p id="phoneError"></p>
+        {{ form_row(bookForm.email, { 'attr': {'class': 'form-group col-md-4'} }) }}
+        <p id="emailError"></p>
+        {{ form_row(bookForm.allergy, { 'attr': {'class': 'form-group col-md-12'} }) }}
+        <p id="allergyError"></p>
+        {{ form_row(bookForm.RGPDConsent, { 'attr': {'class': 'form-group col-md-12'} }) }}
+        <button type="submit" id="submitBtn" class="btn btn-primary">Réserver</button>
+      </div>
+    </div>
+  </section>
+{{ form_end(bookForm) }}
 
-	<script src="{{ asset('assets/js/fichier/scriptBook.js') }}" defer></script>
+<script src="{{ asset('assets/js/fichier/scriptBook.js') }}" defer></script>
 
 {% endblock %}

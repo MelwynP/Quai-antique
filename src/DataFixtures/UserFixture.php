@@ -21,11 +21,11 @@ class UserFixture extends Fixture
     $admin = new User();
     $admin->setEmail('admin@admin.fr');
     $admin->setName('Admin');
-    $admin->setFirstname(' - ');
+    $admin->setFirstname('Admin');
     $admin->setPassword($this->passwordEncoder->hashPassword($admin, 'azerty'));
     $admin->setRoles(['ROLE_ADMIN']);
-    $admin->setPhone(' - ');
-    $admin->setAllergy(' - ');
+    $admin->setPhone('');
+    $admin->setAllergy('');
     $admin->setCivility('Monsieur');
     $admin->setNumberPeople('0');
     $admin->setIsVerified(1);
