@@ -30,7 +30,7 @@ class RestaurantFixture extends Fixture implements DependentFixtureInterface
     $restaurant->setName('Quai-Antique');
     $restaurant->setAddress('2 rue Favre');
     $restaurant->setPhone('0388888888');
-    $restaurant->setEmail('contact@quai-antique.com');
+    $restaurant->setEmail('contact@quai-antique.tech');
     $restaurant->setAveragePrice(35.50);
     $restaurant->setCity('Chambéry');
     $restaurant->setZipCode(73000);

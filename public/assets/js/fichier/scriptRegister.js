@@ -1,4 +1,4 @@
-
+// message d'erreur qui indique comment regler le message
 const mdp = document.querySelector("#registration_form_plainPassword");
 const mdpinfo = document.querySelector("#mdpinfo");
 
@@ -9,7 +9,7 @@ mdpinfo.classList.add("text-secondary");
 });
 
 
-
+// Affichage d'une div animation sur la page d'inscription
 const blurBackground = document.getElementById('blur-background');
 const messageDiv = document.getElementById('inscription-message');
 

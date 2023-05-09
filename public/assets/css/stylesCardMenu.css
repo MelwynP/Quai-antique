@@ -88,7 +88,7 @@
   .choiceMenu {
     font-family: 'Oregano Regular', sans-serif;
     color: #fff;
-    font-size: 22px;
+    font-size: 24px;
     margin-bottom: 70px;
 
   }
@@ -213,7 +213,7 @@
   .choiceMenu {
     font-family: 'Oregano Regular', sans-serif;
     color: #fff;
-    font-size: 19px;
+    font-size: 21px;
 
   }
 
@@ -239,7 +239,7 @@
     line-height: 55px;
     margin-right: 20px;
     position: relative;
-    top: -24px;
+    top: -45px;
     transform: rotate(-20deg);
   }
 
@@ -335,7 +335,7 @@
   .choiceMenu {
     font-family: 'Oregano Regular', sans-serif;
     color: #fff;
-    font-size: 19px;
+    font-size: 21px;
 
   }
 
