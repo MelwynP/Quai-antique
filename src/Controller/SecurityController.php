@@ -77,7 +77,7 @@ class SecurityController extends AbstractController
 
                 // On envoie le mail
                 $sendMailService->send(
-                    'nepasrepondre@quai-antique.tech',
+                    'contact@quai-antique.tech',
                     //recupere le mail de l'utilisateur
                     $user->getEmail(),
                     'réinitialisation de mot de passe',
