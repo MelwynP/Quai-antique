@@ -196,8 +196,7 @@ body {
     padding: 10px 15px 10px 15px;
     margin-top: 40px;
     margin: 0 auto;
-    max-width: 550px;
-    width: calc(100% - 30px);
+    width: calc(45% - 30px);
     font-family: 'David Libre', sans-serif;
     font-weight: 600;
     font-size: 22px;
@@ -387,8 +386,7 @@ body {
     border-radius: 10px;
     padding: 10px 15px 10px 15px;
     margin: 0 auto;
-    max-width: 450px;
-    width: calc(100% - 30px);
+    width: calc(65% - 30px);
     font-family: 'David Libre', sans-serif;
     font-size: 18px;
     font-weight: 600;
@@ -576,8 +574,7 @@ body {
     border-radius: 10px;
     padding: 10px 15px 10px 15px;
     margin: 0 auto;
-    max-width: 320px;
-    width: calc(100% - 30px);
+    width: calc(95% - 30px);
     font-family: 'David Libre', sans-serif;
     font-size: 14px;
     font-weight: 600;
@@ -593,4 +590,9 @@ body {
     border-radius: 50%;
     background-color: rgb(49, 46, 46);
   }
+
+
+
+
+  
 }

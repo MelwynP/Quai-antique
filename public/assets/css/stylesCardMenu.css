@@ -86,7 +86,7 @@
   }
 
   .choiceMenu {
-    font-family: 'Saira', sans-serif;
+    font-family: 'Oregano Regular', sans-serif;
     color: #fff;
     font-size: 22px;
     margin-bottom: 70px;
@@ -115,7 +115,7 @@
     line-height: 55px;
     margin-right: 20px;
     position: relative;
-    top: -40px;
+    top: -22px;
     transform: rotate(-20deg);
   }
 
@@ -211,7 +211,7 @@
   }
 
   .choiceMenu {
-    font-family: 'Saira', sans-serif;
+    font-family: 'Oregano Regular', sans-serif;
     color: #fff;
     font-size: 19px;
 
@@ -239,7 +239,7 @@
     line-height: 55px;
     margin-right: 20px;
     position: relative;
-    top: -40px;
+    top: -24px;
     transform: rotate(-20deg);
   }
 
@@ -333,7 +333,7 @@
   }
 
   .choiceMenu {
-    font-family: 'Saira', sans-serif;
+    font-family: 'Oregano Regular', sans-serif;
     color: #fff;
     font-size: 19px;
 
@@ -352,7 +352,6 @@
     background-color: #fff;
     font-size: 16px;
 
-
     color: black;
     font-weight: bold;
     border-radius: 50%;
@@ -362,7 +361,7 @@
     line-height: 55px;
     margin-right: 20px;
     position: relative;
-    top: -40px;
+    /* margin-top: -26px; */
     transform: rotate(-20deg);
   }
 
@@ -373,4 +372,7 @@
     margin-bottom: 20px;
 
   }
+
+
+   
 }

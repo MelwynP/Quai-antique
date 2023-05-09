@@ -18,7 +18,6 @@ class UpdateUserFormType extends AbstractType
       ->add('name', TextType::class, [
         'attr' => [
           'placeholder' => 'Modifiez votre nom ici',
-          'class' => 'form-control',
         ],
         'label' => 'Nom *',
         'required' => true
@@ -27,7 +26,6 @@ class UpdateUserFormType extends AbstractType
       ->add('firstname', TextType::class, [
         'attr' => [
           'placeholder' => 'Modifiez votre prénom ici',
-          'class' => 'form-control',
         ],
         'label' => 'Prénom',
         'required' => false,
@@ -37,7 +35,6 @@ class UpdateUserFormType extends AbstractType
 
       ->add('phone', TextType::class, [
         'attr' => [
-          'class' => 'form-control',
           'placeholder' => '06 00 00 00 00',
         ],
         'label' => 'Téléphone',
@@ -47,7 +44,6 @@ class UpdateUserFormType extends AbstractType
 
       ->add('allergy', null, [
         'attr' => [
-          'class' => 'form-control'
         ],
         'label' => 'Allergie(s)',
         'required' => false,

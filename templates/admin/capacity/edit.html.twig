@@ -9,9 +9,21 @@
 		<section class="row">
 			<div class="col-12">
 				<h2 class="histoire-title">Modifier la capacité</h2>
-				{% include "admin/capacity/_form.html.twig" %}
+				{# {% include "admin/capacity/_form.html.twig" %} #}
+				{{ form_start(capacityFormulaire, {'attr': {'id': 'monFormulaire'}}) }}
+
+				{{ form_row(capacityFormulaire.capacityMaxLunch) }}
+				{{ form_row(capacityFormulaire.capacityMaxDinner) }}
+				{{ form_row(capacityFormulaire.numberTable) }}
+				{{ form_row(capacityFormulaire.numberChair) }}
+				<button class="btn-style primary">Publier</button>
+				<a href="{{ path('app_admin') }}" class="btn btn-primary">Panneau d'administration</a>
+
+
+				{{ form_end(capacityFormulaire) }}
+
+
 			</div>
 		</section>
 	</main>
 {% endblock %}
-

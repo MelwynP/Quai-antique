@@ -8,6 +8,7 @@
 		<div class="row">
 			<div class="col">
         <h2 class="resReg-title">Inscritpion</h2>
+        
         {{ form_start(registrationForm, {'attr': {'id': 'monFormulaire'}}) }}
 				{{ form_label(registrationForm.civility, 'Civilité *') }}
 				{{ form_widget(registrationForm.civility, {
@@ -34,17 +35,25 @@
 		</div>
 	</section>
 
-<script>
+{#--------- Div d'animation ----- #}
+<div id="blur-background" class="blur-background"></div>
 
-const mdp = document.querySelector("#registration_form_plainPassword");
-const mdpinfo = document.querySelector("#mdpinfo");
+<div id="inscription-message" class="inscription-message">
+<span class="separateur separateur-register">
+	<img src="assets/pictures/separateur.png" alt="séparateur">
+</span>
+<h3>Inscrivez-vous dès maintenant !</h3><br>
+<p>En vous inscrivant sur notre site, vous pourrez réserver plus rapidement à l'avenir et bénéficier de nombreux avantages </p><br>
+<ul>
+	<li>Accès à des offres exclusives réservées aux membres</li>
+	<li>Enregistrement de vos informations pour un processus de réservation plus rapide</li>
+	<li>Suivi de vos réservations et de vos préférences</li>
+</ul>
+<span class="separateur separateur-register">
+	<img src="assets/pictures/separateur.png" alt="séparateur">
+</span>
+</div>
 
-// function qui envoi un message expliquant le mot de passe demandé
-mdp.addEventListener("click", function () {
-mdpinfo.textContent = "Votre mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial.";
-mdpinfo.classList.add("text-secondary");
-});
-
-</script>
+<script src="{{ asset('assets/js/fichier/scriptRegister.js') }}"></script>
 
 {% endblock %}

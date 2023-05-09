@@ -4,7 +4,8 @@
 {% endblock %}
 
 {% block body %}
-	<link rel="stylesheet" href="stylesCardMenu.css">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="stylesCardMenu.css">
 	<div class="containerPrincipal">
 		<span class="titleMargeh2">
 			<h2 class="histoire-title">Savourez nos délicieux plats faits maison, inspiré par le chef Arnaud Michant</h2>
@@ -50,14 +51,14 @@
 									<B>
 										<U>ou</U>
 									</B>
-									Salade de fruits<br></p>
+									Salade de fruits<br><br></p>
 							{% else %}
 								<p class="choiceMenu">Entrée au choix<br>-------------<br>Burger
 									<B>
 										<U>ou
 										</U>
 									</B>Plat au choix<br>-------------<br>Fromage au choix<br>-------------<br>Dessert au choix</p>
-							{% endif %}
+							{% endif %} 
 							<p class="prixDescriptionMenu">
 								<span class="description">{{ menu.description }}</span>
 								<span class="prix">{{ menu.price }}€</span>
