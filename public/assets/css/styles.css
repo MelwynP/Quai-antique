@@ -193,16 +193,19 @@ body {
   .horaire-container {
     border: 1px solid black;
     border-radius: 10px;
-    padding: 10px 15px 10px 15px;
+    padding: 15px 15px 10px 15px;
     margin-top: 40px;
     margin: 0 auto;
-    width: calc(45% - 30px);
+    width: calc(55% - 20px);
     font-family: 'David Libre', sans-serif;
-    font-weight: 600;
     font-size: 22px;
     text-align: center;
   }
-
+  .hour-footer{
+   color: #C78522;
+   font-weight: 600;
+  }
+  
   .horaire-container p::before {
     content: "";
     display: inline-block;
@@ -384,13 +387,17 @@ body {
   .horaire-container {
     border: 1px solid black;
     border-radius: 10px;
-    padding: 10px 15px 10px 15px;
+    padding: 15px 10px 10px 10px;
     margin: 0 auto;
-    width: calc(65% - 30px);
+    width: calc(70% - 20px);
     font-family: 'David Libre', sans-serif;
     font-size: 18px;
-    font-weight: 600;
     text-align: center;
+  }
+
+  .hour-footer {
+    color: #C78522;
+    font-weight: 600;
   }
 
   .horaire-container p::before {
@@ -572,13 +579,17 @@ body {
   .horaire-container {
     border: 1px solid black;
     border-radius: 10px;
-    padding: 10px 15px 10px 15px;
+    padding: 15px 8px 0px 8px;
     margin: 0 auto;
-    width: calc(95% - 30px);
+    width: calc(100% - 20px);
     font-family: 'David Libre', sans-serif;
     font-size: 14px;
-    font-weight: 600;
     text-align: center;
+  }
+
+  .hour-footer {
+    color: #C78522;
+    font-weight: 600;
   }
 
   .horaire-container p::before {
