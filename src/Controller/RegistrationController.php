@@ -62,18 +62,19 @@ class RegistrationController extends AbstractController
 
             //on envoie un email 
             $sendMailService->send(
-                'contact@quai-antique.tech',
+                'ne-pas-repondre@quai-antique.tech',
                 $user->getEmail(),
                 //on récupère l'email de l'utilisateur avec la methode getemail()
                 'Activation de votre compte Quai Antique', //le subject
                 'register', //le template
-                [
-                    'user' => $user,
-                    'token' => $token
+                 compact('user', 'token')
+                          // [
+                //     'user' => $user,
+                //     'token' => $token
+                //     ]
                     //on passe l'utilisateur dans le tableau. 
                     // La syntaxe compact('user') est équivalente
                     // Puis on passe le token directement dans le mail
-                ]
             );
 
             return $userAuthenticator->authenticateUser(
@@ -149,7 +150,7 @@ class RegistrationController extends AbstractController
 
         //on envoie un email 
         $sendMailService->send(
-            'contact@quai-antique.tech',
+            'ne-pas-repondre@quai-antique.tech',
             $user->getEmail(),
             //on récupère l'email de l'utilisateur avec la methode getemail()
             'Activation de votre compte Quai Antique', //le subject
