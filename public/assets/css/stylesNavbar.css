@@ -3,6 +3,7 @@
 
   .containerNavbar {
     margin-bottom: 45px;
+    border-bottom: black 2px solid;
   }
 
   .navbar {
@@ -30,8 +31,8 @@
     margin-top: 10px;
     margin-right: 220px;
   }
-    
-    /* .navbar-light .navbar-toggler {
+
+  /* .navbar-light .navbar-toggler {
       border: 2px solid rgba(255, 255, 255, 255);
     } */
 
@@ -46,13 +47,13 @@
     width: auto;
   }
 
-  .logoQuai{
+  .logoQuai {
     margin-left: 50px;
     height: 100px;
     width: auto;
   }
 
-  .nav-link-register{
+  .nav-link-register {
     position: absolute;
     right: 50px;
     margin-right: 50px;
@@ -73,7 +74,7 @@
 /* /* -----------------NAVBAR--VUE--TABLETTE------------- */
 @media (min-width: 768px) and (max-width: 1024px) {
 
-.containerNavbar {
+  .containerNavbar {
     margin-bottom: 45px;
   }
 
@@ -113,11 +114,11 @@
     width: auto;
   }
 
-    .logoQuai {
-      margin-left: 50px;
-      height: 80px;
-      width: auto;
-    }
+  .logoQuai {
+    margin-left: 50px;
+    height: 80px;
+    width: auto;
+  }
 
   .nav-link-register {
     position: absolute;
@@ -137,13 +138,13 @@
     border: 2px solid;
     border-radius: 5px;
   }
-  
+
   .navbar-toggler {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     margin-top: -20px;
-    
+
   }
 }
 

@@ -40,12 +40,11 @@
 		<div class="horaire-container">
 			{% for hour in hour %}
 				<p>
-					Le
 					{{ hour.dayWeek }}
 					matin
 					<span class="hour-footer">{{ hour.lunchOpeningTime }}
 						-
-						{{ hour.lunchClosingTime }}</span>, puis le soir
+						{{ hour.lunchClosingTime }}</span>, le soir
 					<span class="hour-footer">{{ hour.dinnerOpeningTime }}
 						-
 						{{ hour.dinnerClosingTime }}</span>

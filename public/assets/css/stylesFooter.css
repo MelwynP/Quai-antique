@@ -1,4 +1,4 @@
-/* -----------------NAVBAR--VUE--DESKTOP------------- */
+/* -----------------FOOTER--VUE--DESKTOP------------- */
 @media(min-width: 1024px) {
   footer {
     background-color: #C78522;
@@ -6,63 +6,44 @@
     font-family: 'David Libre', sans-serif;
     font-size: 22px;
     margin-top: 60px;
-    padding: 20px;
+    padding: 10px;
+    border-top: solid 2px #000000;
   }
 
-  .address {
-    float: left;
-    font-size: 20px;
-    margin-right: 40px;
-    margin-top: 10px;
-  }
-
-  .logo-container {
+  .col-12 {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
   }
 
-  .logo-container img {
-    height: 90px;
-    margin-right: 180px;
-  }
-
-
-  .credit {
-    margin-top: 60px;
-    margin-bottom: -15px;
+  .address,
+  .links,
+  .logo-container {
+    flex: 1;
     text-align: center;
   }
 
-  .links {
-    float: right;
-    text-align: right;
-    margin-top: -80px;
-    font-size: 20px;
-    margin-right: -70px;
+  .logo-footer {
+    width: 130px;
   }
 
-  .links a {
-    display: block;
-    margin-bottom: 10px;
-    text-decoration: none;
+ .mentions {
+   margin-top: 35px;
+   text-align: center;
+ }
+  .container a {
     color: #ffffff;
-  }
-
-  .credit a {
-    color: white;
     text-decoration: none;
   }
 
-  .credit a:hover {
-    text-decoration: underline;
-  }
-
-  .links a:hover {
-    text-decoration: underline;
+  .container a:hover {
+    color: rgb(49, 46, 46);
+    font-weight: bold;
+    text-decoration: none;
   }
 }
 
-/* -----------------NAVBAR--VUE--TABLETTE------------- */
+/* -----------------FOOTER--VUE--TABLETTE------------- */
 @media(max-width: 1024px) {
   footer {
     background-color: #C78522;
@@ -70,89 +51,103 @@
     font-family: 'David Libre', sans-serif;
     font-size: 20px;
     margin-top: 60px;
-    padding: 20px;
+    padding: 5px;
+    border-top: solid 2px #000000;
   }
 
   .address {
-    font-size: 20px;
+    text-align: center !important;
+    margin-top: 10px;
     margin-bottom: 20px;
   }
+
 
   .logo-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
+    text-align: center !important;
+    margin: 15px;
   }
 
-  .logo-container img {
-    height: 90px;
+  .logo-footer {
+    text-align: center;
+    width: 115px;
+
+  }
+  
+  .links{
+    text-align: center !important;
+    margin: 20px;
   }
 
-  .credit {
-    font-size: 16px;
-    margin-top: 20px;
-    margin-bottom: -10px;
+  .mentions{
+    text-align: center !important;
+    font-size: 18px;
+    margin-top: 5px;
+    margin-bottom: 5px;
   }
 
-  .links a {
-    color: #e81a1a;
+  .container a {
+    color: #ffffff;
     text-decoration: none;
-    display: block;
   }
 
-  .credit a {
-    color: white;
+  .container a:hover {
+    color: rgb(49, 46, 46);
+    font-weight: bold;
     text-decoration: none;
   }
-
-  .credit a:hover {
-    text-decoration: underline;
-  }
-
-  .links a:hover {
-    text-decoration: underline;
-  }
-
 }
 
 
-/* -----------------NAVBAR--VUE--MOBILE------------- */
+/* -----------------FOOTER--VUE--MOBILE------------- */
 @media(max-width: 768px) {
 
   footer {
     background-color: #C78522;
-    color: #ffffff;
     font-family: 'David Libre', sans-serif;
-    font-size: 20px;
+    font-size: 18px;
     margin-top: 60px;
-
-    padding: 20px;
+    padding: 5px;
+    border-top: solid 2px #000000;
   }
 
   .address {
-    font-size: 20px;
+    text-align: center !important;
+    margin-top: 5px;
     margin-bottom: 20px;
   }
-
-  .logo-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-
-  .logo-container img {
-    height: 90px;
-  }
-
   
- 
-  .credit {
-    color: white;
-    margin-top: 20px;
-    font-size: 14px;
+  
+  .logo-container {
+    text-align: center !important;
+    margin-top: 15px;
+    margin-bottom: 15px;
   }
-    a {
-      color: #212529;
-    }
-
+  
+  .logo-footer {
+    text-align: center;
+    width: 100px;
+  
+  }
+  
+  .links {
+    text-align: center !important;
+    margin-top: 20px;
+  }
+  
+  .mentions {
+    text-align: center !important;
+    font-size: 14px;
+    margin: 0;
+  }
+  
+  .container a {
+    color: #ffffff;
+    text-decoration: none;
+  }
+  
+  .container a:hover {
+    color: rgb(49, 46, 46);
+    font-weight: bold;
+    text-decoration: none;
+  }
 }

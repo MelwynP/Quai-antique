@@ -180,41 +180,42 @@ body {
 
   /* Les horaires */
   /* ---------------------- */
-  .titre-horaire {
-    font-family: 'David Libre', sans-serif;
-    font-size: 42px;
-    font-weight: 500;
-    color: #040F48;
-    text-align: center;
-    margin-top: 30px;
-    margin-bottom: 55px;
-  }
-
-  .horaire-container {
-    border: 1px solid black;
-    border-radius: 10px;
-    padding: 15px 15px 10px 15px;
-    margin-top: 40px;
-    margin: 0 auto;
-    width: calc(55% - 20px);
-    font-family: 'David Libre', sans-serif;
-    font-size: 22px;
-    text-align: center;
-  }
-  .hour-footer{
-   color: #C78522;
-   font-weight: 600;
-  }
+    .titre-horaire {
+      font-family: 'David Libre', sans-serif;
+      font-size: 42px;
+      font-weight: 500;
+      color: #040F48;
+      text-align: center;
+      margin-top: 30px;
+      margin-bottom: 55px;
+    }
   
-  .horaire-container p::before {
-    content: "";
-    display: inline-block;
-    margin-right: 10px;
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: rgb(124, 116, 116);
-  }
+    .horaire-container {
+      border: 1px solid black;
+      border-radius: 10px;
+      padding: 15px 10px 5px 10px;
+      margin-top: 40px;
+      margin: 0 auto;
+      width: 650px;
+      font-family: 'David Libre', sans-serif;
+      font-size: 22px;
+      text-align: center;
+    }
+  
+    .hour-footer {
+      color: #C78522;
+      font-weight: 600;
+    }
+  
+    .horaire-container p::before {
+      content: "";
+      display: inline-block;
+      margin-right: 10px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: rgb(124, 116, 116);
+    }
 
 
 }
@@ -375,40 +376,41 @@ body {
 
   /* Les horaires */
   /* ---------------------- */
-  .titre-horaire {
-    font-family: 'David Libre', sans-serif;
-    font-size: 28px;
-    font-weight: 500;
-    color: #040F48;
-    text-align: center;
-    margin-bottom: 30px;
-  }
+    .titre-horaire {
+      font-family: 'David Libre', sans-serif;
+      font-size: 28px;
+      font-weight: 500;
+      color: #040F48;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+  
+    .horaire-container {
+      border: 1px solid black;
+      border-radius: 10px;
+      padding: 15px 10px 10px 10px;
+      margin: 0 auto;
 
-  .horaire-container {
-    border: 1px solid black;
-    border-radius: 10px;
-    padding: 15px 10px 10px 10px;
-    margin: 0 auto;
-    width: calc(70% - 20px);
-    font-family: 'David Libre', sans-serif;
-    font-size: 18px;
-    text-align: center;
-  }
-
-  .hour-footer {
-    color: #C78522;
-    font-weight: 600;
-  }
-
-  .horaire-container p::before {
-    content: "";
-    display: inline-block;
-    margin-right: 10px;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: rgb(49, 46, 46);
-  }
+      width: 550px;
+      font-family: 'David Libre', sans-serif;
+      font-size: 18px;
+      text-align: center;
+    }
+  
+    .hour-footer {
+      color: #C78522;
+      font-weight: 600;
+    }
+  
+    .horaire-container p::before {
+      content: "";
+      display: inline-block;
+      margin-right: 10px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: rgb(49, 46, 46);
+    }
 }
 
 /* ------------VUE--SMARTPHONE------------- */
@@ -579,13 +581,13 @@ body {
   .horaire-container {
     border: 1px solid black;
     border-radius: 10px;
-    padding: 15px 8px 0px 8px;
-    margin: 0 auto;
-    width: calc(100% - 20px);
+    padding: 15px 5px 0px 5px;; 
+    width: 90%;
+    max-width: 480px;
     font-family: 'David Libre', sans-serif;
     font-size: 14px;
-    text-align: center;
-  }
+    text-align: center;  
+  } 
 
   .hour-footer {
     color: #C78522;
