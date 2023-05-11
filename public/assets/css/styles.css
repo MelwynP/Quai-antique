@@ -20,6 +20,13 @@ body {
   margin: 0 auto;
 }
 
+/* ------------Page réinitialisation--------------- */
+.container-reini {
+  margin-top: 100px;
+  margin-bottom: 150px;
+}
+
+
 /* ------------VUE--PC------------- */
 @media(min-width: 1024px) {
 
