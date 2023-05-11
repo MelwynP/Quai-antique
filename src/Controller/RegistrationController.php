@@ -62,7 +62,7 @@ class RegistrationController extends AbstractController
 
             //on envoie un email 
             $sendMailService->send(
-                'ne-pas-repondre@quai-antique.tech',
+        'contact@quai-antique.tech',
                 $user->getEmail(),
                 //on récupère l'email de l'utilisateur avec la methode getemail()
                 'Activation de votre compte Quai Antique', //le subject
@@ -150,7 +150,7 @@ class RegistrationController extends AbstractController
 
         //on envoie un email 
         $sendMailService->send(
-            'ne-pas-repondre@quai-antique.tech',
+      'contact@quai-antique.tech',
             $user->getEmail(),
             //on récupère l'email de l'utilisateur avec la methode getemail()
             'Activation de votre compte Quai Antique', //le subject
