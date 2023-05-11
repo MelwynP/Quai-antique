@@ -82,17 +82,17 @@
 
 				<div class="horaire-container">
 					{% for hour in hour %}
-						<p></p>
-						<p>
-							{{ hour.dayWeek }}
-							matin
-							<span class="hour-footer">{{ hour.lunchOpeningTime }}
-								-
-								{{ hour.lunchClosingTime }}</span>, le soir
-							<span class="hour-footer">{{ hour.dinnerOpeningTime }}
-								-
-								{{ hour.dinnerClosingTime }}</span>
-						</p>
+<p>
+	{{ hour.dayWeek }}
+	matin
+	<span class="hour-footer">{{ hour.lunchOpeningTime }}
+		-
+		{{ hour.lunchClosingTime }}</span>, le soir
+	<span class="hour-footer">{{ hour.dinnerOpeningTime }}
+		-
+		{{ hour.dinnerClosingTime }}</span>
+</p>
+
 
 
 					{% endfor %}

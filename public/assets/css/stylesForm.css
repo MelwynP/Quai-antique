@@ -16,7 +16,7 @@
 
 .resReg-title {
   text-align: center;
-  font-size: 34px;
+  font-size: 42px;
   font-weight: 500;
   color: #040F48;
   font-family: 'David Libre', sans-serif;
@@ -36,7 +36,7 @@
   margin: 50px auto;
   margin-top: 70px;
   margin-bottom: 30px;
-  width: 200px;
+  width: 250px;
   text-align: center;
   text-decoration: none;
   transition: all 0.1s ease;
@@ -91,7 +91,7 @@
 
   .resReg-title {
     text-align: center;
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 500;
     color: #040F48;
     font-family: 'David Libre', sans-serif;
@@ -111,7 +111,7 @@
     margin: 50px auto;
     margin-top: 50px;
     margin-bottom: 40px;
-    width: 200px;
+    width: 240px;
     text-align: center;
     text-decoration: none;
     transition: all 0.1s ease;
@@ -188,7 +188,7 @@
     display: block;
     margin: 50px auto;
     margin-bottom: 30px;
-    width: 200px;
+    width: 215px;
     text-align: center;
     text-decoration: none;
     transition: all 0.1s ease;
