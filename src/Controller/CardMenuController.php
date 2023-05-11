@@ -20,8 +20,6 @@ class CardMenuController extends AbstractController
       'flats' => $flatRepository->findAll([]),
       'categories' => $categoryRepository->findAll([]),
       'menus' => $menuRepository->findAll(),
-      'dayClose' => $hourRepository->dayClose(),
-      'dayOpen' => $hourRepository->dayOpen(),
       'hour' => $hourRepository->findAll(),
     ]);
   }

@@ -39,60 +39,7 @@ class FlatRepository extends ServiceEntityRepository
         }
     }
 
-    /**
-     * @return Flat[] Returns an array of Flat objects
-     */
-    public function saladPrefer()
-    {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.id IN (:val)')
-            ->setParameter('val', [1, 2])
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    
-
-    /**
-     * @return Flat[] Returns an array of Flat objects
-     */
-    public function flatPrefer()
-    {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.id IN (:val)')
-            ->setParameter('val', [11, 14])
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-
-
-    /**
-     * @return Flat[] Returns an array of Flat objects
-     */
-    public function cheesePrefer()
-    {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.id IN (:val)')
-            ->setParameter('val', [17, 18])
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-
-
-    /**
-     * @return Flat[] Returns an array of Flat objects
-     */
-    public function dessertPrefer()
-    {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.id IN (:val)')
-            ->setParameter('val', [24, 25])
-            ->getQuery()
-            ->getResult()
-        ;
-    }
+  
 
 
 

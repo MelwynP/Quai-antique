@@ -54,7 +54,7 @@ phone.addEventListener("blur", function () {
     (phoneValue.length !== 10 || !phoneValue.match(/^\d{10}$/))
   ) {
     phoneError.textContent =
-      "Le numéro de téléphone est optionnel mais il doit contenir 10 chiffres, exemple : 0601020304";
+      "Le numéro de téléphone est optionnel mais il doit contenir 10 chiffres, 0601020304";
     phoneError.classList.add("text-secondary");
     phone.classList.add("is-invalid");
     submitBtn.disabled = true;

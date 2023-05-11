@@ -39,31 +39,31 @@ class HourRepository extends ServiceEntityRepository
         }
     }
 
-    /**
-     * @return Hour[] Returns an array of Flat objects
-     */
-    public function dayClose()
-    {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.id IN (:val)')
-            ->setParameter('val', [1, 2, 3])
-            ->getQuery()
-            ->getResult()
-        ;
-    }
+    // /**
+    //  * @return Hour[] Returns an array of Flat objects
+    //  */
+    // public function dayClose()
+    // {
+    //     return $this->createQueryBuilder('f')
+    //         ->andWhere('f.id IN (:val)')
+    //         ->setParameter('val', [1, 2, 3])
+    //         ->getQuery()
+    //         ->getResult()
+    //     ;
+    // }
 
-    /**
-     * @return Hour[] Returns an array of Flat objects
-     */
-    public function dayOpen()
-    {
-        return $this->createQueryBuilder('f')
-            ->andWhere('f.id IN (:val)')
-            ->setParameter('val', [4, 5, 6, 7])
-            ->getQuery()
-            ->getResult()
-        ;
-    }
+    // /**
+    //  * @return Hour[] Returns an array of Flat objects
+    //  */
+    // public function dayOpen()
+    // {
+    //     return $this->createQueryBuilder('f')
+    //         ->andWhere('f.id IN (:val)')
+    //         ->setParameter('val', [4, 5, 6, 7])
+    //         ->getQuery()
+    //         ->getResult()
+    //     ;
+    // }
 
 
 //    /**

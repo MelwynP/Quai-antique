@@ -16,8 +16,6 @@ class MainController extends AbstractController
     {
 
         return $this->render('main/index.html.twig', [
-            'dayClose' => $hourRepository->dayClose(),
-            'dayOpen' => $hourRepository->dayOpen(),
             'hour' => $hourRepository->findAll(),
             'flat' => $flatRepository->findAll(),
             'images' => $imagesRepository->findAll(),
