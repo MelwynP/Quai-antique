@@ -17,7 +17,8 @@ faire un cache clear : 'php bin/console cache:clear'
 Lancez le serveur avec la commande 'symfony serve -d'.
 Le site est maintenant lancé en local.
 
-Cependant, pour que l'envoi de mails fonctionne, il faut configurer un serveur mail. Voici comment installer MailHog :
+Cependant, pour que l'envoi de mails fonctionne, il faut configurer un serveur mail. 
+Voici comment installer MailHog :
 
 Téléchargez MailHog depuis GitHub : https://github.com/mailhog/MailHog/releases
 Sélectionnez la version adaptée à votre système d'exploitation, puis téléchargez-la.
@@ -26,9 +27,12 @@ Dans le terminal, naviguez jusqu'au dossier de base en utilisant la commande cd.
 Exécutez la commande './MailHog(ajouter_votre_version)'.
 Dans un navigateur, accédez à l'adresse suivante : http://localhost:8025/
 Ajoutez la variable d'environnement suivante au fichier .env : 'MAILER_DSN=smtp://localhost:1025'
-Ajoutez également la variable d'environnement suivante au fichier .env : 'MESSENGER_TRANSPORT_DSN=doctrine://default?auto_setup=0'
+Ajoutez également la variable d'environnement suivante au fichier .env : 
+'MESSENGER_TRANSPORT_DSN=doctrine://default?auto_setup=0'
 L'envoi de mails est maintenant configuré.
 
-Pour ajouter un administrateur, il suffit de s'enregistrer avec l'adresse e-mail : 'contact@quai-antique.tech'. Cela débloquera le compte administrateur.
+Pour ajouter un administrateur, il suffit de s'enregistrer avec l'adresse e-mail : 'contact@quai-antique.tech'. 
+Cela débloquera le compte administrateur.
 
 Bonne installation !
+
