@@ -6,7 +6,7 @@ Pour installer l'application en local, suivez les étapes suivantes :
 
 Créez un nouveau dossier et ouvrez un terminal dans ce dossier.
 Clonez le dépôt GitHub : 'git clone https://github.com/MelwynP/quai-antique.git'
-Créez un fichier .env en copiant le fichier de démonstration .env.demoLocal. À la racine du dépôt, 
+À la racine du dépôt, créez un fichier .env en copiant le fichier de démonstration .env.demoLocal. , 
 entrez la commande : 'cp .env.demoLocal .env'.
 Ajoutez les informations nécessaires, les variables ainsi que les clefs JWT et APP.
 Lancez la commande 'composer install'.
