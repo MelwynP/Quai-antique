@@ -13,6 +13,7 @@ Lancez la commande 'composer install'.
 Créez la base de données avec la commande 'php bin/console doctrine:database:create'.
 Appliquez la migration avec la commande 'php bin/console doctrine:migrations:migrate'.
 Chargez les fixtures avec la commande 'php bin/console doctrine:fixtures:load --no-interaction'.
+faire un cache clear : 'php bin/console cache:clear'
 Lancez le serveur avec la commande 'symfony serve -d'.
 Le site est maintenant lancé en local.
 
