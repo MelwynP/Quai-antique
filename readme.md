@@ -1,14 +1,15 @@
 Quai-antique
+
 Application pour le restaurant Quai-Antique avec réservation en ligne.
 
 Installation
+
 Pour installer l'application en local, suivez les étapes suivantes :
 
 Créez un nouveau dossier et ouvrez un terminal dans ce dossier.
 Clonez le dépôt GitHub : 'git clone https://github.com/MelwynP/quai-antique.git'
-À la racine du dépôt, créez un fichier .env en copiant le fichier de démonstration .env.demoLocal. , 
-entrez la commande : 'cp .env.demoLocal .env'.
-Ajoutez les informations nécessaires, les variables ainsi que les clefs JWT et APP.
+À la racine du dépôt, créez un fichier .env
+Ajoutez les informations nécessaires, les variables d'environnements ainsi que les clefs JWT et APP.
 Lancez la commande 'composer install'.
 Créez la base de données avec la commande 'php bin/console doctrine:database:create'.
 Appliquez la migration avec la commande 'php bin/console doctrine:migrations:migrate'.
@@ -30,9 +31,6 @@ Ajoutez la variable d'environnement suivante au fichier .env : 'MAILER_DSN=smtp:
 Ajoutez également la variable d'environnement suivante au fichier .env : 
 'MESSENGER_TRANSPORT_DSN=doctrine://default?auto_setup=0'
 L'envoi de mails est maintenant configuré.
-
-Pour ajouter un administrateur, il suffit de s'enregistrer avec l'adresse e-mail : 'contact@quai-antique.tech'. 
-Cela débloquera le compte administrateur.
 
 Bonne installation !
 
