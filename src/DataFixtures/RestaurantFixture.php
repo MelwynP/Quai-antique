@@ -63,7 +63,7 @@ class RestaurantFixture extends Fixture implements DependentFixtureInterface
     //Entrées
     $flat1 = new Flat();
     $flat1->setName('Salade gourmet');
-    $flat1->setDescription('roquette, endives, tommates cerises, noix de cajou grillées, pignon de pin, fromage de chèvre, vinaigrette au miel');
+    $flat1->setDescription('roquette, endives, tomates cerise, noix de cajou grillées, pignons de pin, fromage de chèvre, vinaigrette au miel');
     $flat1->setPrice(12.50);
     $category = $this->getReference('entrees');
     $flat1->setCategory($category);
@@ -76,7 +76,7 @@ class RestaurantFixture extends Fixture implements DependentFixtureInterface
 
     $flat3 = new Flat();
     $flat3->setName('Salade printanière');
-    $flat3->setDescription('mesclun, radis, asperges, comcombre, oeufs de caille, saumon fumé, feta, vinaigrette a l’huile d’olive');
+    $flat3->setDescription('mesclun, radis, asperges, concombre, oeufs de caille, saumon fumé, feta, vinaigrette a l’huile d’olive');
     $flat3->setPrice(12.00);
     $category = $this->getReference('entrees');
     $flat3->setCategory($category);
@@ -89,7 +89,7 @@ class RestaurantFixture extends Fixture implements DependentFixtureInterface
 
     $flat = new Flat();
     $flat->setName('Soupe de crozets');
-    $flat->setDescription('soupe traditionnelle avec crozets, lardons et fromage');
+    $flat->setDescription('soupe traditionnelle avec crozets, lardons et fromages');
     $flat->setPrice(8.50);
     $menu = $this->getReference('savoyard');
     $flat->setMenu($menu);
@@ -98,7 +98,7 @@ class RestaurantFixture extends Fixture implements DependentFixtureInterface
     $manager->persist($flat);
 
     $flat = new Flat();
-    $flat->setName('Péla de pomme de terre');
+    $flat->setName('Péla de pommes de terre');
     $flat->setDescription('pommes de terre, fromage à raclette, lardons');
     $flat->setPrice(8.50);
     $category = $this->getReference('entrees');
@@ -161,7 +161,7 @@ class RestaurantFixture extends Fixture implements DependentFixtureInterface
 
     $flat = new Flat();
     $flat->setName('Fondue savoyarde');
-    $flat->setDescription('fromage fondue, pain, pommes de terre, charcuteries');
+    $flat->setDescription('fromage fondu, pain, pommes de terre, charcuteries');
     $flat->setPrice(16.50);
     $menu = $this->getReference('savoyard');
     $flat->setMenu($menu);
@@ -171,7 +171,7 @@ class RestaurantFixture extends Fixture implements DependentFixtureInterface
 
     $flat6 = new Flat();
     $flat6->setName('Fondue au gorgonzola');
-    $flat6->setDescription('fromage fondue gorgonzola, pain, pommes de terre, charcuteries');
+    $flat6->setDescription('fromage fondu gorgonzola, pain, pommes de terre, charcuteries');
     $flat6->setPrice(16.50);
     $category = $this->getReference('plats');
     $flat6->setCategory($category);
@@ -264,14 +264,14 @@ class RestaurantFixture extends Fixture implements DependentFixtureInterface
     //Desserts
     $flat = new Flat();
     $flat->setName('Fondue au chocolat');
-    $flat->setDescription('fruits, biscuits et chamallow');
+    $flat->setDescription('fruits, biscuits et chamallows');
     $flat->setPrice(7.00);
     $category = $this->getReference('desserts');
     $flat->setCategory($category);
     $manager->persist($flat);
 
     $flat10 = new Flat();
-    $flat10->setName('Crème brulée');
+    $flat10->setName('Crème brûlée');
     $flat10->setDescription('caramel croquant');
     $flat10->setPrice(5.20);
     $category = $this->getReference('desserts');
@@ -341,56 +341,47 @@ class RestaurantFixture extends Fixture implements DependentFixtureInterface
     $hour = new Hour();
     $hour->setDayWeek('Lundi');
     $hour->setLunchOpeningTime('Fermé');
-    $hour->setLunchClosingTime('Fermé');
-    $hour->setDinnerOpeningTime('Fermé');
-    $hour->setDinnerClosingTime('Fermé');
     $hour->setRestaurant($restaurant);
     $manager->persist($hour);
     $hour = new Hour();
     $hour->setDayWeek('Mardi');
     $hour->setLunchOpeningTime('Fermé');
-    $hour->setLunchClosingTime('Fermé');
-    $hour->setDinnerOpeningTime('Fermé');
-    $hour->setDinnerClosingTime('Fermé');
     $hour->setRestaurant($restaurant);
     $manager->persist($hour);
     $hour = new Hour();
     $hour->setDayWeek('Mercredi');
     $hour->setLunchOpeningTime('Fermé');
-    $hour->setLunchClosingTime('Fermé');
-    $hour->setDinnerOpeningTime('Fermé');
-    $hour->setDinnerClosingTime('Fermé');
     $hour->setRestaurant($restaurant);
     $manager->persist($hour);
     $hour = new Hour();
     $hour->setDayWeek('Jeudi');
-    $hour->setLunchOpeningTime('12h00');
+    $hour->setLunchOpeningTime('12h00 à');
     $hour->setLunchClosingTime('14h00');
-    $hour->setDinnerOpeningTime('19h00');
+    $hour->setDinnerOpeningTime(' et 19h00 à');
     $hour->setDinnerClosingTime('22h00');
     $hour->setRestaurant($restaurant);
     $manager->persist($hour);
     $hour = new Hour();
     $hour->setDayWeek('Vendredi');
-    $hour->setLunchOpeningTime('12h00');
+    $hour->setLunchOpeningTime('12h00 à');
     $hour->setLunchClosingTime('14h00');
-    $hour->setDinnerOpeningTime('19h00');
+    $hour->setDinnerOpeningTime(' et 19h00 à');
     $hour->setDinnerClosingTime('22h00');
     $hour->setRestaurant($restaurant);
     $manager->persist($hour);
     $hour = new Hour();
     $hour->setDayWeek('Samedi');
-    $hour->setLunchOpeningTime('12h00');
+    $hour->setLunchOpeningTime('12h00 à');
     $hour->setLunchClosingTime('14h00');
-    $hour->setDinnerOpeningTime('19h00');
+    $hour->setDinnerOpeningTime(' et 19h00 à');
     $hour->setDinnerClosingTime('22h00');
     $hour->setRestaurant($restaurant);
     $manager->persist($hour);
     $hour = new Hour();
     $hour->setDayWeek('Dimanche');
-    $hour->setLunchOpeningTime('12h00');
+    $hour->setLunchOpeningTime('12h00 à');
     $hour->setLunchClosingTime('14h00');
-    $hour->setDinnerOpeningTime('19h00');
+    $hour->setDinnerOpeningTime(' et 19h00 à');
     $hour->setDinnerClosingTime('22h00');
     $hour->setRestaurant($restaurant);
     $manager->persist($hour);

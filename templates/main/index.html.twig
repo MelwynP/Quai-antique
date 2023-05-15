@@ -13,7 +13,9 @@
 
 		<h2 class="histoire-title">Notre histoire</h2>
 		<div class="info-box">
-			<p>Le restaurant au Quai Antique est un nouvel établissement situé au cœur de Chambéry qui propose une cuisine traditionnelle savoyarde, utilisant des ingrédients locaux et de saison pour des plats savoureux et authentiques. Le chef Arnaud Michant, formé dans les meilleurs restaurants de la région, dirige le restaurant et propose une carte qui change régulièrement pour refléter les meilleurs produits de la saison. Le service est amical et attentif.</p>
+			<p>
+				Le restaurant Au Quai Antique est un nouvel établissement situé au cœur de Chambéry. Il propose une cuisine traditionnelle savoyarde, mettant en valeur des ingrédients locaux et de saison pour créer des plats savoureux et authentiques. Le chef Arnaud Michant, qui a été formé dans les meilleurs restaurants de la région, dirige l'établissement. La carte du restaurant est régulièrement mise à jour afin de mettre en avant les meilleurs produits de la saison. L'équipe de service est amicale et attentionnée, offrant ainsi une expérience agréable aux clients.
+			</p>
 		</div>
 
 		<h3 class="title-h3">
@@ -34,22 +36,20 @@
 
 		<a href="{{ path('app_book') }}" class="btn-reserve">
 			Reserver une table</a>
-
 		<h3 class="titre-horaire">Nos horaires</h3>
-
 		<div class="horaire-container">
 			{% for hour in hour %}
-<p>
-	{{ hour.dayWeek }}
-	<span class="hour-footer">{{ hour.lunchOpeningTime }}
-		-
-		{{ hour.lunchClosingTime }}</span>, puis de
-	<span class="hour-footer">{{ hour.dinnerOpeningTime }}
-		-
-		{{ hour.dinnerClosingTime }}</span>
-</p>
-
-
+				<p>
+					{{ hour.dayWeek }}
+					<span class="hour-footer">
+						{{ hour.lunchOpeningTime }}
+						{{ hour.lunchClosingTime }}
+					</span>
+					<span class="hour-footer">
+						{{hour.dinnerOpeningTime }}
+						{{ hour.dinnerClosingTime }}
+					</span>
+				</p>
 			{% endfor %}
 		</div>
 

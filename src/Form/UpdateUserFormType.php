@@ -51,7 +51,7 @@ class UpdateUserFormType extends AbstractType
 
       ->add('numberPeople', ChoiceType::class, [
         'required' => true,
-        'label' => 'Nombre de personnes *',
+        'label' => 'Nombre de personne(s) *',
         'choices' => [
           '1' => '1',
           '2' => '2',

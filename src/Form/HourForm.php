@@ -41,13 +41,7 @@ class HourForm extends AbstractType
             'class' => 'form-control'
           ],
           'label' => 'Heure d\'ouverture du déjeuner',
-          'required' => false,
-          'constraints' => [
-            new Regex([
-              'pattern' => '/^(fermé|Fermé|FERMÉ|vacances|Vacances|VACANCES|ferié|Ferié|FERIÉ)$|[0-9]{2}h[0-9]{2}$/',
-              'message' => 'Veuillez saisir des heures valides (ex:"12h00") ou les mot "Fermé", "Vacances", "Ferié".'
-            ])
-          ]
+          'required' => false
         ]
       )
 
@@ -56,14 +50,7 @@ class HourForm extends AbstractType
           'class' => 'form-control'
         ],
         'label' => 'Heure de fermeture du déjeuner',
-        'required' => false,
-        'constraints' => [
-          new Regex([
-            'pattern' =>
-            '/^(fermé|Fermé|FERMÉ|vacances|Vacances|VACANCES|ferié|Ferié|FERIÉ)$|[0-9]{2}h[0-9]{2}$/',
-            'message' => 'Veuillez saisir des heures valides (ex:"12h00") ou les mot "Fermé", "Vacances", "Ferié".'
-          ])
-        ]
+        'required' => false
       ])
 
       ->add('dinnerOpeningTime', TextType::class, [
@@ -71,14 +58,7 @@ class HourForm extends AbstractType
           'class' => 'form-control'
         ],
         'label' => 'Heure d\'ouverture du dinner',
-        'required' => false,
-        'constraints' => [
-          new Regex([
-            'pattern' =>
-            '/^(fermé|Fermé|FERMÉ|vacances|Vacances|VACANCES|ferié|Ferié|FERIÉ)$|[0-9]{2}h[0-9]{2}$/',
-            'message' => 'Veuillez saisir des heures valides (ex:"12h00") ou les mot "Fermé", "Vacances", "Ferié".'
-          ])
-        ]
+        'required' => false
       ])
 
       ->add('dinnerClosingTime', TextType::class, [
@@ -86,14 +66,7 @@ class HourForm extends AbstractType
           'class' => 'form-control'
         ],
         'label' => 'Heure de fermeture du dinner',
-        'required' => false,
-        'constraints' => [
-          new Regex([
-            'pattern' =>
-            '/^(fermé|Fermé|FERMÉ|vacances|Vacances|VACANCES|ferié|Ferié|FERIÉ)$|[0-9]{2}h[0-9]{2}$/',
-            'message' => 'Veuillez saisir des heures valides (ex:"12h00") ou les mot "Fermé", "Vacances", "Ferié".'
-          ])
-        ]
+        'required' => false
       ])
 
       ->add('restaurant', EntityType::class, [

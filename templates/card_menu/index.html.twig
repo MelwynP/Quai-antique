@@ -84,15 +84,15 @@
 					{% for hour in hour %}
 						<p>
 							{{ hour.dayWeek }}
-							<span class="hour-footer">{{ hour.lunchOpeningTime }}
-								-
-								{{ hour.lunchClosingTime }}</span>, puis de
-							<span class="hour-footer">{{ hour.dinnerOpeningTime }}
-								-
-								{{ hour.dinnerClosingTime }}</span>
+							<span class="hour-footer">
+								{{ hour.lunchOpeningTime }}
+								{{ hour.lunchClosingTime }}
+							</span>
+							<span class="hour-footer">
+								{{hour.dinnerOpeningTime }}
+								{{ hour.dinnerClosingTime }}
+							</span>
 						</p>
-
-
 					{% endfor %}
 				</div>
 			</div>
